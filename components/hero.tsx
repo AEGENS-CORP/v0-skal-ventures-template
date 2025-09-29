@@ -31,49 +31,49 @@ export function Hero() {
         backgroundClickProgress={backgroundClickProgress}
       />
 
-      <div className="text-center relative z-10 max-w-4xl mx-auto px-4">
-        <div className="mb-6 overflow-hidden">
+      <div className="text-center relative z-10 w-full pt-16">
+        <div className="mb-6 w-full space-y-2">
           <div
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-sentient font-extralight transition-all duration-300 ease-out"
+            className="text-left text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-sans font-black transition-all duration-300 ease-out ml-12 sm:ml-20 md:ml-32 lg:ml-40"
             style={{
               transform: line1Transform,
               opacity: textOpacity,
               filter: `blur(${textBlur}px)`,
             }}
           >
-            L'avenir de l'IA
+            Créer
           </div>
           <div
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-sentient font-light italic transition-all duration-300 ease-out"
+            className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light italic transition-all duration-300 ease-out px-8 sm:px-12 md:px-16 lg:px-20"
             style={{
               transform: line2Transform,
               opacity: textOpacity,
               filter: `blur(${textBlur}px)`,
             }}
           >
-            commence ici
+            l'audacieux
           </div>
           <div
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-sentient font-extralight transition-all duration-300 ease-out"
+            className="text-right text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-mono font-extralight transition-all duration-300 ease-out mr-12 sm:mr-20 md:mr-32 lg:mr-40"
             style={{
               transform: line3Transform,
               opacity: textOpacity,
               filter: `blur(${textBlur}px)`,
             }}
           >
-            avec vous
+            futur
           </div>
         </div>
 
         <div
-          className="transition-all duration-300 ease-out"
+          className="transition-all duration-300 ease-out max-w-2xl mx-auto px-4"
           style={{
             opacity: textOpacity,
             filter: `blur(${textBlur}px)`,
             transform: `translateY(${scrollProgress * 50}px)`,
           }}
         >
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
+          <p className="text-lg sm:text-xl text-muted-foreground mb-12 leading-relaxed">
             Nous transformons votre vision en solutions d'intelligence artificielle révolutionnaires qui redéfinissent
             votre industrie.
           </p>

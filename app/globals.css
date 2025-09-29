@@ -19,16 +19,16 @@
   --muted-foreground: oklch(0.8 0 0);
   --accent: rgba(255, 255, 255, 0.1);
   --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.8 0 0);
   --destructive-foreground: oklch(0.98 0 0);
   --border: rgba(255, 255, 255, 0.2);
   --input: rgba(255, 255, 255, 0.1);
   --ring: rgba(255, 255, 255, 0.4);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --chart-1: oklch(0.8 0 0);
+  --chart-2: oklch(0.7 0 0);
+  --chart-3: oklch(0.6 0 0);
+  --chart-4: oklch(0.5 0 0);
+  --chart-5: oklch(0.4 0 0);
   --radius: 0.75rem;
   --sidebar: rgba(0, 0, 0, 0.8);
   --sidebar-foreground: oklch(0.98 0 0);
@@ -55,16 +55,16 @@
   --muted-foreground: oklch(0.8 0 0);
   --accent: rgba(255, 255, 255, 0.1);
   --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.8 0 0);
   --destructive-foreground: oklch(0.98 0 0);
   --border: rgba(255, 255, 255, 0.2);
   --input: rgba(255, 255, 255, 0.1);
   --ring: rgba(255, 255, 255, 0.4);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
+  --chart-1: oklch(0.8 0 0);
+  --chart-2: oklch(0.7 0 0);
+  --chart-3: oklch(0.6 0 0);
+  --chart-4: oklch(0.5 0 0);
+  --chart-5: oklch(0.4 0 0);
   --sidebar: rgba(0, 0, 0, 0.8);
   --sidebar-foreground: oklch(0.98 0 0);
   --sidebar-primary: oklch(0.98 0 0);
@@ -123,7 +123,7 @@
     background: transparent !important;
     color: oklch(0.98 0 0) !important;
     font-family: "Poppins", sans-serif;
-    font-weight: 600; /* Made all text bold by default */
+    font-weight: 600 !important; /* Added bold font weight to all text */
   }
 
   h1,
@@ -137,17 +137,17 @@
   div,
   a {
     color: oklch(0.98 0 0) !important;
-    font-weight: 600 !important; /* Ensured all text elements are bold */
+    font-weight: 700 !important; /* Made all text elements bold */
   }
 
-  /* Made headings extra bold */
+  /* Ensure headings are extra bold */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-weight: 700 !important;
+    font-weight: 800 !important;
   }
 }
 

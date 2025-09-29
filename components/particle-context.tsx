@@ -9,7 +9,6 @@ interface ParticleContextType {
   clickRipples: Array<{ x: number; y: number; time: number }>
   backgroundClickCenter: { x: number; y: number } | null
   backgroundClickProgress: number
-  addParticles: (count: number) => void
 }
 
 const ParticleContext = createContext<ParticleContextType | undefined>(undefined)
@@ -58,31 +57,6 @@ export function ParticleProvider({ children }: { children: ReactNode }) {
     }
 
     animationFrameRef.current = requestAnimationFrame(animate)
-  }
-
-  const addParticles = (count: number) => {
-    const centerX = Math.random() * 2 - 1
-    const centerY = Math.random() * 2 - 1
-
-    for (let i = 0; i < count; i++) {
-      const angle = (Math.PI * 2 * i) / count
-      const radius = Math.random() * 0.3
-      const x = centerX + Math.cos(angle) * radius
-      const y = centerY + Math.sin(angle) * radius
-
-      const newRipple = {
-        x: Math.max(-1, Math.min(1, x)),
-        y: Math.max(-1, Math.min(1, y)),
-        time: Date.now() + i * 50, // Stagger the particles
-      }
-
-      setTimeout(() => {
-        setClickRipples((prev) => [...prev, newRipple])
-        setTimeout(() => {
-          setClickRipples((prev) => prev.filter((ripple) => ripple.time !== newRipple.time))
-        }, 3000)
-      }, i * 50)
-    }
   }
 
   useEffect(() => {
@@ -177,15 +151,7 @@ export function ParticleProvider({ children }: { children: ReactNode }) {
 
   return (
     <ParticleContext.Provider
-      value={{
-        hovering,
-        setHovering,
-        mousePosition,
-        clickRipples,
-        backgroundClickCenter,
-        backgroundClickProgress,
-        addParticles,
-      }}
+      value={{ hovering, setHovering, mousePosition, clickRipples, backgroundClickCenter, backgroundClickProgress }}
     >
       {children}
     </ParticleContext.Provider>
@@ -196,14 +162,6 @@ export function useParticles() {
   const context = useContext(ParticleContext)
   if (context === undefined) {
     throw new Error("useParticles must be used within a ParticleProvider")
-  }
-  return context
-}
-
-export function useParticleContext() {
-  const context = useContext(ParticleContext)
-  if (context === undefined) {
-    throw new Error("useParticleContext must be used within a ParticleProvider")
   }
   return context
 }

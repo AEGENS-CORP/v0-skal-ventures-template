@@ -7,18 +7,17 @@ import { Features } from "@/components/features"
 import { Stats } from "@/components/stats"
 import { Process } from "@/components/process"
 import { Portfolio } from "@/components/portfolio"
-import { Technologies } from "@/components/technologies"
 import { Team } from "@/components/team"
+import { Technologies } from "@/components/technologies"
 import { Pricing } from "@/components/pricing"
-import { Timeline } from "@/components/timeline"
-import { FAQ } from "@/components/faq"
-import { Newsletter } from "@/components/newsletter"
-import { Awards } from "@/components/awards"
 import { About } from "@/components/about"
 import { Testimonials } from "@/components/testimonials"
 import { Contact } from "@/components/contact"
 import { Footer } from "@/components/footer"
 import { Leva } from "leva"
+import { Insights } from "@/components/insights"
+import { Methodology } from "@/components/methodology"
+import { Resources } from "@/components/resources"
 
 export default function Home() {
   return (
@@ -33,12 +32,11 @@ export default function Home() {
       <Technologies />
       <Team />
       <Pricing />
-      <Timeline />
-      <Awards />
-      <FAQ />
-      <Newsletter />
       <About />
       <Testimonials />
+      <Insights />
+      <Methodology />
+      <Resources />
       <Contact />
       <Footer />
       <Leva hidden />

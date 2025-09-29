@@ -30,11 +30,11 @@ export function Testimonials() {
     <section className="py-24 bg-background relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sentient font-extralight mb-4">
-            Une approche globale
-            <br />
-            pour un modèle d'avenir
-          </h2>
+          <div className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight space-y-2">
+            <div className="text-left ml-12 sm:ml-20 md:ml-32 lg:ml-40 font-sans font-light">Une approche</div>
+            <div className="text-center px-8 sm:px-12 md:px-16 lg:px-20 font-serif font-normal">globale</div>
+            <div className="text-right mr-12 sm:mr-20 md:mr-32 lg:mr-40 font-mono font-light italic">pour l'avenir</div>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
