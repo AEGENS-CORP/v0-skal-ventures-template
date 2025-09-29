@@ -7,8 +7,8 @@ export const Header = () => {
   return (
     <div className="fixed z-[9999] top-0 left-0 w-full">
       <div className="bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div className="bg-gradient-to-b from-black/60 via-black/40 to-transparent h-12"></div>
-        <header className="flex items-center justify-between max-w-5xl mx-auto px-8 py-3 -mt-12 relative z-10 font-sentient">
+        <div className="bg-gradient-to-b from-black/60 via-black/40 to-transparent h-1"></div>
+        <header className="flex items-center justify-between max-w-4xl mx-auto px-8 py-0.5 -mt-1 relative z-10 font-sentient">
           <Link href="/" className="flex-shrink-0">
             <Logo className="w-[240px] sm:w-[280px]" />
           </Link>

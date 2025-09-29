@@ -63,33 +63,6 @@ export function Features() {
   ]
 
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-background/50 relative z-10">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-sm font-mono text-muted-foreground mb-4 tracking-wider uppercase">
-            Pourquoi nous choisir
-          </h2>
-          <h3 className="text-4xl md:text-5xl font-light mb-6">Fonctionnalités avancées</h3>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Des technologies de pointe au service de votre transformation digitale
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 cursor-pointer"
-              onMouseEnter={() => setHovering(true)}
-              onMouseLeave={() => setHovering(false)}
-            >
-              <div className="mb-4">{feature.icon}</div>
-              <h4 className="text-xl font-medium mb-3 group-hover:text-primary transition-colors">{feature.title}</h4>
-              <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    null
   )
 }
