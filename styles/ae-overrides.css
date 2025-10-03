@@ -40,6 +40,15 @@ header nav a {
   text-decoration: none;
 }
 
+header nav a:hover,
+header nav a:focus {
+  text-decoration: none;
+}
+
+footer a {
+  text-decoration: none;
+}
+
 .ae-page {
   padding: 6rem 1.5rem 4rem;
   max-width: 1120px;
