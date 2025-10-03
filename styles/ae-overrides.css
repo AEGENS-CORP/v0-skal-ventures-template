@@ -1,0 +1,257 @@
+.ae-readable {
+  font-family: var(--font-sans, "Helvetica Neue", "Helvetica", "Arial", sans-serif);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.ae-dark {
+  color: #fff;
+}
+
+.ae-readable p,
+.ae-readable li,
+.ae-readable small,
+.ae-readable .text-sm {
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.005em;
+}
+
+.ae-readable strong,
+.ae-readable b,
+.ae-readable .ae-emphasis,
+.ae-readable .ae-stat {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.ae-readable a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+header nav a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ae-page {
+  padding: 6rem 1.5rem 4rem;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.ae-page-header {
+  margin-bottom: 2.5rem;
+}
+
+.ae-page-header h1 {
+  font-weight: var(--font-weight-bold, 700);
+  letter-spacing: -0.01em;
+}
+
+.ae-page-header p {
+  margin-top: 0.75rem;
+  max-width: 720px;
+}
+
+.ae-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+.ae-breadcrumbs a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.ae-breadcrumbs span {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ae-sections-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .ae-sections-layout {
+    grid-template-columns: 280px minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.ae-sticky-toc {
+  position: sticky;
+  top: 7rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  backdrop-filter: saturate(1.2) blur(6px);
+}
+
+.ae-sticky-toc h2 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.ae-sticky-toc a {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+.ae-sticky-toc a:hover,
+.ae-sticky-toc a:focus {
+  color: #fff;
+}
+
+.ae-section {
+  padding: 2.5rem 2rem;
+  background: rgba(0, 0, 0, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1.5rem;
+  backdrop-filter: saturate(1.2) blur(6px);
+  scroll-margin-top: 7rem;
+}
+
+.ae-section + .ae-section {
+  margin-top: 1.5rem;
+}
+
+.ae-section h2 {
+  font-size: clamp(1.5rem, 1.3rem + 0.6vw, 2.25rem);
+  margin-bottom: 1rem;
+}
+
+.ae-section p {
+  margin-bottom: 1.25rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ae-section-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}
+
+.ae-section-links a {
+  text-decoration: underline;
+}
+
+.ae-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .ae-grid-columns-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ae-card {
+  padding: 1.75rem;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.32);
+  backdrop-filter: saturate(1.1) blur(4px);
+}
+
+.ae-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.ae-card p {
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ae-faq {
+  display: grid;
+  gap: 1rem;
+}
+
+.ae-faq-item {
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.ae-faq-item h2 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.ae-contact-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .ae-contact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ae-dropdown {
+  position: fixed;
+  z-index: 2147483647;
+  backdrop-filter: saturate(1.2) blur(6px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 15, 20, 0.95);
+  min-width: 220px;
+  padding: 0.5rem 0;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+}
+
+.ae-dropdown a {
+  display: block;
+  padding: 0.6rem 0.9rem;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ae-dropdown a:focus,
+.ae-dropdown a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
+.ae-focus-outline:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 3px;
+}
+
+.ae-muted {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ae-divider {
+  margin: 2.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ae-list-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+}

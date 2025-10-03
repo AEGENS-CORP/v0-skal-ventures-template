@@ -3,12 +3,10 @@ import { Logo } from "./logo"
 import { MobileMenu } from "./mobile-menu"
 import { InteractiveLink } from "./interactive-link"
 import { NavigationDropdown } from "./navigation-dropdown"
-import { primaryNav } from "@/lib/navigation"
+import { plusNav, primaryNav } from "@/lib/navigation"
 
 export const Header = () => {
-  const mainNavItems = primaryNav.filter((item) =>
-    ["Méthode", "Services", "Ressources", "Contact"].includes(item.label),
-  )
+  const mainNavItems = primaryNav
 
   return (
     <div className="fixed z-[9999] top-0 left-0 w-full">
@@ -27,32 +25,29 @@ export const Header = () => {
               return (
                 <div
                   key={item.label}
-                  className="animate-in fade-in duration-1000 group"
-                  style={{ animationDelay: `${200 + index * 100}ms` }}
+                  className="animate-in fade-in duration-1000"
+                  style={{ animationDelay: `${200 + index * 80}ms` }}
                 >
                   <InteractiveLink
-                    className={`text-lg font-bold transition-all duration-500 whitespace-nowrap relative ${
+                    className={`text-lg font-bold transition-all duration-500 whitespace-nowrap ${
                       isContact
                         ? "border-2 border-white text-white px-6 py-2.5 rounded-md hover:bg-white/10 hover:scale-105"
-                        : "text-white/80 hover:text-white"
+                        : "text-white hover:text-white/90"
                     }`}
                     href={item.href}
                   >
                     {item.label}
-                    {!isContact && (
-                      <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-white/0 via-white to-white/0 transition-all duration-500 group-hover:w-full"></span>
-                    )}
                   </InteractiveLink>
                 </div>
               )
             })}
             <div className="animate-in fade-in duration-1000 delay-700">
-              <NavigationDropdown />
+              <NavigationDropdown items={plusNav} />
             </div>
           </nav>
 
           <div className="lg:hidden animate-in fade-in duration-1000 delay-300">
-            <MobileMenu navItems={primaryNav} />
+            <MobileMenu navItems={[...primaryNav, ...plusNav]} />
           </div>
         </header>
       </div>
