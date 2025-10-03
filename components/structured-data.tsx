@@ -176,33 +176,6 @@ export function StructuredData() {
       })
     }
 
-    if (pathname === "/contact") {
-      entries.push({
-        "@context": "https://schema.org",
-        "@type": "ContactPage",
-        name: "Contact Aegens",
-        description:
-          "Formulaire de contact futuriste pour échanger avec l'équipe Aegens : tous les champs sont optionnels, du mot rapide au projet complet.",
-        url: new URL("/contact", BASE_URL).toString(),
-        inLanguage: "fr-FR",
-      })
-
-      entries.push({
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        name: "Aegens",
-        url: BASE_URL,
-        contactPoint: [
-          {
-            "@type": "ContactPoint",
-            email: "contact@aegens.com",
-            contactType: "customer support",
-            availableLanguage: ["French"],
-          },
-        ],
-      })
-    }
-
     return entries
   }, [pathname])
 
