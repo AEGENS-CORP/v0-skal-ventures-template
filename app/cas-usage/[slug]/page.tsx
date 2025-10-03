@@ -81,4 +81,3 @@ export default function CasUsagePage({ params }: { params: { slug: string } }) {
     </SimplePageLayout>
   )
 }
-

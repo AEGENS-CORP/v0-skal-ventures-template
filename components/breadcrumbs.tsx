@@ -32,4 +32,3 @@ export const Breadcrumbs = ({ items }: { items: BreadcrumbItem[] }) => {
     </nav>
   )
 }
-

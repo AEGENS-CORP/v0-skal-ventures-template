@@ -64,4 +64,3 @@ export default function ComparatifEntryPage({ params }: { params: { category: st
     </SimplePageLayout>
   )
 }
-

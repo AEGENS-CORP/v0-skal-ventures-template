@@ -64,4 +64,3 @@ export const footerLinks = [
   { label: "Blog", href: "/blog" },
   { label: "Tarifs", href: "/tarifs" },
 ]
-

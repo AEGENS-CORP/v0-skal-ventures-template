@@ -22,7 +22,10 @@ export const MobileMenu = ({ className, navItems }: MobileMenuProps) => {
   return (
     <Dialog.Root modal={false} open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
-        <button className={cn("group lg:hidden p-2 text-foreground transition-colors", className)} aria-label="Open menu">
+        <button
+          className={cn("group lg:hidden p-2 text-foreground transition-colors", className)}
+          aria-label="Open menu"
+        >
           <Menu className="group-[[data-state=open]]:hidden" size={24} />
           <X className="hidden group-[[data-state=open]]:block" size={24} />
         </button>
@@ -47,7 +50,7 @@ export const MobileMenu = ({ className, navItems }: MobileMenuProps) => {
                 <InteractiveLink
                   href={item.href}
                   onClick={handleLinkClick}
-                  className="text-xl font-mono uppercase text-foreground/60 transition-colors ease-out duration-150 hover:text-foreground/100 py-2"
+                  className="text-xl font-sans uppercase text-foreground/60 transition-colors ease-out duration-150 hover:text-foreground/100 py-2"
                 >
                   {item.label}
                 </InteractiveLink>
@@ -73,4 +76,3 @@ export const MobileMenu = ({ className, navItems }: MobileMenuProps) => {
     </Dialog.Root>
   )
 }
-

@@ -59,4 +59,3 @@ export default function ComparatifCategoryPage({ params }: { params: { category:
     </SimplePageLayout>
   )
 }
-

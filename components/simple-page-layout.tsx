@@ -10,16 +10,11 @@ type SimplePageLayoutProps = {
   children: ReactNode
 }
 
-export const SimplePageLayout = ({
-  title,
-  description,
-  breadcrumbs,
-  children,
-}: SimplePageLayoutProps) => {
+export const SimplePageLayout = ({ title, description, breadcrumbs, children }: SimplePageLayoutProps) => {
   return (
     <div className="bg-black text-white min-h-screen">
       <Header />
-      <main className="pt-36 pb-20">
+      <main className="pt-44 pb-20">
         <div className="max-w-5xl mx-auto px-6 space-y-8">
           {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
           <div className="space-y-4">
@@ -33,4 +28,3 @@ export const SimplePageLayout = ({
     </div>
   )
 }
-

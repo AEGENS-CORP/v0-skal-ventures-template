@@ -64,4 +64,3 @@ export default function QuestionHubEntryPage({ params }: { params: { category: s
     </SimplePageLayout>
   )
 }
-

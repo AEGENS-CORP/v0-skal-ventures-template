@@ -59,4 +59,3 @@ export default function OutilPage({ params }: { params: { slug: string } }) {
     </SimplePageLayout>
   )
 }
-

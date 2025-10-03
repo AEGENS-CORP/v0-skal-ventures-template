@@ -32,8 +32,8 @@ export function Testimonials() {
         <div className="text-center mb-16">
           <div className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight space-y-2">
             <div className="text-left ml-12 sm:ml-20 md:ml-32 lg:ml-40 font-sans font-light">Une approche</div>
-            <div className="text-center px-8 sm:px-12 md:px-16 lg:px-20 font-serif font-normal">globale</div>
-            <div className="text-right mr-12 sm:mr-20 md:mr-32 lg:mr-40 font-mono font-light italic">pour l'avenir</div>
+            <div className="text-center px-8 sm:px-12 md:px-16 lg:px-20 font-sans font-normal">globale</div>
+            <div className="text-right mr-12 sm:mr-20 md:mr-32 lg:mr-40 font-sans font-light italic">pour l'avenir</div>
           </div>
         </div>
 

@@ -36,7 +36,7 @@ export function Services() {
     <section id="services" className="py-24 bg-background relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-mono text-muted-foreground mb-4 tracking-wider uppercase">
+          <h2 className="text-sm font-sans text-muted-foreground mb-4 tracking-wider uppercase">
             Nos expertises principales
           </h2>
           <h3 className="text-4xl md:text-5xl font-sentient font-extralight">Services d'excellence</h3>

@@ -59,4 +59,3 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     </SimplePageLayout>
   )
 }
-

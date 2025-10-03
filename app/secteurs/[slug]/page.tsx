@@ -88,4 +88,3 @@ export default function SectorPage({ params }: { params: { slug: string } }) {
     </SimplePageLayout>
   )
 }
-

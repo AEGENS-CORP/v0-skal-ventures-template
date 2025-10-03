@@ -25,4 +25,3 @@ export const LinkSection = ({ title, links }: { title: string; links: LinkItem[]
     </section>
   )
 }
-

@@ -43,4 +43,3 @@ export default function RessourcesPage() {
     </SimplePageLayout>
   )
 }
-

@@ -44,7 +44,7 @@ export function Hero() {
             Créer
           </div>
           <div
-            className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-light italic transition-all duration-300 ease-out px-8 sm:px-12 md:px-16 lg:px-20"
+            className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-light italic transition-all duration-300 ease-out px-8 sm:px-12 md:px-16 lg:px-20"
             style={{
               transform: line2Transform,
               opacity: textOpacity,
@@ -54,7 +54,7 @@ export function Hero() {
             l'audacieux
           </div>
           <div
-            className="text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-mono font-extralight transition-all duration-300 ease-out"
+            className="text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-sans font-extralight transition-all duration-300 ease-out"
             style={{
               transform: line3Transform,
               opacity: textOpacity,

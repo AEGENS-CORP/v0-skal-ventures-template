@@ -31,7 +31,7 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
         vMouseDistance = distance(pos.xz, uMousePosition);
         float mouseSizeMultiplier = 1.0 + (1.0 - smoothstep(0.0, 2.0, vMouseDistance)) * 0.5;
         
-        gl_PointSize = max(vDistance * uBlur * uPointSize * mouseSizeMultiplier, 3.0);
+        gl_PointSize = max(vDistance * uBlur * uPointSize * mouseSizeMultiplier, 0.5);
       }`,
       fragmentShader: /* glsl */ `
       uniform float uOpacity;
@@ -107,7 +107,7 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
         vec2 p1 = vec2(-0.7, 0.4);     // bottom left (flipped Y)
         vec2 p2 = vec2(0.7, 0.4);      // bottom right (flipped Y)
         
-        float sdf = sdCircle(cxy, 0.5);
+        float sdf = sdCircle(cxy, 0.32);
         
         if (sdf > 0.0) discard;
 
@@ -150,7 +150,7 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
         uFov: { value: 50 },
         uBlur: { value: 30 },
         uTransition: { value: 0.0 },
-        uPointSize: { value: 2.0 },
+        uPointSize: { value: 1.0 },
         uOpacity: { value: 1.0 },
         uRevealFactor: { value: 0.0 },
         uRevealProgress: { value: 0.0 },

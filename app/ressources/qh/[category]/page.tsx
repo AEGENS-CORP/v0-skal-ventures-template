@@ -59,4 +59,3 @@ export default function QuestionHubCategoryPage({ params }: { params: { category
     </SimplePageLayout>
   )
 }
-

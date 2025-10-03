@@ -85,4 +85,3 @@ export default function SectorSubPage({ params }: { params: { slug: string; topi
     </SimplePageLayout>
   )
 }
-
