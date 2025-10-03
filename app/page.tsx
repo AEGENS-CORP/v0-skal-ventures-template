@@ -22,6 +22,7 @@ import { Innovation } from "@/components/innovation"
 import { Partnerships } from "@/components/partnerships"
 import { Expertise } from "@/components/expertise"
 import { News } from "@/components/news"
+import { HomeLinks } from "@/components/home-links"
 
 export default function Home() {
   return (
@@ -44,6 +45,7 @@ export default function Home() {
       <Insights />
       <Methodology />
       <Resources />
+      <HomeLinks />
       <News />
       <Contact />
       <Footer />

@@ -59,6 +59,10 @@ export function Portfolio() {
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
+                  width={1280}
+                  height={720}
                   className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4">

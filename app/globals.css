@@ -1,10 +1,49 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap");
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/HelveticaNeue-75Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/HelveticaNeue-65Medium.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url("/fonts/HelveticaNeue-55Roman.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --font-sans: "Helvetica Neue", "Helvetica", "Arial", system-ui, -apple-system, "Segoe UI", "Roboto", "Noto Sans", "Liberation Sans", "Ubuntu", sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+  --h1: clamp(2.2rem, 1.6rem + 2.2vw, 3.6rem);
+  --h2: clamp(1.8rem, 1.4rem + 1.6vw, 2.8rem);
+  --h3: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
+  --h4: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem);
+  --h5: 1.125rem;
+  --h6: 1rem;
+  --body: 1rem;
+  --small: 0.9375rem;
+  --xs: 0.875rem;
+  --lh-tight: 1.15;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.7;
+  --ls-heading: -0.01em;
+  --ls-body: 0;
   --background: transparent;
   --foreground: oklch(0.98 0 0);
   --card: transparent;
@@ -41,6 +80,7 @@
 }
 
 .dark {
+  --font-sans: "Helvetica Neue", "Helvetica", "Arial", system-ui, -apple-system, "Segoe UI", "Roboto", "Noto Sans", "Liberation Sans", "Ubuntu", sans-serif;
   --background: transparent;
   --foreground: oklch(0.98 0 0);
   --card: transparent;
@@ -76,6 +116,8 @@
 }
 
 @theme inline {
+  --font-sans: "Helvetica Neue", "Helvetica", "Arial", system-ui, -apple-system, "Segoe UI", "Roboto", "Noto Sans", "Liberation Sans", "Ubuntu", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", "Menlo", "Consolas", "Liberation Mono", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -122,33 +164,99 @@
     @apply text-foreground;
     background: transparent !important;
     color: oklch(0.98 0 0) !important;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600 !important; /* Added bold font weight to all text */
+    font-family: var(--font-sans);
+    font-size: var(--body);
+    line-height: var(--lh-normal);
+    letter-spacing: var(--ls-body);
+    font-weight: var(--font-weight-regular);
   }
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  span,
-  div,
-  a {
-    color: oklch(0.98 0 0) !important;
-    font-weight: 700 !important; /* Made all text elements bold */
-  }
+html {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
 
-  /* Ensure headings are extra bold */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 800 !important;
-  }
+body {
+  font-size: var(--body);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  letter-spacing: var(--ls-heading);
+  line-height: var(--lh-tight);
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--h1);
+  font-weight: var(--font-weight-bold);
+}
+
+h2 {
+  font-size: var(--h2);
+  font-weight: var(--font-weight-bold);
+}
+
+h3 {
+  font-size: var(--h3);
+  font-weight: var(--font-weight-medium);
+}
+
+h4 {
+  font-size: var(--h4);
+  font-weight: var(--font-weight-medium);
+}
+
+h5 {
+  font-size: var(--h5);
+  font-weight: var(--font-weight-medium);
+}
+
+h6 {
+  font-size: var(--h6);
+  font-weight: var(--font-weight-regular);
+}
+
+p,
+li,
+button,
+input,
+textarea,
+select,
+small {
+  font-family: var(--font-sans);
+}
+
+small {
+  font-size: var(--xs);
+  line-height: var(--lh-relaxed);
+}
+
+.btn,
+[role="button"],
+button {
+  font-weight: var(--font-weight-medium);
+}
+
+nav,
+footer,
+header {
+  font-weight: var(--font-weight-medium);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
 }
 
 /* Animated background particles always visible */
@@ -194,10 +302,6 @@
 
 .hover-card:hover::before {
   left: 100%;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 ::-webkit-scrollbar {
