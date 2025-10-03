@@ -23,11 +23,14 @@ export const MobileMenu = ({ className, navItems }: MobileMenuProps) => {
     <Dialog.Root modal={false} open={isOpen} onOpenChange={setIsOpen}>
       <Dialog.Trigger asChild>
         <button
-          className={cn("group lg:hidden p-2 text-foreground transition-colors", className)}
-          aria-label="Open menu"
+          type="button"
+          className={cn("group lg:hidden p-2 text-foreground transition-colors font-semibold", className)}
+          aria-label={isOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
         >
-          <Menu className="group-[[data-state=open]]:hidden" size={24} />
-          <X className="hidden group-[[data-state=open]]:block" size={24} />
+          <Menu aria-hidden className="group-[[data-state=open]]:hidden" size={24} />
+          <X aria-hidden className="hidden group-[[data-state=open]]:block" size={24} />
         </button>
       </Dialog.Trigger>
 
@@ -44,13 +47,13 @@ export const MobileMenu = ({ className, navItems }: MobileMenuProps) => {
         >
           <Dialog.Title className="sr-only">Menu</Dialog.Title>
 
-          <nav className="flex flex-col space-y-6 container mx-auto">
+          <nav id="mobile-navigation" className="flex flex-col space-y-6 container mx-auto">
             {navItems.map((item) => (
               <div key={item.label} className="space-y-2">
                 <InteractiveLink
                   href={item.href}
                   onClick={handleLinkClick}
-                  className="text-xl font-sans uppercase text-foreground/60 transition-colors ease-out duration-150 hover:text-foreground/100 py-2"
+                  className="text-xl font-semibold uppercase text-foreground/60 transition-colors ease-out duration-150 hover:text-foreground/100 py-2"
                 >
                   {item.label}
                 </InteractiveLink>
@@ -61,7 +64,7 @@ export const MobileMenu = ({ className, navItems }: MobileMenuProps) => {
                         key={child.href}
                         href={child.href}
                         onClick={handleLinkClick}
-                        className="block text-base text-foreground/60 transition-colors hover:text-foreground/100"
+                        className="block text-base font-medium text-foreground/60 transition-colors hover:text-foreground/100"
                       >
                         {child.label}
                       </InteractiveLink>
@@ -76,3 +79,4 @@ export const MobileMenu = ({ className, navItems }: MobileMenuProps) => {
     </Dialog.Root>
   )
 }
+

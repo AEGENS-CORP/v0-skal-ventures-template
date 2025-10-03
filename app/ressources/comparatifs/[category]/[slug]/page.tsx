@@ -34,11 +34,14 @@ export default function ComparatifEntryPage({ params }: { params: { category: st
 
   const categoryLabel = entry.category.replace(/-/g, " ")
   const categoryHref = `/ressources/comparatifs/${entry.category}`
+  const canonicalPath = `/ressources/comparatifs/${entry.category}/${entry.slug}`
 
   return (
     <SimplePageLayout
       title={entry.title}
       description="Contenu à venir."
+      path={canonicalPath}
+      dataEntity="resource-comparison"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -64,3 +67,4 @@ export default function ComparatifEntryPage({ params }: { params: { category: st
     </SimplePageLayout>
   )
 }
+

@@ -13,6 +13,8 @@ export default function ConditionsGeneralesPage() {
     <SimplePageLayout
       title="Conditions générales"
       description="Contenu à venir."
+      path="/conditions-generales"
+      dataEntity="legal"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Conditions générales" },
@@ -25,3 +27,4 @@ export default function ConditionsGeneralesPage() {
     </SimplePageLayout>
   )
 }
+

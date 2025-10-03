@@ -51,10 +51,14 @@ export default function CasUsagePage({ params }: { params: { slug: string } }) {
     label: task.title,
   }))
 
+  const canonicalPath = `/cas-usage/${casItem.slug}`
+
   return (
     <SimplePageLayout
       title={casItem.title}
       description="Contenu à venir."
+      path={canonicalPath}
+      dataEntity="use-case"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Cas d'usage", href: "/cas-usage" },
@@ -81,3 +85,4 @@ export default function CasUsagePage({ params }: { params: { slug: string } }) {
     </SimplePageLayout>
   )
 }
+

@@ -14,6 +14,8 @@ export default function CasUsageIndex() {
     <SimplePageLayout
       title="Cas d'usage"
       description="Contenu à venir."
+      path="/cas-usage"
+      dataEntity="use-case-overview"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Cas d'usage" },
@@ -35,3 +37,4 @@ export default function CasUsageIndex() {
     </SimplePageLayout>
   )
 }
+

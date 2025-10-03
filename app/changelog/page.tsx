@@ -13,6 +13,7 @@ export default function ChangelogPage() {
     <SimplePageLayout
       title="Changelog"
       description="Contenu à venir."
+      path="/changelog"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Changelog" },
@@ -25,3 +26,4 @@ export default function ChangelogPage() {
     </SimplePageLayout>
   )
 }
+

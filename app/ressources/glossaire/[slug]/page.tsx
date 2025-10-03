@@ -31,10 +31,14 @@ export default function GlossaireEntryPage({ params }: { params: { slug: string 
     notFound()
   }
 
+  const canonicalPath = `/ressources/glossaire/${entry.slug}`
+
   return (
     <SimplePageLayout
       title={entry.title}
       description="Contenu à venir."
+      path={canonicalPath}
+      dataEntity="glossary-entry"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -59,3 +63,4 @@ export default function GlossaireEntryPage({ params }: { params: { slug: string 
     </SimplePageLayout>
   )
 }
+

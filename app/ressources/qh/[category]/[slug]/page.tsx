@@ -34,11 +34,14 @@ export default function QuestionHubEntryPage({ params }: { params: { category: s
 
   const categoryLabel = entry.category.replace(/-/g, " ")
   const categoryHref = `/ressources/qh/${entry.category}`
+  const canonicalPath = `/ressources/qh/${entry.category}/${entry.slug}`
 
   return (
     <SimplePageLayout
       title={entry.title}
       description="Contenu à venir."
+      path={canonicalPath}
+      dataEntity="resource-entry"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -64,3 +67,4 @@ export default function QuestionHubEntryPage({ params }: { params: { category: s
     </SimplePageLayout>
   )
 }
+

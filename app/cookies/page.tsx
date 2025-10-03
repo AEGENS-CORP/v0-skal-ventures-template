@@ -13,6 +13,8 @@ export default function CookiesPage() {
     <SimplePageLayout
       title="Politique cookies"
       description="Contenu à venir."
+      path="/cookies"
+      dataEntity="legal"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Politique cookies" },
@@ -25,3 +27,4 @@ export default function CookiesPage() {
     </SimplePageLayout>
   )
 }
+

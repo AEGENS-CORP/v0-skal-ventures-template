@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://aegens.example"
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "https://skal-ventures.example"
 
 export type RouteItem = {
   slug: string
@@ -600,3 +600,4 @@ export const getAllRoutes = () => {
 
   return Array.from(routes)
 }
+

@@ -14,6 +14,8 @@ export default function TarifsPage() {
     <SimplePageLayout
       title="Tarifs"
       description="Contenu à venir."
+      path="/tarifs"
+      dataEntity="pricing"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Tarifs" },
@@ -33,3 +35,4 @@ export default function TarifsPage() {
     </SimplePageLayout>
   )
 }
+

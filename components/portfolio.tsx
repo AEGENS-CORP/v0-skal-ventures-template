@@ -40,8 +40,8 @@ export function Portfolio() {
     <section className="py-24 bg-gradient-to-b from-background/50 to-background relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-sans text-muted-foreground mb-4 tracking-wider uppercase">Nos réalisations</h2>
-          <h3 className="text-4xl md:text-5xl font-light mb-6">Portfolio de projets</h3>
+          <h2 className="text-sm font-semibold text-muted-foreground mb-4 tracking-wider uppercase">Nos réalisations</h2>
+          <h3 className="text-4xl md:text-5xl font-semibold mb-6">Portfolio de projets</h3>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Découvrez quelques-unes de nos réalisations les plus innovantes
           </p>
@@ -59,6 +59,10 @@ export function Portfolio() {
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
+                  width={1280}
+                  height={720}
                   className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4">

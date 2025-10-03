@@ -58,10 +58,14 @@ export default function SectorSubPage({ params }: { params: { slug: string; topi
     { href: "/services/audit-diagnostic", label: "Audit et diagnostic automation" },
   ]
 
+  const canonicalPath = `/secteurs/${sector.slug}/${topic.slug}`
+
   return (
     <SimplePageLayout
       title={topic.title}
       description="Contenu à venir."
+      path={canonicalPath}
+      dataEntity="sector-subpage"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Secteurs", href: "/secteurs" },
@@ -85,3 +89,4 @@ export default function SectorSubPage({ params }: { params: { slug: string; topi
     </SimplePageLayout>
   )
 }
+

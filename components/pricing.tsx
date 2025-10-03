@@ -56,8 +56,8 @@ export function Pricing() {
     <section className="py-24 bg-gradient-to-b from-background to-background/50 relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-sans text-muted-foreground mb-4 tracking-wider uppercase">Nos tarifs</h2>
-          <h3 className="text-4xl md:text-5xl font-light mb-6">Plans transparents</h3>
+          <h2 className="text-sm font-semibold text-muted-foreground mb-4 tracking-wider uppercase">Nos tarifs</h2>
+          <h3 className="text-4xl md:text-5xl font-semibold mb-6">Plans transparents</h3>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Choisissez la solution qui correspond à vos besoins et votre budget
           </p>
@@ -84,7 +84,7 @@ export function Pricing() {
               <div className="text-center mb-8">
                 <h4 className="text-xl font-medium mb-2">{plan.name}</h4>
                 <div className="mb-2">
-                  <span className="text-3xl font-light">{plan.price}</span>
+                  <span className="text-3xl font-semibold">{plan.price}</span>
                   {plan.period && <span className="text-muted-foreground">€ / {plan.period}</span>}
                 </div>
                 <p className="text-sm text-muted-foreground">{plan.description}</p>

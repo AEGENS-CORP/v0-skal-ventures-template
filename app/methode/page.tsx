@@ -14,6 +14,8 @@ export default function MethodePage() {
     <SimplePageLayout
       title="Méthode"
       description="Contenu à venir."
+      path="/methode"
+      dataEntity="methodology"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Méthode" },
@@ -33,3 +35,4 @@ export default function MethodePage() {
     </SimplePageLayout>
   )
 }
+

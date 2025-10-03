@@ -33,7 +33,7 @@ export function Expertise() {
     <section className="py-24 bg-muted/30 relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sans font-extralight mb-4">Expertise Reconnue</h2>
+          <h2 className="text-4xl md:text-5xl font-semibold mb-4">Expertise Reconnue</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Des certifications et une expertise technique de haut niveau
           </p>
@@ -41,7 +41,7 @@ export function Expertise() {
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           <div>
-            <h3 className="text-2xl font-sans font-light mb-8">Certifications & Standards</h3>
+            <h3 className="text-2xl font-semibold mb-8">Certifications & Standards</h3>
             <div className="space-y-8">
               {certifications.map((cert, index) => (
                 <div
@@ -64,7 +64,7 @@ export function Expertise() {
           </div>
 
           <div>
-            <h3 className="text-2xl font-sans font-light mb-8">Domaines d'Expertise</h3>
+            <h3 className="text-2xl font-semibold mb-8">Domaines d'Expertise</h3>
             <div className="space-y-6">
               {expertise.map((skill, index) => (
                 <div key={index} className="space-y-2">

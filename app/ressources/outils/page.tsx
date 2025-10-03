@@ -14,6 +14,8 @@ export default function OutilsPage() {
     <SimplePageLayout
       title="Outils"
       description="Contenu à venir."
+      path="/ressources/outils"
+      dataEntity="resource-tools"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -35,3 +37,4 @@ export default function OutilsPage() {
     </SimplePageLayout>
   )
 }
+

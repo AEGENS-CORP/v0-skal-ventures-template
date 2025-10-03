@@ -13,6 +13,8 @@ export default function MentionsLegalesPage() {
     <SimplePageLayout
       title="Mentions légales"
       description="Contenu à venir."
+      path="/mentions-legales"
+      dataEntity="legal"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Mentions légales" },
@@ -25,3 +27,4 @@ export default function MentionsLegalesPage() {
     </SimplePageLayout>
   )
 }
+

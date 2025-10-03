@@ -16,6 +16,7 @@ export default function SitemapPage() {
     <SimplePageLayout
       title="Plan du site"
       description="Contenu à venir."
+      path="/sitemap"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Plan du site" },
@@ -34,3 +35,4 @@ export default function SitemapPage() {
     </SimplePageLayout>
   )
 }
+

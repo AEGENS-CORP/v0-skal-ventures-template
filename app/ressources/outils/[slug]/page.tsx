@@ -31,10 +31,14 @@ export default function OutilPage({ params }: { params: { slug: string } }) {
     notFound()
   }
 
+  const canonicalPath = `/ressources/outils/${outil.slug}`
+
   return (
     <SimplePageLayout
       title={outil.title}
       description="Contenu à venir."
+      path={canonicalPath}
+      dataEntity="resource-tool"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -59,3 +63,4 @@ export default function OutilPage({ params }: { params: { slug: string } }) {
     </SimplePageLayout>
   )
 }
+

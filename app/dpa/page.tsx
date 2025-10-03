@@ -13,6 +13,8 @@ export default function DpaPage() {
     <SimplePageLayout
       title="DPA"
       description="Contenu à venir."
+      path="/dpa"
+      dataEntity="legal"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "DPA" },
@@ -25,3 +27,4 @@ export default function DpaPage() {
     </SimplePageLayout>
   )
 }
+

@@ -37,6 +37,8 @@ export default function ComparatifCategoryPage({ params }: { params: { category:
     <SimplePageLayout
       title={`Comparatifs - ${params.category.replace(/-/g, " ")}`}
       description="Contenu à venir."
+      path={`/ressources/comparatifs/${params.category}`}
+      dataEntity="resource-category"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -59,3 +61,4 @@ export default function ComparatifCategoryPage({ params }: { params: { category:
     </SimplePageLayout>
   )
 }
+

@@ -16,6 +16,8 @@ export default function ComparatifsPage() {
     <SimplePageLayout
       title="Comparatifs"
       description="Contenu à venir."
+      path="/ressources/comparatifs"
+      dataEntity="resource-overview"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -37,3 +39,4 @@ export default function ComparatifsPage() {
     </SimplePageLayout>
   )
 }
+

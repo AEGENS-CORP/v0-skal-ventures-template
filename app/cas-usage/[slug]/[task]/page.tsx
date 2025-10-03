@@ -52,10 +52,14 @@ export default function CasUsageTaskPage({ params }: { params: { slug: string; t
     })
     .filter(Boolean) as { href: string; label: string }[]
 
+  const canonicalPath = `/cas-usage/${casItem.slug}/${task.slug}`
+
   return (
     <SimplePageLayout
       title={`${task.title}`}
       description="Contenu à venir."
+      path={canonicalPath}
+      dataEntity="use-case-task"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Cas d'usage", href: "/cas-usage" },
@@ -79,3 +83,4 @@ export default function CasUsageTaskPage({ params }: { params: { slug: string; t
     </SimplePageLayout>
   )
 }
+

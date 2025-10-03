@@ -13,6 +13,8 @@ export default function ContactMerciPage() {
     <SimplePageLayout
       title="Merci"
       description="Contenu à venir."
+      path="/contact/merci"
+      dataEntity="contact-confirmation"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Contact", href: "/contact" },
@@ -26,3 +28,4 @@ export default function ContactMerciPage() {
     </SimplePageLayout>
   )
 }
+

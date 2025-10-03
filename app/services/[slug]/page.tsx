@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Script from "next/script"
 import { notFound } from "next/navigation"
 import { SimplePageLayout } from "@/components/simple-page-layout"
 import { LinkSection } from "@/components/link-section"
@@ -9,6 +10,7 @@ import {
   services,
   servicesMap,
 } from "@/lib/site-structure"
+import { buildServiceJsonLd, slugifyHeading } from "@/lib/seo-utils"
 
 export const dynamicParams = false
 
@@ -50,10 +52,20 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
     })
     .filter(Boolean) as { href: string; label: string }[]
 
+  const canonicalPath = `/services/${service.slug}`
+  const serviceSchema = buildServiceJsonLd({
+    name: service.title,
+    description: "Contenu à venir.",
+    path: canonicalPath,
+  })
+  const contactHeadingId = slugifyHeading("Contact")
+
   return (
     <SimplePageLayout
       title={service.title}
       description="Contenu à venir."
+      path={canonicalPath}
+      dataEntity="service"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Services", href: "/services" },
@@ -72,11 +84,17 @@ export default function ServicePage({ params }: { params: { slug: string } }) {
       <LinkSection title="Cas d'usage associés" links={casLinks} />
       <LinkSection title="Secteurs concernés" links={sectorLinks} />
       <section className="space-y-2">
-        <h2 className="text-xl font-semibold text-white">Contact</h2>
+        <h2 id={contactHeadingId} className="text-xl font-semibold text-white">
+          Contact
+        </h2>
         <p>
           Besoin d'échanger ? <Link className="underline" href="/contact">Contactez-nous</Link>.
         </p>
       </section>
+      <Script id={`service-structured-data-${service.slug}`} type="application/ld+json">
+        {JSON.stringify(serviceSchema)}
+      </Script>
     </SimplePageLayout>
   )
 }
+
