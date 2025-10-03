@@ -32,9 +32,10 @@ export function Hero() {
       />
 
       <div className="text-center relative z-10 w-full pt-16">
-        <div className="mb-6 w-full space-y-2">
-          <div
-            className="text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-sans font-black transition-all duration-300 ease-out"
+        <h1 className="mb-6 w-full space-y-2" aria-label="Créer l'audacieux futur">
+          <span
+            aria-hidden
+            className="block text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold transition-all duration-300 ease-out"
             style={{
               transform: line1Transform,
               opacity: textOpacity,
@@ -42,9 +43,10 @@ export function Hero() {
             }}
           >
             Créer
-          </div>
-          <div
-            className="text-center text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-light italic transition-all duration-300 ease-out px-8 sm:px-12 md:px-16 lg:px-20"
+          </span>
+          <span
+            aria-hidden
+            className="block text-center text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light italic transition-all duration-300 ease-out px-8 sm:px-12 md:px-16 lg:px-20"
             style={{
               transform: line2Transform,
               opacity: textOpacity,
@@ -52,9 +54,10 @@ export function Hero() {
             }}
           >
             l'audacieux
-          </div>
-          <div
-            className="text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-sans font-extralight transition-all duration-300 ease-out"
+          </span>
+          <span
+            aria-hidden
+            className="block text-center text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light transition-all duration-300 ease-out"
             style={{
               transform: line3Transform,
               opacity: textOpacity,
@@ -62,8 +65,8 @@ export function Hero() {
             }}
           >
             futur
-          </div>
-        </div>
+          </span>
+        </h1>
 
         <div
           className="transition-all duration-300 ease-out max-w-2xl mx-auto px-4"
@@ -73,10 +76,10 @@ export function Hero() {
             transform: `translateY(${scrollProgress * 50}px)`,
           }}
         >
-          <p className="text-lg sm:text-xl text-muted-foreground mb-12 leading-relaxed">
+          <h3 className="text-lg sm:text-xl text-muted-foreground mb-12 leading-relaxed font-semibold">
             Nous transformons votre vision en solutions d'intelligence artificielle révolutionnaires qui redéfinissent
             votre industrie.
-          </p>
+          </h3>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center font-normal text-background">
             <Link href="#contact">

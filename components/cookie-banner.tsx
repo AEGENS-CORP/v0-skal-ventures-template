@@ -28,7 +28,7 @@ export const CookieBanner = () => {
         <h2 className="text-lg font-semibold mb-2">Cookies</h2>
         <p className="text-sm text-white/80">
           Nous utilisons des cookies nécessitant votre consentement pour les mesures d'audience et le marketing. Vous pouvez en
-          savoir plus dans notre <Link className="underline" href="/cookies">politique cookies</Link>.
+          savoir plus dans notre <Link className="underline" href="/politique-de-confidentialite#cookies">politique cookies</Link>.
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <button
