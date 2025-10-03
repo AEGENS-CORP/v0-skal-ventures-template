@@ -26,7 +26,7 @@ import { HomeLinks } from "@/components/home-links"
 
 export default function Home() {
   return (
-    <>
+    <div className="pt-24">
       <Header />
       <Hero />
       <Services />
@@ -50,6 +50,6 @@ export default function Home() {
       <Contact />
       <Footer />
       <Leva hidden />
-    </>
+    </div>
   )
 }
