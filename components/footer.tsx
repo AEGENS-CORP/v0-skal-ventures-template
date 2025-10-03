@@ -8,10 +8,6 @@ import { Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   const { setHovering } = useParticles()
-  const legalLinks = footerLinks
-  const splitIndex = Math.ceil(legalLinks.length / 2)
-  const firstColumn = legalLinks.slice(0, splitIndex)
-  const secondColumn = legalLinks.slice(splitIndex)
 
   return (
     <footer className="bg-black/60 backdrop-blur-xl border-t border-white/10 relative z-10 text-white overflow-hidden">
@@ -28,18 +24,14 @@ export function Footer() {
                 asChild
                 className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black font-semibold px-8 py-6 text-lg transition-all duration-500 hover:scale-105"
               >
-                <Link href="/contact" className="no-underline">
-                  Démarrer un projet
-                </Link>
+                <Link href="/contact">Démarrer un projet</Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
                 className="border-2 border-white/50 bg-transparent text-white hover:bg-white/10 font-semibold px-8 py-6 text-lg transition-all duration-500 hover:scale-105"
               >
-                <Link href="/methode" className="no-underline">
-                  Découvrir notre méthode
-                </Link>
+                <Link href="/methode">Découvrir notre méthode</Link>
               </Button>
             </div>
           </div>
@@ -53,34 +45,40 @@ export function Footer() {
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
-            <h4 className="text-lg font-semibold">Références légales</h4>
+            <h4 className="text-lg font-semibold">Navigation</h4>
             <div className="flex flex-col gap-3 text-sm">
-              {firstColumn.map((item) => (
+              {footerLinks.slice(0, 5).map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onMouseEnter={() => setHovering(true)}
                   onMouseLeave={() => setHovering(false)}
-                  className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-flex items-center gap-1 no-underline"
+                  className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
                 >
-                  {item.label}
+                  <span className="relative">
+                    {item.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+                  </span>
                 </Link>
               ))}
             </div>
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
-            <h4 className="text-lg font-semibold">Documents</h4>
+            <h4 className="text-lg font-semibold">Services</h4>
             <div className="flex flex-col gap-3 text-sm">
-              {secondColumn.map((item) => (
+              {footerLinks.slice(5, 10).map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onMouseEnter={() => setHovering(true)}
                   onMouseLeave={() => setHovering(false)}
-                  className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-flex items-center gap-1 no-underline"
+                  className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
                 >
-                  {item.label}
+                  <span className="relative">
+                    {item.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+                  </span>
                 </Link>
               ))}
             </div>
@@ -91,14 +89,14 @@ export function Footer() {
             <div className="flex flex-col gap-4 text-sm">
               <a
                 href="mailto:contact@aegens.com"
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-all duration-500 group no-underline"
+                className="flex items-center gap-3 text-white/70 hover:text-white transition-all duration-500 group"
               >
                 <Mail className="w-5 h-5 group-hover:scale-110 transition-all duration-500" />
                 <span className="group-hover:translate-x-1 transition-transform duration-500">contact@aegens.com</span>
               </a>
               <a
                 href="tel:+33123456789"
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-all duration-500 group no-underline"
+                className="flex items-center gap-3 text-white/70 hover:text-white transition-all duration-500 group"
               >
                 <Phone className="w-5 h-5 group-hover:scale-110 transition-all duration-500" />
                 <span className="group-hover:translate-x-1 transition-transform duration-500">+33 1 23 45 67 89</span>
@@ -111,7 +109,7 @@ export function Footer() {
                 asChild
                 className="bg-white text-black hover:bg-white/95 font-semibold mt-4 transition-all duration-500 hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden group"
               >
-                <Link href="/contact" className="no-underline">
+                <Link href="/contact">
                   <span className="relative z-10">Nous contacter</span>
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></span>
                 </Link>
@@ -125,15 +123,24 @@ export function Footer() {
             © {new Date().getFullYear()} Aegens. Tous droits réservés.
           </p>
           <div className="flex gap-6">
-            {legalLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="hover:text-white transition-all duration-500 group no-underline"
-              >
-                {item.label}
-              </Link>
-            ))}
+            <Link href="/mentions-legales" className="hover:text-white transition-all duration-500 relative group">
+              <span className="relative">
+                Mentions légales
+                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+              </span>
+            </Link>
+            <Link href="/confidentialite" className="hover:text-white transition-all duration-500 relative group">
+              <span className="relative">
+                Confidentialité
+                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+              </span>
+            </Link>
+            <Link href="/cookies" className="hover:text-white transition-all duration-500 relative group">
+              <span className="relative">
+                Cookies
+                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+              </span>
+            </Link>
           </div>
         </div>
       </div>

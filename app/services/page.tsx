@@ -1,54 +1,36 @@
 import Link from "next/link"
-import { AeBreadcrumbs } from "@/components/ae-breadcrumbs"
-import { AeStickyToc } from "@/components/ae-sticky-toc"
 import { createPageMetadata } from "@/lib/metadata"
-import { aeServicesSections } from "@/lib/ae-site-structure"
+import { services } from "@/lib/site-structure"
+import { SimplePageLayout } from "@/components/simple-page-layout"
 
 export const metadata = createPageMetadata({
   title: "Services",
   path: "/services",
-  description: "Présentation placeholder des services phares avec ancres internes.",
+  description: "Contenu à venir.",
 })
 
 export default function ServicesPage() {
-  const tocItems = aeServicesSections.map((section) => ({
-    id: section.id,
-    label: section.title,
-  }))
-
   return (
-    <main className="ae-page">
-      <AeBreadcrumbs pathname="/services" />
-      <header className="ae-page-header">
-        <h1>Services — Audit, Automatisation IA, ERP/CRM, Formation, Support</h1>
-        <p className="ae-muted">
-          Chaque section ci-dessous contient un texte générique servant de repère avant l'ajout des contenus métier.
-        </p>
-      </header>
-
-      <div className="ae-sections-layout">
-        <AeStickyToc title="Sommaire des services" items={tocItems} />
-        <div className="space-y-6">
-          {aeServicesSections.map((section) => (
-            <section
-              key={section.id}
-              id={section.id}
-              className="ae-section"
-              data-entity={section.entity}
-            >
-              <h2>{section.title}</h2>
-              <p>{section.summary}</p>
-              <div className="ae-section-links">
-                {section.links.map((link) => (
-                  <Link key={link.href} href={link.href}>
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-            </section>
-          ))}
-        </div>
+    <SimplePageLayout
+      title="Services"
+      description="Contenu à venir."
+      breadcrumbs={[
+        { label: "Accueil", href: "/" },
+        { label: "Services" },
+      ]}
+    >
+      <p>Contenu à venir.</p>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {services.map((service) => (
+          <Link
+            key={service.slug}
+            href={`/services/${service.slug}`}
+            className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white/80 transition hover:text-white hover:border-white/30"
+          >
+            {service.title}
+          </Link>
+        ))}
       </div>
-    </main>
+    </SimplePageLayout>
   )
 }

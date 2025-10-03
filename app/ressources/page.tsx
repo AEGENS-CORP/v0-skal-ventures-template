@@ -1,45 +1,45 @@
 import Link from "next/link"
-import { AeBreadcrumbs } from "@/components/ae-breadcrumbs"
 import { createPageMetadata } from "@/lib/metadata"
-import { aeResourcesSections } from "@/lib/ae-site-structure"
+import { SimplePageLayout } from "@/components/simple-page-layout"
+
+const sections = [
+  { href: "/blog", label: "Blog" },
+  { href: "/ressources/guides", label: "Guides" },
+  { href: "/ressources/question-hub-ia", label: "Question-Hub IA" },
+  { href: "/ressources/comparatifs", label: "Comparatifs" },
+  { href: "/ressources/glossaire", label: "Glossaire" },
+  { href: "/ressources/outils", label: "Outils" },
+  { href: "/ressources/calculateur-roi", label: "Calculateur ROI" },
+]
 
 export const metadata = createPageMetadata({
   title: "Ressources",
   path: "/ressources",
-  description: "Bibliothèque placeholder pour guider la navigation entre les contenus clés.",
+  description: "Contenu à venir.",
 })
 
 export default function RessourcesPage() {
   return (
-    <main className="ae-page">
-      <AeBreadcrumbs pathname="/ressources" />
-      <header className="ae-page-header">
-        <h1>Ressources — Blog, Guides, Question Hub, Glossaire</h1>
-        <p className="ae-muted">
-          Chaque bloc indique la future structure éditoriale et assure le maillage vers les pages thématiques.
-        </p>
-      </header>
-
-      <div className="ae-grid ae-grid-columns-2">
-        {aeResourcesSections.map((section) => (
-          <section
-            key={section.id}
-            id={section.id}
-            className="ae-card"
-            data-entity={section.entity}
+    <SimplePageLayout
+      title="Ressources"
+      description="Contenu à venir."
+      breadcrumbs={[
+        { label: "Accueil", href: "/" },
+        { label: "Ressources" },
+      ]}
+    >
+      <p>Contenu à venir.</p>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {sections.map((section) => (
+          <Link
+            key={section.href}
+            href={section.href}
+            className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white/80 transition hover:text-white hover:border-white/30"
           >
-            <h2>{section.title}</h2>
-            <p>{section.summary}</p>
-            <div className="ae-section-links">
-              {section.links.map((link) => (
-                <Link key={link.href} href={link.href}>
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </section>
+            {section.label}
+          </Link>
         ))}
       </div>
-    </main>
+    </SimplePageLayout>
   )
 }

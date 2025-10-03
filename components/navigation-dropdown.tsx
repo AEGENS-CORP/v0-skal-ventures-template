@@ -1,171 +1,47 @@
 "use client"
 
+import { useState } from "react"
 import Link from "next/link"
 import { ChevronDown } from "lucide-react"
-import { createPortal } from "react-dom"
-import {
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  type ReactNode,
-} from "react"
-import type { NavItem } from "@/lib/navigation"
+import { primaryNav } from "@/lib/navigation"
 
-type NavigationDropdownProps = {
-  items: NavItem[]
-}
-
-export const NavigationDropdown = ({ items }: NavigationDropdownProps) => {
+export const NavigationDropdown = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [portalNode, setPortalNode] = useState<HTMLElement | null>(null)
-  const [position, setPosition] = useState<{ top: number; right: number } | null>(null)
-  const buttonRef = useRef<HTMLButtonElement>(null)
-  const panelRef = useRef<HTMLDivElement>(null)
 
-  useEffect(() => {
-    if (typeof document === "undefined") {
-      return
-    }
-    setPortalNode(document.getElementById("ae-nav-portal"))
-  }, [])
-
-  const closeMenu = useCallback(() => {
-    setIsOpen(false)
-    requestAnimationFrame(() => {
-      buttonRef.current?.focus()
-    })
-  }, [])
-
-  const updatePosition = useCallback(() => {
-    if (!buttonRef.current) return
-    const rect = buttonRef.current.getBoundingClientRect()
-    const right = Math.max(window.innerWidth - rect.right, 16)
-    setPosition({ top: rect.bottom + 8, right })
-  }, [])
-
-  useEffect(() => {
-    if (!isOpen) {
-      return
-    }
-
-    updatePosition()
-
-    const handleResize = () => updatePosition()
-    window.addEventListener("resize", handleResize)
-    window.addEventListener("scroll", handleResize, true)
-
-    return () => {
-      window.removeEventListener("resize", handleResize)
-      window.removeEventListener("scroll", handleResize, true)
-    }
-  }, [isOpen, updatePosition])
-
-  useEffect(() => {
-    if (!isOpen) {
-      return
-    }
-
-    const handlePointerDown = (event: MouseEvent) => {
-      const target = event.target as Node
-      if (
-        panelRef.current?.contains(target) ||
-        buttonRef.current?.contains(target as Node)
-      ) {
-        return
-      }
-      closeMenu()
-    }
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault()
-        closeMenu()
-        return
-      }
-
-      if (event.key === "Tab") {
-        const focusable = panelRef.current?.querySelectorAll<HTMLElement>(
-          'a[href]:not([tabindex="-1"])',
-        )
-
-        if (!focusable || focusable.length === 0) {
-          return
-        }
-
-        const first = focusable[0]
-        const last = focusable[focusable.length - 1]
-
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault()
-          last.focus()
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault()
-          first.focus()
-        }
-      }
-    }
-
-    document.addEventListener("pointerdown", handlePointerDown)
-    document.addEventListener("keydown", handleKeyDown)
-
-    const focusable = panelRef.current?.querySelectorAll<HTMLElement>(
-      'a[href]:not([tabindex="-1"])',
-    )
-    focusable?.[0]?.focus()
-
-    return () => {
-      document.removeEventListener("pointerdown", handlePointerDown)
-      document.removeEventListener("keydown", handleKeyDown)
-    }
-  }, [closeMenu, isOpen])
-
-  const renderPanel = useCallback((): ReactNode => {
-    if (!portalNode || !isOpen || !position) {
-      return null
-    }
-
-    return createPortal(
-      <div
-        ref={panelRef}
-        className="ae-dropdown"
-        id="ae-nav-dropdown-panel"
-        style={{ top: `${position.top}px`, right: `${position.right}px` }}
-        role="menu"
-        aria-label="Menu complémentaire"
-      >
-        {items.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className="ae-focus-outline"
-            onClick={closeMenu}
-            role="menuitem"
-          >
-            {item.label}
-          </Link>
-        ))}
-      </div>,
-      portalNode,
-    )
-  }, [closeMenu, isOpen, items, portalNode, position])
+  const menuItems = primaryNav.filter((item) => !["Accueil", "Services", "Ressources", "Contact"].includes(item.label))
 
   return (
-    <div>
+    <div className="relative">
       <button
-        ref={buttonRef}
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 text-lg font-semibold text-white/90 hover:text-white transition-colors duration-200"
         aria-expanded={isOpen}
         aria-haspopup="true"
-        aria-controls="ae-nav-dropdown-panel"
       >
         Plus
-        <ChevronDown
-          className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
-        />
+        <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
       </button>
-      {renderPanel()}
+
+      {isOpen && (
+        <>
+          <div className="fixed inset-0 z-40" onClick={() => setIsOpen(false)} />
+          <div className="absolute top-full right-0 mt-4 w-72 bg-black/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl overflow-hidden z-50">
+            <div className="py-2">
+              {menuItems.map((item, index) => (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block px-6 py-4 text-white/90 hover:text-white hover:bg-white/5 transition-all duration-200 border-b border-white/5 last:border-b-0"
+                >
+                  <span className="font-semibold text-lg">{item.label}</span>
+                  {item.description && <span className="block text-base text-white/60 mt-1">{item.description}</span>}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }
