@@ -14,7 +14,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16 space-y-12 relative z-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom duration-1000 lg:col-span-4 text-center border-2 border-white/20 rounded-lg p-8 bg-white/5 backdrop-blur-sm">
-            <h3 className="text-3xl font-bold">Prêt à transformer votre vision en réalité ?</h3>
+            <h3 className="text-3xl font-semibold">Prêt à transformer votre vision en réalité ?</h3>
             <p className="text-white/70 text-lg max-w-2xl mx-auto">
               Discutons de votre projet et découvrez comment nous pouvons vous accompagner dans votre transformation
               digitale.
@@ -22,14 +22,14 @@ export function Footer() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button
                 asChild
-                className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black font-bold px-8 py-6 text-lg transition-all duration-500 hover:scale-105"
+                className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black font-semibold px-8 py-6 text-lg transition-all duration-500 hover:scale-105"
               >
                 <Link href="/contact">Démarrer un projet</Link>
               </Button>
               <Button
                 asChild
                 variant="outline"
-                className="border-2 border-white/50 bg-transparent text-white hover:bg-white/10 font-bold px-8 py-6 text-lg transition-all duration-500 hover:scale-105"
+                className="border-2 border-white/50 bg-transparent text-white hover:bg-white/10 font-semibold px-8 py-6 text-lg transition-all duration-500 hover:scale-105"
               >
                 <Link href="/methode">Découvrir notre méthode</Link>
               </Button>
@@ -37,7 +37,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-100 group">
-            <h3 className="text-2xl font-bold transition-all duration-500">Aegens</h3>
+            <h3 className="text-2xl font-semibold transition-all duration-500">Aegens</h3>
             <p className="text-white/70 text-sm leading-relaxed transition-colors duration-500 group-hover:text-white/90">
               Votre partenaire stratégique pour l'innovation digitale. Nous créons des solutions sur mesure qui
               transforment vos ambitions en succès concrets.
@@ -45,7 +45,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
-            <h4 className="text-lg font-bold">Navigation</h4>
+            <h4 className="text-lg font-semibold">Navigation</h4>
             <div className="flex flex-col gap-3 text-sm">
               {footerLinks.slice(0, 5).map((item) => (
                 <Link
@@ -65,7 +65,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
-            <h4 className="text-lg font-bold">Services</h4>
+            <h4 className="text-lg font-semibold">Services</h4>
             <div className="flex flex-col gap-3 text-sm">
               {footerLinks.slice(5, 10).map((item) => (
                 <Link
@@ -85,7 +85,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-500">
-            <h4 className="text-lg font-bold">Contact</h4>
+            <h4 className="text-lg font-semibold">Contact</h4>
             <div className="flex flex-col gap-4 text-sm">
               <a
                 href="mailto:contact@aegens.com"
@@ -107,7 +107,7 @@ export function Footer() {
               </div>
               <Button
                 asChild
-                className="bg-white text-black hover:bg-white/95 font-bold mt-4 transition-all duration-500 hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden group"
+                className="bg-white text-black hover:bg-white/95 font-semibold mt-4 transition-all duration-500 hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden group"
               >
                 <Link href="/contact">
                   <span className="relative z-10">Nous contacter</span>

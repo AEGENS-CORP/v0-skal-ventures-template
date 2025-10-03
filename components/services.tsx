@@ -33,13 +33,13 @@ export function Services() {
   ]
 
   return (
-    <section id="services" className="py-24 bg-background relative z-10">
+    <section id="services" className="py-24 bg-background relative z-10" data-entity="services">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-sans text-muted-foreground mb-4 tracking-wider uppercase">
+          <h2 className="text-sm text-muted-foreground mb-4 tracking-wider uppercase font-semibold">
             Nos expertises principales
           </h2>
-          <h3 className="text-4xl md:text-5xl font-sentient font-extralight">Services d'excellence</h3>
+          <h3 className="text-4xl md:text-5xl font-light">Services d'excellence</h3>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -49,16 +49,17 @@ export function Services() {
               className="group cursor-pointer"
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
+              data-entity="service"
             >
               <div className="flex items-start gap-6">
                 <span className="text-6xl font-sentient font-extralight text-primary opacity-60 group-hover:opacity-100 transition-opacity">
                   {service.number}
                 </span>
                 <div className="flex-1">
-                  <h4 className="text-xl font-sentient mb-4 group-hover:text-primary transition-colors">
+                  <h4 className="text-xl font-semibold mb-4 group-hover:text-primary transition-colors">
                     {service.title}
                   </h4>
-                  <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+                  <small className="block text-muted-foreground leading-relaxed">{service.description}</small>
                 </div>
               </div>
             </div>

@@ -40,7 +40,7 @@ export function Portfolio() {
     <section className="py-24 bg-gradient-to-b from-background/50 to-background relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-sans text-muted-foreground mb-4 tracking-wider uppercase">Nos réalisations</h2>
+          <h2 className="text-sm text-muted-foreground mb-4 tracking-wider uppercase font-semibold">Nos réalisations</h2>
           <h3 className="text-4xl md:text-5xl font-light mb-6">Portfolio de projets</h3>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Découvrez quelques-unes de nos réalisations les plus innovantes
@@ -54,11 +54,16 @@ export function Portfolio() {
               className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 cursor-pointer"
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
+              data-entity="portfolio-item"
             >
               <div className="aspect-video bg-gradient-to-br from-blue-500/20 to-purple-500/20 relative overflow-hidden">
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
+                  loading="lazy"
+                  decoding="async"
+                  width={1280}
+                  height={720}
                   className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4">
@@ -69,7 +74,7 @@ export function Portfolio() {
               </div>
 
               <div className="p-6">
-                <h4 className="text-xl font-medium mb-2 group-hover:text-primary transition-colors">{project.title}</h4>
+                <h4 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">{project.title}</h4>
                 <p className="text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech, techIndex) => (

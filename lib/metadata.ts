@@ -12,9 +12,11 @@ export const createPageMetadata = ({ title, description, path }: MetadataParams)
 
   const metaDescription = description ?? "Contenu à venir."
   const canonical = new URL(path, BASE_URL).toString()
+  const isHome = path === "/"
+  const fullTitle = `${title} | Aegens`
 
   return {
-    title: `${title} | Aegens`,
+    title: fullTitle,
     description: metaDescription,
     alternates: {
       canonical,
@@ -23,11 +25,17 @@ export const createPageMetadata = ({ title, description, path }: MetadataParams)
       },
     },
     openGraph: {
-      title: `${title} | Aegens`,
+      title: fullTitle,
       description: metaDescription,
       url: canonical,
       locale: "fr_FR",
       siteName: "Aegens",
+      type: isHome ? "website" : "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description: metaDescription,
     },
     robots: allowIndex
       ? undefined

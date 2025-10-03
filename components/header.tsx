@@ -31,7 +31,7 @@ export const Header = () => {
                   style={{ animationDelay: `${200 + index * 100}ms` }}
                 >
                   <InteractiveLink
-                    className={`text-lg font-bold transition-all duration-500 whitespace-nowrap relative ${
+                    className={`text-lg font-semibold transition-all duration-500 whitespace-nowrap relative ${
                       isContact
                         ? "border-2 border-white text-white px-6 py-2.5 rounded-md hover:bg-white/10 hover:scale-105"
                         : "text-white/80 hover:text-white"
