@@ -8,6 +8,10 @@ import { Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   const { setHovering } = useParticles()
+  const legalLinks = footerLinks
+  const splitIndex = Math.ceil(legalLinks.length / 2)
+  const firstColumn = legalLinks.slice(0, splitIndex)
+  const secondColumn = legalLinks.slice(splitIndex)
 
   return (
     <footer className="bg-black/60 backdrop-blur-xl border-t border-white/10 relative z-10 text-white overflow-hidden">
@@ -45,9 +49,9 @@ export function Footer() {
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
-            <h4 className="text-lg font-semibold">Navigation</h4>
+            <h4 className="text-lg font-semibold">Références légales</h4>
             <div className="flex flex-col gap-3 text-sm">
-              {footerLinks.slice(0, 5).map((item) => (
+              {firstColumn.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -65,9 +69,9 @@ export function Footer() {
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
-            <h4 className="text-lg font-semibold">Services</h4>
+            <h4 className="text-lg font-semibold">Documents</h4>
             <div className="flex flex-col gap-3 text-sm">
-              {footerLinks.slice(5, 10).map((item) => (
+              {secondColumn.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -123,24 +127,18 @@ export function Footer() {
             © {new Date().getFullYear()} Aegens. Tous droits réservés.
           </p>
           <div className="flex gap-6">
-            <Link href="/mentions-legales" className="hover:text-white transition-all duration-500 relative group">
-              <span className="relative">
-                Mentions légales
-                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-              </span>
-            </Link>
-            <Link href="/confidentialite" className="hover:text-white transition-all duration-500 relative group">
-              <span className="relative">
-                Confidentialité
-                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-              </span>
-            </Link>
-            <Link href="/cookies" className="hover:text-white transition-all duration-500 relative group">
-              <span className="relative">
-                Cookies
-                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-              </span>
-            </Link>
+            {legalLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="hover:text-white transition-all duration-500 relative group"
+              >
+                <span className="relative">
+                  {item.label}
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

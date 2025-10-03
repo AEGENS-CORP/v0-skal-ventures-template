@@ -3,12 +3,10 @@ import { Logo } from "./logo"
 import { MobileMenu } from "./mobile-menu"
 import { InteractiveLink } from "./interactive-link"
 import { NavigationDropdown } from "./navigation-dropdown"
-import { primaryNav } from "@/lib/navigation"
+import { plusNav, primaryNav } from "@/lib/navigation"
 
 export const Header = () => {
-  const mainNavItems = primaryNav.filter((item) =>
-    ["Méthode", "Services", "Ressources", "Contact"].includes(item.label),
-  )
+  const mainNavItems = primaryNav
 
   return (
     <div className="fixed z-[9999] top-0 left-0 w-full">
@@ -28,7 +26,7 @@ export const Header = () => {
                 <div
                   key={item.label}
                   className="animate-in fade-in duration-1000 group"
-                  style={{ animationDelay: `${200 + index * 100}ms` }}
+                  style={{ animationDelay: `${200 + index * 80}ms` }}
                 >
                   <InteractiveLink
                     className={`text-lg font-semibold transition-all duration-500 whitespace-nowrap relative ${
@@ -47,12 +45,12 @@ export const Header = () => {
               )
             })}
             <div className="animate-in fade-in duration-1000 delay-700">
-              <NavigationDropdown />
+              <NavigationDropdown items={plusNav} />
             </div>
           </nav>
 
           <div className="lg:hidden animate-in fade-in duration-1000 delay-300">
-            <MobileMenu navItems={primaryNav} />
+            <MobileMenu navItems={[...primaryNav, ...plusNav]} />
           </div>
         </header>
       </div>

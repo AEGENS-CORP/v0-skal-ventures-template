@@ -1,11 +1,13 @@
 import type React from "react"
 import type { Metadata } from "next"
 import "./globals.css"
+import "@/styles/ae-overrides.css"
 import { ParticleProvider } from "@/components/particle-context"
 import { CookieBanner } from "@/components/cookie-banner"
 import { BASE_URL } from "@/lib/site-structure"
 import { StructuredData } from "@/components/structured-data"
 import { HeadingIdProvider } from "@/components/heading-id-provider"
+import { AeNavPortalMount } from "@/components/ae-nav-portal-mount"
 
 const CANONICAL_URL = new URL("/", BASE_URL).toString()
 
@@ -45,8 +47,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr-FR" className="dark">
-      <body className="antialiased" suppressHydrationWarning>
+      <body className="antialiased ae-readable ae-dark" suppressHydrationWarning>
         <ParticleProvider>
+          <AeNavPortalMount />
           <HeadingIdProvider />
           {children}
           <CookieBanner />

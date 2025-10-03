@@ -2,34 +2,35 @@ import Link from "next/link"
 import { AeBreadcrumbs } from "@/components/ae-breadcrumbs"
 import { AeStickyToc } from "@/components/ae-sticky-toc"
 import { createPageMetadata } from "@/lib/metadata"
-import { aeServicesSections } from "@/lib/ae-site-structure"
+import { aeSolutionsSections } from "@/lib/ae-site-structure"
 
 export const metadata = createPageMetadata({
-  title: "Services",
-  path: "/services",
-  description: "Présentation placeholder des services phares avec ancres internes.",
+  title: "Solutions",
+  path: "/solutions",
+  description: "Panorama placeholder des solutions adressées par secteur et fonction.",
 })
 
-export default function ServicesPage() {
-  const tocItems = aeServicesSections.map((section) => ({
+export default function SolutionsPage() {
+  const tocItems = aeSolutionsSections.map((section) => ({
     id: section.id,
     label: section.title,
   }))
 
   return (
     <main className="ae-page">
-      <AeBreadcrumbs pathname="/services" />
+      <AeBreadcrumbs pathname="/solutions" />
       <header className="ae-page-header">
-        <h1>Services — Audit, Automatisation IA, ERP/CRM, Formation, Support</h1>
+        <h1>Solutions — Parcours métiers prioritaires</h1>
         <p className="ae-muted">
-          Chaque section ci-dessous contient un texte générique servant de repère avant l'ajout des contenus métier.
+          Cette page récapitule les domaines couverts. Les textes sont indicatifs et seront remplacés par les contenus
+          définitifs.
         </p>
       </header>
 
       <div className="ae-sections-layout">
-        <AeStickyToc title="Sommaire des services" items={tocItems} />
+        <AeStickyToc title="Sommaire des solutions" items={tocItems} />
         <div className="space-y-6">
-          {aeServicesSections.map((section) => (
+          {aeSolutionsSections.map((section) => (
             <section
               key={section.id}
               id={section.id}
