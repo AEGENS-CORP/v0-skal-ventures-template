@@ -14,8 +14,6 @@ export default function GlossairePage() {
     <SimplePageLayout
       title="Glossaire"
       description="Contenu à venir."
-      path="/ressources/glossaire"
-      dataEntity="glossary"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -37,4 +35,3 @@ export default function GlossairePage() {
     </SimplePageLayout>
   )
 }
-

@@ -31,14 +31,10 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     notFound()
   }
 
-  const canonicalPath = `/ressources/guides/${guide.slug}`
-
   return (
     <SimplePageLayout
       title={guide.title}
       description="Contenu à venir."
-      path={canonicalPath}
-      dataEntity="resource-guide"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -63,4 +59,3 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     </SimplePageLayout>
   )
 }
-

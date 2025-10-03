@@ -61,14 +61,10 @@ export default function SectorPage({ params }: { params: { slug: string } }) {
     { href: "/services/audit-diagnostic", label: "Audit et diagnostic automation" },
   ]
 
-  const canonicalPath = `/secteurs/${sector.slug}`
-
   return (
     <SimplePageLayout
       title={sector.title}
       description="Contenu à venir."
-      path={canonicalPath}
-      dataEntity="sector"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Secteurs", href: "/secteurs" },
@@ -92,4 +88,3 @@ export default function SectorPage({ params }: { params: { slug: string } }) {
     </SimplePageLayout>
   )
 }
-

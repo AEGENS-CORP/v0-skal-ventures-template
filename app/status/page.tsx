@@ -13,7 +13,6 @@ export default function StatusPage() {
     <SimplePageLayout
       title="Status"
       description="Contenu à venir."
-      path="/status"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Status" },
@@ -26,4 +25,3 @@ export default function StatusPage() {
     </SimplePageLayout>
   )
 }
-

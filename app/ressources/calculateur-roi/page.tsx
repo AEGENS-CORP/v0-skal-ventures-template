@@ -14,8 +14,6 @@ export default function CalculateurROIPage() {
     <SimplePageLayout
       title="Calculateur ROI"
       description="Contenu à venir."
-      path="/ressources/calculateur-roi"
-      dataEntity="resource-tool"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -36,4 +34,3 @@ export default function CalculateurROIPage() {
     </SimplePageLayout>
   )
 }
-

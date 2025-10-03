@@ -14,8 +14,6 @@ export default function GuidesPage() {
     <SimplePageLayout
       title="Guides"
       description="Contenu à venir."
-      path="/ressources/guides"
-      dataEntity="resource-overview"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -37,4 +35,3 @@ export default function GuidesPage() {
     </SimplePageLayout>
   )
 }
-

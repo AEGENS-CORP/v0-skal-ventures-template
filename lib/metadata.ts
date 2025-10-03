@@ -14,7 +14,7 @@ export const createPageMetadata = ({ title, description, path }: MetadataParams)
   const canonical = new URL(path, BASE_URL).toString()
 
   return {
-    title: `${title} | Skal Ventures`,
+    title: `${title} | Aegens`,
     description: metaDescription,
     alternates: {
       canonical,
@@ -23,17 +23,11 @@ export const createPageMetadata = ({ title, description, path }: MetadataParams)
       },
     },
     openGraph: {
-      title: `${title} | Skal Ventures`,
+      title: `${title} | Aegens`,
       description: metaDescription,
       url: canonical,
-      type: "website",
       locale: "fr_FR",
-      siteName: "Skal Ventures",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} | Skal Ventures`,
-      description: metaDescription,
+      siteName: "Aegens",
     },
     robots: allowIndex
       ? undefined
@@ -43,4 +37,3 @@ export const createPageMetadata = ({ title, description, path }: MetadataParams)
         },
   }
 }
-

@@ -37,8 +37,6 @@ export default function QuestionHubCategoryPage({ params }: { params: { category
     <SimplePageLayout
       title={`Question-Hub IA - ${params.category.replace(/-/g, " ")}`}
       description="Contenu à venir."
-      path={`/ressources/qh/${params.category}`}
-      dataEntity="resource-category"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources", href: "/ressources" },
@@ -61,4 +59,3 @@ export default function QuestionHubCategoryPage({ params }: { params: { category
     </SimplePageLayout>
   )
 }
-

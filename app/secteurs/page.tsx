@@ -14,8 +14,6 @@ export default function SectorsPage() {
     <SimplePageLayout
       title="Secteurs"
       description="Contenu à venir."
-      path="/secteurs"
-      dataEntity="sector-overview"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Secteurs" },
@@ -37,4 +35,3 @@ export default function SectorsPage() {
     </SimplePageLayout>
   )
 }
-

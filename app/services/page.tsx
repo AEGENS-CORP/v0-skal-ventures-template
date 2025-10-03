@@ -14,8 +14,6 @@ export default function ServicesPage() {
     <SimplePageLayout
       title="Services"
       description="Contenu à venir."
-      path="/services"
-      dataEntity="service-overview"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Services" },
@@ -36,4 +34,3 @@ export default function ServicesPage() {
     </SimplePageLayout>
   )
 }
-

@@ -14,8 +14,6 @@ export default function ContactPage() {
     <SimplePageLayout
       title="Contact"
       description="Contenu à venir."
-      path="/contact"
-      dataEntity="contact"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Contact" },
@@ -35,4 +33,3 @@ export default function ContactPage() {
     </SimplePageLayout>
   )
 }
-

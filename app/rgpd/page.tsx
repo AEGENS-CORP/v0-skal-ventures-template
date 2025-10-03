@@ -13,8 +13,6 @@ export default function RgpdPage() {
     <SimplePageLayout
       title="Politique de confidentialité"
       description="Contenu à venir."
-      path="/rgpd"
-      dataEntity="legal"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Politique de confidentialité" },
@@ -27,4 +25,3 @@ export default function RgpdPage() {
     </SimplePageLayout>
   )
 }
-

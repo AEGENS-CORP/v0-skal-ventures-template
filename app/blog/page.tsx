@@ -13,8 +13,6 @@ export default function BlogPage() {
     <SimplePageLayout
       title="Blog"
       description="Contenu à venir."
-      path="/blog"
-      dataEntity="blog"
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Blog" },
@@ -30,4 +28,3 @@ export default function BlogPage() {
     </SimplePageLayout>
   )
 }
-
