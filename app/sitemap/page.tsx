@@ -1,33 +1,28 @@
 import Link from "next/link"
 import { SimplePageLayout } from "@/components/simple-page-layout"
 import { createPageMetadata } from "@/lib/metadata"
-import { getAllRoutes } from "@/lib/site-structure"
-
-const routes = getAllRoutes().sort((a, b) => a.localeCompare(b))
+import { htmlSitemapEntries } from "@/lib/ae-content"
 
 export const metadata = createPageMetadata({
-  title: "Plan du site",
+  title: "Plan du site — Option A",
   path: "/sitemap",
-  description: "Contenu à venir.",
+  description: "Page en construction.",
 })
 
 export default function SitemapPage() {
   return (
     <SimplePageLayout
-      title="Plan du site"
-      description="Contenu à venir."
+      title="Plan du site — Option A"
+      description="Liste alphabétique des pages actuellement structurées."
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Plan du site" },
       ]}
     >
-      <p>Contenu à venir.</p>
-      <ul className="grid gap-2 sm:grid-cols-2">
-        {routes.map((route) => (
+      <ul className="ae-list">
+        {htmlSitemapEntries.map((route) => (
           <li key={route}>
-            <Link className="underline" href={route}>
-              {route}
-            </Link>
+            <Link href={route}>{route}</Link>
           </li>
         ))}
       </ul>

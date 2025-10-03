@@ -11,7 +11,7 @@ export const Breadcrumbs = ({ items }: { items: BreadcrumbItem[] }) => {
   }
 
   return (
-    <nav aria-label="Fil d'Ariane" className="text-sm text-white/70">
+    <nav aria-label="Fil d'Ariane" className="ae-breadcrumbs">
       <ol className="flex flex-wrap items-center gap-1">
         {items.map((item, index) => {
           const isLast = index === items.length - 1

@@ -1,7 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { footerLinks } from "@/lib/navigation"
+import { footerLinks, primaryNav } from "@/lib/navigation"
+import { plusNavItems } from "@/lib/ae-content"
 import { useParticles } from "./particle-context"
 import { Button } from "./ui/button"
 import { Mail, Phone, MapPin } from "lucide-react"
@@ -47,27 +48,29 @@ export function Footer() {
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
             <h4 className="text-lg font-semibold">Navigation</h4>
             <div className="flex flex-col gap-3 text-sm">
-              {footerLinks.slice(0, 5).map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onMouseEnter={() => setHovering(true)}
-                  onMouseLeave={() => setHovering(false)}
-                  className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
-                >
-                  <span className="relative">
-                    {item.label}
-                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-                  </span>
-                </Link>
-              ))}
+              {primaryNav
+                .filter((item) => item.label !== "Plus")
+                .map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onMouseEnter={() => setHovering(true)}
+                    onMouseLeave={() => setHovering(false)}
+                    className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
+                  >
+                    <span className="relative">
+                      {item.label}
+                      <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+                    </span>
+                  </Link>
+                ))}
             </div>
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
-            <h4 className="text-lg font-semibold">Services</h4>
+            <h4 className="text-lg font-semibold">Plus</h4>
             <div className="flex flex-col gap-3 text-sm">
-              {footerLinks.slice(5, 10).map((item) => (
+              {plusNavItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
@@ -122,25 +125,15 @@ export function Footer() {
           <p className="transition-colors duration-500 hover:text-white/80">
             © {new Date().getFullYear()} Aegens. Tous droits réservés.
           </p>
-          <div className="flex gap-6">
-            <Link href="/mentions-legales" className="hover:text-white transition-all duration-500 relative group">
-              <span className="relative">
-                Mentions légales
-                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-              </span>
-            </Link>
-            <Link href="/confidentialite" className="hover:text-white transition-all duration-500 relative group">
-              <span className="relative">
-                Confidentialité
-                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-              </span>
-            </Link>
-            <Link href="/cookies" className="hover:text-white transition-all duration-500 relative group">
-              <span className="relative">
-                Cookies
-                <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-              </span>
-            </Link>
+          <div className="flex gap-6 flex-wrap justify-center md:justify-end">
+            {footerLinks.map((item) => (
+              <Link key={item.href} href={item.href} className="hover:text-white transition-all duration-500 relative group">
+                <span className="relative">
+                  {item.label}
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

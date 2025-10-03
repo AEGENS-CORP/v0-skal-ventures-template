@@ -1,45 +1,39 @@
 import Link from "next/link"
-import { createPageMetadata } from "@/lib/metadata"
 import { SimplePageLayout } from "@/components/simple-page-layout"
-
-const sections = [
-  { href: "/blog", label: "Blog" },
-  { href: "/ressources/guides", label: "Guides" },
-  { href: "/ressources/question-hub-ia", label: "Question-Hub IA" },
-  { href: "/ressources/comparatifs", label: "Comparatifs" },
-  { href: "/ressources/glossaire", label: "Glossaire" },
-  { href: "/ressources/outils", label: "Outils" },
-  { href: "/ressources/calculateur-roi", label: "Calculateur ROI" },
-]
+import { createPageMetadata } from "@/lib/metadata"
+import { resourcesSections } from "@/lib/ae-content"
 
 export const metadata = createPageMetadata({
-  title: "Ressources",
+  title: "Ressources — Blog, Guides, Question Hub, Glossaire",
   path: "/ressources",
-  description: "Contenu à venir.",
+  description: "Page en construction.",
 })
 
 export default function RessourcesPage() {
   return (
     <SimplePageLayout
-      title="Ressources"
-      description="Contenu à venir."
+      title="Ressources — Blog, Guides, Question Hub, Glossaire"
+      description="Aperçu provisoire des contenus éditoriaux en cours de production."
       breadcrumbs={[
         { label: "Accueil", href: "/" },
         { label: "Ressources" },
       ]}
     >
-      <p>Contenu à venir.</p>
-      <div className="grid gap-3 sm:grid-cols-2">
-        {sections.map((section) => (
-          <Link
-            key={section.href}
-            href={section.href}
-            className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-white/80 transition hover:text-white hover:border-white/30"
-          >
-            {section.label}
-          </Link>
-        ))}
-      </div>
+      {resourcesSections.map((section) => (
+        <section key={section.id} id={section.id} className="ae-section">
+          <h2>{section.title}</h2>
+          <p>{section.description}</p>
+          <p className="ae-section-summary">{section.summary}</p>
+          <div className="ae-section-links">
+            {section.links.map((link) => (
+              <Link key={link.href} href={link.href}>
+                {link.label}
+              </Link>
+            ))}
+            {section.showFaqLink && <Link href="/faq">Consulter la FAQ</Link>}
+          </div>
+        </section>
+      ))}
     </SimplePageLayout>
   )
 }

@@ -6,9 +6,8 @@ import { NavigationDropdown } from "./navigation-dropdown"
 import { primaryNav } from "@/lib/navigation"
 
 export const Header = () => {
-  const mainNavItems = primaryNav.filter((item) =>
-    ["Méthode", "Services", "Ressources", "Contact"].includes(item.label),
-  )
+  const mainNavItems = primaryNav.filter((item) => item.label !== "Plus")
+  const plusItem = primaryNav.find((item) => item.label === "Plus")
 
   return (
     <div className="fixed z-[9999] top-0 left-0 w-full">
@@ -46,9 +45,11 @@ export const Header = () => {
                 </div>
               )
             })}
-            <div className="animate-in fade-in duration-1000 delay-700">
-              <NavigationDropdown />
-            </div>
+            {plusItem && (
+              <div className="animate-in fade-in duration-1000 delay-700">
+                <NavigationDropdown />
+              </div>
+            )}
           </nav>
 
           <div className="lg:hidden animate-in fade-in duration-1000 delay-300">
