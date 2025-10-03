@@ -39,10 +39,10 @@ export function Stats() {
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
             >
-              <div className="text-5xl md:text-6xl font-sentient font-extralight text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="text-5xl md:text-6xl font-semibold text-primary mb-2 group-hover:scale-110 transition-transform duration-300">
                 {stat.number}
               </div>
-              <h4 className="text-xl font-sentient mb-2 group-hover:text-primary transition-colors">{stat.label}</h4>
+              <h4 className="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">{stat.label}</h4>
               <p className="text-muted-foreground text-sm">{stat.description}</p>
             </div>
           ))}

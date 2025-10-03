@@ -37,7 +37,7 @@ export function News() {
     <section className="py-24 bg-background relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sentient font-extralight mb-4">Actualités & Insights</h2>
+          <h2 className="text-4xl md:text-5xl font-semibold mb-4">Actualités & Insights</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Restez informé de nos dernières innovations et réflexions sur l'IA
           </p>
@@ -60,7 +60,7 @@ export function News() {
         </div>
 
         <div className="bg-muted/30 rounded-lg p-8 max-w-4xl mx-auto">
-          <h3 className="text-xl font-sentient font-light mb-6 text-center">Dernières Actualités</h3>
+          <h3 className="text-xl font-semibold mb-6 text-center">Dernières Actualités</h3>
           <div className="grid md:grid-cols-2 gap-4">
             {updates.map((update, index) => (
               <div key={index} className="flex items-start space-x-3">

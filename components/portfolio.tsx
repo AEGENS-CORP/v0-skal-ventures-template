@@ -40,8 +40,8 @@ export function Portfolio() {
     <section className="py-24 bg-gradient-to-b from-background/50 to-background relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-mono text-muted-foreground mb-4 tracking-wider uppercase">Nos réalisations</h2>
-          <h3 className="text-4xl md:text-5xl font-light mb-6">Portfolio de projets</h3>
+          <h2 className="text-sm font-semibold text-muted-foreground mb-4 tracking-wider uppercase">Nos réalisations</h2>
+          <h3 className="text-4xl md:text-5xl font-semibold mb-6">Portfolio de projets</h3>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Découvrez quelques-unes de nos réalisations les plus innovantes
           </p>

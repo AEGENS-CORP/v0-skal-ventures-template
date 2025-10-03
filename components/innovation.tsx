@@ -30,7 +30,7 @@ export function Innovation() {
     <section className="py-24 bg-muted/30 relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sentient font-extralight mb-4">Innovation Continue</h2>
+          <h2 className="text-4xl md:text-5xl font-semibold mb-4">Innovation Continue</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Notre engagement envers l'innovation nous permet de rester à la pointe de la technologie
           </p>

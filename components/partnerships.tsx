@@ -29,7 +29,7 @@ export function Partnerships() {
     <section className="py-24 bg-background relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-sentient font-extralight mb-4">Écosystème Partenaires</h2>
+          <h2 className="text-4xl md:text-5xl font-semibold mb-4">Écosystème Partenaires</h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             Un réseau de partenaires stratégiques pour maximiser l'impact de nos solutions
           </p>
@@ -51,7 +51,7 @@ export function Partnerships() {
         </div>
 
         <div className="text-center">
-          <h3 className="text-2xl font-sentient font-light mb-8">Nos Clients</h3>
+          <h3 className="text-2xl font-semibold mb-8">Nos Clients</h3>
           <div className="flex flex-wrap justify-center gap-8">
             {clients.map((client, index) => (
               <div key={index} className="px-6 py-3 bg-muted/50 rounded-full text-sm font-medium">
