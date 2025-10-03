@@ -14,7 +14,7 @@ export const NavigationDropdown = () => {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 text-lg font-bold text-white/90 hover:text-white transition-colors duration-200"
+        className="flex items-center gap-2 text-lg font-semibold text-white/90 hover:text-white transition-colors duration-200"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -34,7 +34,7 @@ export const NavigationDropdown = () => {
                   onClick={() => setIsOpen(false)}
                   className="block px-6 py-4 text-white/90 hover:text-white hover:bg-white/5 transition-all duration-200 border-b border-white/5 last:border-b-0"
                 >
-                  <span className="font-bold text-lg">{item.label}</span>
+                  <span className="font-semibold text-lg">{item.label}</span>
                   {item.description && <span className="block text-base text-white/60 mt-1">{item.description}</span>}
                 </Link>
               ))}
