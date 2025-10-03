@@ -2,6 +2,7 @@ import Link from "next/link"
 import { Logo } from "./logo"
 import { MobileMenu } from "./mobile-menu"
 import { InteractiveLink } from "./interactive-link"
+import { primaryNav } from "@/lib/navigation"
 
 export const Header = () => {
   return (
@@ -13,25 +14,36 @@ export const Header = () => {
             <Logo className="w-[240px] sm:w-[280px]" />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-8">
-            {[
-              { name: "Services", href: "#services" },
-              { name: "Expertise", href: "#expertise" },
-              { name: "Projets", href: "#projects" },
-              { name: "Contact", href: "#contact" },
-            ].map((item) => (
-              <InteractiveLink
-                className="text-lg font-bold text-white/80 hover:text-white transition-colors duration-200 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-white after:transition-all after:duration-300 hover:after:w-full"
-                href={item.href}
-                key={item.name}
-              >
-                {item.name}
-              </InteractiveLink>
+          <nav className="hidden lg:flex items-center gap-6">
+            {primaryNav.map((item) => (
+              <div key={item.label} className="relative group">
+                <InteractiveLink
+                  className="text-lg font-bold text-white/80 hover:text-white transition-colors duration-200"
+                  href={item.href}
+                >
+                  {item.label}
+                </InteractiveLink>
+                {item.children && (
+                  <div className="absolute left-0 mt-4 hidden w-max min-w-[240px] rounded-2xl border border-white/10 bg-black/90 p-4 shadow-2xl group-hover:block group-focus-within:block">
+                    <div className="grid max-h-[420px] gap-2 overflow-y-auto pr-2">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className="text-sm text-white/80 hover:text-white transition"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
           <div className="lg:hidden">
-            <MobileMenu />
+            <MobileMenu navItems={primaryNav} />
           </div>
         </header>
       </div>
