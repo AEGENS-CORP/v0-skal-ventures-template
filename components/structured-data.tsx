@@ -2,59 +2,19 @@
 
 import { useMemo } from "react"
 import { usePathname } from "next/navigation"
+import { BASE_URL } from "@/lib/site-structure"
 import {
-  BASE_URL,
-  services as servicesCatalog,
-  casUsage as casUsageCatalog,
-  sectors as sectorsCatalog,
-} from "@/lib/site-structure"
+  faqItems,
+  offerCatalog,
+  optionAPages,
+  resourcesSections,
+  servicesSections,
+  solutionsSections,
+} from "@/lib/ae-content"
 
-const capitalize = (value: string) =>
-  value
-    .split(" ")
-    .filter(Boolean)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ")
+const serialize = (data: unknown) => JSON.stringify(data, null, 2)
 
-const resolveRouteTitle = (segment: string, parent?: string): string => {
-  const slug = segment.replace(/\/$/, "")
-
-  if (!parent) {
-    switch (slug) {
-      case "services":
-        return "Services"
-      case "secteurs":
-        return "Secteurs"
-      case "cas-usage":
-        return "Cas d'usage"
-      case "ressources":
-        return "Ressources"
-      case "blog":
-        return "Blog"
-      case "faq":
-        return "FAQ"
-      default:
-        return capitalize(slug.replace(/-/g, " "))
-    }
-  }
-
-  if (parent === "services") {
-    const service = servicesCatalog.find((item) => item.slug === slug)
-    if (service) return service.title
-  }
-
-  if (parent === "cas-usage") {
-    const cas = casUsageCatalog.find((item) => item.slug === slug)
-    if (cas) return cas.title
-  }
-
-  if (parent === "secteurs") {
-    const sector = sectorsCatalog.find((item) => item.slug === slug)
-    if (sector) return sector.title
-  }
-
-  return capitalize(slug.replace(/-/g, " "))
-}
+const pathLabelMap = new Map(optionAPages.map((page) => [page.path, page.label]))
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
@@ -62,9 +22,7 @@ const organizationJsonLd = {
   name: "Aegens",
   url: BASE_URL,
   logo: `${BASE_URL}/logo-nouveau.png`,
-  sameAs: [
-    "https://www.linkedin.com",
-  ],
+  sameAs: ["https://www.linkedin.com/company/aegens"],
 }
 
 const webSiteJsonLd = {
@@ -80,93 +38,181 @@ const webSiteJsonLd = {
   },
 }
 
-const buildBreadcrumbList = (pathname: string) => {
-  const segments = pathname.split("/").filter(Boolean)
-  const items: { position: number; name: string; item: string }[] = []
+const buildBreadcrumbList = (path: string) => {
+  const list = [
+    {
+      "@type": "ListItem" as const,
+      position: 1,
+      name: "Accueil",
+      item: BASE_URL,
+    },
+  ]
 
-  items.push({ position: 1, name: "Accueil", item: BASE_URL })
-
-  segments.forEach((segment, index) => {
-    const parent = index > 0 ? segments[index - 1] : undefined
-    const name = resolveRouteTitle(segment, parent)
-    const path = segments.slice(0, index + 1).join("/")
-    const url = new URL(`/${path}`, BASE_URL).toString()
-
-    items.push({
-      position: index + 2,
-      name,
-      item: url,
+  if (path !== "/") {
+    const canonical = new URL(path, BASE_URL).toString()
+    list.push({
+      "@type": "ListItem",
+      position: 2,
+      name: pathLabelMap.get(path) ?? "Page",
+      item: canonical,
     })
-  })
+  }
 
-  return items
+  return list
 }
 
-const serialize = (data: unknown) => JSON.stringify(data, null, 2)
+const buildServicesSchemas = () => {
+  const base = new URL("/services", BASE_URL).toString()
+
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: servicesSections.map((section, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: section.title,
+      url: `${base}#${section.id}`,
+    })),
+  }
+
+  const services = servicesSections.map((section) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: section.title,
+    description: section.description,
+    provider: {
+      "@type": "Organization",
+      name: "Aegens",
+      url: BASE_URL,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "France",
+    },
+    url: `${base}#${section.id}`,
+  }))
+
+  return [itemList, ...services]
+}
+
+const buildSolutionsSchemas = () => {
+  const base = new URL("/solutions", BASE_URL).toString()
+
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: solutionsSections.map((section, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: section.title,
+      url: `${base}#${section.id}`,
+    })),
+  }
+
+  const services = solutionsSections.map((section) => ({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: section.title,
+    description: section.description,
+    provider: {
+      "@type": "Organization",
+      name: "Aegens",
+      url: BASE_URL,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "France",
+    },
+    url: `${base}#${section.id}`,
+  }))
+
+  return [itemList, ...services]
+}
+
+const buildResourcesSchemas = () => {
+  const base = new URL("/ressources", BASE_URL).toString()
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: resourcesSections.map((section, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: section.title,
+        url: `${base}#${section.id}`,
+      })),
+    },
+  ]
+}
+
+const buildTarifsSchemas = () => {
+  const base = new URL("/tarifs", BASE_URL).toString()
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "OfferCatalog",
+      name: "Catalogue tarifaire Aegens",
+      itemListElement: offerCatalog.map((offer, index) => ({
+        "@type": "Offer",
+        position: index + 1,
+        name: offer.title,
+        description: offer.description,
+        url: `${base}#${offer.id}`,
+        priceCurrency: "EUR",
+        price: "0",
+        itemOffered: {
+          "@type": "Service",
+          name: offer.title,
+        },
+      })),
+    },
+  ]
+}
+
+const buildFaqSchemas = () => [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  },
+]
+
+const pageSchemas: Record<string, () => Array<Record<string, unknown>>> = {
+  "/": () => [organizationJsonLd, webSiteJsonLd],
+  "/services": buildServicesSchemas,
+  "/solutions": buildSolutionsSchemas,
+  "/ressources": buildResourcesSchemas,
+  "/tarifs": buildTarifsSchemas,
+  "/faq": buildFaqSchemas,
+}
 
 export function StructuredData() {
   const pathname = usePathname() ?? "/"
+  const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/$/, "")
 
   const jsonLdPayloads = useMemo(() => {
-    const entries: Array<Record<string, unknown>> = [organizationJsonLd, webSiteJsonLd]
-    const breadcrumbList = buildBreadcrumbList(pathname)
+    const builder = pageSchemas[normalizedPath]
+    const entries: Array<Record<string, unknown>> = builder ? builder() : []
 
-    if (breadcrumbList.length > 1) {
+    if (normalizedPath !== "/") {
       entries.push({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        itemListElement: breadcrumbList.map((item) => ({
-          "@type": "ListItem",
-          position: item.position,
-          name: item.name,
-          item: item.item,
-        })),
-      })
-    }
-
-    const segments = pathname.split("/").filter(Boolean)
-
-    if (segments[0] === "services" && segments[1]) {
-      const service = servicesCatalog.find((item) => item.slug === segments[1])
-      const serviceUrl = new URL(pathname, BASE_URL).toString()
-
-      entries.push({
-        "@context": "https://schema.org",
-        "@type": "Service",
-        name: service?.title ?? "Service d'accompagnement IA",
-        description: service?.description ?? "Service proposé par Aegens, spécialiste de l'intelligence artificielle.",
-        provider: {
-          "@type": "Organization",
-          name: "Aegens",
-          url: BASE_URL,
-        },
-        areaServed: {
-          "@type": "Country",
-          name: "France",
-        },
-        url: serviceUrl,
-      })
-    }
-
-    if (pathname === "/faq") {
-      entries.push({
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-          {
-            "@type": "Question",
-            name: "Comment Aegens accompagne les projets d'intelligence artificielle ?",
-            acceptedAnswer: {
-              "@type": "Answer",
-              text: "Les experts Aegens assurent un accompagnement personnalisé à chaque étape du projet, de l'idéation au déploiement.",
-            },
-          },
-        ],
+        itemListElement: buildBreadcrumbList(normalizedPath),
       })
     }
 
     return entries
-  }, [pathname])
+  }, [normalizedPath])
 
   return (
     <>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
-import { BASE_URL, indexablePaths } from "./site-structure"
+import { BASE_URL } from "./site-structure"
+import { SEO_INDEX_ALL, indexablePaths } from "./ae-content"
 
 type MetadataParams = {
   title: string
@@ -8,9 +9,10 @@ type MetadataParams = {
 }
 
 export const createPageMetadata = ({ title, description, path }: MetadataParams): Metadata => {
-  const allowIndex = process.env.SEO_INDEX_ALL === "true" || indexablePaths.has(path)
+  const allowIndex =
+    process.env.SEO_INDEX_ALL === "true" || SEO_INDEX_ALL || indexablePaths.has(path)
 
-  const metaDescription = description ?? "Contenu à venir."
+  const metaDescription = description ?? "Page en construction."
   const canonical = new URL(path, BASE_URL).toString()
   const isHome = path === "/"
   const fullTitle = `${title} | Aegens`
