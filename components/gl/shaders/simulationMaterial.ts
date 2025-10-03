@@ -70,10 +70,10 @@ export class SimulationMaterial extends THREE.ShaderMaterial {
         
         vec2 mouseForce = vec2(0.0);
         float mouseDistance = distance(originalPos.xz, uMousePosition * 5.0); // Scale mouse position to world space
-        if (mouseDistance < 3.0) {
-          float mouseInfluence = 1.0 - smoothstep(0.0, 3.0, mouseDistance);
+        if (mouseDistance < 10.0) {
+          float mouseInfluence = 1.0 - smoothstep(0.0, 1.0, mouseDistance);
           vec2 mouseDirection = normalize(originalPos.xz - uMousePosition * 5.0);
-          mouseForce = mouseDirection * mouseInfluence * 0.8; // Repulsion force
+          mouseForce = mouseDirection * mouseInfluence * 0.3; // Repulsion force
         }
         
         vec2 rippleForce = vec2(0.0);

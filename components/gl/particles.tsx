@@ -13,12 +13,12 @@ export function Particles({
   speed,
   aperture,
   focus,
-  size = 512,
+  size = 100,
   noiseScale = 1.0,
-  noiseIntensity = 0.5,
-  timeScale = 0.5,
-  pointSize = 2.0,
-  opacity = 1.0,
+  noiseIntensity = 0.8,
+  timeScale = 0.8,
+  pointSize = 4.0,
+  opacity = 0.2,
   planeScale = 1.0,
   useManualTime = false,
   manualTime = 0,
@@ -113,7 +113,7 @@ export function Particles({
 
     // Map progress to reveal factor (0 = fully hidden, higher values = more revealed)
     // We want to start from center (0) and expand outward (higher values)
-    const revealFactor = easedProgress * 4.0 // Doubled the radius for larger coverage
+    const revealFactor = easedProgress * 5.0 // Doubled the radius for larger coverage
 
     if (revealProgress >= 1.0 && isRevealing) {
       setIsRevealing(false)
