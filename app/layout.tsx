@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter, Poppins, JetBrains_Mono } from "next/font/google"
 import "./globals.css"
 import { ParticleProvider } from "@/components/particle-context"
+import { CookieBanner } from "@/components/cookie-banner"
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,7 +40,10 @@ export default function RootLayout({
         className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} font-poppins antialiased`}
         suppressHydrationWarning
       >
-        <ParticleProvider>{children}</ParticleProvider>
+        <ParticleProvider>
+          {children}
+          <CookieBanner />
+        </ParticleProvider>
       </body>
     </html>
   )
