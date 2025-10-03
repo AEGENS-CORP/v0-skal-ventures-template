@@ -1,5 +1,6 @@
 .ae-readable {
   font-family: var(--font-sans, "Helvetica Neue", "Helvetica", "Arial", sans-serif);
+  font-variant-numeric: lining-nums tabular-nums;
 }
 
 .ae-dark {
@@ -17,6 +18,14 @@
   letter-spacing: 0.005em;
 }
 
+.ae-readable strong,
+.ae-readable b,
+.ae-readable .ae-emphasis,
+.ae-readable .ae-stat {
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
 .ae-readable a {
   color: #fff;
   font-weight: 600;
@@ -27,7 +36,8 @@
 
 header nav a {
   color: #fff;
-  font-weight: 600;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .ae-page {

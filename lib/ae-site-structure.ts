@@ -14,17 +14,16 @@ export type AeAnchorSection = {
 }
 
 export const aeMainNavigation: AeNavItem[] = [
-  { label: "Accueil", href: "/" },
   { label: "Méthode", href: "/methode" },
   { label: "Services", href: "/services" },
-  { label: "Solutions", href: "/solutions" },
-  { label: "Ressources", href: "/ressources" },
-  { label: "Tarifs", href: "/tarifs" },
-  { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ]
 
 export const aePlusNavigation: AeNavItem[] = [
+  { label: "Solutions", href: "/solutions" },
+  { label: "Ressources", href: "/ressources" },
+  { label: "Tarifs", href: "/tarifs" },
+  { label: "FAQ", href: "/faq" },
   { label: "Mentions légales", href: "/mentions-legales" },
   { label: "Politique de confidentialité", href: "/politique-de-confidentialite" },
   { label: "Conditions générales", href: "/conditions-generales" },

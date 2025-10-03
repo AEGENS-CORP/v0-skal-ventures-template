@@ -25,21 +25,18 @@ export const Header = () => {
               return (
                 <div
                   key={item.label}
-                  className="animate-in fade-in duration-1000 group"
+                  className="animate-in fade-in duration-1000"
                   style={{ animationDelay: `${200 + index * 80}ms` }}
                 >
                   <InteractiveLink
-                    className={`text-lg font-semibold transition-all duration-500 whitespace-nowrap relative ${
+                    className={`text-lg font-bold transition-all duration-500 whitespace-nowrap ${
                       isContact
                         ? "border-2 border-white text-white px-6 py-2.5 rounded-md hover:bg-white/10 hover:scale-105"
-                        : "text-white/80 hover:text-white"
+                        : "text-white hover:text-white/90"
                     }`}
                     href={item.href}
                   >
                     {item.label}
-                    {!isContact && (
-                      <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-white/0 via-white to-white/0 transition-all duration-500 group-hover:w-full"></span>
-                    )}
                   </InteractiveLink>
                 </div>
               )
