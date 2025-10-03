@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
-import { BASE_URL, indexablePaths } from "./site-structure"
+import { BASE_URL } from "./site-structure"
+import { aeIndexablePaths } from "./ae-site-structure"
 
 type MetadataParams = {
   title: string
@@ -8,13 +9,15 @@ type MetadataParams = {
 }
 
 export const createPageMetadata = ({ title, description, path }: MetadataParams): Metadata => {
-  const allowIndex = process.env.SEO_INDEX_ALL === "true" || indexablePaths.has(path)
+  const allowIndex = process.env.SEO_INDEX_ALL === "true" || aeIndexablePaths.has(path)
 
   const metaDescription = description ?? "Contenu à venir."
   const canonical = new URL(path, BASE_URL).toString()
+  const isHome = path === "/"
+  const fullTitle = `${title} | Aegens`
 
   return {
-    title: `${title} | Aegens`,
+    title: fullTitle,
     description: metaDescription,
     alternates: {
       canonical,
@@ -23,11 +26,17 @@ export const createPageMetadata = ({ title, description, path }: MetadataParams)
       },
     },
     openGraph: {
-      title: `${title} | Aegens`,
+      title: fullTitle,
       description: metaDescription,
       url: canonical,
       locale: "fr_FR",
       siteName: "Aegens",
+      type: isHome ? "website" : "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: fullTitle,
+      description: metaDescription,
     },
     robots: allowIndex
       ? undefined

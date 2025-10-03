@@ -40,7 +40,7 @@ export function Team() {
     <section className="py-24 bg-background relative z-10">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-sans text-muted-foreground mb-4 tracking-wider uppercase">Notre équipe</h2>
+          <h2 className="text-sm text-muted-foreground mb-4 tracking-wider uppercase font-semibold">Notre équipe</h2>
           <h3 className="text-4xl md:text-5xl font-light mb-6">Les experts derrière Aegens</h3>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Une équipe passionnée d'experts techniques et créatifs
@@ -59,13 +59,17 @@ export function Team() {
                 <img
                   src={member.image || "/placeholder.svg"}
                   alt={member.name}
+                  loading="lazy"
+                  decoding="async"
+                  width={192}
+                  height={192}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
 
-              <h4 className="text-xl font-medium mb-1 group-hover:text-primary transition-colors">{member.name}</h4>
-              <p className="text-primary font-medium mb-2">{member.role}</p>
+              <h4 className="text-xl font-semibold mb-1 group-hover:text-primary transition-colors">{member.name}</h4>
+              <p className="text-primary font-semibold mb-2">{member.role}</p>
               <p className="text-sm text-muted-foreground mb-3">{member.expertise}</p>
               <p className="text-xs text-muted-foreground leading-relaxed">{member.description}</p>
             </div>
