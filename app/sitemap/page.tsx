@@ -1,36 +1,32 @@
 import Link from "next/link"
-import { SimplePageLayout } from "@/components/simple-page-layout"
+import { AeBreadcrumbs } from "@/components/ae-breadcrumbs"
 import { createPageMetadata } from "@/lib/metadata"
-import { getAllRoutes } from "@/lib/site-structure"
+import { aeSitemapEntries } from "@/lib/ae-site-structure"
 
-const routes = getAllRoutes().sort((a, b) => a.localeCompare(b))
+const sortedEntries = [...aeSitemapEntries].sort((a, b) => a.localeCompare(b))
 
 export const metadata = createPageMetadata({
   title: "Plan du site",
   path: "/sitemap",
-  description: "Contenu à venir.",
+  description: "Plan du site placeholder listant les pages Option A.",
 })
 
 export default function SitemapPage() {
   return (
-    <SimplePageLayout
-      title="Plan du site"
-      description="Contenu à venir."
-      breadcrumbs={[
-        { label: "Accueil", href: "/" },
-        { label: "Plan du site" },
-      ]}
-    >
-      <p>Contenu à venir.</p>
-      <ul className="grid gap-2 sm:grid-cols-2">
-        {routes.map((route) => (
-          <li key={route}>
-            <Link className="underline" href={route}>
-              {route}
-            </Link>
+    <main className="ae-page">
+      <AeBreadcrumbs pathname="/sitemap" />
+      <header className="ae-page-header">
+        <h1>Plan du site</h1>
+        <p className="ae-muted">Liste alphabétique des pages actuellement disponibles.</p>
+      </header>
+
+      <ul className="ae-grid ae-grid-columns-2">
+        {sortedEntries.map((entry) => (
+          <li key={entry}>
+            <Link href={entry}>{entry}</Link>
           </li>
         ))}
       </ul>
-    </SimplePageLayout>
+    </main>
   )
 }
