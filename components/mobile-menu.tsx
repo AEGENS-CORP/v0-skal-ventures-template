@@ -46,7 +46,7 @@ export const MobileMenu = ({ className, navItems }: MobileMenuProps) => {
 
           <nav className="flex flex-col space-y-6 container mx-auto">
             {navItems.map((item) => (
-              <div key={item.label} className="space-y-2">
+              <div key={item.label} className="space-x-0 mx-10">
                 <InteractiveLink
                   href={item.href}
                   onClick={handleLinkClick}

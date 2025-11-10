@@ -1,19 +1,28 @@
-import { footerLegalLinks, plusNavItems } from "./ae-content"
-
 export type NavItem = {
   label: string
   href: string
   children?: NavItem[]
 }
 
-const plusChildren: NavItem[] = plusNavItems.map((item) => ({ ...item }))
-
 export const primaryNav: NavItem[] = [
-  { label: "Méthode", href: "/methode" },
-  { label: "Services", href: "/services" },
-  { label: "Tarifs", href: "/tarifs" },
+  {
+    label: "Services",
+    href: "/services",
+    children: [
+      { label: "Automatisation", href: "/services/automatisation" },
+      { label: "Assistant IA Métier", href: "/services/assistant-ia-metier" },
+      { label: "Analyse & Reporting", href: "/services/analyse-reporting" },
+      { label: "Audit", href: "/services/audit" },
+      { label: "Vente / Gestion", href: "/services/vente-gestion" },
+    ],
+  },
+  { label: "Études de cas", href: "/etudes-de-cas" },
+  { label: "À propos", href: "/a-propos" },
   { label: "Contact", href: "/contact" },
-  { label: "Plus", href: "#plus", children: plusChildren },
 ]
 
-export const footerLinks = footerLegalLinks
+export const footerLinks = [
+  { label: "Mentions légales", href: "/mentions-legales" },
+  { label: "Politique de confidentialité", href: "/politique-de-confidentialite" },
+  { label: "Plan du site", href: "/plan-du-site" },
+]

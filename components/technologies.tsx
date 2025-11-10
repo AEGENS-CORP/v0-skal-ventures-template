@@ -61,7 +61,7 @@ export function Technologies() {
           {techCategories.map((category, categoryIndex) => (
             <div
               key={categoryIndex}
-              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 cursor-pointer"
+              className="bg-white/15 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/20 transition-all duration-300 cursor-pointer"
               onMouseEnter={() => setHovering(true)}
               onMouseLeave={() => setHovering(false)}
             >
@@ -74,7 +74,7 @@ export function Technologies() {
                       <span className="text-sm font-medium">{tech.name}</span>
                       <span className="text-xs text-muted-foreground">{tech.level}%</span>
                     </div>
-                    <div className="w-full bg-white/10 rounded-full h-2">
+                    <div className="w-full bg-white/20 rounded-full h-2">
                       <div
                         className="bg-gradient-to-r from-primary to-primary/80 h-2 rounded-full transition-all duration-1000 ease-out"
                         style={{ width: `${tech.level}%` }}

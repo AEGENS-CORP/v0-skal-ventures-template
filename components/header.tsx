@@ -6,8 +6,8 @@ import { NavigationDropdown } from "./navigation-dropdown"
 import { primaryNav } from "@/lib/navigation"
 
 export const Header = () => {
-  const mainNavItems = primaryNav.filter((item) => item.label !== "Plus")
-  const plusItem = primaryNav.find((item) => item.label === "Plus")
+  const navItemsWithoutChildren = primaryNav.filter((item) => !item.children || item.children.length === 0)
+  const navItemsWithChildren = primaryNav.filter((item) => item.children && item.children.length > 0)
 
   return (
     <div className="fixed z-[9999] top-0 left-0 w-full">
@@ -20,8 +20,9 @@ export const Header = () => {
           </Link>
 
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {mainNavItems.map((item, index) => {
+            {primaryNav.map((item, index) => {
               const isContact = item.label === "Contact"
+              const hasChildren = item.children && item.children.length > 0
 
               return (
                 <div
@@ -29,27 +30,26 @@ export const Header = () => {
                   className="animate-in fade-in duration-1000 group"
                   style={{ animationDelay: `${200 + index * 100}ms` }}
                 >
-                  <InteractiveLink
-                    className={`text-lg font-semibold transition-all duration-500 whitespace-nowrap relative ${
-                      isContact
-                        ? "border-2 border-white text-white px-6 py-2.5 rounded-md hover:bg-white/10 hover:scale-105"
-                        : "text-white/80 hover:text-white"
-                    }`}
-                    href={item.href}
-                  >
-                    {item.label}
-                    {!isContact && (
-                      <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-white/0 via-white to-white/0 transition-all duration-500 group-hover:w-full"></span>
-                    )}
-                  </InteractiveLink>
+                  {hasChildren ? (
+                    <NavigationDropdown label={item.label} items={item.children} />
+                  ) : (
+                    <InteractiveLink
+                      className={`text-lg font-semibold transition-all duration-500 whitespace-nowrap relative ${
+                        isContact
+                          ? "border-2 border-white text-white px-6 py-2.5 rounded-md hover:bg-white/10 hover:scale-105"
+                          : "text-white/80 hover:text-white"
+                      }`}
+                      href={item.href}
+                    >
+                      {item.label}
+                      {!isContact && (
+                        <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-gradient-to-r from-white/0 via-white to-white/0 transition-all duration-500 group-hover:w-full"></span>
+                      )}
+                    </InteractiveLink>
+                  )}
                 </div>
               )
             })}
-            {plusItem && (
-              <div className="animate-in fade-in duration-1000 delay-700">
-                <NavigationDropdown />
-              </div>
-            )}
           </nav>
 
           <div className="lg:hidden animate-in fade-in duration-1000 delay-300">

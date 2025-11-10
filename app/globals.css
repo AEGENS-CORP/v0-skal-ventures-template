@@ -27,7 +27,8 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-sans: "Helvetica Neue", "Helvetica", "Arial", system-ui, -apple-system, "Segoe UI", "Roboto", "Noto Sans", "Liberation Sans", "Ubuntu", sans-serif;
+  --font-sans: "Helvetica Neue", "Helvetica", "Arial", system-ui, -apple-system, "Segoe UI", "Roboto", "Noto Sans",
+    "Liberation Sans", "Ubuntu", sans-serif;
   --font-weight-regular: 400;
   --font-weight-medium: 600;
   --font-weight-bold: 700;
@@ -169,11 +170,11 @@ body {
 }
 
 h1,
- h2,
- h3,
- h4,
- h5,
- h6 {
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-sans);
   letter-spacing: var(--ls-heading);
   line-height: var(--lh-tight);
@@ -210,12 +211,12 @@ h6 {
 }
 
 p,
- li,
- button,
- input,
- textarea,
- select,
- small {
+li,
+button,
+input,
+textarea,
+select,
+small {
   font-family: var(--font-sans);
 }
 
@@ -225,15 +226,15 @@ small {
 }
 
 .btn,
- [role="button"],
- button {
+[role="button"],
+button {
   font-weight: var(--font-weight-medium);
 }
 
 nav a,
- nav button,
- header a,
- footer a {
+nav button,
+header a,
+footer a {
   font-weight: var(--font-weight-medium);
 }
 
@@ -400,7 +401,7 @@ body {
   position: fixed;
   height: 100svh;
   width: 100%;
-  z-index: 1;
+  z-index: 0;
 }
 
 #webgl canvas {

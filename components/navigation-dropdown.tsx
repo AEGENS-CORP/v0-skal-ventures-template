@@ -1,10 +1,9 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { createPortal } from "react-dom"
 import { ChevronDown } from "lucide-react"
-import { plusNavItems } from "@/lib/ae-content"
 
 type DropdownPosition = {
   top: number
@@ -12,13 +11,29 @@ type DropdownPosition = {
   width: number
 }
 
-const getPortalElement = () => (typeof document !== "undefined" ? document.getElementById("ae-nav-portal") : null)
+type DropdownItem = {
+  label: string
+  href: string
+}
 
-export const NavigationDropdown = () => {
+type NavigationDropdownProps = {
+  label: string
+  items: DropdownItem[]
+}
+
+export const NavigationDropdown = ({ label, items }: NavigationDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false)
   const [position, setPosition] = useState<DropdownPosition | null>(null)
+  const [portalElement, setPortalElement] = useState<HTMLElement | null>(null)
   const buttonRef = useRef<HTMLButtonElement | null>(null)
   const panelRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const portal = document.getElementById("ae-nav-portal")
+      setPortalElement(portal)
+    }
+  }, [])
 
   const updatePosition = useCallback(() => {
     if (!buttonRef.current) {
@@ -98,7 +113,7 @@ export const NavigationDropdown = () => {
       window.removeEventListener("resize", handleResize)
       window.removeEventListener("scroll", handleResize, true)
     }
-  }, [closeMenu, isOpen, updatePosition])
+  }, [closeMenu, isOpen, updatePosition, portalElement])
 
   useEffect(() => {
     if (!isOpen || !panelRef.current) {
@@ -108,8 +123,6 @@ export const NavigationDropdown = () => {
     const focusable = panelRef.current.querySelectorAll<HTMLElement>("a, button")
     focusable[0]?.focus()
   }, [isOpen])
-
-  const portal = useMemo(() => getPortalElement(), [])
 
   return (
     <div className="relative">
@@ -128,33 +141,30 @@ export const NavigationDropdown = () => {
         className="flex items-center gap-2 text-lg font-semibold text-white/90 hover:text-white transition-colors duration-200"
         aria-expanded={isOpen}
         aria-haspopup="true"
-        aria-controls="ae-nav-dropdown"
+        aria-controls={`ae-nav-dropdown-${label}`}
       >
-        Plus
+        {label}
         <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
       </button>
 
-      {isOpen && portal && position &&
+      {isOpen &&
+        portalElement &&
+        position &&
         createPortal(
           <div
-            id="ae-nav-dropdown"
+            id={`ae-nav-dropdown-${label}`}
             ref={panelRef}
             role="menu"
             className="ae-dropdown"
             style={{ top: position.top, left: position.left, minWidth: Math.max(position.width, 240) }}
           >
-            {plusNavItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                role="menuitem"
-                onClick={() => closeMenu()}
-              >
+            {items.map((item) => (
+              <Link key={item.href} href={item.href} role="menuitem" onClick={() => closeMenu()}>
                 {item.label}
               </Link>
             ))}
           </div>,
-          portal,
+          portalElement,
         )}
     </div>
   )
