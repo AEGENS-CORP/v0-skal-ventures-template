@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { footerLinks, primaryNav } from "@/lib/navigation"
 import { plusNavItems, NAP } from "@/lib/ae-content"
 import { useParticles } from "./particle-context"
@@ -17,6 +18,9 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-16 space-y-12 relative z-10">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-100 group">
+            <div className="mb-6">
+              <Image src="/ae-logo.png" alt="AE Logo" width={80} height={80} />
+            </div>
             <h3 className="text-2xl font-semibold transition-all duration-500">{NAP.name}</h3>
             <p className="text-white/70 text-sm leading-relaxed transition-colors duration-500 group-hover:text-white/90">
               Studio d&#39;experts en IA basé en Vendée. Nous accompagnons les entreprises dans leur transformation

@@ -7,15 +7,14 @@ interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const Logo = ({ className, ...props }: LogoProps) => {
   return (
-    <div className={`flex items-center gap-4 ${className || ""}`} {...props}>
+    <div className={`flex items-center ${className || ""}`} {...props}>
       <Image
-        src="/logo-nouveau.png"
-        alt="Logo"
-        width={120}
-        height={120}
-        className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32"
+        src="/aegens-logo.png"
+        alt="AEGENS Logo"
+        width={240}
+        height={80}
+        className="w-auto h-8 sm:h-10 md:h-12 lg:h-14 object-contain"
       />
-      <span className="text-2xl sm:text-3xl md:text-4xl font-sans text-white tracking-wide">aegens</span>
     </div>
   )
 }
