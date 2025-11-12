@@ -10,7 +10,8 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { GL } from "@/components/gl"
-import { Suspense } from "react"
+import { CSSParticlesBackground } from "@/components/css-particles-background"
+import { Suspense, useState, useEffect } from "react"
 
 interface RootClientLayoutProps {
   children: React.ReactNode
@@ -21,21 +22,41 @@ interface RootClientLayoutProps {
 
 function GlobalBackground() {
   const { hovering, mousePosition, clickRipples, backgroundClickCenter, backgroundClickProgress } = useParticles()
+  const [isIOS, setIsIOS] = useState(false)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    const iOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+    setIsIOS(iOS)
+    setMounted(true)
+    console.log("[v0] iOS detected:", iOS)
+    console.log("[v0] User agent:", navigator.userAgent)
+  }, [])
+
+  if (!mounted) {
+    return <div className="fixed inset-0 w-full h-full bg-black" style={{ zIndex: 0 }} />
+  }
 
   return (
     <div
       className="fixed inset-0 w-full h-full bg-black"
       style={{ zIndex: 0, pointerEvents: "none", overflow: "hidden" }}
     >
-      <Suspense fallback={<div className="w-full h-full bg-black" />}>
-        <GL
-          hovering={hovering}
-          mousePosition={mousePosition}
-          clickRipples={clickRipples}
-          backgroundClickCenter={backgroundClickCenter}
-          backgroundClickProgress={backgroundClickProgress}
-        />
-      </Suspense>
+      {isIOS ? (
+        <CSSParticlesBackground />
+      ) : (
+        <Suspense fallback={<div className="w-full h-full bg-black" />}>
+          <GL
+            hovering={hovering}
+            mousePosition={mousePosition}
+            clickRipples={clickRipples}
+            backgroundClickCenter={backgroundClickCenter}
+            backgroundClickProgress={backgroundClickProgress}
+          />
+        </Suspense>
+      )}
     </div>
   )
 }

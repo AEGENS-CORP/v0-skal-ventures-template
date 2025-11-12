@@ -446,3 +446,85 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.4);
 }
+
+/* Adding CSS particles animation for iOS fallback */
+.css-particles-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.css-particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float-particle linear infinite;
+  filter: blur(1px);
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(calc(var(--tx, 50vw) - 50vw), calc(var(--ty, 50vh) - 50vh)) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.css-particle:nth-child(1) {
+  --tx: 20vw;
+  --ty: 80vh;
+}
+.css-particle:nth-child(2) {
+  --tx: 80vw;
+  --ty: 20vh;
+}
+.css-particle:nth-child(3) {
+  --tx: 50vw;
+  --ty: 90vh;
+}
+.css-particle:nth-child(4) {
+  --tx: 10vw;
+  --ty: 30vh;
+}
+.css-particle:nth-child(5) {
+  --tx: 90vw;
+  --ty: 60vh;
+}
+.css-particle:nth-child(6) {
+  --tx: 40vw;
+  --ty: 10vh;
+}
+.css-particle:nth-child(7) {
+  --tx: 70vw;
+  --ty: 70vh;
+}
+.css-particle:nth-child(8) {
+  --tx: 30vw;
+  --ty: 50vh;
+}
+.css-particle:nth-child(9) {
+  --tx: 60vw;
+  --ty: 40vh;
+}
+.css-particle:nth-child(10) {
+  --tx: 15vw;
+  --ty: 85vh;
+}
+.css-particle:nth-child(n + 11) {
+  --tx: calc(20vw + (var(--i, 0) * 7vw));
+  --ty: calc(30vh + (var(--i, 0) * 5vh));
+}
