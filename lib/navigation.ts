@@ -24,6 +24,5 @@ export const primaryNav: NavItem[] = [
 export const footerLinks = [
   { label: "Mentions légales", href: "/mentions-legales" },
   { label: "Politique de confidentialité", href: "/politique-de-confidentialite" },
-  { label: "Carte de visite", href: "/carte-de-visite" },
   { label: "Plan du site", href: "/plan-du-site" },
 ]
