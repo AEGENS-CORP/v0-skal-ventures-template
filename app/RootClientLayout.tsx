@@ -10,6 +10,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { GL } from "@/components/gl"
+import { Suspense } from "react"
 
 interface RootClientLayoutProps {
   children: React.ReactNode
@@ -22,14 +23,16 @@ function GlobalBackground() {
   const { hovering, mousePosition, clickRipples, backgroundClickCenter, backgroundClickProgress } = useParticles()
 
   return (
-    <div className="fixed inset-0 w-full h-full" style={{ zIndex: 0, pointerEvents: "none" }}>
-      <GL
-        hovering={hovering}
-        mousePosition={mousePosition}
-        clickRipples={clickRipples}
-        backgroundClickCenter={backgroundClickCenter}
-        backgroundClickProgress={backgroundClickProgress}
-      />
+    <div className="fixed inset-0 w-full h-full bg-black" style={{ zIndex: 0, pointerEvents: "none" }}>
+      <Suspense fallback={<div className="w-full h-full bg-black" />}>
+        <GL
+          hovering={hovering}
+          mousePosition={mousePosition}
+          clickRipples={clickRipples}
+          backgroundClickCenter={backgroundClickCenter}
+          backgroundClickProgress={backgroundClickProgress}
+        />
+      </Suspense>
     </div>
   )
 }

@@ -1,7 +1,10 @@
+"use client"
+
 import { Effects } from "@react-three/drei"
 import { Canvas } from "@react-three/fiber"
 import { Particles } from "./particles"
 import { VignetteShader } from "./shaders/vignetteShader"
+import { useState, useEffect } from "react"
 
 export const GL = ({
   hovering,
@@ -14,8 +17,21 @@ export const GL = ({
   mousePosition: { x: number; y: number }
   clickRipples: Array<{ x: number; y: number; time: number }>
   backgroundClickCenter: { x: number; y: number } | null
-  backgroundClickProgress: number // Added backgroundClickProgress prop
+  backgroundClickProgress: number
 }) => {
+  const [hasWebGLError, setHasWebGLError] = useState(false)
+  const [isWebGLSupported, setIsWebGLSupported] = useState(true)
+
+  useEffect(() => {
+    // Check if WebGL is supported
+    const canvas = document.createElement("canvas")
+    const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
+    if (!gl) {
+      console.warn("[v0] WebGL not supported, falling back to black background")
+      setIsWebGLSupported(false)
+    }
+  }, [])
+
   const config = {
     speed: 1,
     focus: 3.8,
@@ -32,6 +48,12 @@ export const GL = ({
     useManualTime: false,
     manualTime: 0,
   }
+
+  // If WebGL is not supported or has error, just return a black background
+  if (!isWebGLSupported || hasWebGLError) {
+    return <div id="webgl" style={{ width: "100%", height: "100%", background: "#000" }} />
+  }
+
   return (
     <div id="webgl">
       <Canvas
@@ -41,8 +63,23 @@ export const GL = ({
           near: 0.01,
           far: 300,
         }}
+        onCreated={({ gl }) => {
+          // Enable iOS compatibility settings
+          gl.powerPreference = "high-performance"
+          gl.antialias = false // Disable antialiasing for better performance on iOS
+        }}
+        onError={(error) => {
+          console.error("[v0] WebGL error:", error)
+          setHasWebGLError(true)
+        }}
+        dpr={[1, 2]} // Limit pixel ratio to improve performance on mobile
+        performance={{ min: 0.5 }} // Allow adaptive performance
+        gl={{
+          alpha: true,
+          antialias: false, // Disable for better mobile performance
+          powerPreference: "high-performance",
+        }}
       >
-        {/* <Perf position="top-left" /> */}
         <color attach="background" args={["#000"]} />
         <Particles
           speed={config.speed}
