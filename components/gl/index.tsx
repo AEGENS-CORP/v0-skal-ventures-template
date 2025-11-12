@@ -65,8 +65,16 @@ export const GL = ({
   }
 
   return (
-    <div id="webgl">
+    <div id="webgl" style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}>
       <Canvas
+        style={{
+          width: "100vw",
+          height: "100vh",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          display: "block",
+        }}
         camera={{
           position: [1.2629783123314589, 2.664606471394044, -1.8178993743288914],
           fov: 50,
@@ -76,9 +84,12 @@ export const GL = ({
         onCreated={({ gl }) => {
           console.log("[v0] Canvas created successfully")
           console.log("[v0] WebGL renderer:", gl)
-          // Enable iOS compatibility settings
           gl.powerPreference = "high-performance"
           gl.antialias = false
+          // Force canvas size on iOS
+          if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            gl.setSize(window.innerWidth, window.innerHeight, false)
+          }
         }}
         onError={(error) => {
           console.error("[v0] WebGL error:", error)
@@ -90,6 +101,8 @@ export const GL = ({
           alpha: true,
           antialias: false,
           powerPreference: "high-performance",
+          preserveDrawingBuffer: true,
+          premultipliedAlpha: true,
         }}
       >
         <color attach="background" args={["#000"]} />

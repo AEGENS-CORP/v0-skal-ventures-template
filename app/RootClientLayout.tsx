@@ -23,7 +23,10 @@ function GlobalBackground() {
   const { hovering, mousePosition, clickRipples, backgroundClickCenter, backgroundClickProgress } = useParticles()
 
   return (
-    <div className="fixed inset-0 w-full h-full bg-black" style={{ zIndex: 0, pointerEvents: "none" }}>
+    <div
+      className="fixed inset-0 w-full h-full bg-black"
+      style={{ zIndex: 0, pointerEvents: "none", overflow: "hidden" }}
+    >
       <Suspense fallback={<div className="w-full h-full bg-black" />}>
         <GL
           hovering={hovering}

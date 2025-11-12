@@ -403,18 +403,16 @@ body {
 #webgl {
   top: 0;
   left: 0;
-  position: fixed;
-  height: 100svh;
+  position: absolute; /* CHANGED from fixed */
+  height: 100%; /* CHANGED from 100svh, removed 100vh fallback */
   width: 100%;
   z-index: 0;
-  /* Adding iOS Safari specific fixes for WebGL canvas rendering */
+  /* iOS Safari specific fixes for WebGL canvas rendering */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   will-change: transform;
-  /* Fallback for older iOS devices */
-  height: 100vh;
 }
 
 #webgl canvas {
@@ -427,6 +425,9 @@ body {
   left: 0 !important;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* iOS Safari requires explicit touch-action */
+  touch-action: none;
+  -webkit-touch-callout: none;
 }
 
 ::-webkit-scrollbar {
