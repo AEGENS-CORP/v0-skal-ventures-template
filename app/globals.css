@@ -161,12 +161,16 @@ html {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Adding black background fallback for mobile */
+  background-color: #000000;
 }
 
 body {
   font-size: var(--body);
   line-height: var(--lh-normal);
   letter-spacing: var(--ls-body);
+  /* Adding black background fallback for mobile */
+  background-color: #000000;
 }
 
 h1,
@@ -245,7 +249,8 @@ footer a {
 
   body {
     @apply text-foreground;
-    background: transparent !important;
+    /* Keeping transparent for WebGL but adding black fallback */
+    background: #000000 !important;
     color: oklch(0.98 0 0) !important;
     font-weight: var(--font-weight-regular);
   }
