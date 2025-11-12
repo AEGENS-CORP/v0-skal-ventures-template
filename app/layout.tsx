@@ -6,26 +6,27 @@ import "../styles/ae-overrides.css"
 import { RootClientLayout } from "./RootClientLayout"
 import { BASE_URL } from "@/lib/site-structure"
 
-import { Geist, Geist_Mono, Source_Serif_4, Geist as V0_Font_Geist, Geist_Mono as V0_Font_Geist_Mono, Source_Serif_4 as V0_Font_Source_Serif_4 } from 'next/font/google'
-
-// Initialize fonts
-const _geist = V0_Font_Geist({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
-const _geistMono = V0_Font_Geist_Mono({ subsets: ['latin'], weight: ["100","200","300","400","500","600","700","800","900"] })
-const _sourceSerif_4 = V0_Font_Source_Serif_4({ subsets: ['latin'], weight: ["200","300","400","500","600","700","800","900"] })
+import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google"
 
 const geistSans = Geist({
   subsets: ["latin"],
   variable: "--font-geist-sans",
+  weight: ["400", "500", "600", "700"], // Only load weights we actually use
+  display: "swap", // Improve FCP
 })
 
 const geistMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-geist-mono",
+  weight: ["400", "600"], // Only load weights we actually use
+  display: "swap",
 })
 
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-source-serif",
+  weight: ["400", "600", "700"], // Only load weights we actually use
+  display: "swap",
 })
 
 const CANONICAL_URL = new URL("/", BASE_URL).toString()
@@ -38,6 +39,29 @@ export const metadata: Metadata = {
   },
   description:
     "Intégration et exploitation de solutions IA. Résultats rapides. Visite terrain et devis sous 48 h. Vendée, La Roche-sur-Yon, La Rochelle, Niort, Nantes, Poitiers, Angoulême.",
+  keywords: [
+    "intégrateur IA",
+    "automatisation",
+    "assistant IA",
+    "reporting temps réel",
+    "TPE PME",
+    "Vendée",
+    "La Roche-sur-Yon",
+    "transformation digitale",
+    "IA sur mesure",
+  ],
+  authors: [{ name: "Aegens" }],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   alternates: {
     canonical: CANONICAL_URL,
     languages: {

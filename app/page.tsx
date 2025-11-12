@@ -21,10 +21,146 @@ import {
   TrendingUp,
   BarChart3,
 } from "lucide-react"
-import { useState } from "react"
+import { useState, memo } from "react"
+
+const FAQItem = memo(
+  ({
+    faq,
+    index,
+    isOpen,
+    onToggle,
+  }: { faq: { q: string; a: string }; index: number; isOpen: boolean; onToggle: () => void }) => (
+    <div className="bg-white/20 rounded-xl border-2 border-white/20 overflow-hidden">
+      <button
+        onClick={onToggle}
+        className="w-full p-6 text-left flex items-center justify-between hover:bg-white/5 transition-all duration-300"
+      >
+        <h3 className="font-semibold tracking-normal leading-7 text-base">{faq.q}</h3>
+        <ArrowRight className={`w-5 h-5 transition-transform duration-300 ${isOpen ? "rotate-90" : ""}`} />
+      </button>
+      <div className={`overflow-hidden transition-all duration-300 ${isOpen ? "max-h-96" : "max-h-0"}`}>
+        <p className="px-6 pb-6 text-muted-foreground leading-relaxed">{faq.a}</p>
+      </div>
+    </div>
+  ),
+)
+FAQItem.displayName = "FAQItem"
+
+const UseCaseCard = memo(({ useCase }: { useCase: any }) => (
+  <Link
+    href={useCase.link}
+    className="group p-6 bg-white/20 rounded-xl border-2 border-white/20 hover:border-white/30 transition-all duration-500 hover:scale-105"
+  >
+    <div className="text-white/80 mb-4">{useCase.icon}</div>
+    <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">{useCase.title}</h3>
+    <p className="text-sm text-muted-foreground mb-3">{useCase.desc}</p>
+    <p className="text-xs font-semibold text-green-400">{useCase.roi}</p>
+  </Link>
+))
+UseCaseCard.displayName = "UseCaseCard"
 
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+
+  const useCases = [
+    {
+      icon: <ShoppingCart className="w-8 h-8" />,
+      title: "Commercial",
+      desc: "Devis commande facture. Relances pilotées. Offres assistées.",
+      link: "/services/automatisation",
+      roi: (
+        <span className="flex items-center gap-1">
+          <TrendingUp className="w-4 h-4" /> +25% taux de transformation
+        </span>
+      ),
+    },
+    {
+      icon: <Package className="w-8 h-8" />,
+      title: "Production logistique",
+      desc: "TRS retards ruptures. Stocks synchronisés. Alertes.",
+      link: "/services/analyse-reporting",
+      roi: (
+        <span className="flex items-center gap-1">
+          <TrendingUp className="w-4 h-4" /> -30% retards livraison
+        </span>
+      ),
+    },
+    {
+      icon: <DollarSign className="w-8 h-8" />,
+      title: "Finance",
+      desc: "Rapprochements. DSO. Prévision simple.",
+      link: "/services/analyse-reporting",
+      roi: (
+        <span className="flex items-center gap-1">
+          <TrendingUp className="w-4 h-4" /> -15 jours DSO
+        </span>
+      ),
+    },
+    {
+      icon: <Headphones className="w-8 h-8" />,
+      title: "Support",
+      desc: "Tri des tickets. Réponses guidées. Base RAG interne.",
+      link: "/services/assistant-ia-metier",
+      roi: (
+        <span className="flex items-center gap-1">
+          <Zap className="w-4 h-4" /> -40% temps réponse
+        </span>
+      ),
+    },
+    {
+      icon: <Users className="w-8 h-8" />,
+      title: "RH organisation",
+      desc: "Onboarding. Notes de frais. Comptes rendus.",
+      link: "/services/automatisation",
+      roi: (
+        <span className="flex items-center gap-1">
+          <Zap className="w-4 h-4" /> 5h/semaine gagnées
+        </span>
+      ),
+    },
+    {
+      icon: <Sparkles className="w-8 h-8" />,
+      title: "Sur-mesure",
+      desc: "Un besoin spécifique ? Une envie ? Un audit ? On étudie tout cas d'usage métier.",
+      link: "/contact",
+      roi: (
+        <span className="flex items-center gap-1">
+          <Sparkles className="w-4 h-4" /> Solutions adaptées
+        </span>
+      ),
+    },
+  ]
+
+  const faqData = [
+    {
+      q: "Comment se passe le devis ?",
+      a: "Nous commençons par une visite sur site de 60 à 90 minutes pour observer vos flux et comprendre vos besoins. Sous 48 heures, vous recevez un cadrage détaillé avec objectifs, KPI, jalons et un devis précis. Tout est transparent et sur mesure.",
+    },
+    {
+      q: "Faut-il changer d'outils ?",
+      a: "Non, par défaut nous connectons vos outils existants (ERP, CRM, tableurs, bases de données). Notre approche est agnostique : nous travaillons avec ce que vous avez déjà. Pas de verrou technologique, pas de migration forcée.",
+    },
+    {
+      q: "Quand voit-on un premier résultat ?",
+      a: "Un pilote typique est livré en 30 jours selon le périmètre défini. Il peut s'agir d'un flux automatisé, d'un assistant métier ou d'un tableau de bord temps réel. Vous voyez des démos hebdomadaires de 20 minutes pour suivre l'avancement.",
+    },
+    {
+      q: "Comment sont gérées les données sensibles ?",
+      a: "Accès restreints par rôles, journaux d'audit, hébergement en Union Européenne possible. Nous appliquons le principe du moindre privilège et documentons tous les accès. Un DPA (Data Processing Agreement) est fourni sur demande.",
+    },
+    {
+      q: "Que se passe-t-il après la mise en production ?",
+      a: "Nous proposons des opérations managées en continu : supervision, maintenance, petites évolutions. Vos solutions restent vivantes et s'adaptent à vos besoins. Vous n'êtes jamais seul après le déploiement.",
+    },
+    {
+      q: "Quels sont les secteurs que vous servez ?",
+      a: "Nous travaillons avec des TPE/PME dans le négoce, l'industrie, les services B2B, les cabinets comptables, le retail, la logistique, l'immobilier et l'éducation. Si vous avez des processus répétitifs ou des besoins de pilotage, nous pouvons vous aider.",
+    },
+    {
+      q: "Combien coûte une intégration IA ?",
+      a: "Chaque projet est unique. Le devis dépend du périmètre, de la complexité et des objectifs. Nous fournissons un devis détaillé sous 48h après la visite découverte. Pas de surprise, tout est transparent dès le départ.",
+    },
+  ]
 
   return (
     <div>
@@ -54,86 +190,8 @@ export default function Home() {
               Tout est étudiable. Ces exemples ouvrent la discussion. On part de vos idées.
             </p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                {
-                  icon: <ShoppingCart className="w-8 h-8" />,
-                  title: "Commercial",
-                  desc: "Devis commande facture. Relances pilotées. Offres assistées.",
-                  link: "/services/automatisation",
-                  roi: (
-                    <span className="flex items-center gap-1">
-                      <TrendingUp className="w-4 h-4" /> +25% taux de transformation
-                    </span>
-                  ),
-                },
-                {
-                  icon: <Package className="w-8 h-8" />,
-                  title: "Production logistique",
-                  desc: "TRS retards ruptures. Stocks synchronisés. Alertes.",
-                  link: "/services/analyse-reporting",
-                  roi: (
-                    <span className="flex items-center gap-1">
-                      <TrendingUp className="w-4 h-4" /> -30% retards livraison
-                    </span>
-                  ),
-                },
-                {
-                  icon: <DollarSign className="w-8 h-8" />,
-                  title: "Finance",
-                  desc: "Rapprochements. DSO. Prévision simple.",
-                  link: "/services/analyse-reporting",
-                  roi: (
-                    <span className="flex items-center gap-1">
-                      <TrendingUp className="w-4 h-4" /> -15 jours DSO
-                    </span>
-                  ),
-                },
-                {
-                  icon: <Headphones className="w-8 h-8" />,
-                  title: "Support",
-                  desc: "Tri des tickets. Réponses guidées. Base RAG interne.",
-                  link: "/services/assistant-ia-metier",
-                  roi: (
-                    <span className="flex items-center gap-1">
-                      <Zap className="w-4 h-4" /> -40% temps réponse
-                    </span>
-                  ),
-                },
-                {
-                  icon: <Users className="w-8 h-8" />,
-                  title: "RH organisation",
-                  desc: "Onboarding. Notes de frais. Comptes rendus.",
-                  link: "/services/automatisation",
-                  roi: (
-                    <span className="flex items-center gap-1">
-                      <Zap className="w-4 h-4" /> 5h/semaine gagnées
-                    </span>
-                  ),
-                },
-                {
-                  icon: <Sparkles className="w-8 h-8" />,
-                  title: "Sur-mesure",
-                  desc: "Un besoin spécifique ? Une envie ? Un audit ? On étudie tout cas d'usage métier.",
-                  link: "/contact",
-                  roi: (
-                    <span className="flex items-center gap-1">
-                      <Sparkles className="w-4 h-4" /> Solutions adaptées
-                    </span>
-                  ),
-                },
-              ].map((useCase) => (
-                <Link
-                  key={useCase.title}
-                  href={useCase.link}
-                  className="group p-6 bg-white/20 rounded-xl border-2 border-white/20 hover:border-white/30 transition-all duration-500 hover:scale-105"
-                >
-                  <div className="text-white/80 mb-4">{useCase.icon}</div>
-                  <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
-                    {useCase.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mb-3">{useCase.desc}</p>
-                  <p className="text-xs font-semibold text-green-400">{useCase.roi}</p>
-                </Link>
+              {useCases.map((useCase) => (
+                <UseCaseCard key={useCase.title} useCase={useCase} />
               ))}
             </div>
           </section>
@@ -794,54 +852,14 @@ export default function Home() {
           <section>
             <h2 className="text-4xl font-bold mb-12 text-center leading-7 tracking-widest mt-20">FAQ</h2>
             <div className="space-y-4 max-w-3xl mx-auto">
-              {[
-                {
-                  q: "Comment se passe le devis ?",
-                  a: "Nous commençons par une visite sur site de 60 à 90 minutes pour observer vos flux et comprendre vos besoins. Sous 48 heures, vous recevez un cadrage détaillé avec objectifs, KPI, jalons et un devis précis. Tout est transparent et sur mesure.",
-                },
-                {
-                  q: "Faut-il changer d'outils ?",
-                  a: "Non, par défaut nous connectons vos outils existants (ERP, CRM, tableurs, bases de données). Notre approche est agnostique : nous travaillons avec ce que vous avez déjà. Pas de verrou technologique, pas de migration forcée.",
-                },
-                {
-                  q: "Quand voit-on un premier résultat ?",
-                  a: "Un pilote typique est livré en 30 jours selon le périmètre défini. Il peut s'agir d'un flux automatisé, d'un assistant métier ou d'un tableau de bord temps réel. Vous voyez des démos hebdomadaires de 20 minutes pour suivre l'avancement.",
-                },
-                {
-                  q: "Comment sont gérées les données sensibles ?",
-                  a: "Accès restreints par rôles, journaux d'audit, hébergement en Union Européenne possible. Nous appliquons le principe du moindre privilège et documentons tous les accès. Un DPA (Data Processing Agreement) est fourni sur demande.",
-                },
-                {
-                  q: "Que se passe-t-il après la mise en production ?",
-                  a: "Nous proposons des opérations managées en continu : supervision, maintenance, petites évolutions. Vos solutions restent vivantes et s'adaptent à vos besoins. Vous n'êtes jamais seul après le déploiement.",
-                },
-                {
-                  q: "Quels sont les secteurs que vous servez ?",
-                  a: "Nous travaillons avec des TPE/PME dans le négoce, l'industrie, les services B2B, les cabinets comptables, le retail, la logistique, l'immobilier et l'éducation. Si vous avez des processus répétitifs ou des besoins de pilotage, nous pouvons vous aider.",
-                },
-                {
-                  q: "Combien coûte une intégration IA ?",
-                  a: "Chaque projet est unique. Le devis dépend du périmètre, de la complexité et des objectifs. Nous fournissons un devis détaillé sous 48h après la visite découverte. Pas de surprise, tout est transparent dès le départ.",
-                },
-              ].map((faq, index) => (
-                <div key={index} className="bg-white/20 rounded-xl border-2 border-white/20 overflow-hidden">
-                  <button
-                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
-                    className="w-full p-6 text-left flex items-center justify-between hover:bg-white/5 transition-all duration-300"
-                  >
-                    <h3 className="font-semibold tracking-normal leading-7 text-base">{faq.q}</h3>
-                    <ArrowRight
-                      className={`w-5 h-5 transition-transform duration-300 ${openFaq === index ? "rotate-90" : ""}`}
-                    />
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openFaq === index ? "max-h-96" : "max-h-0"
-                    }`}
-                  >
-                    <p className="px-6 pb-6 text-muted-foreground leading-relaxed">{faq.a}</p>
-                  </div>
-                </div>
+              {faqData.map((faq, index) => (
+                <FAQItem
+                  key={index}
+                  faq={faq}
+                  index={index}
+                  isOpen={openFaq === index}
+                  onToggle={() => setOpenFaq(openFaq === index ? null : index)}
+                />
               ))}
             </div>
             <p className="mt-8 text-center text-muted-foreground">

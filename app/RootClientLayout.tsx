@@ -9,9 +9,13 @@ import { AeNavPortalMount } from "@/components/ae-nav-portal-mount"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
-import { GL } from "@/components/gl"
-import { CSSParticlesBackground } from "@/components/css-particles-background"
-import { Suspense, useState, useEffect } from "react"
+import dynamic from "next/dynamic"
+import { Suspense } from "react"
+
+const GL = dynamic(() => import("@/components/gl").then((mod) => ({ default: mod.GL })), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-black" />,
+})
 
 interface RootClientLayoutProps {
   children: React.ReactNode
@@ -22,50 +26,18 @@ interface RootClientLayoutProps {
 
 function GlobalBackground() {
   const { hovering, mousePosition, clickRipples, backgroundClickCenter, backgroundClickProgress } = useParticles()
-  const [isIOS, setIsIOS] = useState(false)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    const userAgent = navigator.userAgent.toLowerCase()
-    const platform = navigator.platform.toLowerCase()
-
-    const iOS =
-      /iphone|ipad|ipod/.test(userAgent) ||
-      (/macintosh/.test(userAgent) && navigator.maxTouchPoints > 1) ||
-      platform.includes("iphone") ||
-      platform.includes("ipad") ||
-      platform.includes("ipod")
-
-    setIsIOS(iOS)
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return (
-      <div className="fixed inset-0 w-full h-full bg-black" style={{ zIndex: 0 }}>
-        <CSSParticlesBackground />
-      </div>
-    )
-  }
 
   return (
-    <div
-      className="fixed inset-0 w-full h-full bg-black"
-      style={{ zIndex: 0, pointerEvents: "none", overflow: "hidden" }}
-    >
-      {isIOS ? (
-        <CSSParticlesBackground />
-      ) : (
-        <Suspense fallback={<CSSParticlesBackground />}>
-          <GL
-            hovering={hovering}
-            mousePosition={mousePosition}
-            clickRipples={clickRipples}
-            backgroundClickCenter={backgroundClickCenter}
-            backgroundClickProgress={backgroundClickProgress}
-          />
-        </Suspense>
-      )}
+    <div className="fixed inset-0 w-full h-full bg-black" style={{ zIndex: 0, pointerEvents: "none" }}>
+      <Suspense fallback={<div className="w-full h-full bg-black" />}>
+        <GL
+          hovering={hovering}
+          mousePosition={mousePosition}
+          clickRipples={clickRipples}
+          backgroundClickCenter={backgroundClickCenter}
+          backgroundClickProgress={backgroundClickProgress}
+        />
+      </Suspense>
     </div>
   )
 }

@@ -403,31 +403,15 @@ body {
 #webgl {
   top: 0;
   left: 0;
-  position: absolute; /* CHANGED from fixed */
-  height: 100%; /* CHANGED from 100svh, removed 100vh fallback */
+  position: fixed;
+  height: 100svh;
   width: 100%;
   z-index: 0;
-  /* iOS Safari specific fixes for WebGL canvas rendering */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  will-change: transform;
 }
 
 #webgl canvas {
-  width: 100% !important;
-  height: 100% !important;
-  /* Force canvas to display on iOS */
-  display: block !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  /* iOS Safari requires explicit touch-action */
-  touch-action: none;
-  -webkit-touch-callout: none;
+  width: 100%;
+  height: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -445,47 +429,4 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.4);
-}
-
-/* Adding CSS particles animation for iOS fallback */
-.css-particles-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 1;
-  background: #000000;
-}
-
-.css-particle {
-  position: absolute;
-  /* Subtle white particles like WebGL - no glow, just soft dots */
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 50%;
-  animation: float-subtle linear infinite;
-  /* Very slight blur for softness */
-  filter: blur(0.3px);
-  will-change: transform;
-}
-
-/* Gentle floating animation that mimics WebGL noise movement */
-@keyframes float-subtle {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  25% {
-    transform: translate3d(var(--move-x), calc(var(--move-y) * 0.5), 0);
-  }
-  50% {
-    transform: translate3d(calc(var(--move-x) * 0.7), var(--move-y), 0);
-  }
-  75% {
-    transform: translate3d(calc(var(--move-x) * 0.3), calc(var(--move-y) * 0.8), 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
 }

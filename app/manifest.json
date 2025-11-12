@@ -1,0 +1,16 @@
+{
+  "name": "Aegens - Intégrateur IA pour TPE PME",
+  "short_name": "Aegens",
+  "description": "Intégration et exploitation de solutions IA. Automatisation, assistants, reporting temps réel.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

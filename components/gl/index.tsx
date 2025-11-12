@@ -21,15 +21,11 @@ export const GL = ({
 }) => {
   const [hasWebGLError, setHasWebGLError] = useState(false)
   const [isWebGLSupported, setIsWebGLSupported] = useState(true)
-  const [isIOS, setIsIOS] = useState(false)
 
   useEffect(() => {
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
-    setIsIOS(iOS)
-
+    // Check if WebGL is supported
     const canvas = document.createElement("canvas")
     const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
-
     if (!gl) {
       setIsWebGLSupported(false)
     }
@@ -52,59 +48,36 @@ export const GL = ({
     manualTime: 0,
   }
 
+  // If WebGL is not supported or has error, return black background
   if (!isWebGLSupported || hasWebGLError) {
     return <div id="webgl" style={{ width: "100%", height: "100%", background: "#000" }} />
   }
 
   return (
-    <div id="webgl" style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}>
+    <div id="webgl">
       <Canvas
-        style={{
-          width: "100vw",
-          height: "100vh",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          display: "block",
-          touchAction: "none",
-          WebkitTransform: "translate3d(0,0,0)",
-          transform: "translate3d(0,0,0)",
-        }}
         camera={{
           position: [1.2629783123314589, 2.664606471394044, -1.8178993743288914],
           fov: 50,
           near: 0.01,
           far: 300,
         }}
-        onCreated={({ gl, size }) => {
-          if (isIOS) {
-            gl.setSize(window.innerWidth, window.innerHeight, false)
-            gl.domElement.style.width = "100%"
-            gl.domElement.style.height = "100%"
-            gl.domElement.style.position = "absolute"
-            gl.domElement.style.top = "0"
-            gl.domElement.style.left = "0"
-            requestAnimationFrame(() => {
-              gl.render(gl.scene, gl.camera)
-            })
-          }
+        onCreated={({ gl }) => {
+          gl.powerPreference = "default" // Better battery life on mobile
         }}
         onError={(error) => {
-          console.error("[v0] WebGL error:", error)
+          console.error("WebGL error:", error)
           setHasWebGLError(true)
         }}
-        dpr={isIOS ? 1 : [1, 2]}
+        dpr={[1, 1.5]} // Limit DPR for better performance
         performance={{ min: 0.5 }}
         gl={{
           alpha: true,
           antialias: false,
-          powerPreference: isIOS ? "default" : "high-performance",
-          preserveDrawingBuffer: true,
-          premultipliedAlpha: true,
-          stencil: false,
+          powerPreference: "default", // Better for mobile
+          stencil: false, // Disable unused features for performance
           depth: true,
         }}
-        frameloop="always"
       >
         <color attach="background" args={["#000"]} />
         <Particles

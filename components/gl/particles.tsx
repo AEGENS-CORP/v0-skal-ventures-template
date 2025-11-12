@@ -1,7 +1,7 @@
 "use client"
 
 import * as THREE from "three"
-import { useMemo, useState, useRef } from "react"
+import { useMemo, useState, useRef, useCallback } from "react"
 import { createPortal, useFrame } from "@react-three/fiber"
 import { useFBO } from "@react-three/drei"
 
@@ -26,7 +26,7 @@ export function Particles({
   mousePosition = { x: 0, y: 0 },
   clickRipples = [],
   backgroundClickCenter = null,
-  backgroundClickProgress = 0, // Added backgroundClickProgress prop
+  backgroundClickProgress = 0,
   ...props
 }: {
   speed: number
@@ -45,14 +45,12 @@ export function Particles({
   mousePosition?: { x: number; y: number }
   clickRipples?: Array<{ x: number; y: number; time: number }>
   backgroundClickCenter?: { x: number; y: number } | null
-  backgroundClickProgress?: number // Added backgroundClickProgress type
+  backgroundClickProgress?: number
 }) {
-  // Reveal animation state
   const revealStartTime = useRef<number | null>(null)
   const [isRevealing, setIsRevealing] = useState(true)
-  const revealDuration = 3.5 // seconds
+  const revealDuration = 3.5
 
-  // Create simulation material with scale parameter
   const simulationMaterial = useMemo(() => {
     return new SimulationMaterial(planeScale)
   }, [planeScale])
@@ -69,7 +67,7 @@ export function Particles({
     m.uniforms.positions.value = target.texture
     m.uniforms.initialPositions.value = simulationMaterial.uniforms.positions.value
     return m
-  }, [simulationMaterial])
+  }, [simulationMaterial, target.texture])
 
   const [scene] = useState(() => new THREE.Scene())
   const [camera] = useState(() => new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / Math.pow(2, 53), 1))
@@ -87,96 +85,116 @@ export function Particles({
     return particles
   }, [size])
 
-  useFrame((state, delta) => {
-    if (!dofPointsMaterial || !simulationMaterial) return
+  const frameCallback = useCallback(
+    (state: any, delta: number) => {
+      if (!dofPointsMaterial || !simulationMaterial) return
 
-    state.gl.setRenderTarget(target)
-    state.gl.clear()
-    // @ts-ignore
-    state.gl.render(scene, camera)
-    state.gl.setRenderTarget(null)
+      state.gl.setRenderTarget(target)
+      state.gl.clear()
+      state.gl.render(scene, camera)
+      state.gl.setRenderTarget(null)
 
-    // Use manual time if enabled, otherwise use elapsed time
-    const currentTime = useManualTime ? manualTime : state.clock.elapsedTime
+      const currentTime = useManualTime ? manualTime : state.clock.elapsedTime
 
-    // Initialize reveal start time on first frame
-    if (revealStartTime.current === null) {
-      revealStartTime.current = currentTime
-    }
+      if (revealStartTime.current === null) {
+        revealStartTime.current = currentTime
+      }
 
-    // Calculate reveal progress
-    const revealElapsed = currentTime - revealStartTime.current
-    const revealProgress = Math.min(revealElapsed / revealDuration, 1.0)
+      const revealElapsed = currentTime - revealStartTime.current
+      const revealProgress = Math.min(revealElapsed / revealDuration, 1.0)
+      const easedProgress = 1 - Math.pow(1 - revealProgress, 3)
+      const revealFactor = easedProgress * 5.0
 
-    // Ease out the reveal animation
-    const easedProgress = 1 - Math.pow(1 - revealProgress, 3)
+      if (revealProgress >= 1.0 && isRevealing) {
+        setIsRevealing(false)
+      }
 
-    // Map progress to reveal factor (0 = fully hidden, higher values = more revealed)
-    // We want to start from center (0) and expand outward (higher values)
-    const revealFactor = easedProgress * 5.0 // Doubled the radius for larger coverage
+      dofPointsMaterial.uniforms.uTime.value = currentTime
+      dofPointsMaterial.uniforms.uFocus.value = focus
+      dofPointsMaterial.uniforms.uBlur.value = aperture
 
-    if (revealProgress >= 1.0 && isRevealing) {
-      setIsRevealing(false)
-    }
+      easing.damp(
+        dofPointsMaterial.uniforms.uTransition,
+        "value",
+        introspect ? 1.0 : 0.0,
+        introspect ? 0.35 : 0.2,
+        delta,
+      )
 
-    dofPointsMaterial.uniforms.uTime.value = currentTime
+      simulationMaterial.uniforms.uMousePosition.value.set(mousePosition.x, mousePosition.y)
 
-    dofPointsMaterial.uniforms.uFocus.value = focus
-    dofPointsMaterial.uniforms.uBlur.value = aperture
+      const rippleData = new Float32Array(clickRipples.length * 4)
+      clickRipples.forEach((ripple, i) => {
+        const age = (currentTime * 1000 - ripple.time) / 1000
+        const intensity = Math.max(0, 1 - age / 3)
+        rippleData[i * 4] = ripple.x
+        rippleData[i * 4 + 1] = ripple.y
+        rippleData[i * 4 + 2] = age
+        rippleData[i * 4 + 3] = intensity
+      })
+      simulationMaterial.uniforms.uClickRipples.value = rippleData
+      simulationMaterial.uniforms.uClickRippleCount.value = clickRipples.length
 
-    easing.damp(dofPointsMaterial.uniforms.uTransition, "value", introspect ? 1.0 : 0.0, introspect ? 0.35 : 0.2, delta)
+      simulationMaterial.uniforms.uTime.value = currentTime
+      simulationMaterial.uniforms.uNoiseScale.value = noiseScale
+      simulationMaterial.uniforms.uNoiseIntensity.value = noiseIntensity
+      simulationMaterial.uniforms.uTimeScale.value = timeScale * speed
 
-    simulationMaterial.uniforms.uMousePosition.value.set(mousePosition.x, mousePosition.y)
+      dofPointsMaterial.uniforms.uPointSize.value = pointSize
+      dofPointsMaterial.uniforms.uOpacity.value = opacity
+      dofPointsMaterial.uniforms.uRevealFactor.value = revealFactor
+      dofPointsMaterial.uniforms.uRevealProgress.value = easedProgress
 
-    const rippleData = new Float32Array(clickRipples.length * 4) // x, y, time, intensity
-    clickRipples.forEach((ripple, i) => {
-      const age = (currentTime * 1000 - ripple.time) / 1000 // Convert to seconds
-      const intensity = Math.max(0, 1 - age / 3) // Fade over 3 seconds
-      rippleData[i * 4] = ripple.x
-      rippleData[i * 4 + 1] = ripple.y
-      rippleData[i * 4 + 2] = age
-      rippleData[i * 4 + 3] = intensity
-    })
-    simulationMaterial.uniforms.uClickRipples.value = rippleData
-    simulationMaterial.uniforms.uClickRippleCount.value = clickRipples.length
+      dofPointsMaterial.uniforms.uMousePosition.value.set(mousePosition.x, mousePosition.y)
 
-    simulationMaterial.uniforms.uTime.value = currentTime
-    simulationMaterial.uniforms.uNoiseScale.value = noiseScale
-    simulationMaterial.uniforms.uNoiseIntensity.value = noiseIntensity
-    simulationMaterial.uniforms.uTimeScale.value = timeScale * speed
+      if (backgroundClickCenter) {
+        dofPointsMaterial.uniforms.uBackgroundClickCenter.value.set(backgroundClickCenter.x, backgroundClickCenter.y)
+        dofPointsMaterial.uniforms.uHasBackgroundClick.value = 1.0
+        dofPointsMaterial.uniforms.uBackgroundClickProgress.value = backgroundClickProgress
+      } else {
+        dofPointsMaterial.uniforms.uHasBackgroundClick.value = 0.0
+        dofPointsMaterial.uniforms.uBackgroundClickProgress.value = 0.0
+      }
+    },
+    [
+      dofPointsMaterial,
+      simulationMaterial,
+      target,
+      scene,
+      camera,
+      useManualTime,
+      manualTime,
+      focus,
+      aperture,
+      introspect,
+      mousePosition,
+      clickRipples,
+      noiseScale,
+      noiseIntensity,
+      timeScale,
+      speed,
+      pointSize,
+      opacity,
+      backgroundClickCenter,
+      backgroundClickProgress,
+      isRevealing,
+      revealDuration,
+    ],
+  )
 
-    // Update point material uniforms
-    dofPointsMaterial.uniforms.uPointSize.value = pointSize
-    dofPointsMaterial.uniforms.uOpacity.value = opacity
-    dofPointsMaterial.uniforms.uRevealFactor.value = revealFactor
-    dofPointsMaterial.uniforms.uRevealProgress.value = easedProgress
-
-    dofPointsMaterial.uniforms.uMousePosition.value.set(mousePosition.x, mousePosition.y)
-
-    if (backgroundClickCenter) {
-      dofPointsMaterial.uniforms.uBackgroundClickCenter.value.set(backgroundClickCenter.x, backgroundClickCenter.y)
-      dofPointsMaterial.uniforms.uHasBackgroundClick.value = 1.0
-      dofPointsMaterial.uniforms.uBackgroundClickProgress.value = backgroundClickProgress
-    } else {
-      dofPointsMaterial.uniforms.uHasBackgroundClick.value = 0.0
-      dofPointsMaterial.uniforms.uBackgroundClickProgress.value = 0.0
-    }
-  })
+  useFrame(frameCallback)
 
   return (
     <>
       {createPortal(
-        // @ts-ignore
         <mesh material={simulationMaterial}>
           <bufferGeometry>
             <bufferAttribute attach="attributes-position" args={[positions, 3]} />
             <bufferAttribute attach="attributes-uv" args={[uvs, 2]} />
           </bufferGeometry>
         </mesh>,
-        // @ts-ignore
         scene,
       )}
-      {/* @ts-ignore */}
       <points material={dofPointsMaterial} {...props}>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[particles, 3]} />
