@@ -125,7 +125,7 @@ export default function Home() {
                 <Link
                   key={useCase.title}
                   href={useCase.link}
-                  className="group p-6 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-500 hover:scale-105"
+                  className="group p-6 bg-black/60 rounded-xl border-2 border-white/20 hover:border-white/30 transition-all duration-500 hover:scale-105"
                 >
                   <div className="text-white/80 mb-4">{useCase.icon}</div>
                   <h3 className="text-lg font-semibold mb-2 group-hover:text-primary transition-colors">
@@ -176,7 +176,7 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.step}
-                  className="flex items-start gap-6 p-6 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-500"
+                  className="flex items-start gap-6 p-6 bg-black/60 rounded-xl border-2 border-white/20 hover:border-white/30 transition-all duration-500"
                 >
                   <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-2xl font-bold text-primary">
                     {item.step}
@@ -239,7 +239,7 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="p-6 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-500"
+                  className="p-6 bg-black/60 rounded-xl border-2 border-white/20 hover:border-white/30 transition-all duration-500"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
                     {item.icon}
@@ -252,7 +252,7 @@ export default function Home() {
           </section>
 
           {/* Audit et intégration sur mesure */}
-          <section className="bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-2xl p-8 md:p-12 border border-primary/20">
+          <section className="bg-gradient-to-br from-black/70 via-black/60 to-black/50 rounded-2xl p-8 md:p-12 border-2 border-primary/30">
             <h2 className="text-4xl font-bold mb-6">Audit et intégration sur mesure</h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               Nous intégrons et opérons des solutions d'IA et d'automatisation sur vos outils existants pour éliminer la
@@ -324,7 +324,7 @@ export default function Home() {
           </section>
 
           {/* Assistant IA métier */}
-          <section className="bg-white/5 rounded-2xl p-8 md:p-12 border border-white/10">
+          <section className="bg-black/60 rounded-2xl p-8 md:p-12 border-2 border-white/20">
             <h2 className="text-4xl font-bold mb-6">Assistant IA métier: réponses sourcées, productivité immédiate</h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               Des réponses fiables à partir de vos documents et processus. Vos équipes gagnent du temps. Vos clients
@@ -388,7 +388,7 @@ export default function Home() {
           </section>
 
           {/* Analyse & Reporting */}
-          <section className="bg-white/5 rounded-2xl p-8 md:p-12 border border-white/10">
+          <section className="bg-black/60 rounded-2xl p-8 md:p-12 border-2 border-white/20">
             <h2 className="text-4xl font-bold mb-6">
               Analyse & Reporting: indicateurs temps réel et décisions rapides
             </h2>
@@ -454,7 +454,7 @@ export default function Home() {
           </section>
 
           {/* Vente et gestion */}
-          <section className="bg-white/5 rounded-2xl p-8 md:p-12 border border-white/10">
+          <section className="bg-black/60 rounded-2xl p-8 md:p-12 border-2 border-white/20">
             <h2 className="text-4xl font-bold mb-6">Vente et gestion: du premier contact à l'exploitation</h2>
             <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
               Processus cadré. Décisions rapides. Mise en production sans friction. Accompagnement long terme avec
@@ -545,7 +545,7 @@ export default function Home() {
           </section>
 
           {/* Résultats attendus */}
-          <section className="bg-white/5 rounded-2xl p-8 md:p-12 border border-white/10">
+          <section className="bg-black/60 rounded-2xl p-8 md:p-12 border-2 border-white/20">
             <div className="flex items-center justify-center gap-3 mb-6">
               <h2 className="text-4xl font-bold text-center">Résultats attendus</h2>
               <TrendingUp className="w-8 h-8 text-green-500" />
@@ -617,7 +617,7 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="p-6 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-500"
+                  className="p-6 bg-black/60 rounded-xl border-2 border-white/20 hover:border-white/30 transition-all duration-500"
                 >
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
                     {item.icon}
@@ -645,7 +645,7 @@ export default function Home() {
               ].map((sector) => (
                 <span
                   key={sector}
-                  className="px-4 bg-white/5 rounded-full hover:border-primary/50 transition-all duration-500 text-xl font-semibold py-2 border-2 border-ring"
+                  className="px-4 bg-black/60 rounded-full hover:border-primary/50 transition-all duration-500 text-xl font-semibold py-2 border-2 border-ring"
                 >
                   {sector}
                 </span>
@@ -654,7 +654,7 @@ export default function Home() {
           </section>
 
           {/* Études de cas */}
-          <section className="bg-white/5 rounded-2xl p-8 md:p-12 border border-white/10">
+          <section className="bg-black/60 rounded-2xl p-8 md:p-12 border-2 border-white/20">
             <h2 className="text-4xl font-bold mb-6">Études de cas</h2>
             <p className="text-lg text-muted-foreground mb-6">
               Au lancement. Démos reproductibles et scénarios anonymisés clairement étiquetés exemple.
@@ -702,7 +702,7 @@ export default function Home() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="p-6 bg-white/5 rounded-xl border border-white/10 hover:border-primary/20 transition-all duration-500"
+                  className="p-6 bg-black/60 rounded-xl border-2 border-white/20 hover:border-primary/20 transition-all duration-500"
                 >
                   <div className="flex items-start gap-3 mb-3">
                     <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -715,7 +715,7 @@ export default function Home() {
           </section>
 
           {/* Zone d'intervention */}
-          <section className="bg-white/5 rounded-2xl p-8 md:p-12 border border-white/10">
+          <section className="bg-black/60 rounded-2xl p-8 md:p-12 border-2 border-white/20">
             <div className="flex items-start gap-4 mb-6">
               <MapPin className="w-8 h-8 text-primary flex-shrink-0" />
               <div className="flex-1">
@@ -737,7 +737,7 @@ export default function Home() {
                     <Link
                       key={city.slug}
                       href={`/ville/${city.slug}`}
-                      className="px-4 py-2 bg-white/5 border-white/10 rounded-lg text-center hover:border-primary/50 transition-all duration-500 font-sans border leading-6 font-bold text-xl"
+                      className="px-4 py-2 bg-black/70 border-2 border-white/20 rounded-lg text-center hover:border-primary/50 transition-all duration-500 font-sans leading-6 font-bold text-xl"
                       style={{ textDecoration: "none" }}
                     >
                       {city.name}
@@ -763,7 +763,7 @@ export default function Home() {
           </section>
 
           {/* CTA final */}
-          <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent p-12 md:p-16 text-center border-primary/20 leading-7 tracking-normal my-0 border-2">
+          <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-black/70 via-black/60 to-black/50 p-12 md:p-16 text-center border-primary/20 leading-7 tracking-normal my-0 border-2">
             <h2 className="text-4xl md:text-5xl font-bold mb-6 flex items-center justify-center gap-3">
               Planifier une visite sur site <Zap className="w-10 h-10 text-yellow-400" />
             </h2>
@@ -818,7 +818,7 @@ export default function Home() {
                   a: "Chaque projet est unique. Le devis dépend du périmètre, de la complexité et des objectifs. Nous fournissons un devis détaillé sous 48h après la visite découverte. Pas de surprise, tout est transparent dès le départ.",
                 },
               ].map((faq, index) => (
-                <div key={index} className="bg-white/5 rounded-xl border border-white/10 overflow-hidden">
+                <div key={index} className="bg-black/60 rounded-xl border-2 border-white/20 overflow-hidden">
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     className="w-full p-6 text-left flex items-center justify-between hover:bg-white/5 transition-all duration-300"
