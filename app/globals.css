@@ -456,75 +456,44 @@ body {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
+  /* Ensure wrapper is visible */
+  z-index: 1;
 }
 
 .css-particle {
   position: absolute;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  /* Much more visible particles with brighter glow */
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.6) 40%,
+    rgba(255, 255, 255, 0.2) 70%,
+    transparent 100%
+  );
   border-radius: 50%;
-  opacity: 0.6;
+  opacity: 0;
   animation: float-particle linear infinite;
-  filter: blur(1px);
+  filter: blur(0.5px);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 @keyframes float-particle {
   0% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(0.5);
     opacity: 0;
   }
-  10% {
-    opacity: 0.6;
+  5% {
+    opacity: 0.8;
   }
-  90% {
-    opacity: 0.6;
+  50% {
+    opacity: 0.9;
+    transform: translate(calc(var(--tx, 50vw) - 50vw), calc(var(--ty, 50vh) - 50vh)) scale(1.2);
+  }
+  95% {
+    opacity: 0.8;
   }
   100% {
-    transform: translate(calc(var(--tx, 50vw) - 50vw), calc(var(--ty, 50vh) - 50vh)) scale(1.5);
+    transform: translate(calc(var(--tx, 50vw) - 50vw), calc(var(--ty, 50vh) - 50vh)) scale(0.5);
     opacity: 0;
   }
-}
-
-.css-particle:nth-child(1) {
-  --tx: 20vw;
-  --ty: 80vh;
-}
-.css-particle:nth-child(2) {
-  --tx: 80vw;
-  --ty: 20vh;
-}
-.css-particle:nth-child(3) {
-  --tx: 50vw;
-  --ty: 90vh;
-}
-.css-particle:nth-child(4) {
-  --tx: 10vw;
-  --ty: 30vh;
-}
-.css-particle:nth-child(5) {
-  --tx: 90vw;
-  --ty: 60vh;
-}
-.css-particle:nth-child(6) {
-  --tx: 40vw;
-  --ty: 10vh;
-}
-.css-particle:nth-child(7) {
-  --tx: 70vw;
-  --ty: 70vh;
-}
-.css-particle:nth-child(8) {
-  --tx: 30vw;
-  --ty: 50vh;
-}
-.css-particle:nth-child(9) {
-  --tx: 60vw;
-  --ty: 40vh;
-}
-.css-particle:nth-child(10) {
-  --tx: 15vw;
-  --ty: 85vh;
-}
-.css-particle:nth-child(n + 11) {
-  --tx: calc(20vw + (var(--i, 0) * 7vw));
-  --ty: calc(30vh + (var(--i, 0) * 5vh));
 }

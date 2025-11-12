@@ -26,17 +26,34 @@ function GlobalBackground() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    const userAgent = navigator.userAgent.toLowerCase()
+    const platform = navigator.platform.toLowerCase()
+
     const iOS =
-      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+      /iphone|ipad|ipod/.test(userAgent) ||
+      (/macintosh/.test(userAgent) && navigator.maxTouchPoints > 1) ||
+      platform.includes("iphone") ||
+      platform.includes("ipad") ||
+      platform.includes("ipod")
+
     setIsIOS(iOS)
     setMounted(true)
+
+    console.log("[v0] ===== iOS Detection =====")
     console.log("[v0] iOS detected:", iOS)
     console.log("[v0] User agent:", navigator.userAgent)
+    console.log("[v0] Platform:", navigator.platform)
+    console.log("[v0] Max touch points:", navigator.maxTouchPoints)
+    console.log("[v0] Screen width:", window.innerWidth)
+    console.log("[v0] ===========================")
   }, [])
 
   if (!mounted) {
-    return <div className="fixed inset-0 w-full h-full bg-black" style={{ zIndex: 0 }} />
+    return (
+      <div className="fixed inset-0 w-full h-full bg-black" style={{ zIndex: 0 }}>
+        <CSSParticlesBackground />
+      </div>
+    )
   }
 
   return (
@@ -45,9 +62,13 @@ function GlobalBackground() {
       style={{ zIndex: 0, pointerEvents: "none", overflow: "hidden" }}
     >
       {isIOS ? (
-        <CSSParticlesBackground />
+        <>
+          {console.log("[v0] Rendering CSS Particles for iOS")}
+          <CSSParticlesBackground />
+        </>
       ) : (
-        <Suspense fallback={<div className="w-full h-full bg-black" />}>
+        <Suspense fallback={<CSSParticlesBackground />}>
+          {console.log("[v0] Rendering WebGL for non-iOS")}
           <GL
             hovering={hovering}
             mousePosition={mousePosition}
