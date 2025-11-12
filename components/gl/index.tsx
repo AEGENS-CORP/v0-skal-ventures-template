@@ -23,12 +23,21 @@ export const GL = ({
   const [isWebGLSupported, setIsWebGLSupported] = useState(true)
 
   useEffect(() => {
+    console.log("[v0] GL component mounted")
+
     // Check if WebGL is supported
     const canvas = document.createElement("canvas")
     const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
+
+    console.log("[v0] WebGL context:", gl ? "available" : "not available")
+    console.log("[v0] User agent:", navigator.userAgent)
+    console.log("[v0] Is iOS:", /iPad|iPhone|iPod/.test(navigator.userAgent))
+
     if (!gl) {
       console.warn("[v0] WebGL not supported, falling back to black background")
       setIsWebGLSupported(false)
+    } else {
+      console.log("[v0] WebGL is supported, attempting to render particles")
     }
   }, [])
 
@@ -51,6 +60,7 @@ export const GL = ({
 
   // If WebGL is not supported or has error, just return a black background
   if (!isWebGLSupported || hasWebGLError) {
+    console.log("[v0] Showing fallback background")
     return <div id="webgl" style={{ width: "100%", height: "100%", background: "#000" }} />
   }
 
@@ -64,19 +74,21 @@ export const GL = ({
           far: 300,
         }}
         onCreated={({ gl }) => {
+          console.log("[v0] Canvas created successfully")
+          console.log("[v0] WebGL renderer:", gl)
           // Enable iOS compatibility settings
           gl.powerPreference = "high-performance"
-          gl.antialias = false // Disable antialiasing for better performance on iOS
+          gl.antialias = false
         }}
         onError={(error) => {
           console.error("[v0] WebGL error:", error)
           setHasWebGLError(true)
         }}
-        dpr={[1, 2]} // Limit pixel ratio to improve performance on mobile
-        performance={{ min: 0.5 }} // Allow adaptive performance
+        dpr={[1, 2]}
+        performance={{ min: 0.5 }}
         gl={{
           alpha: true,
-          antialias: false, // Disable for better mobile performance
+          antialias: false,
           powerPreference: "high-performance",
         }}
       >
