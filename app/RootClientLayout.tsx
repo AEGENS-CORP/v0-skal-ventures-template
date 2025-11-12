@@ -38,14 +38,6 @@ function GlobalBackground() {
 
     setIsIOS(iOS)
     setMounted(true)
-
-    console.log("[v0] ===== iOS Detection =====")
-    console.log("[v0] iOS detected:", iOS)
-    console.log("[v0] User agent:", navigator.userAgent)
-    console.log("[v0] Platform:", navigator.platform)
-    console.log("[v0] Max touch points:", navigator.maxTouchPoints)
-    console.log("[v0] Screen width:", window.innerWidth)
-    console.log("[v0] ===========================")
   }, [])
 
   if (!mounted) {
@@ -62,13 +54,9 @@ function GlobalBackground() {
       style={{ zIndex: 0, pointerEvents: "none", overflow: "hidden" }}
     >
       {isIOS ? (
-        <>
-          {console.log("[v0] Rendering CSS Particles for iOS")}
-          <CSSParticlesBackground />
-        </>
+        <CSSParticlesBackground />
       ) : (
         <Suspense fallback={<CSSParticlesBackground />}>
-          {console.log("[v0] Rendering WebGL for non-iOS")}
           <GL
             hovering={hovering}
             mousePosition={mousePosition}

@@ -24,24 +24,14 @@ export const GL = ({
   const [isIOS, setIsIOS] = useState(false)
 
   useEffect(() => {
-    console.log("[v0] GL component mounted")
-
     const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
     setIsIOS(iOS)
 
-    // Check if WebGL is supported
     const canvas = document.createElement("canvas")
     const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl")
 
-    console.log("[v0] WebGL context:", gl ? "available" : "not available")
-    console.log("[v0] User agent:", navigator.userAgent)
-    console.log("[v0] Is iOS:", iOS)
-
     if (!gl) {
-      console.warn("[v0] WebGL not supported, falling back to black background")
       setIsWebGLSupported(false)
-    } else {
-      console.log("[v0] WebGL is supported, attempting to render particles")
     }
   }, [])
 
@@ -62,9 +52,7 @@ export const GL = ({
     manualTime: 0,
   }
 
-  // If WebGL is not supported or has error, just return a black background
   if (!isWebGLSupported || hasWebGLError) {
-    console.log("[v0] Showing fallback background")
     return <div id="webgl" style={{ width: "100%", height: "100%", background: "#000" }} />
   }
 
@@ -89,20 +77,13 @@ export const GL = ({
           far: 300,
         }}
         onCreated={({ gl, size }) => {
-          console.log("[v0] Canvas created successfully")
-          console.log("[v0] WebGL renderer:", gl)
-          console.log("[v0] Canvas size:", size)
-
           if (isIOS) {
-            console.log("[v0] Applying iOS-specific WebGL fixes")
-            // Force immediate render on iOS
             gl.setSize(window.innerWidth, window.innerHeight, false)
             gl.domElement.style.width = "100%"
             gl.domElement.style.height = "100%"
             gl.domElement.style.position = "absolute"
             gl.domElement.style.top = "0"
             gl.domElement.style.left = "0"
-            // Force a render
             requestAnimationFrame(() => {
               gl.render(gl.scene, gl.camera)
             })
@@ -116,11 +97,11 @@ export const GL = ({
         performance={{ min: 0.5 }}
         gl={{
           alpha: true,
-          antialias: false, // Disable antialias for iOS compatibility
-          powerPreference: isIOS ? "default" : "high-performance", // Use 'default' on iOS to avoid memory issues
+          antialias: false,
+          powerPreference: isIOS ? "default" : "high-performance",
           preserveDrawingBuffer: true,
           premultipliedAlpha: true,
-          stencil: false, // Disable stencil buffer for better iOS performance
+          stencil: false,
           depth: true,
         }}
         frameloop="always"

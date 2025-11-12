@@ -8,7 +8,6 @@ export function CSSParticlesBackground() {
 
   useEffect(() => {
     setMounted(true)
-    console.log("[v0] CSS Particles Background mounted")
   }, [])
 
   if (!mounted) return null
@@ -16,17 +15,13 @@ export function CSSParticlesBackground() {
   return (
     <div className="css-particles-wrapper">
       {Array.from({ length: 200 }).map((_, i) => {
-        // Small particles like WebGL version
         const size = 1 + Math.random() * 2
         const startX = Math.random() * 100
         const startY = Math.random() * 100
-        // Subtle movement
         const moveX = (Math.random() - 0.5) * 30
         const moveY = (Math.random() - 0.5) * 30
-        // Slow, gentle animation
         const duration = 20 + Math.random() * 20
         const delay = Math.random() * 20
-        // Vary opacity for depth
         const opacity = 0.3 + Math.random() * 0.4
 
         return (
