@@ -456,44 +456,36 @@ body {
   height: 100%;
   overflow: hidden;
   pointer-events: none;
-  /* Ensure wrapper is visible */
   z-index: 1;
+  background: #000000;
 }
 
 .css-particle {
   position: absolute;
-  /* Much more visible particles with brighter glow */
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.6) 40%,
-    rgba(255, 255, 255, 0.2) 70%,
-    transparent 100%
-  );
+  /* Subtle white particles like WebGL - no glow, just soft dots */
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
-  opacity: 0;
-  animation: float-particle linear infinite;
-  filter: blur(0.5px);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.3);
+  animation: float-subtle linear infinite;
+  /* Very slight blur for softness */
+  filter: blur(0.3px);
+  will-change: transform;
 }
 
-@keyframes float-particle {
+/* Gentle floating animation that mimics WebGL noise movement */
+@keyframes float-subtle {
   0% {
-    transform: translate(0, 0) scale(0.5);
-    opacity: 0;
+    transform: translate3d(0, 0, 0);
   }
-  5% {
-    opacity: 0.8;
+  25% {
+    transform: translate3d(var(--move-x), calc(var(--move-y) * 0.5), 0);
   }
   50% {
-    opacity: 0.9;
-    transform: translate(calc(var(--tx, 50vw) - 50vw), calc(var(--ty, 50vh) - 50vh)) scale(1.2);
+    transform: translate3d(calc(var(--move-x) * 0.7), var(--move-y), 0);
   }
-  95% {
-    opacity: 0.8;
+  75% {
+    transform: translate3d(calc(var(--move-x) * 0.3), calc(var(--move-y) * 0.8), 0);
   }
   100% {
-    transform: translate(calc(var(--tx, 50vw) - 50vw), calc(var(--ty, 50vh) - 50vh)) scale(0.5);
-    opacity: 0;
+    transform: translate3d(0, 0, 0);
   }
 }
