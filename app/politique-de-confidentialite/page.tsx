@@ -24,9 +24,9 @@ export default function PolitiqueDeConfidentialitePage() {
           </p>
           <p>Forme juridique : SAS</p>
           <p>Siège : 18 Rue Ampère – ZI La Folie Sud, 85310 La Chaize-le-Vicomte, France</p>
-          <p>E-mail : privacy@aegens.com</p>
-          <p>SIREN : [À compléter]</p>
-          <p>Directeur de la publication : [À compléter]</p>
+          <p>E-mail : contact@aegens.com</p>
+          <p>SIRET : 993567296 </p>
+          <p>{""}</p>
         </div>
       </section>
 

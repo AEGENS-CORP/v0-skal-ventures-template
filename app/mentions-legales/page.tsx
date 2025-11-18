@@ -62,7 +62,7 @@ export default function MentionsLegalesPage() {
           <div className="space-y-2 text-muted-foreground">
             <p>Accès gratuit hors coûts de télécommunication.</p>
             <p>Usage strictement professionnel.</p>
-            <p>Aegens peut suspendre, modifier ou retirer le site sans préavis pour maintenance ou sécurité.</p>
+            <p>Aegens peut suspendre, modifier ou retirer le site sans préavis pour maintenance ou s��curité.</p>
             <p>L'utilisateur s'engage à ne pas porter atteinte au bon fonctionnement du site ni à sa sécurité.</p>
           </div>
         </section>

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "./ui/button"
 import { useParticles } from "./particle-context"
 import { useScrollProgress } from "../hooks/use-scroll-progress"
-import { Zap, TrendingUp } from "lucide-react"
+import { Zap, TrendingUp } from 'lucide-react'
 
 export function Hero() {
   const { setHovering } = useParticles()

@@ -4,6 +4,7 @@ import { MobileMenu } from "./mobile-menu"
 import { InteractiveLink } from "./interactive-link"
 import { NavigationDropdown } from "./navigation-dropdown"
 import { primaryNav } from "@/lib/navigation"
+import { PhoneLink } from "./phone-link"
 
 export const Header = () => {
   const navItemsWithoutChildren = primaryNav.filter((item) => !item.children || item.children.length === 0)
@@ -19,7 +20,7 @@ export const Header = () => {
             <Logo className="w-[180px] sm:w-[240px] lg:w-[280px] transition-all hover:scale-105 duration-700 ease-out" />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
             {primaryNav.map((item, index) => {
               const isContact = item.label === "Contact"
               const hasChildren = item.children && item.children.length > 0
@@ -34,9 +35,9 @@ export const Header = () => {
                     <NavigationDropdown label={item.label} items={item.children} />
                   ) : (
                     <InteractiveLink
-                      className={`text-lg font-semibold transition-all duration-500 whitespace-nowrap relative ${
+                      className={`text-base xl:text-lg font-semibold transition-all duration-500 whitespace-nowrap relative ${
                         isContact
-                          ? "border-2 border-white text-white px-6 py-2.5 rounded-md hover:bg-white/10 hover:scale-105"
+                          ? "border-2 border-white text-white px-5 py-2 rounded-md hover:bg-white/10 hover:scale-105"
                           : "text-white/80 hover:text-white"
                       }`}
                       href={item.href}
@@ -50,6 +51,15 @@ export const Header = () => {
                 </div>
               )
             })}
+            
+            <div className="animate-in fade-in duration-1000" style={{ animationDelay: '600ms' }}>
+              <PhoneLink
+                phoneNumber="+33745103015"
+                displayNumber="07 45 10 30 15"
+                className="text-base font-bold text-green-400 hover:text-green-300 transition-colors duration-300 whitespace-nowrap flex items-center gap-2 px-4 py-2 bg-green-500/10 rounded-lg border border-green-500/30 hover:border-green-500/50 hover:bg-green-500/20"
+                showIcon
+              />
+            </div>
           </nav>
 
           <div className="lg:hidden animate-in fade-in duration-1000 delay-300">
