@@ -35,14 +35,6 @@ export function PhoneLink({ phoneNumber, displayNumber, className = "", showIcon
   const display = displayNumber || phoneNumber
 
   return (
-    <a
-      href={`tel:${cleanPhoneNumber}`}
-      onClick={handleClick}
-      className={`inline-flex items-center gap-2 hover:text-yellow-400 transition-colors border-popover-foreground ${className}`}
-      title={copied ? "Numéro copié !" : "Cliquer pour appeler (mobile) ou copier (PC)"}
-    >
-      {showIcon && <Phone className="w-4 h-4" />}
-      <span>{copied ? "✓ Copié !" : display}</span>
-    </a>
+    null
   )
 }
