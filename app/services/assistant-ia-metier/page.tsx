@@ -2,19 +2,7 @@ import { createPageMetadata } from "@/lib/metadata"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Breadcrumbs } from "@/components/breadcrumbs"
-import {
-  FileText,
-  Search,
-  Mail,
-  FileCheck,
-  HelpCircle,
-  Users,
-  CheckCircle,
-  Zap,
-  TrendingUp,
-  Shield,
-  Clock,
-} from "lucide-react"
+import { FileText, Search, Mail, FileCheck, HelpCircle, Users, CheckCircle, Zap, TrendingUp, Shield, Clock } from 'lucide-react'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 export const metadata = createPageMetadata({
@@ -83,7 +71,7 @@ export default function AssistantIAMetierPage() {
                   </span>
                   <span className="block text-xs sm:text-sm font-normal mt-2 opacity-80">
                     60–90 min.{" "}
-                    <Link href="/contact" className="hover:underline">
+                    <Link href="/contact">
                       Plan d'action + devis
                     </Link>{" "}
                     sous 48 h.
@@ -521,7 +509,7 @@ export default function AssistantIAMetierPage() {
           </p>
           <p className="text-white/80 text-sm md:text-base leading-relaxed text-center">
             Adresse: 18 Rue Ampère, ZI La Folie Sud, 85310 La Chaize-le-Vicomte · Tél:{" "}
-            <Link href="tel:0745103015" className="hover:text-white transition-colors font-sans hover:underline">
+            <Link href="tel:0745103015" className="hover:text-white transition-colors font-sans">
               07 45 10 30 15
             </Link>
           </p>

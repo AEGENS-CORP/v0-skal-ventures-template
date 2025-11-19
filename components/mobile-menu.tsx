@@ -2,10 +2,12 @@
 
 import { cn } from "@/lib/utils"
 import * as Dialog from "@radix-ui/react-dialog"
-import { Menu, X } from "lucide-react"
+import { Menu, X } from 'lucide-react'
 import { useState } from "react"
 import { InteractiveLink } from "./interactive-link"
 import type { NavItem } from "@/lib/navigation"
+import { PhoneLink } from "./phone-link"
+import { EmailLink } from "./email-link"
 
 interface MobileMenuProps {
   className?: string
@@ -70,6 +72,21 @@ export const MobileMenu = ({ className, navItems }: MobileMenuProps) => {
                 )}
               </div>
             ))}
+            
+            <div className="mx-10 pt-8 mt-4 border-t-2 border-white/30 space-y-5">
+              <div className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-3">Contact</div>
+              <PhoneLink
+                phoneNumber="+33745103015"
+                displayNumber="07 45 10 30 15"
+                className="flex items-center gap-3 text-xl font-bold text-green-400 hover:text-green-300 transition-all duration-300 bg-green-500/10 px-4 py-3 rounded-lg border-2 border-green-500/40 hover:border-green-500/60"
+                showIcon
+              />
+              <EmailLink
+                email="contact@aegens.com"
+                className="flex items-center gap-3 text-lg font-semibold text-white/90 hover:text-white transition-all duration-300 bg-white/5 px-4 py-3 rounded-lg border-2 border-white/20 hover:border-white/40"
+                showIcon
+              />
+            </div>
           </nav>
         </Dialog.Content>
       </Dialog.Portal>

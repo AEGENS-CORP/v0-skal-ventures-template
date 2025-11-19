@@ -160,39 +160,44 @@ export default function Home() {
 
             <div className="max-w-4xl mx-auto space-y-4 sm:space-y-6 mb-8 sm:mb-12">
               {problems.intro.map((text, idx) => (
-                null
+                <p key={idx} className="text-base sm:text-lg text-white/80 text-center leading-relaxed">
+                  {text}
+                </p>
               ))}
             </div>
 
             <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-              {problems.items.map((problem, index) => (
-                <div
-                  key={index}
-                  className="group relative p-4 sm:p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/20 hover:border-white/40 transition-all duration-500 hover:translate-y-[-4px] hover:shadow-lg"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-6 h-6 sm:w-8 sm:h-8 bg-white/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                    </div>
-                    <div className="flex-1 space-y-1 sm:space-y-2">
-                      <h3 className={`${styleConfig.fonts.card.title} font-bold text-white`}>{problem.title}</h3>
-                      {problem.subtitle && (
-                        <p className={`${styleConfig.fonts.card.subtitle} text-white/70 font-medium`}>
-                          {problem.subtitle}
-                        </p>
-                      )}
-                      <p className={`${styleConfig.fonts.card.body} text-white/60 leading-relaxed`}>{problem.desc}</p>
+              {problems.items.map((problem, index) => {
+                const Icon = iconMap[problem.icon as keyof typeof iconMap]
+                return (
+                  <div
+                    key={index}
+                    className="group relative p-4 sm:p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/20 hover:border-white/40 transition-all duration-500 hover:translate-y-[-4px] hover:shadow-lg"
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="flex-1 space-y-1 sm:space-y-2">
+                        <h3 className={`${styleConfig.fonts.card.title} font-bold text-white`}>{problem.title}</h3>
+                        {problem.subtitle && (
+                          <p className={`${styleConfig.fonts.card.subtitle} text-white/70 font-medium`}>
+                            {problem.subtitle}
+                          </p>
+                        )}
+                        <p className={`${styleConfig.fonts.card.body} text-white/60 leading-relaxed`}>{problem.desc}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
 
             <div className="text-center mt-8 sm:mt-12 max-w-3xl mx-auto p-4 sm:p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/20">
               <p className={`${styleConfig.fonts.section.body} text-white/80 leading-relaxed`}>
                 {problems.conclusion.split("automatisations")[0]}
-                <Link href="/services/automatisation" className="text-white font-semibold">
+                <Link href="/services/automatisation" className="text-white font-semibold no-underline">
                   automatisations
                 </Link>
                 {problems.conclusion.split("automatisations")[1]}
@@ -216,148 +221,169 @@ export default function Home() {
               {services.items.map((service, index) => {
                 const Icon = iconMap[service.icon as keyof typeof iconMap]
                 return (
-                  <Link key={index} href={service.link} className="block group">
-                    <div className="relative p-8 sm:p-10 bg-white/5 backdrop-blur-sm rounded-2xl border-2 border-white/20 hover:border-white/50 hover:bg-white/10 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer overflow-hidden min-h-[500px] flex flex-col">
-                      <div className="flex items-start gap-6 sm:gap-8 relative z-10 mb-6">
-                        {/* Icon on left */}
-                        <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-white/10 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white/15 transition-all duration-500 border-2 border-white/30">
-                          <Icon className="w-8 h-8 sm:w-10 sm:h-10" />
+                  <Link key={index} href={service.link} className="block group no-underline">
+                    <div className="relative p-4 bg-white/5 backdrop-blur-sm rounded-2xl border-2 border-white/20 hover:border-white/50 hover:bg-white/10 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer min-h-[300px] flex flex-col">
+                      {/* Reduced header dimensions */}
+                      <div className="flex items-start gap-4 relative z-10 mb-4">
+                        {/* Smaller icon */}
+                        <div className="flex-shrink-0 w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white/15 transition-all duration-500 border-2 border-white/30">
+                          <Icon className="w-6 h-6" />
                         </div>
 
-                        {/* Content on right */}
-                        <div className="flex-1 space-y-3">
-                          <h3 className="text-2xl sm:text-3xl font-bold leading-tight text-white group-hover:text-white/90 transition-colors duration-300">
+                        {/* Smaller text */}
+                        <div className="flex-1 space-y-1">
+                          <h3 className="text-xl font-bold leading-tight text-white group-hover:text-white/90 transition-colors duration-300">
                             {service.title}
                           </h3>
-                          <p className="text-base sm:text-lg text-white/70 font-medium group-hover:text-white/90 transition-colors duration-300">
+                          <p className="text-sm text-white/70 font-medium group-hover:text-white/90 transition-colors duration-300">
                             {service.subtitle}
                           </p>
                         </div>
 
-                        {/* Arrow indicator */}
+                        {/* Smaller arrow */}
                         <div className="flex-shrink-0 text-white opacity-0 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300">
-                          <ArrowRight className="w-6 h-6" />
+                          <ArrowRight className="w-5 h-5" />
                         </div>
                       </div>
 
-                      {/* Animated preview centered in card */}
-                      <div className="flex-1 flex items-center justify-center px-4 py-6">
-                        {/* CHANGE START */}
+                      {/* Reduced animation containers dimensions */}
+                      <div className="flex-1 flex items-center justify-center px-2 py-3">
                         {index === 0 && (
-                          <div className="relative w-full max-w-md h-64">
-                            <div className="relative w-full h-full bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-xl overflow-hidden">
-                              
-                              {/* Subtle grid background - less bright */}
-                              <div className="absolute inset-0 opacity-10">
+                          <div className="relative w-full max-w-sm h-48">
+                            <div className="relative w-full h-full bg-white/15 backdrop-blur-xl rounded-2xl border-2 border-white/50 p-4 shadow-xl animate-float-gentle-premium overflow-hidden">
+                              <div className="absolute inset-0 opacity-20">
+                                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-white/10 animate-shimmer-premium" />
                                 <div className="absolute inset-0" style={{
-                                  backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+                                  backgroundImage: 'linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)',
                                   backgroundSize: '20px 20px'
                                 }} />
                               </div>
 
-                              <div className="relative h-full flex flex-col justify-between">
+                              <div className="relative h-full flex flex-col justify-between py-1">
                                 
-                                {/* Top row: Input → Condition */}
-                                <div className="flex items-center justify-between px-4">
-                                  {/* Input node */}
-                                  <div className="flex flex-col items-center gap-1">
-                                    <div className="w-16 h-16 bg-white/15 backdrop-blur-sm border border-white/40 rounded-lg flex items-center justify-center hover:bg-white/20 transition-all duration-300">
-                                      <Zap className="w-6 h-6 text-white" />
+                                <div className="flex justify-between items-center mb-2 pb-2 border-b border-white/40">
+                                  <div className="flex items-center gap-1.5">
+                                    <div className="relative">
+                                      <div className="absolute inset-0 bg-white/40 rounded-full blur-md animate-pulse-glow-premium" />
+                                      <Zap className="relative w-4 h-4 text-white animate-pulse-glow-premium" />
                                     </div>
-                                    <span className="text-[9px] text-white/80 font-semibold">Entrée</span>
-                                  </div>
-
-                                  {/* Arrow */}
-                                  <div className="flex-1 flex items-center justify-center">
-                                    <div className="h-px w-full bg-white/30 relative">
-                                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 border-t border-r border-white/40 rotate-45" />
+                                    <div>
+                                      <div className="text-[10px] text-white font-bold">Workflow Actif</div>
+                                      <div className="text-[8px] text-white/70 font-semibold animate-typing-premium">Automatisation en cours...</div>
                                     </div>
                                   </div>
-
-                                  {/* Condition node (diamond) */}
+                                  <div className="flex items-center gap-1.5 bg-gradient-to-r from-white/20 to-white/10 px-2 py-1 rounded-xl border-2 border-white/40 shadow-[0_4px_15px_rgba(0,0,0,0.2)]">
+                                    <div className="relative">
+                                      <div className="absolute inset-0 bg-white rounded-full blur-sm animate-pulse" />
+                                      <div className="relative w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,1)]" />
+                                    </div>
+                                    <span className="text-[8px] text-white font-black uppercase tracking-wider">Active</span>
+                                  </div>
+                                </div>
+                                
+                                <div className="flex items-center justify-between px-1">
+                                  {/* Smaller nodes */}
                                   <div className="flex flex-col items-center gap-1">
                                     <div className="relative">
-                                      <div className="w-16 h-16 bg-white/15 backdrop-blur-sm border border-white/40 rounded-sm rotate-45 flex items-center justify-center hover:bg-white/20 transition-all duration-300">
-                                        <div className="-rotate-45">
-                                          <Target className="w-6 h-6 text-white" />
-                                        </div>
+                                      <div className="absolute inset-0 bg-white/50 rounded-xl blur-lg animate-pulse-glow-premium" />
+                                      <div className="relative w-12 h-12 bg-gradient-to-br from-white/30 via-white/20 to-white/10 backdrop-blur-md border-2 border-white/60 rounded-xl flex items-center justify-center hover:bg-white/35 hover:scale-110 transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.5)]">
+                                        <Zap className="w-5 h-5 text-white drop-shadow-[0_2px_12px_rgba(255,255,255,1)]" />
                                       </div>
                                     </div>
-                                    <span className="text-[9px] text-white/80 font-semibold">Si/Alors</span>
+                                    <span className="text-[9px] text-white font-black drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] tracking-wider">TRIGGER</span>
+                                  </div>
+
+                                  <div className="flex-1 flex items-center justify-center px-2">
+                                    <div className="relative h-1 w-full bg-white/40 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.6)]">
+                                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 border-t-2 border-r-2 border-white rotate-45 drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />
+                                    </div>
+                                  </div>
+
+                                  <div className="flex flex-col items-center gap-1">
+                                    <div className="relative">
+                                      <div className="absolute inset-0 bg-white/50 rounded-xl blur-lg animate-pulse-glow-premium" style={{ animationDelay: '0.3s' }} />
+                                      <div className="relative w-12 h-12 bg-gradient-to-br from-white/30 via-white/20 to-white/10 backdrop-blur-md border-2 border-white/60 rounded-xl flex items-center justify-center hover:bg-white/35 hover:scale-110 transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.5)]">
+                                        <Brain className="w-5 h-5 text-white drop-shadow-[0_2px_12px_rgba(255,255,255,1)]" />
+                                      </div>
+                                    </div>
+                                    <span className="text-[9px] text-white font-black drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] tracking-wider">PROCESS</span>
+                                  </div>
+
+                                  <div className="flex-1 flex items-center justify-center px-2">
+                                    <div className="relative h-1 w-full bg-white/40 rounded-full shadow-[0_0_10px_rgba(255,255,255,0.6)]">
+                                      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 border-t-2 border-r-2 border-white rotate-45 drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />
+                                    </div>
+                                  </div>
+
+                                  <div className="flex flex-col items-center gap-1">
+                                    <div className="relative">
+                                      <div className="absolute inset-0 bg-white/50 rounded-xl blur-lg animate-pulse-glow-premium" style={{ animationDelay: '0.6s' }} />
+                                      <div className="relative w-12 h-12 bg-gradient-to-br from-white/30 via-white/20 to-white/10 backdrop-blur-md border-2 border-white/60 rounded-xl flex items-center justify-center hover:bg-white/35 hover:scale-110 transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.5)]">
+                                        <Check className="w-5 h-5 text-white drop-shadow-[0_2px_12px_rgba(255,255,255,1)]" />
+                                      </div>
+                                    </div>
+                                    <span className="text-[9px] text-white font-black drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] tracking-wider">COMPLETE</span>
                                   </div>
                                 </div>
-
-                                {/* Middle row: Two parallel actions */}
-                                <div className="flex items-center justify-around px-2">
-                                  {/* Action 1 */}
-                                  <div className="flex flex-col items-center gap-1">
-                                    <div className="w-14 h-14 bg-white/15 backdrop-blur-sm border border-white/40 rounded-lg flex items-center justify-center hover:bg-white/20 transition-all duration-300">
-                                      <Brain className="w-5 h-5 text-white" />
-                                    </div>
-                                    <span className="text-[8px] text-white/70 font-semibold">Traiter</span>
+                                
+                                {/* Smaller progress bar section */}
+                                <div className="px-2 pt-1 mt-1 border-t border-white/30 space-y-2">
+                                  <div className="flex items-center justify-between">
+                                    <div className="text-[9px] text-white/90 font-black uppercase tracking-wider">Progression</div>
+                                    <div className="text-xs text-white font-black animate-count-up-premium">78%</div>
                                   </div>
-
-                                  {/* Action 2 */}
-                                  <div className="flex flex-col items-center gap-1">
-                                    <div className="w-14 h-14 bg-white/15 backdrop-blur-sm border border-white/40 rounded-lg flex items-center justify-center hover:bg-white/20 transition-all duration-300">
-                                      <Users className="w-5 h-5 text-white" />
-                                    </div>
-                                    <span className="text-[8px] text-white/70 font-semibold">Notifier</span>
-                                  </div>
-
-                                  {/* Action 3 */}
-                                  <div className="flex flex-col items-center gap-1">
-                                    <div className="w-14 h-14 bg-white/15 backdrop-blur-sm border border-white/40 rounded-lg flex items-center justify-center hover:bg-white/20 transition-all duration-300">
-                                      <BarChart3 className="w-5 h-5 text-white" />
-                                    </div>
-                                    <span className="text-[8px] text-white/70 font-semibold">Logger</span>
-                                  </div>
-                                </div>
-
-                                {/* Bottom row: Final output */}
-                                <div className="flex items-center justify-center">
-                                  <div className="flex flex-col items-center gap-1">
-                                    <div className="w-16 h-16 bg-white/15 backdrop-blur-sm border border-white/40 rounded-lg flex items-center justify-center hover:bg-white/20 transition-all duration-300">
-                                      <ShieldCheck className="w-6 h-6 text-white" />
-                                    </div>
-                                    <span className="text-[9px] text-white/80 font-semibold">Terminé</span>
-                                  </div>
-                                </div>
-
-                                {/* Connecting lines with SVG - subtle */}
-                                <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
-                                  {/* From condition to actions */}
-                                  <path d="M 180 80 L 80 130" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeDasharray="4 2" />
-                                  <path d="M 180 80 L 180 130" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeDasharray="4 2" />
-                                  <path d="M 180 80 L 280 130" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeDasharray="4 2" />
                                   
-                                  {/* From actions to output */}
-                                  <path d="M 80 170 L 180 210" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeDasharray="4 2" />
-                                  <path d="M 180 170 L 180 210" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeDasharray="4 2" />
-                                  <path d="M 280 170 L 180 210" stroke="rgba(255,255,255,0.2)" strokeWidth="1.5" strokeDasharray="4 2" />
-                                </svg>
+                                  <div className="relative h-3 bg-gradient-to-r from-white/10 via-white/15 to-white/10 rounded-full overflow-hidden border-2 border-white/40 shadow-[inset_0_2px_4px_rgba(0,0,0,0.3)]">
+                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer-premium" />
+                                    <div className="relative h-full w-[78%] bg-gradient-to-r from-white/70 via-white to-white/70 shadow-[0_0_15px_rgba(255,255,255,0.8)]">
+                                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-shimmer-premium" style={{ animationDelay: '0.3s' }} />
+                                    </div>
+                                    <div className="absolute left-[78%] top-1/2 -translate-y-1/2 -translate-x-1/2">
+                                      <div className="absolute inset-0 bg-white rounded-full blur-md animate-pulse-glow-premium" />
+                                      <div className="relative w-2 h-2 bg-white rounded-full shadow-[0_0_12px_rgba(255,255,255,1)]" />
+                                    </div>
+                                  </div>
 
-                                {/* Animated data packet - single subtle one */}
-                                <div className="absolute w-2 h-2 bg-white/60 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.5)] animate-workflow-packet-flow-complete-premium" />
-
+                                  <div className="flex items-center justify-between pt-0.5">
+                                    <div className="flex items-center gap-1">
+                                      <Clock className="w-3 h-3 text-white/80 animate-pulse-glow-premium" />
+                                      <span className="text-[8px] text-white/80 font-bold">2.4s restant</span>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                      <div className="flex gap-0.5">
+                                        {[...Array(3)].map((_, i) => (
+                                          <div
+                                            key={i}
+                                            className="w-0.5 h-0.5 bg-white/70 rounded-full animate-pulse-glow-premium"
+                                            style={{ animationDelay: `${i * 0.2}s` }}
+                                          />
+                                        ))}
+                                      </div>
+                                      <span className="text-[8px] text-white/80 font-bold">127 tâches traitées</span>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
 
-                              {/* Status indicator - subtle */}
-                              <div className="absolute bottom-3 right-3 flex items-center gap-1.5 bg-white/10 px-2 py-1 rounded-lg border border-white/20">
-                                <div className="w-1.5 h-1.5 bg-white/70 rounded-full animate-pulse" />
-                                <span className="text-[8px] text-white/70 font-semibold">Actif</span>
-                              </div>
-
+                              {[...Array(8)].map((_, i) => (
+                                <div
+                                  key={i}
+                                  className="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-particle-float-premium"
+                                  style={{
+                                    top: `${Math.random() * 100}%`,
+                                    left: `${Math.random() * 100}%`,
+                                    animationDelay: `${i * 0.4}s`,
+                                    animationDuration: `${3 + Math.random() * 2}s`
+                                  }}
+                                />
+                              ))}
                             </div>
-                            {/* </CHANGE> */}
-                            {/* </CHANGE> */}
                           </div>
                         )}
-                        {/* </CHANGE> */}
 
                         {index === 1 && (
-                          <div className="relative w-full max-w-md h-64">
-                            <div className="relative bg-white/15 backdrop-blur-xl rounded-2xl border-2 border-white/50 p-6 shadow-xl animate-float-gentle-premium h-full overflow-hidden">
+                          <div className="relative w-full max-w-sm h-48">
+                            <div className="relative bg-white/15 backdrop-blur-xl rounded-2xl border-2 border-white/50 p-4 shadow-xl animate-float-gentle-premium h-full overflow-hidden">
                               {/* Background gradient animation */}
                               <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/10 animate-shimmer-premium opacity-50" />
                               
@@ -427,8 +453,8 @@ export default function Home() {
                         )}
 
                         {index === 2 && (
-                          <div className="relative w-full max-w-md h-64">
-                            <div className="relative w-full h-full bg-gradient-to-br from-white/25 via-white/15 to-white/5 backdrop-blur-2xl rounded-3xl p-6 border-3 border-white/60 shadow-[0_20px_60px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] animate-float-gentle-premium overflow-hidden">
+                          <div className="relative w-full max-w-sm h-48">
+                            <div className="relative w-full h-full bg-gradient-to-br from-white/30 via-white/20 to-white/10 backdrop-blur-2xl rounded-3xl p-4 border-3 border-white/60 shadow-[0_20px_60px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] animate-float-gentle-premium overflow-hidden">
                               <div className="absolute inset-0 opacity-30">
                                 <div className="absolute inset-0" style={{
                                   backgroundImage: 'linear-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.15) 1px, transparent 1px)',
@@ -438,27 +464,27 @@ export default function Home() {
                                 </div>
                               </div>
 
-                              <div className="grid grid-cols-3 gap-3 mb-5 relative z-10">
+                              <div className="grid grid-cols-3 gap-2 mb-4 relative z-10">
                                 {[
                                   { value: '€45K', label: 'CA', change: '+12%' },
                                   { value: '234', label: 'Clients', change: '+8%' },
                                   { value: '94%', label: 'Sat.', change: '+2%' }
                                 ].map((metric, i) => (
-                                  <div key={i} className="bg-gradient-to-br from-white/25 to-white/15 backdrop-blur-xl rounded-xl p-3 border-3 border-white/60 animate-metric-appear-premium shadow-[0_6px_25px_rgba(0,0,0,0.25),inset_0_2px_0_rgba(255,255,255,0.5)]" style={{ animationDelay: `${i * 0.15}s` }}>
-                                    <div className="text-white font-black text-lg mb-1 drop-shadow-[0_3px_10px_rgba(255,255,255,0.7)] animate-count-up-premium">{metric.value}</div>
-                                    <div className="text-white/80 text-[10px] font-bold mb-2 uppercase tracking-wider">{metric.label}</div>
-                                    <div className="flex items-center gap-1.5 bg-white/25 rounded-lg px-2 py-1.5">
-                                      <TrendingUp className="w-3 h-3 text-white animate-pulse-glow-premium drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />
-                                      <span className="text-[9px] text-white font-black drop-shadow-[0_2px_5px_rgba(0,0,0,0.4)]">{metric.change}</span>
+                                  <div key={i} className="bg-gradient-to-br from-white/25 to-white/15 backdrop-blur-xl rounded-xl p-2 border-3 border-white/60 animate-metric-appear-premium shadow-[0_6px_25px_rgba(0,0,0,0.25),inset_0_2px_0_rgba(255,255,255,0.5)]" style={{ animationDelay: `${i * 0.15}s` }}>
+                                    <div className="text-white font-black text-base mb-0.5 drop-shadow-[0_3px_10px_rgba(255,255,255,0.7)] animate-count-up-premium">{metric.value}</div>
+                                    <div className="text-white/80 text-[9px] font-bold mb-1 uppercase tracking-wider">{metric.label}</div>
+                                    <div className="flex items-center gap-1 bg-white/25 rounded-lg px-1.5 py-1">
+                                      <TrendingUp className="w-2.5 h-2.5 text-white animate-pulse-glow-premium drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />
+                                      <span className="text-[8px] text-white font-black drop-shadow-[0_2px_5px_rgba(0,0,0,0.4)]">{metric.change}</span>
                                     </div>
                                   </div>
                                 ))}
                               </div>
 
                               {/* Main chart area - enhanced with premium glass effect */}
-                              <div className="relative h-36 bg-gradient-to-br from-white/15 to-white/5 rounded-2xl p-4 mb-4 shadow-[0_8px_30px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.3)]">
+                              <div className="relative h-28 bg-gradient-to-br from-white/15 to-white/5 rounded-2xl p-3 mb-3 shadow-[0_8px_30px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.3)]">
                                 {/* Y-axis labels */}
-                                <div className="absolute left-1.5 top-3 bottom-3 flex flex-col justify-between text-[8px] text-white/60 font-bold">
+                                <div className="absolute left-1 top-1 bottom-1 flex flex-col justify-between text-[7px] text-white/60 font-bold">
                                   <span className="drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">100</span>
                                   <span className="drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">50</span>
                                   <span className="drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">0</span>
@@ -514,7 +540,7 @@ export default function Home() {
                                       <circle
                                         cx={x}
                                         cy={y}
-                                        r="4"
+                                        r="3"
                                         fill="white"
                                         filter="url(#glow)"
                                         className="animate-dot-appear-premium"
@@ -537,7 +563,7 @@ export default function Home() {
                                 </svg>
 
                                 {/* X-axis labels with shadow */}
-                                <div className="absolute bottom-1 left-0 right-0 flex justify-between text-[8px] text-white/60 font-bold px-3">
+                                <div className="absolute bottom-0.5 left-0 right-0 flex justify-between text-[7px] text-white/60 font-bold px-3">
                                   {['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'].map((day, i) => (
                                     <span key={i} className="drop-shadow-[0_1px_3px_rgba(0,0,0,0.5)]">{day}</span>
                                   ))}
@@ -546,21 +572,21 @@ export default function Home() {
 
                               {/* Bottom status indicators with enhanced glass effect */}
                               <div className="flex items-center justify-between relative z-10">
-                                <div className="flex items-center gap-2.5 bg-gradient-to-r from-white/20 to-white/10 px-3 py-1.5 rounded-xl border-2 border-white/40 shadow-[0_4px_15px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)]">
+                                <div className="flex items-center gap-1.5 bg-gradient-to-r from-white/20 to-white/10 px-2 py-1 rounded-xl border-2 border-white/40 shadow-[0_4px_15px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)]">
                                   <div className="flex gap-0.5">
                                     {[...Array(3)].map((_, i) => (
                                       <div
                                         key={i}
-                                        className="w-1 h-3.5 bg-white/80 rounded-full animate-pulse-glow-premium shadow-[0_0_6px_rgba(255,255,255,0.8)]"
+                                        className="w-0.5 h-2.5 bg-white/80 rounded-full animate-pulse-glow-premium shadow-[0_0_6px_rgba(255,255,255,0.8)]"
                                         style={{ animationDelay: `${i * 0.15}s` }}
                                       />
                                     ))}
                                   </div>
-                                  <span className="text-[9px] text-white/90 font-bold uppercase tracking-wider drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">Temps réel</span>
+                                  <span className="text-[8px] text-white/90 font-bold uppercase tracking-wider drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">Temps réel</span>
                                 </div>
-                                <div className="flex items-center gap-2 bg-gradient-to-r from-white/20 to-white/10 px-3 py-1.5 rounded-xl border-2 border-white/40 shadow-[0_4px_15px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)]">
-                                  <TrendingUp className="w-3 h-3 text-white animate-pulse-glow-premium drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />
-                                  <span className="text-[9px] text-white font-bold uppercase tracking-wider drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">Optimal</span>
+                                <div className="flex items-center gap-1 bg-gradient-to-r from-white/20 to-white/10 px-2 py-1 rounded-xl border-2 border-white/40 shadow-[0_4px_15px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)]">
+                                  <TrendingUp className="w-2.5 h-2.5 text-white animate-pulse-glow-premium drop-shadow-[0_0_8px_rgba(255,255,255,1)]" />
+                                  <span className="text-[8px] text-white font-bold uppercase tracking-wider drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">Optimal</span>
                                 </div>
                               </div>
 
@@ -569,13 +595,13 @@ export default function Home() {
                         )}
 
                         {index === 3 && (
-                          <div className="relative w-full max-w-md h-64">
-                            <div className="relative w-full h-full bg-gradient-to-br from-white/20 via-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 border-2 border-white/50 shadow-2xl animate-float-gentle-premium overflow-hidden">
+                          <div className="relative w-full max-w-sm h-48">
+                            <div className="relative w-full h-full bg-gradient-to-br from-white/20 via-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-4 border-2 border-white/50 shadow-2xl animate-float-gentle-premium overflow-hidden">
                               {/* Background particles */}
                               {[...Array(12)].map((_, i) => (
                                 <div
                                   key={i}
-                                  className="absolute w-1 h-1 bg-white/60 rounded-full animate-particle-float-premium"
+                                  className="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-particle-float-premium"
                                   style={{
                                     top: `${Math.random() * 100}%`,
                                     left: `${Math.random() * 100}%`,
@@ -586,26 +612,26 @@ export default function Home() {
                               ))}
 
                               {/* Scanning header with animated status */}
-                              <div className="flex justify-between items-center mb-6 relative z-10">
-                                <div className="flex items-center gap-3">
+                              <div className="flex justify-between items-center mb-4 relative z-10">
+                                <div className="flex items-center gap-2">
                                   <div className="relative">
                                     <div className="absolute inset-0 bg-white/40 rounded-full blur-md animate-pulse-glow-premium" />
-                                    <ShieldCheck className="relative w-6 h-6 text-white animate-pulse-glow-premium" />
+                                    <ShieldCheck className="relative w-5 h-5 text-white animate-pulse-glow-premium" />
                                   </div>
                                   <div>
-                                    <div className="text-xs text-white font-bold">Audit Système</div>
-                                    <div className="text-[9px] text-white/70 font-semibold animate-typing-premium">Analyse en temps réel...</div>
+                                    <div className="text-[10px] text-white font-bold">Audit Système</div>
+                                    <div className="text-[8px] text-white/70 font-semibold animate-typing-premium">Analyse en temps réel...</div>
                                   </div>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                  <div className="text-xs text-white/90 font-bold animate-count-up-premium">
+                                <div className="flex items-center gap-1.5">
+                                  <div className="text-[9px] text-white/90 font-bold animate-count-up-premium">
                                     {Math.floor(Math.random() * 25) + 70}%
                                   </div>
                                   <div className="flex gap-0.5">
                                     {[...Array(3)].map((_, i) => (
                                       <div
                                         key={i}
-                                        className="w-1 h-3 bg-white/80 rounded-full animate-pulse-glow-premium"
+                                        className="w-0.5 h-2.5 bg-white/80 rounded-full animate-pulse-glow-premium"
                                         style={{ animationDelay: `${i * 0.15}s` }}
                                       />
                                     ))}
@@ -614,15 +640,15 @@ export default function Home() {
                               </div>
 
                               {/* Enhanced central scanning system */}
-                              <div className="relative h-40 flex items-center justify-center">
-                                <div className="relative w-36 h-36">
+                              <div className="relative h-32 flex items-center justify-center">
+                                <div className="relative w-28 h-28">
                                   {/* Multiple rotating rings with different speeds */}
                                   {[0, 1, 2, 3, 4].map((i) => (
                                     <div
                                       key={i}
                                       className="absolute rounded-full transition-all duration-300"
                                       style={{
-                                        inset: `${i * 8}px`,
+                                        inset: `${i * 6}px`,
                                         border: `${2 - i * 0.3}px solid rgba(255,255,255,${0.4 - i * 0.06})`,
                                         animation: i % 2 === 0 ? 'orbit-premium 8s linear infinite' : 'orbit-reverse-premium 10s linear infinite',
                                         animationDelay: `${i * 0.2}s`
@@ -631,10 +657,10 @@ export default function Home() {
                                   ))}
                                   
                                   {/* Fast rotating scan beams with glow */}
-                                  <div className="absolute inset-0 border-t-4 border-white rounded-full animate-scan-rotate-fast-premium drop-shadow-[0_0_12px_rgba(255,255,255,1)]" />
-                                  <div className="absolute inset-1 border-t-3 border-white/80 rounded-full animate-scan-rotate-reverse-premium" style={{ animationDuration: '2s' }} />
-                                  <div className="absolute inset-2 border-t-2 border-white/60 rounded-full animate-scan-rotate-fast-premium" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }} />
-                                  <div className="absolute inset-3 border-t border-white/40 rounded-full animate-scan-rotate-reverse-premium" style={{ animationDelay: '0.5s', animationDuration: '2.5s' }} />
+                                  <div className="absolute inset-0 border-t-3 border-white rounded-full animate-scan-rotate-fast-premium drop-shadow-[0_0_12px_rgba(255,255,255,1)]" />
+                                  <div className="absolute inset-1 border-t-2 border-white/80 rounded-full animate-scan-rotate-reverse-premium" style={{ animationDuration: '2s' }} />
+                                  <div className="absolute inset-2 border-t-1 border-white/60 rounded-full animate-scan-rotate-fast-premium" style={{ animationDelay: '0.3s', animationDuration: '1.5s' }} />
+                                  <div className="absolute inset-3 border-t-0.5 border-white/40 rounded-full animate-scan-rotate-reverse-premium" style={{ animationDelay: '0.5s', animationDuration: '2.5s' }} />
                                   
                                   {/* Orbiting scan nodes */}
                                   {[0, 120, 240].map((angle, i) => (
@@ -644,7 +670,7 @@ export default function Home() {
                                       style={{ animation: `orbit-premium ${4 + i}s linear infinite`, animationDelay: `${i * 0.5}s` }}
                                     >
                                       <div 
-                                        className="absolute top-0 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rounded-full shadow-[0_0_12px_rgba(255,255,255,0.9)] animate-pulse-glow-premium"
+                                        className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-white rounded-full shadow-[0_0_12px_rgba(255,255,255,0.9)] animate-pulse-glow-premium"
                                       />
                                     </div>
                                   ))}
@@ -656,37 +682,26 @@ export default function Home() {
                                       <div className="absolute inset-0 bg-white/40 rounded-full blur-xl animate-pulse-glow-premium" />
                                       <div className="absolute inset-0 bg-white/30 rounded-full blur-lg animate-pulse-glow-premium" style={{ animationDelay: '0.3s' }} />
                                       <div className="absolute inset-0 bg-white/20 rounded-full blur-md animate-pulse-glow-premium" style={{ animationDelay: '0.6s' }} />
-                                      <Eye className="relative w-14 h-14 text-white drop-shadow-[0_0_12px_rgba(255,255,255,1)] animate-float-gentle-premium" />
+                                      <Eye className="relative w-10 h-10 text-white drop-shadow-[0_0_12px_rgba(255,255,255,1)] animate-float-gentle-premium" />
                                     </div>
                                   </div>
 
-                                  {/* Data flow lines emanating from center */}
-                                  {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
-                                    <div
-                                      key={i}
-                                      className="absolute top-1/2 left-1/2 w-16 h-0.5 bg-gradient-to-r from-white/80 to-transparent origin-left"
-                                      style={{
-                                        transform: `rotate(${angle}deg)`,
-                                        animation: 'pulse-line-premium 2s ease-in-out infinite',
-                                        animationDelay: `${i * 0.15}s`
-                                      }}
-                                    />
-                                  ))}
+                                  
                                 </div>
 
-                                {/* Enhanced scan results with animations - Left side */}
-                                <div className="absolute left-0 top-1/2 -translate-y-1/2 space-y-2">
+                                {/* Enhanced scan results with glow - Left side */}
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 space-y-1.5">
                                   {[1, 2, 3, 4].map((i) => (
                                     <div
                                       key={i}
-                                      className="flex items-center gap-2 animate-scan-result-slide-premium"
+                                      className="flex items-center gap-1.5 animate-scan-result-slide-premium"
                                       style={{ animationDelay: `${i * 0.25}s` }}
                                     >
                                       <div className="relative">
                                         <div className="absolute inset-0 bg-white/50 rounded-full blur-sm animate-pulse-glow-premium" />
-                                        <Check className="relative w-3.5 h-3.5 text-white" />
+                                        <Check className="relative w-3 h-3 text-white" />
                                       </div>
-                                      <div className="relative h-2 bg-white/70 rounded-full overflow-hidden" style={{ width: `${35 + i * 8}px` }}>
+                                      <div className="relative h-1.5 bg-white/70 rounded-full overflow-hidden" style={{ width: `${25 + i * 6}px` }}>
                                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent animate-shimmer-premium" />
                                       </div>
                                     </div>
@@ -694,19 +709,19 @@ export default function Home() {
                                 </div>
 
                                 {/* Enhanced scan results - Right side */}
-                                <div className="absolute right-0 top-1/2 -translate-y-1/2 space-y-2">
+                                <div className="absolute right-0 top-1/2 -translate-y-1/2 space-y-1.5">
                                   {[1, 2, 3, 4].map((i) => (
                                     <div
                                       key={i}
-                                      className="flex items-center gap-2 animate-scan-result-slide-premium"
+                                      className="flex items-center gap-1.5 animate-scan-result-slide-premium"
                                       style={{ animationDelay: `${0.15 + i * 0.25}s` }}
                                     >
-                                      <div className="relative h-2 bg-white/70 rounded-full overflow-hidden" style={{ width: `${32 + i * 7}px` }}>
+                                      <div className="relative h-1.5 bg-white/70 rounded-full overflow-hidden" style={{ width: `${22 + i * 5}px` }}>
                                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/80 to-transparent animate-shimmer-premium" style={{ animationDelay: '0.5s' }} />
                                       </div>
                                       <div className="relative">
                                         <div className="absolute inset-0 bg-white/50 rounded-full blur-sm animate-pulse-glow-premium" style={{ animationDelay: '0.2s' }} />
-                                        <Check className="relative w-3.5 h-3.5 text-white" />
+                                        <Check className="relative w-3 h-3 text-white" />
                                       </div>
                                     </div>
                                   ))}
@@ -714,7 +729,7 @@ export default function Home() {
                               </div>
 
                               {/* Enhanced progress bar with multiple layers */}
-                              <div className="relative mt-4 h-2.5 bg-white/20 rounded-full overflow-hidden border-2 border-white/40">
+                              <div className="relative mt-2 h-2 bg-white/20 rounded-full overflow-hidden border-2 border-white/40">
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer-premium" />
                                 <div className="relative h-full bg-gradient-to-r from-white/70 via-white to-white/70 animate-progress-fill-loop-premium shadow-[0_0_10px_rgba(255,255,255,0.9)]">
                                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent animate-shimmer-premium" style={{ animationDelay: '0.3s' }} />
@@ -722,11 +737,11 @@ export default function Home() {
                               </div>
 
                               {/* Status indicators */}
-                              <div className="flex justify-between items-center mt-3 text-[9px] font-semibold">
-                                <div className="flex items-center gap-1.5 text-white/70">
+                              <div className="flex justify-between items-center mt-2 text-[8px] font-semibold">
+                                <div className="flex items-center gap-1 text-white/70">
                                   <div className="flex gap-0.5">
                                     {[...Array(3)].map((_, i) => (
-                                      <div key={i} className="w-1 h-1 bg-white/70 rounded-full animate-pulse-glow-premium" style={{ animationDelay: `${i * 0.2}s` }} />
+                                      <div key={i} className="w-0.5 h-0.5 bg-white/70 rounded-full animate-pulse-glow-premium" style={{ animationDelay: `${i * 0.2}s` }} />
                                     ))}
                                   </div>
                                   <span>Analyse active</span>
@@ -746,7 +761,7 @@ export default function Home() {
             </div>
 
             <div className="text-center space-y-6">
-              <Link href="/services" className="inline-block group">
+              <Link href="/services" className="inline-block group no-underline">
                 <div className="group px-6 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/30 hover:border-white/60 transition-all duration-500 hover:scale-105">
                   <p className={`${styleConfig.fonts.card.body} font-semibold flex items-center gap-2 text-white`}>
                     {services.cta}
@@ -756,6 +771,124 @@ export default function Home() {
               </Link>
 
               <p className={`${styleConfig.fonts.card.body} text-white font-semibold`}>{services.footnote}</p>
+            </div>
+          </section>
+
+          <section className="scroll-reveal">
+            <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border-2 border-white/50 shadow-[0_20px_60px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] overflow-hidden">
+              
+              {/* Header */}
+              <div className="flex items-center justify-between mb-8 pb-6 border-b border-white/30">
+                <div className="flex items-center gap-4">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-white/40 rounded-full blur-lg animate-pulse-glow-premium" />
+                    <Sparkles className="relative w-8 h-8 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-bold text-white">Transformation Digitale</h2>
+                    <p className="text-sm text-white/70 font-semibold">Votre parcours vers l'automatisation</p>
+                  </div>
+                </div>
+                <div className="flex items-center bg-gradient-to-r from-white/20 to-white/10 rounded-xl border-2 border-white/40 gap-2 px-0.5 py-1 text-2xl">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-white rounded-full blur-sm animate-pulse" />
+                    <div className="relative w-2.5 h-2.5 bg-white rounded-full" />
+                  </div>
+                  <span className="text-[10px] text-white font-black uppercase tracking-wider">En cours</span>
+                </div>
+              </div>
+
+              {/* Progress Steps */}
+              <div className="space-y-6 mb-8">
+                {[
+                  { label: 'Audit Initial', status: 'Complété', progress: 100, icon: ShieldCheck },
+                  { label: 'Analyse des Processus', status: 'Complété', progress: 100, icon: BarChart3 },
+                  { label: 'Mise en Place', status: 'En cours', progress: 65, icon: Zap },
+                  { label: 'Optimisation', status: 'Planifié', progress: 0, icon: TrendingUp }
+                ].map((step, i) => (
+                  <div key={i} className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className={`relative w-10 h-10 rounded-xl flex items-center justify-center ${
+                          step.progress === 100 ? 'bg-white/20' : step.progress > 0 ? 'bg-white/15' : 'bg-white/5'
+                        } border-2 ${
+                          step.progress === 100 ? 'border-white/60' : step.progress > 0 ? 'border-white/40' : 'border-white/20'
+                        }`}>
+                          {step.progress === 100 && (
+                            <div className="absolute inset-0 bg-white/40 rounded-xl blur-md animate-pulse-glow-premium" />
+                          )}
+                          <step.icon className={`relative w-5 h-5 ${
+                            step.progress === 100 ? 'text-white' : step.progress > 0 ? 'text-white/80' : 'text-white/40'
+                          }`} />
+                        </div>
+                        <div>
+                          <div className={`text-base font-bold ${
+                            step.progress > 0 ? 'text-white' : 'text-white/50'
+                          }`}>{step.label}</div>
+                          <div className={`text-xs font-semibold ${
+                            step.progress === 100 ? 'text-white/70' : step.progress > 0 ? 'text-white/60' : 'text-white/40'
+                          }`}>{step.status}</div>
+                        </div>
+                      </div>
+                      <div className={`text-sm font-black ${
+                        step.progress > 0 ? 'text-white' : 'text-white/40'
+                      }`}>{step.progress}%</div>
+                    </div>
+                    
+                    {/* Progress bar */}
+                    <div className="relative h-3 bg-white/10 rounded-full overflow-hidden border border-white/30">
+                      {step.progress > 0 && (
+                        <>
+                          <div 
+                            className="relative h-full bg-gradient-to-r from-white/70 via-white to-white/70 transition-all duration-1000 shadow-[0_0_10px_rgba(255,255,255,0.6)]"
+                            style={{ width: `${step.progress}%` }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer-premium" />
+                          </div>
+                          {step.progress < 100 && (
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer-premium" />
+                          )}
+                        </>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Overall Progress */}
+              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/30">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <div className="text-lg font-bold text-white">Progression Globale</div>
+                    <div className="text-sm text-white/70 font-semibold">Tous les projets confondus</div>
+                  </div>
+                  <div className="text-3xl font-black text-white">66%</div>
+                </div>
+                <div className="relative h-4 bg-white/15 rounded-full overflow-hidden border-2 border-white/40">
+                  <div className="relative h-full w-2/3 bg-gradient-to-r from-white/80 via-white to-white/80 shadow-[0_0_15px_rgba(255,255,255,0.8)]">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shimmer-premium" />
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer-premium" style={{ animationDelay: '0.5s' }} />
+                </div>
+                
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/20">
+                  {[
+                    { label: 'Tâches automatisées', value: '127', icon: Zap },
+                    { label: 'Heures économisées', value: '340h', icon: Clock },
+                    { label: 'ROI réalisé', value: '+245%', icon: TrendingUp }
+                  ].map((stat, i) => (
+                    <div key={i} className="text-center">
+                      <div className="flex justify-center mb-2">
+                        <stat.icon className="w-5 h-5 text-white/80" />
+                      </div>
+                      <div className="text-lg font-black text-white mb-1">{stat.value}</div>
+                      <div className="text-[10px] text-white/60 font-semibold">{stat.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </section>
 
@@ -814,8 +947,8 @@ export default function Home() {
               </div>
 
               <div className="text-center mt-16 sm:mt-20">
-                <Link href="/etudes-de-cas" className="inline-block group">
-                  <div className="text-lg sm:text-xl text-[#0071e3] hover:text-white transition-colors duration-300 flex items-center gap-2 justify-center border-foreground rounded-lg px-2.5 border font-bold">
+                <Link href="/etudes-de-cas" className="inline-block group no-underline">
+                  <div className="text-lg sm:text-xl text-[#0071e3] hover:text-white transition-colors duration-300 flex items-center gap-2 justify-center border-foreground rounded-lg px-2.5 border font-bold text-white">
                     {kpis.cta}
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </div>
@@ -865,7 +998,7 @@ export default function Home() {
             </div>
 
             <div className="text-center">
-              <Link href="/a-propos" className="inline-block">
+              <Link href="/a-propos" className="inline-block no-underline">
                 <div className="group px-6 py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/30 hover:border-white/60 transition-all duration-500 hover:scale-105">
                   <p className={`${styleConfig.fonts.card.body} font-semibold flex items-center gap-2 text-white`}>
                     {about.cta}
@@ -877,7 +1010,9 @@ export default function Home() {
           </section>
 
           <section className="scroll-reveal">
-            <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-sm rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center border-2 border-white/40 hover:border-white/60 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] lg:px-2.5 lg:py-2.5">
+            
+            
+            <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center border-2 border-white/40 hover:border-white/60 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] lg:px-2.5 lg:py-2.5">
               <div className="mb-8 sm:mb-0 sm:space-y-1 py-0.5">
                 <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500">{finalCta.title}</h2>
                 <p className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-4xl mx-auto leading-relaxed">
@@ -887,7 +1022,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-                <Link href="/contact">
+                <Link href="/contact" className="no-underline">
                   <Button
                     size="lg"
                     className="group relative overflow-hidden px-8 py-5 sm:px-10 sm:py-6 md:px-12 md:py-7 text-base sm:text-lg md:text-xl font-bold hover:scale-105 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] bg-white text-black hover:bg-white/90"

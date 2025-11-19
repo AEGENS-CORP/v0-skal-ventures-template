@@ -65,8 +65,11 @@ body {
   border-color: var(--border);
 }
 
-a {
-  text-decoration: none;
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none !important;
 }
 
 @keyframes fade-in-up {
@@ -124,15 +127,6 @@ a {
   }
   50% {
     opacity: 1;
-  }
-}
-
-@keyframes line-draw-premium {
-  from {
-    stroke-dashoffset: 1000;
-  }
-  to {
-    stroke-dashoffset: 0;
   }
 }
 
@@ -284,39 +278,54 @@ a {
   }
 }
 
-@keyframes workflow-packet-flow-complete-premium {
+@keyframes flow-right-premium {
   0% {
-    left: 15%;
-    top: 15%;
+    transform: translateX(-100%);
     opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes workflow-packet-simple-horizontal {
+  0% {
+    left: 10%;
+    top: 18%;
+    opacity: 0;
+    transform: scale(0.8);
   }
   5% {
     opacity: 1;
+    transform: scale(1);
   }
-  15% {
-    left: 15%;
-    top: 15%;
+  20% {
+    left: 10%;
+    top: 18%;
   }
-  30% {
-    left: 70%;
-    top: 15%;
-  }
-  50% {
+  45% {
     left: 50%;
-    top: 50%;
+    top: 18%;
   }
-  75% {
-    left: 50%;
-    top: 85%;
-    opacity: 1;
+  70% {
+    left: 90%;
+    top: 18%;
   }
   90% {
-    opacity: 0.3;
+    opacity: 1;
   }
   100% {
-    left: 50%;
-    top: 85%;
+    left: 90%;
+    top: 18%;
     opacity: 0;
+    transform: scale(0.8);
   }
 }
 
@@ -344,10 +353,6 @@ a {
 
 .animate-count-up-premium {
   animation: count-up-premium 3s ease-in-out infinite;
-}
-
-.animate-line-draw-premium {
-  animation: line-draw-premium 2s ease-out forwards;
 }
 
 .animate-scan-rotate-fast-premium {
@@ -409,8 +414,12 @@ a {
   animation: shimmer-premium 3s ease-in-out infinite;
 }
 
-.animate-workflow-packet-flow-complete-premium {
-  animation: workflow-packet-flow-complete-premium 6s ease-in-out infinite;
+.animate-flow-right-premium {
+  animation: flow-right-premium 2s ease-in-out infinite;
+}
+
+.animate-workflow-packet-simple-horizontal {
+  animation: workflow-packet-simple-horizontal 4s ease-in-out infinite;
 }
 
 .animation-delay-100 {

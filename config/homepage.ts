@@ -33,35 +33,32 @@ export const homepageConfig = {
         title: "Tâches répétitives",
         subtitle: "20 à 35 % du temps salarié",
         desc: "Saisie manuelle, copier-coller, réécriture des mêmes informations, collecte d'éléments dispersés.",
+        icon: "Clock",
       },
       {
         title: "Données et documents éparpillés",
         desc: "Informations réparties entre mails, Excel, ERP, CRM, dossiers partagés.",
+        icon: "Target",
       },
       {
         title: "Processus non standardisés",
         desc: "Méthodes différentes selon les personnes, erreurs fréquentes, dépendance aux habitudes internes.",
+        icon: "Users",
       },
       {
         title: "Manque de visibilité immédiate",
         desc: "Absence de KPIs fiables, difficultés à suivre l'activité, aucune vue consolidée en temps réel.",
-      },
-      {
-        title: "Charge administrative excessive",
-        desc: "Trop d'étapes manuelles dans la gestion clients, fournisseurs, RH, production ou logistique.",
+        icon: "Eye",
       },
       {
         title: "Difficulté à absorber la croissance",
         desc: "Chaque hausse d'activité crée de la surcharge humaine et augmente les erreurs.",
+        icon: "TrendingUp",
       },
       {
         title: "Outils mal exploités",
         desc: "Technologie utilisée à 30 %, absence d'automatisation entre les outils.",
-      },
-      {
-        title: "Dépendance au travail humain",
-        subtitle: "pour des tâches simples",
-        desc: "Lenteur, coûts, erreurs, perte de marge, charge mentale inutile.",
+        icon: "Sparkles",
       },
     ],
     conclusion:

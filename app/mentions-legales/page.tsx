@@ -62,7 +62,7 @@ export default function MentionsLegalesPage() {
           <div className="space-y-2 text-muted-foreground">
             <p>Accès gratuit hors coûts de télécommunication.</p>
             <p>Usage strictement professionnel.</p>
-            <p>Aegens peut suspendre, modifier ou retirer le site sans préavis pour maintenance ou s��curité.</p>
+            <p>Aegens peut suspendre, modifier ou retirer le site sans préavis pour maintenance ou sécurité.</p>
             <p>L'utilisateur s'engage à ne pas porter atteinte au bon fonctionnement du site ni à sa sécurité.</p>
           </div>
         </section>
@@ -172,7 +172,7 @@ export default function MentionsLegalesPage() {
             </p>
             <p>
               Vous pouvez gérer vos préférences à tout moment dans la page{" "}
-              <Link href="/politique-de-confidentialite" className="text-primary hover:underline">
+              <Link href="/politique-de-confidentialite" className="text-primary">
                 Politique de cookies
               </Link>
               .
@@ -240,13 +240,13 @@ export default function MentionsLegalesPage() {
         {/* Liens utiles */}
         <section className="mt-12 pt-8 border-t border-white/20">
           <div className="flex flex-wrap gap-4">
-            <Link href="/politique-de-confidentialite" className="text-primary hover:underline">
+            <Link href="/politique-de-confidentialite" className="text-primary">
               Politique de confidentialité
             </Link>
-            <Link href="/contact" className="text-primary hover:underline">
+            <Link href="/contact" className="text-primary">
               Contact
             </Link>
-            <Link href="/plan-du-site" className="text-primary hover:underline">
+            <Link href="/plan-du-site" className="text-primary">
               Plan du site
             </Link>
           </div>

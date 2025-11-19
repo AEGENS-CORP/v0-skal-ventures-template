@@ -20,6 +20,15 @@ export const Header = () => {
             <Logo className="w-[180px] sm:w-[240px] lg:w-[280px] transition-all hover:scale-105 duration-700 ease-out" />
           </Link>
 
+          <div className="hidden sm:flex items-center gap-4">
+            <PhoneLink
+              phoneNumber="+33745103015"
+              displayNumber="07 45 10 30 15"
+              className="text-sm sm:text-base lg:text-lg font-bold text-green-400 hover:text-green-300 transition-all duration-300 whitespace-nowrap flex items-center gap-2 px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 lg:py-2.5 bg-green-500/10 rounded-lg border-2 border-green-500/50 hover:border-green-400 hover:bg-green-500/20 hover:scale-105 shadow-lg"
+              showIcon
+            />
+          </div>
+
           <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
             {primaryNav.map((item, index) => {
               const isContact = item.label === "Contact"
@@ -51,15 +60,6 @@ export const Header = () => {
                 </div>
               )
             })}
-            
-            <div className="animate-in fade-in duration-1000" style={{ animationDelay: '600ms' }}>
-              <PhoneLink
-                phoneNumber="+33745103015"
-                displayNumber="07 45 10 30 15"
-                className="text-base font-bold text-green-400 hover:text-green-300 transition-colors duration-300 whitespace-nowrap flex items-center gap-2 px-4 py-2 bg-green-500/10 rounded-lg border border-green-500/30 hover:border-green-500/50 hover:bg-green-500/20"
-                showIcon
-              />
-            </div>
           </nav>
 
           <div className="lg:hidden animate-in fade-in duration-1000 delay-300">

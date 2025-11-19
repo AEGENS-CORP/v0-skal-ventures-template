@@ -2,7 +2,7 @@ import { SimplePageLayout } from "@/components/simple-page-layout"
 import { createPageMetadata } from "@/lib/metadata"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { CheckCircle2, Users, Target, Clock, Shield, Zap, TrendingUp } from "lucide-react"
+import { CheckCircle2, Users, Target, Clock, Shield, Zap, TrendingUp } from 'lucide-react'
 
 export const metadata = createPageMetadata({
   title: "Vente et gestion — Du premier contact à l'exploitation",
@@ -50,7 +50,7 @@ export default function VenteGestionPage() {
                 <h3 className="text-xl font-semibold mb-2">Audit & cadrage</h3>
                 <p className="text-white/70">
                   Visite terrain. Baseline et KPI. Risques. Hypothèses. Note de cadrage 3–5 pages sous 48 h.{" "}
-                  <Link href="/contact" className="text-primary hover:underline">
+                  <Link href="/contact" className="text-primary">
                     Sur devis
                   </Link>
                   .
@@ -153,7 +153,7 @@ export default function VenteGestionPage() {
           <div className="p-6 border border-white/10 rounded-lg bg-white/5">
             <h3 className="text-lg font-semibold mb-2">Intégration sur mesure</h3>
             <p className="text-white/70">
-              <Link href="/contact" className="text-primary hover:underline">
+              <Link href="/contact" className="text-primary">
                 Sur devis
               </Link>{" "}
               après cadrage
@@ -162,7 +162,7 @@ export default function VenteGestionPage() {
           <div className="p-6 border border-white/10 rounded-lg bg-white/5">
             <h3 className="text-lg font-semibold mb-2">Opérations managées</h3>
             <p className="text-white/70">
-              <Link href="/contact" className="text-primary hover:underline">
+              <Link href="/contact" className="text-primary">
                 Sur devis
               </Link>{" "}
               avec SLO/SLA
@@ -269,7 +269,7 @@ export default function VenteGestionPage() {
           <h2 className="text-2xl font-bold">Planifier une visite sur site</h2>
           <p className="text-white/70 max-w-2xl mx-auto">
             On observe. On mesure. Vous décidez avec un{" "}
-            <Link href="/contact" className="text-primary hover:underline">
+            <Link href="/contact" className="text-primary">
               plan et un devis
             </Link>{" "}
             sous 48 h.

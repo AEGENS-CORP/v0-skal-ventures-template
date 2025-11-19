@@ -88,7 +88,7 @@ export function Hero() {
           <div className="space-y-4 mb-6 max-w-2xl mx-auto">
             <p className="text-base text-muted-foreground tracking-normal font-sans">
               Visite 60–90 min.{" "}
-              <Link href="/contact" className="text-primary hover:underline font-semibold">
+              <Link href="/contact" className="text-primary font-semibold">
                 Plan d'action et devis
               </Link>{" "}
               sous 48 h.

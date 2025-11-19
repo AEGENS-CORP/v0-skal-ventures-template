@@ -2,22 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Breadcrumbs } from "@/components/breadcrumbs"
-import {
-  CheckCircle2,
-  ArrowRight,
-  Target,
-  FileText,
-  TrendingUp,
-  Shield,
-  Zap,
-  Layers,
-  Database,
-  Users,
-  Eye,
-  Workflow,
-  Settings,
-  Lock,
-} from "lucide-react"
+import { CheckCircle2, ArrowRight, Target, FileText, TrendingUp, Shield, Zap, Layers, Database, Users, Eye, Workflow, Settings, Lock } from 'lucide-react'
 import { createPageMetadata } from "@/lib/metadata"
 
 export const metadata = createPageMetadata({
@@ -99,7 +84,7 @@ export default function AuditPage() {
                 {
                   icon: <Database className="w-6 h-6" />,
                   title: "Données",
-                  desc: "Sources, qualité, fraîcheur temps r��el quand possible, traçabilité, ownership",
+                  desc: "Sources, qualité, fraîcheur temps rel quand possible, traçabilité, ownership",
                 },
                 {
                   icon: <Layers className="w-6 h-6" />,
@@ -429,7 +414,7 @@ export default function AuditPage() {
                 </AccordionTrigger>
                 <AccordionContent className="text-white/70">
                   Sur{" "}
-                  <Link href="/contact" className="text-primary hover:underline">
+                  <Link href="/contact" className="text-primary">
                     devis
                   </Link>{" "}
                   après visite de pré-qualif. Devis détaillé sous 48 h.
@@ -443,7 +428,7 @@ export default function AuditPage() {
             <h2 className="text-3xl md:text-5xl font-bold mb-6">Planifier une visite sur site</h2>
             <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto">
               Visite 60–90 min.{" "}
-              <Link href="/contact" className="text-primary hover:underline">
+              <Link href="/contact" className="text-primary">
                 Plan d'action et devis
               </Link>{" "}
               sous 48 h.
