@@ -57,8 +57,7 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
         float hash = sin(seed.x * 127.1 + seed.y * 311.7 + seed.z * 74.7) * 43758.5453;
         hash = fract(hash);
         
-        // Slow time variation (time / 10) for gentle sparkle effect
-        float slowTime = time * 1.0;
+        float slowTime = time * 0.05; // Much slower animation
         
         // Create sparkle pattern using multiple sine waves with the hash as phase offset
         float sparkle = 0.0;
@@ -75,24 +74,20 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
         float sparkleMask = sin(hash2 * 6.28318) * 0.7;
         sparkleMask += sin(hash2 * 12.56636) * 0.3;
         
-        // Only allow sparkles when mask is positive (reduces frequency by ~70%)
-        if (sparkleMask < 0.3) {
-          sparkle *= 0.05; // Heavily dampen sparkle when mask is low
+        if (sparkleMask < 0.5) {
+          sparkle *= 0.01; // More aggressive dampening
         }
         
         // Map sparkle to brightness with smooth exponential emphasis on high peaks only
         float normalizedSparkle = (sparkle + 1.0) * 0.5; // Convert [-1,1] to [0,1]
         
-        // Create smooth curve: linear for low values, exponential for high values
-        // Using pow(x, n) where n > 1 creates a curve that's nearly linear at low end, exponential at high end
-        float smoothCurve = pow(normalizedSparkle, 4.0); // High exponent = dramatic high-end emphasis
+        float smoothCurve = pow(normalizedSparkle, 2.5); // Lower exponent for smoother variation
         
         // Blend between linear (for low values) and exponential (for high values)
         float blendFactor = normalizedSparkle * normalizedSparkle; // Smooth transition weight
         float finalBrightness = mix(normalizedSparkle, smoothCurve, blendFactor);
         
-        // Map to brightness range [0.7, 2.0] - conservative range with exponential peaks
-        return 0.7 + finalBrightness * 1.3;
+        return 0.85 + finalBrightness * 0.65;
       }
 
       float sdCircle(vec2 p, float r) {

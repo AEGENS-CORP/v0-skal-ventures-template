@@ -20,7 +20,7 @@ import {
   Search,
   Check,
 } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { homepageConfig, styleConfig } from "@/config/homepage"
 
 const iconMap = {
@@ -54,12 +54,19 @@ export default function Home() {
   ]
 
   useEffect(() => {
+    let timeoutId: NodeJS.Timeout
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
+      if (timeoutId) clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        setMousePos({ x: e.clientX, y: e.clientY })
+      }, 50) // Throttle to 20fps instead of every frame
     }
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      if (timeoutId) clearTimeout(timeoutId)
+    }
   }, [])
 
   useEffect(() => {
@@ -68,10 +75,11 @@ export default function Home() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("visible")
+            observer.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.1 },
+      { threshold: 0.1, rootMargin: "50px" }, // Add rootMargin for earlier triggering
     )
 
     const elements = document.querySelectorAll(
@@ -91,14 +99,16 @@ export default function Home() {
 
   const { hero, problems, services, method, kpis, about, finalCta } = homepageConfig
 
+  const gradientStyle = useMemo(
+    () => ({
+      background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.06), transparent 40%)`,
+    }),
+    [mousePos.x, mousePos.y],
+  )
+
   return (
     <div className="relative">
-      <div
-        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-300"
-        style={{
-          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.06), transparent 40%)`,
-        }}
-      />
+      <div className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-300" style={gradientStyle} />
 
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-12 py-20 gap-0 sm:py-px my-0">
         <div className="relative z-10 w-full max-w-7xl mx-auto text-center lg:space-y-1.5 my-0 py-0">

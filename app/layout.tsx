@@ -13,6 +13,7 @@ const geistSans = Geist({
   variable: "--font-geist-sans",
   weight: ["400", "500", "600", "700"], // Only load weights we actually use
   display: "swap", // Improve FCP
+  preload: true,
 })
 
 const geistMono = Geist_Mono({
@@ -20,6 +21,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   weight: ["400", "600"], // Only load weights we actually use
   display: "swap",
+  preload: true,
 })
 
 const sourceSerif = Source_Serif_4({
@@ -27,6 +29,7 @@ const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
   weight: ["400", "600", "700"], // Only load weights we actually use
   display: "swap",
+  preload: true,
 })
 
 const CANONICAL_URL = new URL("/", BASE_URL).toString()
