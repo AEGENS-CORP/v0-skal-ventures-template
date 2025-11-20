@@ -58,7 +58,7 @@ export class SimulationMaterial extends THREE.ShaderMaterial {
         vec3 originalPos = texture2D(positions, vUv).rgb;
         
         // Use continuous time that naturally loops through sine/cosine periodicity
-        float continuousTime = uTime * uTimeScale * (6.28318530718 / uLoopPeriod);
+        float continuousTime = uTime * uTimeScale * (6.28318530718 / uLoopPeriod) * 0.5;
         
         // Scale position for noise input
         vec3 noiseInput = originalPos * uNoiseScale;
@@ -73,7 +73,7 @@ export class SimulationMaterial extends THREE.ShaderMaterial {
         if (mouseDistance < 1.0) {
           float mouseInfluence = 1.0 - smoothstep(0.0, 1.0, mouseDistance);
           vec2 mouseDirection = normalize(originalPos.xz - uMousePosition * 5.0);
-          mouseForce = mouseDirection * mouseInfluence * 0.3; // Repulsion force
+          mouseForce = mouseDirection * mouseInfluence * 0.08;
         }
         
         vec2 rippleForce = vec2(0.0);
@@ -86,13 +86,13 @@ export class SimulationMaterial extends THREE.ShaderMaterial {
           float rippleIntensity = uClickRipples[baseIndex + 3];
           
           float rippleDistance = distance(originalPos.xz, ripplePos);
-          float waveRadius = rippleAge * 4.0; // Wave travels at 4 units per second
+          float waveRadius = rippleAge * 1.8;
           
           // Create expanding wave effect
           float waveInfluence = exp(-abs(rippleDistance - waveRadius) * 2.0) * rippleIntensity;
           if (waveInfluence > 0.01) {
             vec2 rippleDirection = normalize(originalPos.xz - ripplePos);
-            rippleForce += rippleDirection * waveInfluence * 1.5;
+            rippleForce += rippleDirection * waveInfluence * 0.5;
           }
         }
         

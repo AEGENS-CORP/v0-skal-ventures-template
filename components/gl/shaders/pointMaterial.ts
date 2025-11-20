@@ -57,7 +57,7 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
         float hash = sin(seed.x * 127.1 + seed.y * 311.7 + seed.z * 74.7) * 43758.5453;
         hash = fract(hash);
         
-        float slowTime = time * 0.05; // Much slower animation
+        float slowTime = time * 0.01;
         
         // Create sparkle pattern using multiple sine waves with the hash as phase offset
         float sparkle = 0.0;
@@ -87,7 +87,7 @@ export class DofPointsMaterial extends THREE.ShaderMaterial {
         float blendFactor = normalizedSparkle * normalizedSparkle; // Smooth transition weight
         float finalBrightness = mix(normalizedSparkle, smoothCurve, blendFactor);
         
-        return 0.85 + finalBrightness * 0.65;
+        return 0.9 + finalBrightness * 0.4;
       }
 
       float sdCircle(vec2 p, float r) {

@@ -18,7 +18,7 @@ export function Particles({
   noiseIntensity = 0.5,
   timeScale = 0.5,
   pointSize = 0.5,
-  opacity = 0.5,
+  opacity = 0.25,
   planeScale = 1.0,
   useManualTime = false,
   manualTime = 0,

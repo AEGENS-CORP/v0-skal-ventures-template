@@ -13,10 +13,12 @@ import { EmailLink } from "./email-link"
 export function Footer() {
   const { setHovering } = useParticles()
 
+  const serviceLinks = primaryNav.find((item) => item.label === "Services")?.children || []
+
   return (
     <footer className="bg-black backdrop-blur-xl border-t border-white/10 relative z-10 text-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 py-16 space-y-12 relative z-10">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-100 group">
             <div className="mb-6">
               <Image src="/ae-logo.png" alt="AE Logo" width={80} height={80} />
@@ -48,6 +50,26 @@ export function Footer() {
                     </span>
                   </Link>
                 ))}
+            </div>
+          </div>
+
+          <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-250">
+            <h4 className="text-lg font-semibold">Services</h4>
+            <div className="flex flex-col gap-3 text-sm">
+              {serviceLinks.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onMouseEnter={() => setHovering(true)}
+                  onMouseLeave={() => setHovering(false)}
+                  className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
+                >
+                  <span className="relative">
+                    {item.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+                  </span>
+                </Link>
+              ))}
             </div>
           </div>
 

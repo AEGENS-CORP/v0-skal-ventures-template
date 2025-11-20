@@ -273,10 +273,10 @@ export default function EtudesDecasClientPage() {
 
                 <ul className="space-y-3 text-base sm:text-lg text-white/80">
                   {[
-                    "données clients et fournisseurs",
-                    "données financières et commerciales",
-                    "documents internes, contrats, échanges mail",
-                    "informations de production, logistique, RH",
+                    "Données clients et fournisseurs",
+                    "Données financières et commerciales",
+                    "Documents internes, contrats, échanges mail",
+                    "Informations de production, logistique, RH",
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-white/60 flex-shrink-0 mt-1" />
@@ -291,10 +291,10 @@ export default function EtudesDecasClientPage() {
 
                 <ul className="space-y-3 text-base sm:text-lg text-white/80">
                   {[
-                    "fuites de données",
-                    "perte ou corruption d'informations",
-                    "non-conformité RGPD",
-                    "perte de confiance de vos clients et partenaires",
+                    "Fuites de données",
+                    "Perte ou corruption d'informations",
+                    "Non-conformité RGPD",
+                    "Perte de confiance de vos clients et partenaires",
                   ].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <AlertTriangle className="w-5 h-5 text-white/60 flex-shrink-0 mt-1" />

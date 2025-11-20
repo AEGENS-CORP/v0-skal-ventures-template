@@ -151,7 +151,7 @@ export default function ContactPage() {
                   </Button>
 
                   <p className="text-xs md:text-sm text-white/50 text-center leading-relaxed">
-                    Réponse sous 24h en semaine. Vos données sont protégées.
+                    Réponse sous 24h jours ouvrés. Vos données sont protégées.
                   </p>
                 </form>
               </div>
