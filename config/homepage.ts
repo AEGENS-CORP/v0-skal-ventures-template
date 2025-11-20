@@ -22,7 +22,7 @@ export const homepageConfig = {
   problems: {
     title: "Problèmes que nous résolvons",
     intro: [
-      "La majorité des TPE/PME perdent chaque semaine des heures sur des tâches manuelles, des erreurs évitables et des processus inefficaces.",
+      "La majorité des TPE/PME perdent chaque semaine, des heures sur des tâches manuelles, des erreurs évitables et des processus inefficaces.",
       "Ces pertes de temps se transforment en coûts, en lenteur et en surcharge pour les équipes.",
       "Voici les problèmes les plus courants que nous éliminons :",
     ],
