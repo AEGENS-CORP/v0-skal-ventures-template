@@ -1,4 +1,4 @@
-export const SEO_INDEX_ALL = false as const
+export const SEO_INDEX_ALL = true as const
 
 export type AePage = {
   path: string
