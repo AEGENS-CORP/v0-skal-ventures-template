@@ -39,8 +39,8 @@ export function EmailLink({ email, className = "", showIcon = false }: EmailLink
       className={`relative inline-flex items-center gap-2 hover:text-yellow-400 transition-colors ${className}`}
       title={copied ? "Email copié !" : "Cliquer pour ouvrir l'email (mobile) ou copier (PC)"}
     >
-      {showIcon && <Mail className="w-4 h-4" />}
-      <span>{copied ? "✓ Copié !" : email}</span>
+      {showIcon && <Mail className="w-4 h-4 text-white" />}
+      <span className="text-sm">{copied ? "✓ Copié !" : email}</span>
     </a>
   )
 }

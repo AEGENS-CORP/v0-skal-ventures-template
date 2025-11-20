@@ -5,6 +5,8 @@ import { InteractiveLink } from "./interactive-link"
 import { NavigationDropdown } from "./navigation-dropdown"
 import { primaryNav } from "@/lib/navigation"
 import { PhoneLink } from "./phone-link"
+import { EmailLink } from "./email-link"
+import { NAP } from "@/lib/ae-content"
 
 export const Header = () => {
   const navItemsWithoutChildren = primaryNav.filter((item) => !item.children || item.children.length === 0)
@@ -17,14 +19,19 @@ export const Header = () => {
 
         <header className="flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 relative z-10">
           <Link href="/" className="flex-shrink-0 animate-in fade-in duration-1000 delay-100">
-            <Logo className="w-[180px] sm:w-[240px] lg:w-[280px] transition-all hover:scale-105 duration-700 ease-out" />
+            <Logo className="w-[140px] xs:w-[180px] sm:w-[240px] lg:w-[280px] transition-all hover:scale-105 duration-700 ease-out" />
           </Link>
 
-          <div className="hidden sm:flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-0.5 sm:gap-6 mr-2 sm:mr-0">
+            <EmailLink
+              email={NAP.email}
+              className="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70 hover:text-white transition-colors"
+              showIcon
+            />
             <PhoneLink
               phoneNumber="+33745103015"
               displayNumber="07 45 10 30 15"
-              className="text-sm sm:text-base lg:text-lg font-bold text-green-400 hover:text-green-300 transition-all duration-300 whitespace-nowrap flex items-center gap-2 px-3 sm:px-4 lg:px-5 py-1.5 sm:py-2 lg:py-2.5 bg-green-500/10 rounded-lg border-2 border-green-500/50 hover:border-green-400 hover:bg-green-500/20 hover:scale-105 shadow-lg"
+              className="text-[10px] xs:text-xs sm:text-sm font-medium text-white/70 hover:text-white transition-colors"
               showIcon
             />
           </div>

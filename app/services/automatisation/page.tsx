@@ -1,20 +1,66 @@
-import { createPageMetadata } from "@/lib/metadata"
+"use client"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Breadcrumbs } from "@/components/breadcrumbs"
-import { FileText, ShoppingCart, Package, Cog, DollarSign, Users, CheckCircle, Target, Zap, TrendingUp } from 'lucide-react'
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-
-export const metadata = createPageMetadata({
-  title: "Automatisation IA pour TPE/PME | Intégration sur mesure, résultats rapides",
-  path: "/services/automatisation",
-  description: "Automatiser ERP/CRM/compta/e-commerce. Flux fiables en temps réel. Visite terrain et devis sous 48 h.",
-})
+import {
+  FileText,
+  Cog,
+  Users,
+  CheckCircle,
+  Target,
+  Zap,
+  TrendingUp,
+  ArrowRight,
+  Mail,
+  MessageSquare,
+  FileSpreadsheet,
+  Briefcase,
+  Truck,
+} from "lucide-react"
+import { useEffect, useState } from "react"
 
 export default function AutomatisationPage() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible")
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    const elements = document.querySelectorAll(
+      ".scroll-reveal, .scroll-reveal-premium, .scroll-reveal-premium-fast, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate",
+    )
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className="min-h-screen">
-      <div className="pt-20 pb-4 px-4 sm:px-6 border-b border-white/10">
+    <div className="min-h-screen relative overflow-hidden">
+      <div
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.06), transparent 40%)`,
+        }}
+      />
+
+      <div className="pt-20 pb-4 px-4 sm:px-6 border-b border-white/10 relative z-10">
         <div className="max-w-7xl mx-auto">
           <Breadcrumbs
             items={[
@@ -26,513 +72,388 @@ export default function AutomatisationPage() {
         </div>
       </div>
 
-      {/* JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            name: "Automatisation des processus métier",
-            description:
-              "Intégration et automatisation sur mesure de flux ERP, CRM, comptabilité, e-commerce, WMS/MES et GED, avec contrôle humain et mise en production sécurisée.",
-            provider: { "@type": "LocalBusiness", name: "Skal Ventures" },
-            areaServed: ["La Roche-sur-Yon", "La Rochelle", "Niort", "Nantes", "Poitiers", "Angoulême"],
-          }),
-        }}
-      />
-
       {/* Hero Section */}
-      <section className="pt-12 md:pt-16 pb-12 md:pb-16 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="max-w-5xl">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 md:mb-8 text-balance leading-[1.1] text-center">
-              Automatisation des processus métier
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/80 mb-10 md:mb-12 leading-relaxed max-w-4xl text-center mx-auto">
-              Supprimer la ressaisie. Sécuriser les flux. Décider en temps réel.
+      <section className="relative pt-12 md:pt-20 pb-12 md:pb-20 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <div className="max-w-5xl mx-auto space-y-8">
+            <div className="opacity-0 animate-fade-in-up">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 text-balance leading-[1.1] bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">
+                Automatisation de processus métiers
+              </h1>
+            </div>
+
+            <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)] opacity-0 animate-fade-in-up animation-delay-200" />
+
+            <p className="text-lg sm:text-xl md:text-2xl text-white/80 mb-10 md:mb-12 leading-relaxed max-w-4xl mx-auto opacity-0 animate-fade-in-up animation-delay-300">
+              Rendre vos processus plus rapides, plus fiables, moins coûteux.
               <br className="hidden sm:block" />
-              <span className="block mt-2 sm:inline sm:mt-0">
-                Partenaire durable. Solutions sur mesure. Croissance et ROI.
+              <span className="block mt-4 text-white/60 text-base sm:text-lg">
+                Nous automatisons vos opérations pour réduire les tâches manuelles, sécuriser les flux et libérer du
+                temps pour l’essentiel.
               </span>
             </p>
-            <div className="flex justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="bg-white text-black hover:bg-white/90 text-base sm:text-lg px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 h-auto w-full sm:w-auto transition-all duration-300 hover:scale-[1.02] shadow-xl"
-              >
-                <Link href="/contact" className="block">
-                  <span className="font-semibold flex items-center gap-2 justify-center">
-                    <Zap className="w-5 h-5 text-yellow-400" />
-                    Planifier une visite sur site
-                  </span>
-                  <span className="block text-xs sm:text-sm font-normal mt-2 opacity-80">
-                    60–90 min. Plan d'action + devis sous 48 h.
-                  </span>
-                </Link>
-              </Button>
+
+            <div className="opacity-0 animate-fade-in-up animation-delay-400 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <div className="inline-flex items-center gap-2 sm:gap-3 px-4 py-2 sm:px-6 sm:py-3 bg-white/10 border-white/20 rounded-full backdrop-blur-sm border-2">
+                <Zap className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
+                <span className="font-medium text-white tracking-wide text-sm sm:text-base">
+                  Transformer des étapes en flux fluides
+                </span>
+              </div>
+              <Link href="/contact">
+                <Button className="rounded-full px-6 py-6 text-base font-semibold bg-white text-black hover:bg-white/90 transition-all hover:scale-105">
+                  Discuter de mon projet <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Promesse */}
-      <section className="py-12 md:py-16 px-4 sm:px-6 bg-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { icon: Zap, text: "Résultats visibles en semaines.", iconColor: "text-yellow-400" },
-              { icon: Cog, text: "Intégration à vos outils existants.", iconColor: "text-white/60" },
-              { icon: Target, text: "Mesure avant/après garantie.", iconColor: "text-white/60" },
-              { icon: Users, text: "Accompagnement long terme.", iconColor: "text-white/60" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="flex items-start gap-4 p-5 md:p-6 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
-              >
-                <item.icon
-                  className={`w-6 h-6 md:w-7 md:h-7 ${item.iconColor} group-hover:text-white/80 flex-shrink-0 mt-1 transition-colors`}
-                  strokeWidth={1.5}
-                />
-                <p className="text-base md:text-lg leading-relaxed">{item.text}</p>
-              </div>
-            ))}
+      {/* Introduction Block */}
+      <section className="py-12 px-4 sm:px-6 relative z-10">
+        <div className="max-w-4xl mx-auto text-center scroll-reveal-premium">
+          <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border-4 border-white/20 border-t-white/60 border-l-white/50 shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+            <p className="text-lg sm:text-xl text-white/80 leading-relaxed">
+              Un processus métier, c’est une suite d’étapes qui se répètent : actions, validations, échanges
+              d’informations entre personnes et outils.
+              <br />
+              <br />
+              <span className="text-white font-semibold">Notre travail :</span> transformer ces étapes en flux fluides,
+              portés par des automatisations et, lorsque c’est utile, par des briques d’IA capables de traiter des
+              tâches plus complexes.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Ce que nous automatisons */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6">
+      {/* Ce que nous automatisons le plus souvent */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-12 text-center">
-            Ce que nous automatisons
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="text-center mb-16 space-y-6 scroll-reveal-premium">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+              Ce que nous automatisons le plus souvent
+            </h2>
+            <p className="text-lg text-white/70 max-w-3xl mx-auto">
+              Nous commençons par les processus qui consomment le plus de temps et d’énergie à vos équipes, en les
+              adaptant à votre métier et à vos outils.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
+                icon: Mail,
+                title: "Mails et demandes clients",
+                desc: "Triage automatique, regroupement par sujet, détection des urgences, réponses standard, brouillons personnalisés à valider, distribution aux bonnes personnes.",
+              },
+              {
+                icon: MessageSquare,
+                title: "Support et service après-vente",
+                desc: "Création et mise à jour des tickets, reconnaissance automatique du motif, propositions de réponses, suivi des engagements, comptes-rendus après chaque échange.",
+              },
+              {
+                icon: Target,
+                title: "Prospection et vente",
+                desc: "Qualification des leads à partir des mails et formulaires, préparation de séquences d’e-mails, relances programmées, enrichissement automatique des fiches clients, résumés d’appels et de rendez-vous.",
+              },
+              {
                 icon: FileText,
-                title: "Documents & back-office",
-                items: [
-                  "Capture factures/avoirs/BL/commandes (OCR/LLM) → contrôles → compta/ERP.",
-                  "Génération devis/BL/factures à partir d'événements CRM/e-commerce.",
-                  "Classement intelligent, GED reliée aux dossiers clients/fournisseurs.",
-                ],
+                title: "Devis, commandes, facturation",
+                desc: "Pré-remplissage depuis vos bases clients et produits, contrôles de cohérence, génération des devis et factures, envoi, relances, rapprochement avec les paiements.",
               },
               {
-                icon: ShoppingCart,
-                title: "Vente & relation client",
-                items: [
-                  "Devis → commande → expédition → facture synchronisés.",
-                  "Relances pilotées (échéances, priorités, canaux).",
-                  "Aide à la réponse commerciale sur base documentaire.",
-                ],
-              },
-              {
-                icon: Package,
-                title: "Achats, stocks, supply chain",
-                items: [
-                  "Tarifs/références/stocks multi-canaux à jour.",
-                  "Réassorts et ruptures: alertes + propositions d'ordres.",
-                  "Synchronisation WMS/MES ↔ ERP.",
-                ],
+                icon: Briefcase,
+                title: "Préparation et gestion de dossiers",
+                desc: "Collecte des pièces, relances automatiques en cas de manque, vérification de complétude, application de règles métiers, génération de dossiers prêts à être transmis, mise en forme et archivage.",
               },
               {
                 icon: Cog,
-                title: "Production & opérations",
-                items: [
-                  "Orchestration d'étapes planifiées/événementielles.",
-                  "Contrôles qualité automatisés, exceptions tracées.",
-                  "Notifications ciblées aux bonnes équipes.",
-                ],
+                title: "Production, logistique et opérations internes",
+                desc: "Mise à jour des statuts, ordres de travail, planning, notifications internes, comptes-rendus d’intervention, synchronisation entre vos outils (ERP, CRM, Excel, planning…).",
               },
-              {
-                icon: DollarSign,
-                title: "Finance & administration",
-                items: [
-                  "Rapprochements simples, lettrages, pré-contrôles TVA.",
-                  "Extraction d'écritures pour reporting temps réel.",
-                  "Notes de frais: capture, règles, export compta.",
-                ],
-              },
-              {
-                icon: Users,
-                title: "Support & RH",
-                items: [
-                  "Tri/assignation des tickets, suggestions de réponses, base RAG interne.",
-                  "Onboarding/offboarding, provision d'accès, checklists automatiques.",
-                ],
-              },
-            ].map((category, i) => (
+            ].map((item, index) => (
               <div
-                key={i}
-                className="p-6 md:p-8 border border-white/10 rounded-xl bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all duration-300 group"
+                key={index}
+                className={`group relative p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-y-[-4px] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] ${index % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
-                <category.icon
-                  className="w-8 h-8 md:w-10 md:h-10 text-white/60 group-hover:text-white/80 mb-4 md:mb-6 transition-colors"
-                  strokeWidth={1.5}
-                />
-                <h3 className="text-xl md:text-2xl font-semibold mb-4 md:mb-5 leading-tight">{category.title}</h3>
-                <ul className="space-y-3">
-                  {category.items.map((item, j) => (
-                    <li key={j} className="text-white/70 text-sm md:text-base leading-relaxed flex items-start gap-3">
-                      <span className="text-white/30 mt-1.5 text-lg">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="flex flex-col gap-4">
+                  <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <item.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                    <p className="text-white/70 leading-relaxed text-sm">{item.desc}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
-          <p className="text-white/60 text-center mt-10 md:mt-12 italic text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
-            Tout est étudiable. Ces exemples ouvrent la porte. On s'adapte à vos idées et à votre contexte.
-          </p>
-        </div>
-      </section>
 
-      {/* Playbooks */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-white/5">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-12 text-center">
-            Playbooks prêts à l'emploi
-          </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6">
-            {[
-              {
-                title: "Commercial",
-                icon: <TrendingUp className="w-5 h-5 text-green-400" />,
-                desc: "Pipeline propre. Relances intelligentes. Vues marge.",
-                kpi: "KPI: délai devis, taux de transformation, cash-in.",
-              },
-              {
-                title: "Production/Logistique",
-                icon: <Zap className="w-5 h-5 text-yellow-400" />,
-                desc: "TRS, retards, ruptures. Alertes temps réel.",
-                kpi: "KPI: lead time, OTD, coûts unitaires.",
-              },
-              {
-                title: "Finance",
-                icon: <TrendingUp className="w-5 h-5 text-green-400" />,
-                desc: "DSO, écarts, prévision simple.",
-                kpi: "KPI: DSO, fiabilité clôture, variances.",
-              },
-              {
-                title: "Support/Service client",
-                icon: null,
-                desc: "SLA, base de connaissances, réponses guidées.",
-                kpi: "KPI: temps de réponse, résolution au premier contact.",
-              },
-              {
-                title: "RH/Organisation",
-                icon: null,
-                desc: "On/off-boarding, notes de frais, CR automatiques.",
-                kpi: "KPI: délais d'intégration, erreurs, conformité.",
-              },
-            ].map((playbook, i) => (
-              <div
-                key={i}
-                className="p-5 md:p-6 border border-white/10 rounded-xl bg-black/50 hover:bg-white/5 hover:border-white/20 transition-all duration-300"
-              >
-                <h3 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 leading-tight flex items-center gap-2">
-                  {playbook.title}
-                  {playbook.icon}
-                </h3>
-                <p className="text-white/70 text-sm md:text-base mb-3 md:mb-4 leading-relaxed">{playbook.desc}</p>
-                <p className="text-white/50 text-xs md:text-sm leading-relaxed">{playbook.kpi}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Résultats attendus */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 text-center flex items-center justify-center gap-3">
-            <TrendingUp className="w-10 h-10 text-green-400" />
-            Résultats attendus
-          </h2>
-          <div className="bg-white/5 border border-white/10 rounded-xl p-6 md:p-8 lg:p-10 hover:bg-white/[0.07] transition-colors">
-            <p className="text-base md:text-lg lg:text-xl mb-6 md:mb-8 leading-relaxed">
-              Objectifs chiffrés fixés au cadrage. Mesure avant/après incluse.
-              <br className="hidden sm:block" />
-              <span className="block mt-2 sm:inline sm:mt-0 text-white/70">
-                Focales: temps de saisie, taux d'erreurs, délais de traitement, disponibilité d'indicateurs temps réel.
-              </span>
-            </p>
-            <div className="space-y-4 md:space-y-5">
-              <p className="font-semibold text-white/90 text-base md:text-lg">
-                Repères marché (indicatifs, non contractuels)
+          <div className="text-center mt-12 scroll-reveal-premium transition-delay-500">
+            <div className="inline-block p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 backdrop-blur-sm">
+              <p className="text-white/90 font-medium">
+                Chaque automatisation est conçue sur mesure, capable de suivre la logique réelle de votre métier et de
+                gérer des tâches à la fois répétitives et plus intelligentes.
               </p>
-              <ul className="space-y-3 md:space-y-4 text-white/70 text-sm md:text-base">
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <span className="text-white/30 mt-1 text-lg">•</span>
-                  <span>Automatisation ciblée: gains de productivité constatés sur tâches répétitives.</span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <span className="text-white/30 mt-1 text-lg">•</span>
-                  <span>Assistants documentaires: réduction notable des temps de recherche/rédaction.</span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <span className="text-white/30 mt-1 text-lg">•</span>
-                  <span>Pilotage temps réel: baisse mesurable des retards et écarts opérationnels.</span>
-                </li>
-              </ul>
-              <p className="text-xs md:text-sm text-white/50 italic mt-4 md:mt-6">(Sources sectorielles 2023–2024.)</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Méthode - Timeline */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-white/5">
+      {/* Ce que nos automatisations savent faire */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 relative z-10 bg-white/5">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 md:mb-12 text-center">Méthode</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
+          <div className="text-center mb-16 space-y-6 scroll-reveal-premium">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+              Ce que nos automatisations savent faire (avec et sans IA)
+            </h2>
+            <p className="text-lg text-white/70 max-w-3xl mx-auto">
+              Nous combinons règles métier classiques et IA pour traiter aussi bien des cas simples que des situations
+              plus nuancées.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              {
+                title: "Appliquer vos règles métier sans oubli",
+                desc: "Si [condition] alors [action] : contrôles, validations, routage, notifications, mises à jour d’outils.",
+                icon: CheckCircle,
+              },
+              {
+                title: "Lire, comprendre et traiter du texte",
+                desc: "Analyse de mails, demandes, comptes-rendus, pièces jointes : extraction d’informations clés, classement par type de demande, préparation de réponses alignées avec vos pratiques.",
+                icon: FileText,
+              },
+              {
+                title: "Générer des documents et contenus structurés",
+                desc: "Devis, réponses clients, comptes-rendus, modèles de mails, dossiers pré-remplis, toujours conformes à vos modèles internes.",
+                icon: FileSpreadsheet,
+              },
+              {
+                title: "Orchestrer des enchaînements complexes",
+                desc: "Plusieurs étapes, plusieurs outils, plusieurs intervenants : le workflow suit le dossier de bout en bout, sans perte d’information et avec un historique clair.",
+                icon: TrendingUp,
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="flex gap-6 p-6 bg-black/33 rounded-2xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 transition-all duration-500 scroll-reveal-scale"
+                style={{ transitionDelay: `${index * 150}ms` }}
+              >
+                <div className="flex-shrink-0">
+                  <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center text-white">
+                    <item.icon className="w-7 h-7" />
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                  <p className="text-white/70 leading-relaxed">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-12 scroll-reveal-premium">
+            <p className="text-white/80 text-lg font-medium">
+              Pour les équipes, le fonctionnement reste simple : le processus se lance, avance étape par étape, et vous
+              gardez la main sur les décisions importantes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Ce que l’automatisation change pour vous */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 space-y-6 scroll-reveal-premium">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+              Ce que l’automatisation change pour vous
+            </h2>
+            <p className="text-lg text-white/70 max-w-3xl mx-auto">
+              L’objectif n’est pas “faire de l’IA”, mais gagner des heures et fiabiliser l’exécution au quotidien.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                stat: "Temps",
+                title: "Temps récupéré sur chaque dossier",
+                desc: "Moins de copier-coller, moins de re-saisies, moins de suivis manuels. Le temps est réinvesti sur la relation client, la production et les décisions.",
+              },
+              {
+                stat: "Fiabilité",
+                title: "Moins d’erreurs, moins de retards",
+                desc: "Contrôles systématiques, rappels automatiques, statuts à jour. Les oublis, doublons et erreurs de manipulation diminuent nettement.",
+              },
+              {
+                stat: "Vision",
+                title: "Plus de maîtrise sur l’activité",
+                desc: "Vue claire sur les dossiers en cours, les priorités, les blocages. Vous savez où en est chaque demande sans chercher dans les mails ou les fichiers.",
+              },
+              {
+                stat: "Scale",
+                title: "Plus de volume sans recruter",
+                desc: "Les mêmes équipes peuvent traiter plus de dossiers, avec plus de régularité et moins de tension opérationnelle.",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="group relative p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:scale-105 text-center overflow-hidden shadow-[0_0_20px_rgba(255,255,255,0.1)] scroll-reveal-rotate"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="text-sm font-bold text-white/50 uppercase tracking-wider mb-4">{item.stat}</div>
+                <h3 className="text-lg font-bold text-white mb-3 leading-tight">{item.title}</h3>
+                <p className="text-white/70 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Comment nous travaillons sur vos processus */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 relative z-10 bg-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16 space-y-6 scroll-reveal-premium">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+              Comment nous travaillons sur vos processus
+            </h2>
+            <p className="text-lg text-white/70 max-w-3xl mx-auto">
+              Nous partons de votre réalité terrain, pas d’un modèle théorique.
+            </p>
+          </div>
+
+          <div className="space-y-6 max-w-5xl mx-auto">
             {[
               {
                 num: "1",
-                title: "Visite terrain",
-                desc: "60–90 min — flux, volumes, exceptions, accès.",
+                title: "Cartographie rapide des processus clés",
+                desc: "Repérage des étapes, des volumes, des règles, des points de friction et des outils utilisés (mails, fichiers, logiciels, échanges internes).",
               },
               {
                 num: "2",
-                title: "Cadrage ≤ 48 h",
-                desc: "Objectifs, KPI, jalons, responsabilités, risques.",
+                title: "Sélection des cas à plus fort impact",
+                desc: "Priorisation de 2 à 4 processus : ceux qui consomment le plus de temps ou créent le plus de risques (retards, erreurs, insatisfaction client).",
               },
               {
                 num: "3",
-                title: "Pilote 30 jours",
-                desc: "Un flux automatisé en conditions réelles. Démos hebdo 20 min.",
+                title: "Conception et déploiement des automatisations",
+                desc: "Construction des workflows, connexion à vos outils, intégration de l’IA lorsqu’elle apporte un gain net, tests sur des cas réels avec vos équipes.",
               },
               {
                 num: "4",
-                title: "Mise en production",
-                desc: "Bascule progressive, formation, runbook, reprise.",
+                title: "Suivi, ajustements et extension",
+                desc: "Mesure des gains, corrections, puis extension progressive à d’autres tâches, d’autres services ou d’autres sites.",
               },
-              {
-                num: "5",
-                title: "Opérations managées",
-                desc: "Supervision, petites évolutions, revues régulières.",
-              },
-            ].map((step, i) => (
-              <div key={i} className="relative group">
-                <div className="bg-gradient-to-br from-white/15 to-white/5 rounded-2xl w-14 h-14 md:w-16 md:h-16 flex items-center justify-center text-xl md:text-2xl font-bold mb-4 md:mb-6 border border-white/20 group-hover:scale-110 transition-transform duration-300">
+            ].map((step, index) => (
+              <div
+                key={index}
+                className={`group relative flex items-start gap-6 p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] ${index % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"}`}
+                style={{ transitionDelay: `${index * 120}ms` }}
+              >
+                <div className="flex-shrink-0 w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center text-white mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 text-3xl font-bold border border-white/20">
                   {step.num}
                 </div>
-                <h3 className="text-lg md:text-xl font-semibold mb-2 md:mb-3 leading-tight">{step.title}</h3>
-                <p className="text-sm md:text-base text-white/70 leading-relaxed">{step.desc}</p>
+                <div className="flex-1 space-y-2 pt-2">
+                  <h3 className="text-xl font-bold text-white">{step.title}</h3>
+                  <p className="text-white/70 leading-relaxed">{step.desc}</p>
+                </div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Livrables & Prérequis */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6">
+      {/* Adapté à tout métier, sur mesure */}
+      <section className="py-16 md:py-24 px-4 sm:px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
-            <div className="bg-white/5 border border-white/10 rounded-xl p-6 md:p-8 lg:p-10 hover:bg-white/[0.07] transition-colors">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center">Livrables</h2>
-              <ul className="space-y-4 md:space-y-5 text-white/70 text-sm md:text-base">
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-white/50 flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <span>Mapping des champs et spec courte du flux.</span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-white/50 flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <span>Schéma "avant → après" + points de contrôle.</span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-white/50 flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <span>Checklists de validation humaine.</span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-white/50 flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <span>Runbook d'exploitation + modes opératoires.</span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-white/50 flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                  <span>Plan de mesure + tableau de suivi des KPI.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white/5 border border-white/10 rounded-xl p-6 md:p-8 lg:p-10 hover:bg-white/[0.07] transition-colors">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-center">Prérequis</h2>
-              <p className="text-white/70 leading-relaxed text-sm md:text-base lg:text-lg">
-                Accès lecture/écriture, échantillons de données, référent métier disponible, règles d'exception
-                clarifiées.
-              </p>
-            </div>
+          <div className="text-center mb-16 space-y-6 scroll-reveal-premium">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+              Adapté à tout métier, sur mesure
+            </h2>
+            <p className="text-lg text-white/70 max-w-3xl mx-auto">
+              Nos automatisations s’adaptent à votre secteur, à vos contraintes et à votre niveau de maturité digitale.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Intégrations */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-white/5">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 text-center">
-            Intégrations (exemples)
-          </h2>
-          <p className="text-white/70 mb-6 md:mb-8 text-base md:text-lg lg:text-xl leading-relaxed">
-            n8n · Odoo · Sage · EBP · Cegid · HubSpot · Pipedrive · Salesforce · Shopify · PrestaShop · WooCommerce ·
-            Google Workspace · Microsoft 365 · Slack · Teams · outils ITSM et GED.
-          </p>
-          <p className="text-white/50 italic text-sm md:text-base">Agnostiques. Pas de verrou inutile.</p>
-        </div>
-      </section>
-
-      {/* Sécurité & Gouvernance */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-10 lg:gap-12 mb-12">
-            <div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 md:mb-6 lg:mb-8 text-center lg:text-left">
-                Sécurité & conformité
-              </h2>
-              <div className="space-y-4 md:space-y-5 text-white/70 text-sm md:text-base leading-relaxed">
-                <p>
-                  Accès par rôles. Journaux. Cloisonnement environnements. Hébergement UE possible. DPA/RGPD sur
-                  demande.
-                </p>
-                <p>Procédure de reprise et réversibilité prévues.</p>
+          <div className="grid sm:grid-cols-2 gap-6 mb-12">
+            {[
+              {
+                title: "Services clients, ADV, SAV",
+                desc: "Demandes, réclamations, retours, garanties, suivi des engagements.",
+                icon: Users,
+              },
+              {
+                icon: Target,
+                title: "Commerciaux, marketing, prospection",
+                desc: "Leads, opportunités, relances, préparation d’offres et de dossiers.",
+              },
+              {
+                icon: FileText,
+                title: "Back-office, administratif, finances",
+                desc: "Dossiers clients/fournisseurs, commandes, factures, contrats, contrôles.",
+              },
+              {
+                icon: Truck,
+                title: "Opérations, logistique, production, services sur site",
+                desc: "Planning, interventions, traçabilité, mise à jour des systèmes après chaque action.",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 transition-all duration-500 scroll-reveal-scale"
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                    <item.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white">{item.title}</h3>
+                </div>
+                <p className="text-white/70">{item.desc}</p>
               </div>
-            </div>
-
-            <div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-5 md:mb-6 lg:mb-8 text-center lg:text-left">
-                Gouvernance
-              </h2>
-              <ul className="space-y-3 md:space-y-4 text-white/70 text-sm md:text-base">
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <span className="text-white/30 mt-1 text-lg">•</span>
-                  <span>Onboarding 2–4 semaines selon périmètre.</span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <span className="text-white/30 mt-1 text-lg">•</span>
-                  <span>Revue delivery hebdo.</span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <span className="text-white/30 mt-1 text-lg">•</span>
-                  <span>Support: prise en compte &lt; J+1, escalade bloquante &lt; H4.</span>
-                </li>
-                <li className="flex items-start gap-3 md:gap-4 leading-relaxed">
-                  <span className="text-white/30 mt-1 text-lg">•</span>
-                  <span>Dashboard partagé: avancement, risques, KPI.</span>
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
-        </div>
-      </section>
 
-      {/* Zone d'intervention */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-white/5">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 md:mb-8 text-center">Zone d'intervention</h2>
-          <p className="text-base md:text-lg lg:text-xl text-white/70 mb-4 md:mb-6 leading-relaxed">
-            Visites sur site dans un rayon ~2 h. À distance au-delà.
-          </p>
-          <p className="text-white/80 text-sm md:text-base leading-relaxed">
-            Adresse: 18 Rue Ampère, ZI La Folie Sud, 85310 La Chaize-le-Vicomte · Tél:{" "}
-            <Link href="tel:0745103015" className="hover:text-white transition-colors font-sans">
-              07 45 10 30 15
-            </Link>
-          </p>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 md:mb-12 text-center">FAQ</h2>
-          <Accordion type="single" collapsible className="space-y-4 md:space-y-5">
-            <AccordionItem
-              value="item-1"
-              className="border border-white/10 rounded-xl px-5 md:px-6 bg-white/5 hover:bg-white/[0.07] transition-colors"
-            >
-              <AccordionTrigger className="text-base md:text-lg font-semibold hover:no-underline py-5 md:py-6">
-                Faut-il changer d'outils ?
-              </AccordionTrigger>
-              <AccordionContent className="text-white/70 text-sm md:text-base leading-relaxed pb-5 md:pb-6">
-                Non par défaut. On connecte l'existant.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem
-              value="item-2"
-              className="border border-white/10 rounded-xl px-5 md:px-6 bg-white/5 hover:bg-white/[0.07] transition-colors"
-            >
-              <AccordionTrigger className="text-base md:text-lg font-semibold hover:no-underline py-5 md:py-6">
-                Quand un premier résultat ?
-              </AccordionTrigger>
-              <AccordionContent className="text-white/70 text-sm md:text-base leading-relaxed pb-5 md:pb-6">
-                Pilote typique ≈ 30 jours selon périmètre et accès.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem
-              value="item-3"
-              className="border border-white/10 rounded-xl px-5 md:px-6 bg-white/5 hover:bg-white/[0.07] transition-colors"
-            >
-              <AccordionTrigger className="text-base md:text-lg font-semibold hover:no-underline py-5 md:py-6">
-                Et sans API ?
-              </AccordionTrigger>
-              <AccordionContent className="text-white/70 text-sm md:text-base leading-relaxed pb-5 md:pb-6">
-                Automatisation assistée (RPA léger) + validation humaine + reprise prévue.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem
-              value="item-4"
-              className="border border-white/10 rounded-xl px-5 md:px-6 bg-white/5 hover:bg-white/[0.07] transition-colors"
-            >
-              <AccordionTrigger className="text-base md:text-lg font-semibold hover:no-underline py-5 md:py-6">
-                Comment suivez-vous la performance ?
-              </AccordionTrigger>
-              <AccordionContent className="text-white/70 text-sm md:text-base leading-relaxed pb-5 md:pb-6">
-                KPI cadrés, mesure avant/après, tableau de bord partagé.
-              </AccordionContent>
-            </AccordionItem>
-
-            <AccordionItem
-              value="item-5"
-              className="border border-white/10 rounded-xl px-5 md:px-6 bg-white/5 hover:bg-white/[0.07] transition-colors"
-            >
-              <AccordionTrigger className="text-base md:text-lg font-semibold hover:no-underline py-5 md:py-6">
-                Et la confidentialité ?
-              </AccordionTrigger>
-              <AccordionContent className="text-white/70 text-sm md:text-base leading-relaxed pb-5 md:pb-6">
-                DPA/RGPD sur demande, accès minimaux, hébergement UE possible.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <div className="text-center scroll-reveal-premium transition-delay-500">
+            <p className="text-white/90 text-lg font-medium">
+              La logique est toujours la même : partir de vos processus, construire du sur-mesure, et viser un retour
+              mesurable en temps gagné et en fiabilité.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* CTA Final */}
-      <section className="py-16 md:py-20 lg:py-24 px-4 sm:px-6 bg-gradient-to-br from-white/10 via-white/5 to-transparent">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 md:mb-8 text-balance leading-tight flex items-center justify-center gap-3">
-            <Zap className="w-12 h-12 text-yellow-400" />
-            Planifier une visite sur site
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-8 md:mb-10 lg:mb-12 leading-relaxed max-w-2xl mx-auto">
-            Nous venons, nous cadrons, vous décidez avec un plan et un{" "}
-            <Link href="/contact" className="underline hover:text-white transition-colors font-semibold">
-              devis
-            </Link>{" "}
-            sous 48 h.
-          </p>
-          <Button
-            asChild
-            size="lg"
-            className="bg-white text-black hover:bg-white/90 text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 lg:px-16 py-5 sm:py-6 md:py-7 lg:py-8 h-auto hover:scale-105 transition-all duration-300 shadow-2xl w-full sm:w-auto"
-          >
-            <Link href="/contact">Prendre contact</Link>
-          </Button>
-        </div>
+      <section className="py-16 md:py-24 px-4 sm:px-6 relative z-10">
+        <Link href="/contact" className="block">
+          <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] lg:px-2.5 animate-reveal-border-glow-premium max-w-5xl mx-auto cursor-pointer group lg:py-6">
+            <div className="mb-8 sm:mb-0">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] mb-6">
+                Recevez un diagnostic de vos processus
+              </h2>
+              <p className="text-lg sm:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+                En moins de 48h, nous analysons vos principaux processus, estimons les gains possibles (temps, erreurs,
+                capacité) et proposons un plan d’automatisation adapté à votre entreprise.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 justify-center">
+              <Button
+                size="lg"
+                className="group-hover:scale-105 transition-all duration-500 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] bg-white text-black hover:bg-white/90 h-auto px-8 py-5 sm:px-10 sm:py-6 md:px-12 md:py-7 text-base sm:text-lg font-bold rounded-lg"
+              >
+                <span className="relative z-10 flex items-center gap-2 sm:gap-3">
+                  Demandez votre diagnostic
+                  <ArrowRight className="w-4 h-4 sm:w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                </span>
+              </Button>
+            </div>
+          </div>
+        </Link>
       </section>
     </div>
   )

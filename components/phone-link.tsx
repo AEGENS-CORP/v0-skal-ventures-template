@@ -3,7 +3,7 @@
 import type React from "react"
 
 import { useState } from "react"
-import { Phone } from "lucide-react"
+import { Phone } from 'lucide-react'
 
 interface PhoneLinkProps {
   phoneNumber: string
@@ -35,6 +35,14 @@ export function PhoneLink({ phoneNumber, displayNumber, className = "", showIcon
   const display = displayNumber || phoneNumber
 
   return (
-    null
+    <a
+      href={`tel:${cleanPhoneNumber}`}
+      onClick={handleClick}
+      className={`relative inline-flex items-center gap-2 hover:text-yellow-400 transition-colors text-white ${className}`}
+      title={copied ? "Numéro copié !" : "Appeler"}
+    >
+      {showIcon && <Phone className="w-4 h-4" />}
+      <span className="text-sm">{copied ? "✓ Copié !" : display}</span>
+    </a>
   )
 }

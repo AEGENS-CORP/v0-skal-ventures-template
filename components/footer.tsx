@@ -23,8 +23,9 @@ export function Footer() {
             </div>
             <h3 className="text-2xl font-semibold transition-all duration-500">{NAP.name}</h3>
             <p className="text-white/70 text-sm leading-relaxed transition-colors duration-500 group-hover:text-white/90">
-              Studio d&#39;experts en IA basé en Vendée. Nous accompagnons les entreprises dans leur transformation
-              digitale avec des solutions IA sur mesure.
+              {
+                "Solutions d’ingénierie IA et d’automatisation sur mesure pour TPE/PME.\nNous aidons les entreprises à éliminer leurs tâches répétitives, gagner en productivité et obtenir un ROI rapide grâce à des systèmes IA adaptés à leur activité."
+              }
             </p>
           </div>
 
@@ -53,20 +54,22 @@ export function Footer() {
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
             <h4 className="text-lg font-semibold">Plus</h4>
             <div className="flex flex-col gap-3 text-sm">
-              {plusNavItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onMouseEnter={() => setHovering(true)}
-                  onMouseLeave={() => setHovering(false)}
-                  className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
-                >
-                  <span className="relative">
-                    {item.label}
-                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-                  </span>
-                </Link>
-              ))}
+              {plusNavItems
+                .filter((item) => !["Mentions légales", "Politique de confidentialité"].includes(item.label))
+                .map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onMouseEnter={() => setHovering(true)}
+                    onMouseLeave={() => setHovering(false)}
+                    className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
+                  >
+                    <span className="relative">
+                      {item.label}
+                      <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
+                    </span>
+                  </Link>
+                ))}
             </div>
           </div>
 

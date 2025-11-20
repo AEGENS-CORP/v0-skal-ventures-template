@@ -329,6 +329,73 @@ a:active {
   }
 }
 
+@keyframes line-draw-premium {
+  from {
+    stroke-dashoffset: 1000;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes reveal-scale-premium {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes reveal-slide-left-premium {
+  from {
+    opacity: 0;
+    transform: translateX(-50px) rotateY(-15deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotateY(0);
+  }
+}
+
+@keyframes reveal-slide-right-premium {
+  from {
+    opacity: 0;
+    transform: translateX(50px) rotateY(15deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotateY(0);
+  }
+}
+
+@keyframes reveal-fade-up-premium {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes reveal-border-glow-premium {
+  0% {
+    box-shadow: 0 0 0px rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 1s ease-out forwards;
   opacity: 0;
@@ -422,6 +489,36 @@ a:active {
   animation: workflow-packet-simple-horizontal 4s ease-in-out infinite;
 }
 
+.animate-line-draw-premium {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: line-draw-premium 2s ease-out forwards;
+}
+
+.animate-reveal-scale-premium {
+  animation: reveal-scale-premium 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+.animate-reveal-slide-left-premium {
+  animation: reveal-slide-left-premium 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.animate-reveal-slide-right-premium {
+  animation: reveal-slide-right-premium 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.animate-reveal-fade-up-premium {
+  animation: reveal-fade-up-premium 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.animate-reveal-border-glow-premium {
+  animation: reveal-border-glow-premium 1.5s ease-out forwards;
+}
+
 .animation-delay-100 {
   animation-delay: 100ms;
 }
@@ -464,6 +561,82 @@ a:active {
   opacity: 1;
   transform: translateY(0);
 }
+
+.scroll-reveal-premium {
+  opacity: 0;
+  transform: translateY(60px) scale(0.95);
+  filter: blur(3px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal-premium.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.scroll-reveal-premium-fast {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-reveal-premium-fast.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Adding varied scroll reveal animations */
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  filter: blur(2px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  filter: blur(2px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+  filter: blur(0);
+}
+
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: scale(0.9);
+  filter: blur(2px);
+  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+.scroll-reveal-rotate {
+  opacity: 0;
+  transform: perspective(1000px) rotateX(10deg) translateY(30px);
+  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal-rotate.visible {
+  opacity: 1;
+  transform: perspective(1000px) rotateX(0) translateY(0);
+}
+/* </CHANGE> */
 
 ::-webkit-scrollbar {
   width: 8px;

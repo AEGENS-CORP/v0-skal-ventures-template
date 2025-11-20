@@ -21,6 +21,7 @@ export function ParticleProvider({ children }: { children: ReactNode }) {
   const [backgroundClickProgress, setBackgroundClickProgress] = useState(0)
   const backgroundClickTimeoutRef = useRef<NodeJS.Timeout | null>(null)
   const animationFrameRef = useRef<number | null>(null)
+  const [isHoveringInteractive, setIsHoveringInteractive] = useState(false)
 
   const easeOutCubic = (t: number): number => {
     return 1 - Math.pow(1 - t, 3)
@@ -38,7 +39,7 @@ export function ParticleProvider({ children }: { children: ReactNode }) {
     setHovering(true)
 
     const startTime = Date.now()
-    const duration = 1000 // Reduced duration to 1 second
+    const duration = 1000
 
     const animate = () => {
       const elapsed = Date.now() - startTime
@@ -59,12 +60,66 @@ export function ParticleProvider({ children }: { children: ReactNode }) {
     animationFrameRef.current = requestAnimationFrame(animate)
   }
 
+  const maintainHoverEffect = (position: { x: number; y: number }) => {
+    setBackgroundClickCenter(position)
+    setBackgroundClickProgress(1) // Keep at full intensity
+    setHovering(true)
+  }
+
+  const fadeOutHoverEffect = () => {
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current)
+    }
+
+    const startProgress = backgroundClickProgress
+    const startTime = Date.now()
+    const duration = 500 // Fade out over 500ms
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      
+      setBackgroundClickProgress(startProgress * (1 - progress))
+
+      if (progress < 1) {
+        animationFrameRef.current = requestAnimationFrame(animate)
+      } else {
+        setHovering(false)
+        setBackgroundClickCenter(null)
+        setBackgroundClickProgress(0)
+      }
+    }
+
+    animationFrameRef.current = requestAnimationFrame(animate)
+  }
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({
+      const newPosition = {
         x: (e.clientX / window.innerWidth) * 2 - 1,
         y: -(e.clientY / window.innerHeight) * 2 + 1,
-      })
+      }
+      setMousePosition(newPosition)
+
+      const target = e.target as HTMLElement
+      const isInteractive = target.closest(
+        'button, a, input, textarea, select, [role="button"], [tabindex], .hover-card',
+      )
+
+      if (isInteractive) {
+        if (!isHoveringInteractive) {
+          setIsHoveringInteractive(true)
+          maintainHoverEffect(newPosition)
+        } else {
+          // Update position while hovering
+          maintainHoverEffect(newPosition)
+        }
+      } else {
+        if (isHoveringInteractive) {
+          setIsHoveringInteractive(false)
+          fadeOutHoverEffect()
+        }
+      }
     }
 
     const handleClick = (e: MouseEvent) => {
@@ -147,7 +202,7 @@ export function ParticleProvider({ children }: { children: ReactNode }) {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
-  }, [])
+  }, [isHoveringInteractive, backgroundClickProgress])
 
   return (
     <ParticleContext.Provider
