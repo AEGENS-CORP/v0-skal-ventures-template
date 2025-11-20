@@ -31,7 +31,7 @@ export default function SitemapPage() {
               href="/etudes-de-cas"
               className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
             >
-              Études de cas
+              Sécurité & conformité
             </Link>
             <Link
               href="/contact"
@@ -63,25 +63,25 @@ export default function SitemapPage() {
                 href="/services/assistant-ia-metier"
                 className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
               >
-                Assistant IA Métier
+                Assistants métier IA & RAG
               </Link>
               <Link
                 href="/services/analyse-reporting"
                 className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
               >
-                Analyse & Reporting
+                Tableaux de bord & KPIs
               </Link>
               <Link
                 href="/services/audit"
                 className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
               >
-                Audit
+                Audit, cartographie & diagnostic
               </Link>
               <Link
                 href="/services/vente-gestion"
                 className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
               >
-                Vente / Gestion
+                Croissance commerciale & présence digitale
               </Link>
             </div>
           </div>

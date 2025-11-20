@@ -17,7 +17,7 @@ export const Header = () => {
       <div className="bg-black/60 backdrop-blur-xl border-b border-white/10 animate-in slide-in-from-top duration-1000 ease-out relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent"></div>
 
-        <header className="flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 relative z-10">
+        <header className="flex items-center justify-between max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10 lg:px-2.5">
           <Link href="/" className="flex-shrink-0 animate-in fade-in duration-1000 delay-100">
             <Logo className="w-[140px] xs:w-[180px] sm:w-[240px] lg:w-[280px] transition-all hover:scale-105 duration-700 ease-out" />
           </Link>

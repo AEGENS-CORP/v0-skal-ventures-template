@@ -1,448 +1,469 @@
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Breadcrumbs } from "@/components/breadcrumbs"
-import { CheckCircle2, ArrowRight, Target, FileText, TrendingUp, Shield, Zap, Layers, Database, Users, Eye, Workflow, Settings, Lock } from 'lucide-react'
-import { createPageMetadata } from "@/lib/metadata"
+import {
+  CheckCircle2,
+  ArrowRight,
+  Target,
+  Users,
+  Eye,
+  TrendingUp,
+  FileText,
+  ShieldCheck,
+  Clock,
+  Zap,
+  BarChart3,
+} from "lucide-react"
+import { useEffect, useState } from "react"
 
-export const metadata = createPageMetadata({
-  title: "Audit 360° processus, SI et données | Plan d'action 90/180/360 jours",
-  description:
-    "Audit sur site en 5 jours. Cartographie complète, priorités ROI, roadmap exécutable et KPI. Visite de pré-qualif et devis sous 48 h.",
-  path: "/services/audit",
-})
+const iconMap = {
+  Target,
+  Users,
+  Eye,
+  TrendingUp,
+  FileText,
+  ShieldCheck,
+  Clock,
+  Zap,
+  BarChart3,
+  CheckCircle2,
+}
 
 export default function AuditPage() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible")
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    const elements = document.querySelectorAll(
+      ".scroll-reveal, .scroll-reveal-premium, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate",
+    )
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className="min-h-screen">
-      <div className="pt-20 pb-4 px-4 sm:px-6 border-b border-white/10">
+    <div className="min-h-screen relative">
+      {/* Animated background that follows mouse */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.06), transparent 40%)`,
+        }}
+      />
+
+      <div className="pt-20 pb-4 px-4 sm:px-6 border-b border-white/10 relative z-10">
         <div className="max-w-7xl mx-auto">
           <Breadcrumbs
-            items={[{ label: "Accueil", href: "/" }, { label: "Services", href: "/services" }, { label: "Audit 360°" }]}
+            items={[
+              { label: "Accueil", href: "/" },
+              { label: "Services", href: "/services" },
+              { label: "Audit, cartographie & diagnostic" },
+            ]}
           />
         </div>
       </div>
 
       <main className="relative z-10">
-        <section className="relative pt-16 md:pt-20">
-          <div className="max-w-5xl mx-auto px-6 py-12 md:py-16 text-center">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white">
-              Audit 360° — Processus, systèmes, données, supply chain
+        {/* Hero Section */}
+        <section className="relative pt-16 md:pt-20 px-4 sm:px-6">
+          <div className="max-w-5xl mx-auto py-12 md:py-16 text-center scroll-reveal-premium">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+              Audit, cartographie & diagnostic des processus
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
-              Une vision claire en 5 jours. Des priorités nettes. Un plan d'exécution réaliste.
-              <br />
-              Intégration sur mesure. Décisions rapides. ROI piloté.
+            <p className="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
+              Voir clair avant d'automatiser. Nous analysons vos processus, vos outils et vos flux pour savoir
+              exactement où vous perdez du temps, où vous prenez des risques et où l'automatisation a le plus d'impact.
             </p>
+            <div className="inline-block px-6 py-3 bg-black/33 backdrop-blur-sm rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 mb-8">
+              <p className="text-lg text-white font-semibold">
+                Objectif : transformer votre fonctionnement actuel en plan d'action concret, chiffré et réaliste.
+              </p>
+            </div>
             <Link href="/contact">
               <Button
                 size="lg"
-                className="px-8 md:px-12 py-4 md:py-6 text-base md:text-lg font-semibold bg-primary text-white hover:scale-105 transition-all duration-300"
+                className="px-8 md:px-12 py-4 md:py-6 text-base md:text-lg font-semibold bg-[#0071e3] text-white hover:bg-[#0071ed] rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
               >
-                Planifier une visite sur site
+                Discuter de mon projet
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </Link>
-            <p className="text-sm md:text-base text-white/60 mt-6 max-w-2xl mx-auto">
-              Pré-qualif courte. Démarrage audit sous 7–10 jours. Plan d'action et{" "}
-              <Link href="/contact" className="underline hover:text-white transition-colors">
-                devis
-              </Link>{" "}
-              sous 48 h.
-            </p>
           </div>
         </section>
 
-        <div className="max-w-7xl mx-auto px-4 md:px-6 space-y-16 md:space-y-24 py-12 md:py-20 text-white">
-          <section className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-center">Objectif</h2>
-            <p className="text-lg md:text-xl text-white/80 leading-relaxed">
-              Cartographier le fonctionnement réel, identifier les leviers à plus fort impact, engager un plan
-              90/180/360 jours basé sur des KPI mesurables.
-            </p>
-          </section>
-
+        <div className="max-w-7xl mx-auto px-4 md:px-6 space-y-16 md:space-y-24 py-12 md:py-20">
+          {/* Ce que nous analysons */}
           <section>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center">Périmètre (audit 360°)</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="text-center mb-12 scroll-reveal-premium">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                Ce que nous analysons
+              </h2>
+              <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+              <p className="text-lg text-white/80 mt-6 max-w-4xl mx-auto">
+                Nous partons de votre réalité : mails, Excel, ERP, CRM, dossiers partagés, échanges internes, habitudes
+                des équipes.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
                 {
-                  icon: <Target className="w-6 h-6" />,
-                  title: "Flux métier",
-                  desc: "Commercial/ADV, support, production/atelier, logistique, RH, finance",
+                  icon: "Target",
+                  title: "Processus & flux de travail",
+                  items: [
+                    "Qui fait quoi, dans quel ordre, avec quels allers-retours",
+                    "Étapes répétitives, ressaisies, validations manuelles",
+                    "Circulation des informations entre outils (mails, fichiers, logiciels…)",
+                  ],
                 },
                 {
-                  icon: <Settings className="w-6 h-6" />,
-                  title: "Systèmes & intégrations",
-                  desc: "ERP, CRM, compta, WMS/MES, e-commerce, GED, ITSM, APIs",
+                  icon: "FileText",
+                  title: "Cartographie détaillée des processus",
+                  items: [
+                    "Schémas clairs de vos processus (BPMN 2.0 ou équivalent, mais lisibles pour vos équipes)",
+                    'Vue "de bout en bout" : de la demande client à la facturation, du devis à la production, du ticket au traitement',
+                    'Identification des variantes (ce qui se passe "en vrai" vs ce qui est écrit dans les procédures)',
+                  ],
                 },
                 {
-                  icon: <Eye className="w-6 h-6" />,
-                  title: "Informationnel",
-                  desc: "Qui fait quoi, règles d'exception, contrôles, goulots, boucles de rework",
+                  icon: "Clock",
+                  title: "Temps passé & charge opérationnelle",
+                  items: [
+                    "Estimation du temps consommé par étape, par rôle, par type de dossier",
+                    "Identification des tâches à faible valeur (copier-coller, ressaisie, contrôles manuels basiques)",
+                    "Évaluation du coût annuel des tâches répétitives",
+                  ],
                 },
                 {
-                  icon: <Database className="w-6 h-6" />,
-                  title: "Données",
-                  desc: "Sources, qualité, fraîcheur temps rel quand possible, traçabilité, ownership",
+                  icon: "TrendingUp",
+                  title: "Goulots d'étranglement & risques",
+                  items: [
+                    "Points de blocage (attentes de validation, dépendance à une seule personne, retards récurrents)",
+                    "Sources d'erreurs (saisies manuelles, doublons, manque de contrôles)",
+                    "Impacts possibles : retards, insatisfaction client, tension interne",
+                  ],
                 },
                 {
-                  icon: <Layers className="w-6 h-6" />,
-                  title: "Supply chain",
-                  desc: "Prévisions, réassorts, délais, ruptures/retours, coûts",
+                  icon: "BarChart3",
+                  title: "Outils, données & sécurité",
+                  items: [
+                    "Comment vos outils sont réellement utilisés (et à quel point ils sont sous-exploités)",
+                    "Flux de données : où passent les informations, où elles se perdent, où elles sont dupliquées",
+                    "Points de vigilance sécurité (partages de fichiers, droits d'accès, circulation de données sensibles par mail, Excel, etc.)",
+                  ],
                 },
-                {
-                  icon: <Shield className="w-6 h-6" />,
-                  title: "Risques & conformité",
-                  desc: "Sécurité, RGPD/DPA, continuité, réversibilité",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="p-6 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center text-white mb-4">
-                    {item.icon}
+              ].map((item, index) => {
+                const Icon = iconMap[item.icon as keyof typeof iconMap]
+                return (
+                  <div
+                    key={index}
+                    className={`p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] ${index % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"}`}
+                    style={{ transitionDelay: `${index * 100}ms` }}
+                  >
+                    <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center text-white mb-4">
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-xl font-bold mb-4 text-white">{item.title}</h3>
+                    <ul className="space-y-2">
+                      {item.items.map((point, i) => (
+                        <li key={i} className="flex items-start gap-2 text-white/70">
+                          <CheckCircle2 className="w-4 h-4 text-white/60 flex-shrink-0 mt-1" />
+                          <span className="text-sm">{point}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                  <p className="text-sm text-white/70">{item.desc}</p>
-                </div>
-              ))}
+                )
+              })}
+            </div>
+
+            <div
+              className="mt-8 p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 max-w-4xl mx-auto scroll-reveal-premium"
+              style={{ transitionDelay: "500ms" }}
+            >
+              <p className="text-white/80 leading-relaxed">
+                Nous utilisons des outils d'analyse de flux, des schémas de processus et des briques d'IA pour accélérer
+                l'analyse (lecture de mails, logs, documents), mais le résultat est présenté de façon simple et
+                actionnable.
+              </p>
             </div>
           </section>
 
+          {/* Comment se déroule l'audit */}
           <section>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center">Déroulé en 5 jours</h2>
+            <div className="text-center mb-12 scroll-reveal-premium">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                Comment se déroule l'audit
+              </h2>
+              <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+              <p className="text-lg text-white/80 mt-6 max-w-4xl mx-auto">
+                Nous restons sur une démarche courte, orientée décision, pas un projet théorique de 6 mois.
+              </p>
+            </div>
+
             <div className="space-y-6 max-w-5xl mx-auto">
               {[
                 {
-                  day: "J1",
-                  title: "Immersion",
-                  desc: "Direction et opérationnels. Visites postes clés. Objectifs, contraintes, priorités. Collecte docs.",
-                  icon: <Users className="w-6 h-6" />,
+                  number: "1",
+                  title: "Immersion terrain (1/2 journée à 2 jours)",
+                  items: [
+                    "Entretiens ciblés avec les équipes opérationnelles et les responsables",
+                    "Observation des flux réels : mails, dossiers, outils, échanges informels",
+                    "Collecte de quelques exemples concrets (dossiers types, échanges clients, tickets, etc.)",
+                  ],
                 },
                 {
-                  day: "J2",
-                  title: "Processus as-is",
-                  desc: "Cartes processus, variantes, exceptions, volumes, latences.",
-                  icon: <Workflow className="w-6 h-6" />,
+                  number: "2",
+                  title: "Cartographie & analyse (5 à 10 jours)",
+                  items: [
+                    "Formalisation des processus clés (BPMN 2.0 ou équivalent)",
+                    "Mesure des temps, volumes, fréquences, points de reprise manuelle",
+                    "Analyse des goulots d'étranglement, des risques et des redondances",
+                    "Utilisation de l'IA pour analyser rapidement des volumes de mails, tickets, comptes-rendus, et faire ressortir les patterns récurrents",
+                  ],
                 },
                 {
-                  day: "J3",
-                  title: "SI & données",
-                  desc: "Schéma flux applicatifs, modèles de données, qualité, droits d'accès.",
-                  icon: <Database className="w-6 h-6" />,
+                  number: "3",
+                  title: "Diagnostic & priorisation",
+                  items: [
+                    "Sélection de 3 à 6 processus ou sous-processus à fort impact (temps, coût, risques, irritants clients)",
+                    "Identification des gains potentiels : heures économisées, erreurs évitées, capacité supplémentaire",
+                    "Prise en compte des contraintes : outils existants, sécurité, organisation, budget, délais",
+                  ],
                 },
                 {
-                  day: "J4",
-                  title: "Leviers & faisabilité",
-                  desc: "Opportunités classées impact × effort. Quick wins vs chantiers. Risques/mitigations.",
-                  icon: <TrendingUp className="w-6 h-6 text-green-400" />,
+                  number: "4",
+                  title: "Plan d'action d'automatisation",
+                  items: [
+                    "Proposition d'automatisations concrètes : quoi automatiser, jusqu'où, avec quels outils",
+                    "Distinction claire : automatisation classique (règles, connecteurs, workflows) / IA (LLM, RAG, assistants métiers)",
+                    "Estimation de ROI et phasage : ce qu'on peut faire rapidement vs ce qui relève d'un chantier plus structurant",
+                  ],
                 },
-                {
-                  day: "J5",
-                  title: "Restitution exécutive",
-                  desc: "Décisions, séquencement 90/180/360 j, responsables, jalons, KPI, plan de test.",
-                  icon: <FileText className="w-6 h-6" />,
-                },
-              ].map((item, idx) => (
+              ].map((step, idx) => (
                 <div
-                  key={item.day}
-                  className="flex flex-col md:flex-row items-start gap-4 md:gap-6 p-6 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+                  key={idx}
+                  className={`flex flex-col md:flex-row items-start gap-6 p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] ${idx % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"}`}
+                  style={{ transitionDelay: `${idx * 120}ms` }}
                 >
-                  <div className="flex-shrink-0 w-16 h-16 bg-primary/20 rounded-full flex flex-col items-center justify-center text-primary border-2 border-primary/40">
-                    <span className="text-xs font-semibold">{item.day}</span>
-                    {item.icon}
+                  <div className="flex-shrink-0 w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center text-white text-3xl font-bold">
+                    {step.number}
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                    <p className="text-white/70">{item.desc}</p>
+                    <h3 className="text-xl font-bold mb-4 text-white">{step.title}</h3>
+                    <ul className="space-y-2">
+                      {step.items.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2 text-white/70">
+                          <CheckCircle2 className="w-4 h-4 text-white/60 flex-shrink-0 mt-1" />
+                          <span className="text-sm">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               ))}
             </div>
           </section>
 
+          {/* Livrables concrets */}
           <section>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center">Livrables (opérationnels)</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {[
-                "Blueprint des processus (BPMN simple) et points de contrôle",
-                "Carte SI & flux temps réel/quasi temps réel et intégrations cibles",
-                "Data pack: dictionnaire minimal, qualité, propriétaires, métriques de fraîcheur",
-                "Backlog priorisé avec critères d'acceptation et dépendances",
-                "Business case: hypothèses ROI, scénarios, seuils de rentabilité",
-                "Roadmap 90/180/360 j avec jalons, risques, responsables",
-                "Note dirigeant (1 page): décisions à prendre, impacts, calendrier",
-                "Plan de changement: formation, communication, adoption",
-                "Sécurité: baseline accès, journaux, sauvegardes/reprise, réversibilité",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-3 p-4 bg-white/5 rounded-lg border border-white/10 hover:border-white/20 transition-all duration-300"
-                >
-                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span className="text-sm text-white/80">{item}</span>
-                </div>
-              ))}
+            <div className="text-center mb-12 scroll-reveal-premium">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                Livrables concrets
+              </h2>
+              <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+              <p className="text-lg text-white/80 mt-6 max-w-4xl mx-auto">
+                À la fin de l'audit, vous ne recevez pas un rapport théorique, mais des éléments utilisables
+                immédiatement.
+              </p>
             </div>
-          </section>
 
-          <section className="bg-gradient-to-br from-primary/10 to-transparent rounded-2xl p-8 md:p-12 border border-primary/20">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-center">Ce que ça change pour la direction</h2>
-            <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-6">
               {[
                 {
-                  icon: <Eye className="w-6 h-6 text-primary" />,
-                  text: "Vision synthétique et actionnable",
+                  title: "Cartes de processus lisibles",
+                  desc: "Vue claire de vos processus clés, étape par étape, avec les rôles et les outils associés.",
                 },
                 {
-                  icon: <TrendingUp className="w-6 h-6 text-green-400" />,
-                  text: "Arbitrages guidés par KPI et ROI",
+                  title: "Liste priorisée des cas d'automatisation",
+                  desc: "Pour chaque cas : description, complexité, gains estimés, prérequis.",
                 },
                 {
-                  icon: <Shield className="w-6 h-6 text-primary" />,
-                  text: "Risques maîtrisés et responsabilités claires",
+                  title: "Vue des risques & points sensibles",
+                  desc: "Goulots d'étranglement, dépendances, risques sécurité / conformité.",
                 },
                 {
-                  icon: <Zap className="w-6 h-6 text-yellow-400" />,
-                  text: "Passage rapide au pilote 30 jours sur le levier prioritaire",
+                  title: "Plan d'action structuré",
+                  desc: "Séquencement des chantiers (court / moyen terme), recommandations techniques et organisationnelles.",
                 },
-              ].map((item) => (
-                <div key={item.text} className="flex items-center gap-4 p-4 bg-black/30 rounded-lg">
-                  <div className="flex-shrink-0">{item.icon}</div>
-                  <p className="text-white/90">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center">Exemples d'issues d'audit</h2>
-            <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-              {[
-                {
-                  title: "Devis→Facture",
-                  desc: "Suppression de 3 ressaisies, contrôles automatiques, envoi GED",
-                  icon: <FileText className="w-6 h-6" />,
-                },
-                {
-                  title: "Support",
-                  desc: "Tri automatique, réponses guidées sourcées, enrichissement base interne",
-                  icon: <Users className="w-6 h-6" />,
-                },
-                {
-                  title: "Supply",
-                  desc: "Réassorts pilotés par seuils dynamiques, alertes sur ruptures",
-                  icon: <Layers className="w-6 h-6" />,
-                },
-                {
-                  title: "Reporting",
-                  desc: "Tableaux temps réel pour direction et ateliers, alertes dérives",
-                  icon: <TrendingUp className="w-6 h-6 text-green-400" />,
-                },
-              ].map((item) => (
+              ].map((item, index) => (
                 <div
-                  key={item.title}
-                  className="p-6 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
+                  key={index}
+                  className={`p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] scroll-reveal-scale`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
-                      {item.icon}
-                    </div>
-                    <h3 className="text-xl font-semibold">{item.title}</h3>
-                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
                   <p className="text-white/70">{item.desc}</p>
                 </div>
               ))}
             </div>
-            <p className="text-center text-lg text-white/80 mt-8 max-w-3xl mx-auto">
-              Tout est étudiable. L'audit part de votre réalité et de vos idées. Le plan est sur mesure.
-            </p>
+
+            <div
+              className="mt-8 p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 max-w-4xl mx-auto scroll-reveal-premium"
+              style={{ transitionDelay: "400ms" }}
+            >
+              <p className="text-white/80 leading-relaxed text-center">
+                Ces livrables servent de base directe pour lancer les projets d'automatisation, de RAG/assistants
+                métiers ou de tableaux de bord.
+              </p>
+            </div>
           </section>
 
-          <section>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 text-center">Méthode d'engagement</h2>
-            <div className="max-w-4xl mx-auto space-y-4">
-              {[
-                "Visite découverte (60–90 min) — pré-qualif, périmètre, accès",
-                "Audit 5 jours — sur site + ateliers ciblés",
-                "Restitution ≤ 72 h — livrables + plan 90/180/360 j",
-                "Pilote 30 jours — un flux/assistant/tableau prioritaire",
-                "Déploiement & Ops — mise en prod, formation, supervision",
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center gap-4 p-5 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300"
-                >
-                  <div className="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary font-bold">
-                    {idx + 1}
+          {/* Pourquoi faire un audit avant d'automatiser */}
+          <section className="scroll-reveal-premium">
+            <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-8 md:p-12 border-4 border-white/20 border-t-white/60 border-l-white/50 max-w-5xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-center bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                Pourquoi faire un audit avant d'automatiser
+              </h2>
+              <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto mb-8 shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+
+              <p className="text-lg text-white/80 mb-6 leading-relaxed">
+                L'objectif n'est pas de "documenter pour documenter", mais d'éviter deux erreurs fréquentes :
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="p-4 bg-white/5 rounded-lg border border-white/20">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-white text-xl font-bold">
+                      1
+                    </div>
+                    <p className="text-white font-semibold">automatiser un processus mal conçu,</p>
                   </div>
-                  <p className="text-white/90">{item}</p>
                 </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="bg-white/5 rounded-2xl p-8 md:p-12 border border-white/10">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-center">KPI suivis</h2>
-            <p className="text-lg text-white/80 mb-6 max-w-4xl mx-auto text-center">
-              Temps de cycle, taux d'erreurs, délai de réponse, disponibilité d'indicateurs, adoption par équipe,
-              incidents évités, impacts sur CA/marge/cash.
-            </p>
-            <div className="flex items-center justify-center gap-3 text-white/70">
-              <TrendingUp className="w-5 h-5 text-green-400" />
-              <p>Mesure avant/après incluse. KPI finalisés au cadrage.</p>
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center">Prérequis</h2>
-            <div className="grid sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
-              {[
-                "Accès lecture aux outils, échantillons de données",
-                "Référents métiers disponibles",
-                "Créneaux courts avec la direction",
-                "NDA sur demande",
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-3 p-4 bg-white/5 rounded-lg border border-white/10">
-                  <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-white/80">{item}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="bg-white/5 rounded-2xl p-8 md:p-12 border border-white/10">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-center">Sécurité & conformité</h2>
-            <div className="flex flex-wrap gap-4 justify-center max-w-4xl mx-auto">
-              {[
-                { icon: <Lock className="w-5 h-5" />, text: "Données cloisonnées" },
-                { icon: <Shield className="w-5 h-5" />, text: "Accès par rôles" },
-                { icon: <Eye className="w-5 h-5" />, text: "Journaux d'activité" },
-                { icon: <Database className="w-5 h-5" />, text: "Hébergement UE possible" },
-                { icon: <FileText className="w-5 h-5" />, text: "DPA/RGPD" },
-                { icon: <ArrowRight className="w-5 h-5" />, text: "Procédure de reprise et réversibilité" },
-              ].map((item) => (
-                <div
-                  key={item.text}
-                  className="flex items-center gap-2 px-4 py-2 bg-black/30 rounded-lg border border-white/10"
-                >
-                  <div className="text-primary">{item.icon}</div>
-                  <span className="text-sm text-white/80">{item.text}</span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center">Après l'audit</h2>
-            <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {[
-                {
-                  icon: <Zap className="w-6 h-6 text-yellow-400" />,
-                  title: "Lancement pilote 30 j",
-                  desc: "Sur le chantier n°1",
-                },
-                {
-                  icon: <Settings className="w-6 h-6" />,
-                  title: "Gouvernance",
-                  desc: "Stand-ups courts, démos hebdo, critères d'acceptation",
-                },
-                {
-                  icon: <TrendingUp className="w-6 h-6 text-green-400" />,
-                  title: "Ops managées",
-                  desc: "Supervision, petites évolutions, QBR",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="p-6 bg-white/5 rounded-xl border border-white/10 hover:border-white/20 transition-all duration-300 text-center"
-                >
-                  <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    {item.icon}
+                <div className="p-4 bg-white/5 rounded-lg border border-white/20">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center text-white text-xl font-bold">
+                      2
+                    </div>
+                    <p className="text-white font-semibold">
+                      lancer des outils d'IA sans savoir où ils apportent vraiment de la valeur.
+                    </p>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                  <p className="text-sm text-white/70">{item.desc}</p>
                 </div>
-              ))}
+              </div>
+
+              <p className="text-lg text-white/80 mb-6 leading-relaxed">Un audit bien fait permet de :</p>
+
+              <div className="space-y-4">
+                {[
+                  "concentrer l'investissement sur les bons processus (ceux qui consomment le plus de temps ou créent le plus de risques)",
+                  "aligner les équipes sur une vision commune des flux et des priorités",
+                  "sécuriser les choix techniques (outils, connecteurs, données, sécurité)",
+                  "préparer un ROI mesurable, suivi dans le temps (temps gagné, erreurs réduites, capacité augmentée)",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-5 h-5 text-white/60 flex-shrink-0 mt-1" />
+                    <p className="text-white/70">{item}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
 
+          {/* Adapté aux TPE/PME */}
           <section>
-            <h2 className="text-3xl md:text-5xl font-bold mb-8 md:mb-12 text-center">FAQ</h2>
-            <Accordion type="single" collapsible className="max-w-4xl mx-auto space-y-4">
-              <AccordionItem value="item-1" className="bg-white/5 rounded-xl border border-white/10 px-6">
-                <AccordionTrigger className="text-lg font-semibold text-white hover:text-primary">
-                  Combien de temps prend l'audit ?
-                </AccordionTrigger>
-                <AccordionContent className="text-white/70">
-                  5 jours consécutifs. Restitution sous 72 h.
-                </AccordionContent>
-              </AccordionItem>
+            <div className="text-center mb-12 scroll-reveal-premium">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                Adapté aux TPE/PME, quel que soit le métier
+              </h2>
+              <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+            </div>
 
-              <AccordionItem value="item-2" className="bg-white/5 rounded-xl border border-white/10 px-6">
-                <AccordionTrigger className="text-lg font-semibold text-white hover:text-primary">
-                  Faut-il bloquer toute l'équipe ?
-                </AccordionTrigger>
-                <AccordionContent className="text-white/70">
-                  Non. Ateliers cadrés et visites ciblées. Référents identifiés en amont.
-                </AccordionContent>
-              </AccordionItem>
+            <div className="max-w-4xl mx-auto space-y-6">
+              <p className="text-lg text-white/80 text-center leading-relaxed scroll-reveal-premium">
+                Notre démarche est pensée pour des structures qui n'ont pas le temps pour la théorie et qui veulent des
+                résultats concrets :
+              </p>
 
-              <AccordionItem value="item-3" className="bg-white/5 rounded-xl border border-white/10 px-6">
-                <AccordionTrigger className="text-lg font-semibold text-white hover:text-primary">
-                  Temps réel ou J+1 ?
-                </AccordionTrigger>
-                <AccordionContent className="text-white/70">
-                  Temps réel quand les sources le permettent. Sinon latence courte définie au cadrage.
-                </AccordionContent>
-              </AccordionItem>
+              <div className="grid sm:grid-cols-2 gap-4 scroll-reveal-premium" style={{ transitionDelay: "200ms" }}>
+                {[
+                  "services clients, ADV, SAV",
+                  "équipes commerciales et administratives",
+                  "back-office, finance, gestion",
+                  "opérations, logistique, production, services terrain",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 p-4 bg-black/33 rounded-lg border border-white/20">
+                    <CheckCircle2 className="w-5 h-5 text-white/60 flex-shrink-0" />
+                    <span className="text-white/80">{item}</span>
+                  </div>
+                ))}
+              </div>
 
-              <AccordionItem value="item-4" className="bg-white/5 rounded-xl border border-white/10 px-6">
-                <AccordionTrigger className="text-lg font-semibold text-white hover:text-primary">
-                  Que se passe-t-il après ?
-                </AccordionTrigger>
-                <AccordionContent className="text-white/70">
-                  Pilote 30 j sur le levier prioritaire, puis déploiement et opérations managées.
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value="item-5" className="bg-white/5 rounded-xl border border-white/10 px-6">
-                <AccordionTrigger className="text-lg font-semibold text-white hover:text-primary">
-                  Tarification ?
-                </AccordionTrigger>
-                <AccordionContent className="text-white/70">
-                  Sur{" "}
-                  <Link href="/contact" className="text-primary">
-                    devis
-                  </Link>{" "}
-                  après visite de pré-qualif. Devis détaillé sous 48 h.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </section>
-
-          <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 via-primary/10 to-transparent p-8 md:p-16 text-center border border-primary/20">
-            <div className="flex items-center justify-center gap-3 mb-4"></div>
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Planifier une visite sur site</h2>
-            <p className="text-lg md:text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-              Visite 60–90 min.{" "}
-              <Link href="/contact" className="text-primary">
-                Plan d'action et devis
-              </Link>{" "}
-              sous 48 h.
-              <br />
-              Orienté solution sur mesure et croissance ROI
-            </p>
-            <Link href="/contact">
-              <Button
-                size="lg"
-                className="px-8 md:px-12 py-4 md:py-6 text-base md:text-lg font-semibold hover:scale-105 transition-all duration-300 bg-primary text-white"
+              <p
+                className="text-lg text-white/80 text-center leading-relaxed pt-4 scroll-reveal-premium"
+                style={{ transitionDelay: "400ms" }}
               >
-                Prendre rendez-vous
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+                Nous partons de votre fonctionnement actuel, nous l'éclaircissons, et nous en faisons un plan
+                d'automatisation réaliste, compatible avec vos outils et vos contraintes.
+              </p>
+            </div>
+          </section>
+
+          {/* CTA Final */}
+          <section className="scroll-reveal-scale">
+            <Link href="/contact" className="block group no-underline">
+              <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] animate-reveal-border-glow-premium max-w-5xl mx-auto cursor-pointer">
+                <div className="mb-8">
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] mb-6">
+                    Recevez un diagnostic de vos processus
+                  </h2>
+                  <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
+                    En moins de 48h après l'immersion, vous obtenez une vision claire de :
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-6 mb-8">
+                  {[
+                    "où vous perdez du temps,",
+                    "ce qui peut être automatisé,",
+                    "et dans quel ordre le faire pour maximiser le ROI.",
+                  ].map((item, i) => (
+                    <div key={i} className="p-4 bg-white/5 rounded-lg border border-white/20">
+                      <p className="text-white/90">{item}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <Button
+                  size="lg"
+                  className="group-hover:scale-105 transition-all duration-300 px-8 md:px-12 py-4 md:py-6 text-base md:text-lg font-semibold bg-white text-black hover:bg-white/90"
+                >
+                  Demandez votre diagnostic "Audit, cartographie & diagnostic des processus"
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                </Button>
+              </div>
             </Link>
           </section>
         </div>

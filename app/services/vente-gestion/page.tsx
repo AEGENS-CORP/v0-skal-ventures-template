@@ -1,284 +1,424 @@
-import { SimplePageLayout } from "@/components/simple-page-layout"
-import { createPageMetadata } from "@/lib/metadata"
+"use client"
+
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { CheckCircle2, Users, Target, Clock, Shield, Zap, TrendingUp } from 'lucide-react'
+import {
+  CheckCircle2,
+  ArrowRight,
+  TrendingUp,
+  Zap,
+  Clock,
+  Target,
+  Users,
+  ShieldCheck,
+  Sparkles,
+  Eye,
+  Brain,
+  Search,
+  Globe,
+  PenTool,
+  Video,
+  BarChart3,
+  Megaphone,
+} from "lucide-react"
+import { useEffect, useState } from "react"
 
-export const metadata = createPageMetadata({
-  title: "Vente et gestion — Du premier contact à l'exploitation",
-  path: "/services/vente-gestion",
-  description:
-    "Processus cadré du premier contact à l'exploitation. Décisions rapides, mise en production sans friction, accompagnement long terme avec gouvernance transparente.",
-})
+const iconMap = {
+  TrendingUp,
+  Zap,
+  Eye,
+  Brain,
+  Users,
+  Clock,
+  Target,
+  ShieldCheck,
+  Sparkles,
+  CheckCircle2,
+  ArrowRight,
+  Search,
+  Globe,
+  PenTool,
+  Video,
+  BarChart3,
+  Megaphone,
+}
 
-export default function VenteGestionPage() {
+export default function CroissanceCommercialePage() {
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY })
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible")
+          }
+        })
+      },
+      { threshold: 0.1 },
+    )
+
+    const elements = document.querySelectorAll(
+      ".scroll-reveal, .scroll-reveal-premium, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate",
+    )
+    elements.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <SimplePageLayout
-      title="Vente et gestion: du premier contact à l'exploitation"
-      description="Processus cadré. Décisions rapides. Mise en production sans friction. Accompagnement long terme."
-      breadcrumbs={[
-        { label: "Accueil", href: "/" },
-        { label: "Services", href: "/services" },
-        { label: "Vente / Gestion" },
-      ]}
-    >
-      {/* Parcours */}
-      <section className="space-y-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Parcours</h2>
+    <div className="relative min-h-screen">
+      {/* Animated background */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-300"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(255, 255, 255, 0.06), transparent 40%)`,
+        }}
+      />
 
-        <div className="space-y-4">
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="flex items-start gap-4 mb-3">
-              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold flex-shrink-0">
-                1
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Prospection & qualification</h3>
-                <p className="text-white/70">
-                  Ciblage ICP. Messages orientés gains. Go/No-Go sur douleur, sponsor, données, délai.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="flex items-start gap-4 mb-3">
-              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold flex-shrink-0">
-                2
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Audit & cadrage</h3>
-                <p className="text-white/70">
-                  Visite terrain. Baseline et KPI. Risques. Hypothèses. Note de cadrage 3–5 pages sous 48 h.{" "}
-                  <Link href="/contact" className="text-primary">
-                    Sur devis
-                  </Link>
-                  .
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="flex items-start gap-4 mb-3">
-              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold flex-shrink-0">
-                3
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
-                  Pilote
-                  <Zap className="w-5 h-5 text-yellow-400" />
-                </h3>
-                <p className="text-white/70">
-                  30 jours. Un flux automatisé ou un assistant métier ou un tableau temps réel. Démos hebdo. Critères
-                  d'acceptation.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="flex items-start gap-4 mb-3">
-              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold flex-shrink-0">
-                4
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2">Déploiement</h3>
-                <p className="text-white/70">
-                  Sécurité, accès par rôles, reprises, formation, runbook. Bascule progressive.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-            <div className="flex items-start gap-4 mb-3">
-              <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold flex-shrink-0">
-                5
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold mb-2 flex items-center gap-2">
-                  Exploitation & valeur
-                  <TrendingUp className="w-5 h-5 text-green-400" />
-                </h3>
-                <p className="text-white/70">
-                  Support/SLA, supervision, petites évolutions, QBR trimestriel. Rapport mensuel de valeur.
-                  Réversibilité garantie.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Gouvernance et relation client */}
-      <section className="space-y-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Gouvernance et relation client</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <div className="flex items-center gap-3 mb-3">
-              <Clock className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-semibold">Onboarding</h3>
-            </div>
-            <p className="text-white/70">2–4 semaines suivant périmètre</p>
-          </div>
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <div className="flex items-center gap-3 mb-3">
-              <Users className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-semibold">Revues hebdomadaires</h3>
-            </div>
-            <p className="text-white/70">Suivi delivery en continu</p>
-          </div>
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <div className="flex items-center gap-3 mb-3">
-              <Zap className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-semibold">Support réactif</h3>
-            </div>
-            <p className="text-white/70">Prise en compte &lt; 4 h</p>
-          </div>
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <div className="flex items-center gap-3 mb-3">
-              <Target className="w-5 h-5 text-primary" />
-              <h3 className="text-lg font-semibold">Dashboard partagé</h3>
-            </div>
-            <p className="text-white/70">Avancement, risques, KPI en temps réel</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Offres et modèle */}
-      <section className="space-y-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Offres et modèle</h2>
-        <div className="space-y-4">
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <h3 className="text-lg font-semibold mb-2">Intégration sur mesure</h3>
-            <p className="text-white/70">
-              <Link href="/contact" className="text-primary">
-                Sur devis
-              </Link>{" "}
-              après cadrage
+      <main className="relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-20 sm:space-y-24 md:space-y-32">
+          {/* Hero Section */}
+          <section className="relative pt-20 pb-12 text-center scroll-reveal-premium">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+              Croissance commerciale & présence digitale
+            </h1>
+            <div className="w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto mb-8 shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+            <p className="text-xl sm:text-2xl md:text-3xl text-white/90 max-w-5xl mx-auto leading-relaxed mb-8">
+              Des outils IA sur mesure + une vraie expertise marketing.
             </p>
-          </div>
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <h3 className="text-lg font-semibold mb-2">Opérations managées</h3>
-            <p className="text-white/70">
-              <Link href="/contact" className="text-primary">
-                Sur devis
-              </Link>{" "}
-              avec SLO/SLA
+            <p className="text-lg sm:text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+              Nous aidons vos équipes à vendre plus, plus vite, avec une présence en ligne cohérente et efficace.
             </p>
-          </div>
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <h3 className="text-lg font-semibold mb-2">Variable indexé sur gains réels</h3>
-            <p className="text-white/70">Croissance ou économies, contractualisé (cas sélectionnés)</p>
-          </div>
-        </div>
-      </section>
 
-      {/* Cas d'usage transverses */}
-      <section className="space-y-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Cas d'usage transverses</h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <h3 className="text-lg font-semibold mb-2">Commercial/Marketing</h3>
-            <p className="text-white/70">Devis→commande→facture, relances, RAG offres</p>
-          </div>
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <h3 className="text-lg font-semibold mb-2">Production/Logistique</h3>
-            <p className="text-white/70">TRS, retards, stocks, alertes</p>
-          </div>
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <h3 className="text-lg font-semibold mb-2">Finance</h3>
-            <p className="text-white/70">Rapprochements, DSO, prévision simple</p>
-          </div>
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <h3 className="text-lg font-semibold mb-2">Support</h3>
-            <p className="text-white/70">Tri tickets, réponses guidées, base RAG</p>
-          </div>
-          <div className="p-6 border border-white/10 rounded-lg bg-white/5">
-            <h3 className="text-lg font-semibold mb-2">RH/Organisation</h3>
-            <p className="text-white/70">Onboarding, notes de frais, comptes-rendus</p>
-          </div>
-        </div>
-        <p className="text-white/70 italic">
-          Tout est étudiable. Adaptation au secteur, à la maturité digitale, et aux objectifs.
-        </p>
-      </section>
+            <Link href="/contact" className="inline-block mt-8">
+              <Button
+                size="lg"
+                className="px-8 py-6 text-lg font-semibold bg-white text-black hover:bg-white/90 rounded-2xl transition-all duration-300 hover:scale-105"
+              >
+                Discuter de mon projet
+              </Button>
+            </Link>
+          </section>
 
-      {/* Partenaires & écosystème */}
-      <section className="space-y-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center">Partenaires & écosystème</h2>
-        <p className="text-white/70 leading-relaxed">
-          n8n, Odoo, API LLM, bases de données, hébergeurs, suites Google/Microsoft; spécialistes web/data/sécurité;
-          alliances locales (CCI, BPI, pépinières). Intégrations déclarées. Aucune affiliation implicite.
-        </p>
-      </section>
+          {/* What we combine */}
+          <section className="scroll-reveal-premium">
+            <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                Ce que nous combinons dans cette offre :
+              </h2>
 
-      {/* Sécurité & conformité */}
-      <section className="space-y-6">
-        <div className="flex items-center justify-center gap-3">
-          <Shield className="w-6 h-6 text-primary" />
-          <h2 className="text-3xl md:text-4xl font-bold text-center">Sécurité & conformité</h2>
-        </div>
-        <ul className="space-y-3 text-white/70">
-          <li className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span>DPA/RGPD disponible sur demande</span>
-          </li>
-          <li className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span>Journaux d'audit et traçabilité complète</span>
-          </li>
-          <li className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span>Cloisonnement strict des environnements</span>
-          </li>
-          <li className="flex items-start gap-3">
-            <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-            <span>Réversibilité et sortie sous 30 jours prévues au contrat</span>
-          </li>
-        </ul>
-      </section>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                {[
+                  {
+                    icon: Brain,
+                    text: "Copilotes commerciaux et assistants IA (LLM, recherche web, RAG sur vos données)",
+                  },
+                  { icon: Search, text: "SEO / SEA et optimisation de votre site pour la conversion" },
+                  { icon: Globe, text: "Vente en ligne et parcours e-commerce" },
+                  { icon: PenTool, text: "Communication, design, identité de marque" },
+                  { icon: Megaphone, text: "Réseaux sociaux, contenus, vidéo et audio" },
+                ].map((item, i) => (
+                  <div
+                    key={i}
+                    className={`p-4 bg-white/5 rounded-xl border-2 border-white/20 hover:border-white/40 transition-all duration-500 ${i % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"}`}
+                    style={{ transitionDelay: `${i * 100}ms` }}
+                  >
+                    <item.icon className="w-8 h-8 text-white mb-3" />
+                    <p className="text-white/80 text-sm leading-relaxed">{item.text}</p>
+                  </div>
+                ))}
+              </div>
 
-      {/* KPI suivis */}
-      <section className="space-y-6">
-        <div className="flex items-center justify-center gap-3">
-          <TrendingUp className="w-8 h-8 text-green-400" />
-          <h2 className="text-3xl md:text-4xl font-bold text-center">KPI suivis de bout en bout</h2>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {[
-            "Taux RDV",
-            "Délai devis",
-            "Taux de signature",
-            "Délai mise en prod",
-            "Disponibilité indicateurs",
-            "MTTR support",
-            "Marge/ROI incrémental",
-          ].map((kpi) => (
-            <div key={kpi} className="p-4 border border-white/10 rounded-lg bg-white/5">
-              <p className="text-white/70 font-medium">{kpi}</p>
+              <p className="text-lg text-white/80 text-center leading-relaxed">
+                Tout est construit sur mesure, pour votre marché, vos équipes et vos outils.
+              </p>
             </div>
-          ))}
-        </div>
-      </section>
+          </section>
 
-      {/* CTA */}
-      <section className="border-t border-white/10 pt-8">
-        <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold">Planifier une visite sur site</h2>
-          <p className="text-white/70 max-w-2xl mx-auto">
-            On observe. On mesure. Vous décidez avec un{" "}
-            <Link href="/contact" className="text-primary">
-              plan et un devis
-            </Link>{" "}
-            sous 48 h.
-          </p>
-          <Button asChild size="lg" className="bg-white text-black hover:bg-white/90">
-            <Link href="/contact">Prendre rendez-vous</Link>
-          </Button>
+          {/* Outils commerciaux IA */}
+          <section>
+            <div className="text-center mb-12 scroll-reveal-premium">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                Outils commerciaux IA sur mesure
+              </h2>
+              <div className="w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto mb-6 shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+              <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+                Nous créons des assistants qui épaulent directement vos commerciaux et votre direction.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "Copilote de prospection",
+                  desc: "Un assistant qui, à partir d'un nom d'entreprise ou d'un contact, va chercher : activité, taille, CA estimé (si disponible), informations clés, actualités récentes, points d'entrée possibles. Résultat : une fiche synthèse prête avant chaque appel ou rendez-vous.",
+                  icon: Search,
+                },
+                {
+                  title: "Préparation de rendez-vous et de relances",
+                  desc: "Récupération de l'historique CRM, des mails, des notes internes, des documents envoyés. L'assistant génère : résumé de la relation, points à aborder, objections possibles, propositions de relance cohérentes.",
+                  icon: Brain,
+                },
+                {
+                  title: "Qualification et scoring des leads",
+                  desc: 'Analyse des formulaires, mails entrants, comportements sur le site. Priorisation automatique des contacts "à traiter en priorité", avec explication des critères.',
+                  icon: Target,
+                },
+                {
+                  title: "Assistants de rédaction orientés vente",
+                  desc: "Aide à rédiger des mails de prospection, de relance, des messages LinkedIn, des réponses à appel d'offres, en respectant votre ton, vos offres et vos contraintes.",
+                  icon: PenTool,
+                },
+              ].map((tool, i) => (
+                <div
+                  key={i}
+                  className={`p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)] ${i % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"}`}
+                  style={{ transitionDelay: `${i * 150}ms` }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                      <tool.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white">{tool.title}</h3>
+                  </div>
+                  <p className="text-white/70 leading-relaxed">{tool.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* SEO, SEA et vente en ligne */}
+          <section>
+            <div className="text-center mb-12 scroll-reveal-premium">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                SEO, SEA et vente en ligne
+              </h2>
+              <div className="w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto mb-6 shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+              <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+                Nous faisons en sorte que vos prospects vous trouvent, comprennent votre offre et passent à l'action.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "SEO (référencement naturel)",
+                  desc: "Structure du site, pages clés, maillage interne, optimisation des contenus pour les requêtes vraiment utilisées par vos clients. Objectif : amener un trafic qualifié, pas juste gonfler les chiffres.",
+                  icon: Search,
+                },
+                {
+                  title: "SEA (Google Ads, etc.)",
+                  desc: "Campagnes ciblées, structuration des annonces, optimisation des mots-clés, suivi des conversions. Objectif : un coût d'acquisition maîtrisé et mesurable.",
+                  icon: Megaphone,
+                },
+                {
+                  title: "Site web et parcours de vente",
+                  desc: "Pages d'atterrissage, formulaires, tunnels de vente, modules de prise de rendez-vous. On simplifie le chemin : visite → intérêt → contact ou achat.",
+                  icon: Globe,
+                },
+                {
+                  title: "Vente en ligne",
+                  desc: "Mise en place ou optimisation de parcours e-commerce, commandes, paiements, upsell, récupération de paniers abandonnés.",
+                  icon: ShieldCheck,
+                },
+              ].map((service, i) => (
+                <div
+                  key={i}
+                  className={`p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)] ${i % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"}`}
+                  style={{ transitionDelay: `${i * 150}ms` }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                      <service.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white">{service.title}</h3>
+                  </div>
+                  <p className="text-white/70 leading-relaxed">{service.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Communication, image de marque */}
+          <section>
+            <div className="text-center mb-12 scroll-reveal-premium">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                Communication, image de marque et contenus
+              </h2>
+              <div className="w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto mb-6 shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+              <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+                Nous alignons votre image avec ce que vous vendez réellement.
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {[
+                {
+                  title: "Identité de marque",
+                  desc: "Logo, univers visuel, chartes simples à utiliser au quotidien, lignes directrices pour vos messages.",
+                  icon: Sparkles,
+                },
+                {
+                  title: "Design et supports commerciaux",
+                  desc: "Présentations, fiches produits, plaquettes, argumentaires, templates d'e-mails, landing pages.",
+                  icon: PenTool,
+                },
+                {
+                  title: "Contenus & réseaux sociaux",
+                  desc: "Lignes éditoriales, types de contenus adaptés à votre secteur, organisation des publications. Nous pouvons utiliser l'IA pour accélérer la production tout en gardant la validation humaine.",
+                  icon: Megaphone,
+                },
+                {
+                  title: "Vidéo et audio",
+                  desc: "Scripts, formats courts, capsules pour réseaux sociaux, éléments pour vos pages de vente ou campagnes.",
+                  icon: Video,
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className={`p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:scale-105 shadow-[0_0_20px_rgba(255,255,255,0.1)] ${i % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"}`}
+                  style={{ transitionDelay: `${i * 150}ms` }}
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+                      <item.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                  </div>
+                  <p className="text-white/70 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Ce que cela change */}
+          <section className="scroll-reveal-scale">
+            <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-center bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
+                Ce que cela change pour vos ventes
+              </h2>
+              <p className="text-xl text-white/80 text-center mb-8 leading-relaxed">
+                L'objectif : plus de temps sur la vente, moins sur la préparation et le bricolage d'outils.
+              </p>
+
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  {
+                    title: "Moins de temps perdu en recherche et préparation",
+                    desc: "Les commerciaux disposent de fiches synthèse et d'outils prêts à l'emploi au lieu de passer des heures à chercher des infos.",
+                  },
+                  {
+                    title: "Messages plus cohérents et plus professionnels",
+                    desc: "Même niveau de qualité sur les mails, les offres, les présentations, quel que soit le commercial.",
+                  },
+                  {
+                    title: "Meilleure visibilité sur ce qui fonctionne",
+                    desc: "Campagnes, canaux, messages, types d'offres : ce qui marche est identifié, ce qui ne marche pas est ajusté ou stoppé.",
+                  },
+                  {
+                    title: "Une présence digitale qui soutient réellement la vente",
+                    desc: "Site, contenus, campagnes et outils IA marchent ensemble, au service du pipeline commercial.",
+                  },
+                ].map((benefit, i) => (
+                  <div
+                    key={i}
+                    className="p-6 bg-white/5 rounded-xl border-2 border-white/20 hover:border-white/40 transition-all duration-500"
+                  >
+                    <div className="flex items-start gap-3">
+                      <CheckCircle2 className="w-6 h-6 text-white flex-shrink-0 mt-1" />
+                      <div>
+                        <h3 className="text-lg font-bold text-white mb-2">{benefit.title}</h3>
+                        <p className="text-white/70 leading-relaxed">{benefit.desc}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Notre façon de travailler */}
+          <section>
+            <div className="text-center mb-12 scroll-reveal-premium">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
+                Notre façon de travailler
+              </h2>
+              <div className="w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+            </div>
+
+            <div className="space-y-6 max-w-5xl mx-auto">
+              {[
+                {
+                  step: "1",
+                  title: "Analyse de votre modèle de vente",
+                  desc: "Compréhension de vos offres, de votre cycle de vente, des canaux utilisés et des profils clients cibles.",
+                },
+                {
+                  step: "2",
+                  title: "Diagnostic des points à plus fort impact",
+                  desc: "Où vos équipes perdent le plus de temps ? Où les prospects décrochent ? Quelles infos manquent aux commerciaux ?",
+                },
+                {
+                  step: "3",
+                  title: "Conception des outils et des parcours",
+                  desc: "Copilotes commerciaux, optimisations SEO/SEA, ajustements du site, supports et contenus prioritaires.",
+                },
+                {
+                  step: "4",
+                  title: "Mise en place, tests et ajustements",
+                  desc: "Déploiement progressif, retours des équipes, corrections jusqu'à ce que les outils soient vraiment utilisés au quotidien.",
+                },
+              ].map((step, i) => (
+                <div
+                  key={i}
+                  className={`group flex items-start gap-6 p-6 bg-black/33 rounded-xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 shadow-[0_0_20px_rgba(255,255,255,0.1)] ${i % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"}`}
+                  style={{ transitionDelay: `${i * 120}ms` }}
+                >
+                  <div className="flex-shrink-0 w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center text-white text-3xl font-bold group-hover:scale-110 transition-transform duration-300">
+                    {step.step}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
+                    <p className="text-white/70 leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* CTA Final */}
+          <Link href="/contact" className="block group no-underline">
+            <section className="scroll-reveal-scale">
+              <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] cursor-pointer group-hover:scale-[1.02]">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] mb-6">
+                  Vous voulez structurer et accélérer votre développement commercial ?
+                </h2>
+                <p className="text-lg sm:text-xl text-white/80 max-w-4xl mx-auto leading-relaxed mb-8">
+                  Nous pouvons construire avec vous un socle complet : outils IA, visibilité en ligne et supports de
+                  vente, adapté à votre entreprise.
+                </p>
+                <Button
+                  size="lg"
+                  className="px-8 py-6 text-lg font-semibold bg-white text-black hover:bg-white/90 rounded-2xl transition-all duration-300 group-hover:scale-105"
+                >
+                  Demandez votre diagnostic
+                  <ArrowRight className="inline-block ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+                </Button>
+              </div>
+            </section>
+          </Link>
         </div>
-      </section>
-    </SimplePageLayout>
+      </main>
+    </div>
   )
 }

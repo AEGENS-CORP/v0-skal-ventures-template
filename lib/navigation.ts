@@ -10,13 +10,13 @@ export const primaryNav: NavItem[] = [
     href: "/services",
     children: [
       { label: "Automatisation", href: "/services/automatisation" },
-      { label: "Assistant IA Métier", href: "/services/assistant-ia-metier" },
-      { label: "Analyse & Reporting", href: "/services/analyse-reporting" },
-      { label: "Audit", href: "/services/audit" },
-      { label: "Vente / Gestion", href: "/services/vente-gestion" },
+      { label: "Assistants métier IA & RAG", href: "/services/assistant-ia-metier" },
+      { label: "Tableaux de bord & KPIs", href: "/services/analyse-reporting" },
+      { label: "Audit, cartographie & diagnostic", href: "/services/audit" },
+      { label: "Croissance commerciale", href: "/services/vente-gestion" },
     ],
   },
-  { label: "Études de cas", href: "/etudes-de-cas" },
+  { label: "Sécurité & conformité", href: "/etudes-de-cas" },
   { label: "À propos", href: "/a-propos" },
   { label: "Contact", href: "/contact" },
 ]

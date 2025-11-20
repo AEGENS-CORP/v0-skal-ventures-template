@@ -147,7 +147,7 @@ export default function Home() {
           </div>
 
           <div className="max-w-4xl mx-auto opacity-0 animate-fade-in-up animation-delay-300 py-3.5">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-6 sm:py-3 bg-white/10 backdrop-blur-sm rounded-lg sm:rounded-xl border-blue-400/40 hover:border-blue-400/60 transition-all duration-300 py-2 my-2 md:px-3 md:py-2 border-4">
+            <div className="inline-flex items-center px-3 sm:px-6 sm:py-3 backdrop-blur-sm rounded-lg sm:rounded-xl border-blue-400/40 hover:border-blue-400/60 transition-all duration-300 py-2 my-2 md:px-3 md:py-2 bg-zinc-950 sm:gap-0.5 border-2">
               <Target className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 text-blue-300 flex-shrink-0" />
               <p
                 className={`${styleConfig.fonts.hero.solutionsTitle} font-semibold text-white font-mono tracking-wide`}
@@ -1199,10 +1199,11 @@ export default function Home() {
             </div>
           </section>
 
+          {/* CTA Final */}
           <section className="scroll-reveal-scale">
-            <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center border-2 border-white/40 hover:border-white/60 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] lg:px-2.5 animate-reveal-border-glow-premium lg:py-3 my-8">
+            <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center border-2 border-white/40 hover:border-white/60 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] lg:px-2.5 animate-reveal-border-glow-premium my-8 lg:py-6">
               <div className="mb-8 sm:mb-0 sm:space-y-1 py-0.5">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500 lg:text-4xl px-48">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500 lg:text-4xl px-48 py-1.5">
                   Recevez un diagnostic opérationnel + plan d'action et devis sous 48h
                 </h2>
               </div>
@@ -1220,7 +1221,7 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/contact" className="no-underline">
-                  <div className="px-8 py-5 sm:px-10 sm:py-6 text-base sm:text-lg md:text-xl font-bold border-2 border-white/30 rounded-lg backdrop-blur-md hover:border-white/60 hover:bg-white/10 transition-all duration-500 hover:scale-105 text-white flex items-center gap-2 cursor-pointer md:px-2.5 md:py-0.5 my-2">
+                  <div className="px-8 py-5 sm:px-10 sm:py-6 text-base sm:text-lg md:text-xl font-bold border-2 border-white/30 rounded-lg backdrop-blur-md hover:border-white/60 hover:bg-white/10 transition-all duration-500 hover:scale-105 text-white flex items-center gap-2 cursor-pointer md:px-2.5 md:py-0.5 my-1.5">
                     <span className="text-base px-4 py-2">Nous contacter</span>
                     <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                   </div>

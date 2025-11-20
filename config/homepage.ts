@@ -1,8 +1,6 @@
 export const homepageConfig = {
   hero: {
-    badges: [
-      { text: "ROI en 4 mois", icon: "Sparkles" },
-    ],
+    badges: [{ text: "ROI en 4 mois", icon: "Sparkles" }],
     title: {
       line1: "Ingénierie IA",
       line2: "& Automatisation",
@@ -66,29 +64,33 @@ export const homepageConfig = {
   },
   services: {
     title: "Ce que nous faisons",
-    subtitle: "Nous développons des solutions IA et des automatisations opérationnelles adaptées à votre structure, vos outils et vos équipes",
+    subtitle:
+      "Nous développons des solutions IA et des automatisations opérationnelles adaptées à votre structure, vos outils et vos équipes",
     items: [
       {
-        title: "Automatisation de processus",
-        subtitle: "Nous automatisons vos processus répétitifs afin de permettre à vos collaborateurs de se concentrer sur les taches à haute valeurs ajoutées.",
+        title: "Automatisation",
+        subtitle:
+          "Nous automatisons vos processus répétitifs afin de permettre à vos collaborateurs de se concentrer sur les taches à haute valeurs ajoutées.",
         link: "/services/automatisation",
         icon: "Zap",
       },
       {
-        title: "Assistant IA / RAG",
-        subtitle: "Donner à chaque collaborateur l'accès à l'information, de façon plus rapide et intelligente, selon vos règles internes.",
+        title: "Assistants métier IA & RAG",
+        subtitle:
+          "Donner à chaque collaborateur l'accès à l'information, de façon plus rapide et intelligente, selon vos règles internes.",
         link: "/services/assistant-ia-metier",
         icon: "Brain",
       },
       {
-        title: "Tableau de bord et analyse de données",
+        title: "Tableaux de bord & KPIs",
         subtitle: "Pilotage stratégique en temps réel, sur KPI fiable.",
         link: "/services/analyse-reporting",
         icon: "LineChart",
       },
       {
-        title: "Audit, Cartographie, Diagnostique",
-        subtitle: "Nous analysons vos points critiques et processus, pour identifier les leviers qui renforceraient votre performance globale.",
+        title: "Audit, cartographie & diagnostic",
+        subtitle:
+          "Nous analysons vos points critiques et processus, pour identifier les leviers qui renforceraient votre performance globale.",
         link: "/services/audit",
         icon: "Eye",
       },
