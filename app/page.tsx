@@ -1213,7 +1213,7 @@ export default function Home() {
           <section className="scroll-reveal-scale">
             <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center border-2 border-white/40 hover:border-white/60 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] lg:px-2.5 animate-reveal-border-glow-premium my-8 lg:py-6">
               <div className="mb-8 sm:mb-0 sm:space-y-1 py-0.5">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500 lg:text-4xl px-48 py-1.5">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500 lg:text-4xl px-2 sm:px-8 lg:px-16 py-1.5">
                   Recevez un diagnostic opérationnel + plan d'action et devis sous 48h
                 </h2>
               </div>
