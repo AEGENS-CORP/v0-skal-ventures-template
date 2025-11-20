@@ -133,7 +133,7 @@ export const homepageConfig = {
       {
         stat: "4 mois",
         label: "ROI moyen",
-        desc: "Nos solutions s'amortissent en moins d'un trimestre. Chaque projet est conçu pour générer un retour mesurable et rapide.",
+        desc: "Nos solutions s'amortissent en moins de 4 mois. Chaque projet est conçu pour générer un retour sur investissement mesurable et rapide.",
       },
       {
         stat: "+25%",
@@ -142,12 +142,12 @@ export const homepageConfig = {
       },
       {
         stat: "7-12k €",
-        label: "Tâches répétitives",
+        label: "Coût de tâche répétitive par employés",
         desc: "Un salarié coûte en moyenne 35 000 € en superbrut. 20 à 35 % de ce temps est absorbé par des tâches répétitives.",
       },
       {
         stat: "+30%",
-        label: "Temps libéré pour les tâches à forte valeur",
+        label: "Vitesse d'exécution pour les tâches à forte valeur ajoutée",
         desc: "Les équipes se concentrent sur la production, la qualité, la relation client et la croissance.",
       },
     ],
