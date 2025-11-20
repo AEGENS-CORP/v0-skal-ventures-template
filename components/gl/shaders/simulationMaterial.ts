@@ -69,11 +69,11 @@ export class SimulationMaterial extends THREE.ShaderMaterial {
         float displacementZ = periodicNoise(noiseInput + vec3(0.0, 50.0, 0.0), continuousTime + 4.188); // +240°
         
         vec2 mouseForce = vec2(0.0);
-        float mouseDistance = distance(originalPos.xz, uMousePosition * 5.0); // Scale mouse position to world space
-        if (mouseDistance < 1.0) {
-          float mouseInfluence = 1.0 - smoothstep(0.0, 1.0, mouseDistance);
+        float mouseDistance = distance(originalPos.xz, uMousePosition * 5.0);
+        if (mouseDistance < 2.5) {
+          float mouseInfluence = 1.0 - smoothstep(0.0, 2.5, mouseDistance);
           vec2 mouseDirection = normalize(originalPos.xz - uMousePosition * 5.0);
-          mouseForce = mouseDirection * mouseInfluence * 0.08;
+          mouseForce = mouseDirection * mouseInfluence * 0.25;
         }
         
         vec2 rippleForce = vec2(0.0);
