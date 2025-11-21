@@ -39,15 +39,6 @@ export function BackgroundClickHandler({ children }: BackgroundClickHandlerProps
   }, [])
 
   return (
-    <div
-      className="min-h-screen w-full cursor-pointer"
-      onClick={handleBackgroundClick}
-      style={{
-        position: "relative",
-        zIndex: 1,
-      }}
-    >
-      {children}
-    </div>
+    null
   )
 }

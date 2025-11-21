@@ -2,7 +2,7 @@ export const homepageConfig = {
   hero: {
     badges: [{ text: "ROI en 4 mois", icon: "Sparkles" }],
     title: {
-      line1: "Ingénierie IA",
+      line1: "Ingénierie IA pour TPE/PME",
       line2: "& Automatisation",
     },
     subtitle: {

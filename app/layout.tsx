@@ -37,21 +37,32 @@ const CANONICAL_URL = new URL("/", BASE_URL).toString()
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "Intégrateur IA pour TPE PME | Automatisation assistants reporting",
+    default: "Aegens – Ingénierie IA & Automatisation pour TPE/PME",
     template: "%s | Aegens",
   },
   description:
-    "Intégration et exploitation de solutions IA. Résultats rapides. Visite terrain et devis sous 48 h. Vendée, La Roche-sur-Yon, La Rochelle, Niort, Nantes, Poitiers, Angoulême.",
+    "Aegens accompagne les TPE/PME dans l'intégration d'IA sur mesure : automatisation des processus, assistants métier IA, tableaux de bord temps réel, audit et diagnostic. ROI en 4 mois. Vendée, La Roche-sur-Yon, La Rochelle, Niort, Nantes, Poitiers, Angoulême.",
   keywords: [
+    "Aegens",
+    "ingénierie IA",
     "intégrateur IA",
     "automatisation",
-    "assistant IA",
+    "assistant IA métier",
+    "assistants IA",
     "reporting temps réel",
+    "tableaux de bord",
+    "audit IA",
     "TPE PME",
     "Vendée",
     "La Roche-sur-Yon",
+    "La Rochelle",
+    "Niort",
+    "Nantes",
+    "Poitiers",
+    "Angoulême",
     "transformation digitale",
     "IA sur mesure",
+    "ROI rapide",
   ],
   authors: [{ name: "Aegens" }],
   robots: {
@@ -76,13 +87,15 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     siteName: "Aegens",
     url: CANONICAL_URL,
-    title: "Intégrateur IA pour TPE PME | Automatisation assistants reporting",
-    description: "Intégration et exploitation de solutions IA. Résultats rapides. Visite terrain et devis sous 48 h.",
+    title: "Aegens – Ingénierie IA & Automatisation pour TPE/PME",
+    description:
+      "Aegens accompagne les TPE/PME dans l'intégration d'IA sur mesure : automatisation des processus, assistants métier IA, tableaux de bord temps réel. ROI en 4 mois.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Intégrateur IA pour TPE PME | Automatisation assistants reporting",
-    description: "Intégration et exploitation de solutions IA. Résultats rapides. Visite terrain et devis sous 48 h.",
+    title: "Aegens – Ingénierie IA & Automatisation pour TPE/PME",
+    description:
+      "Aegens accompagne les TPE/PME dans l'intégration d'IA sur mesure : automatisation des processus, assistants métier IA, tableaux de bord temps réel. ROI en 4 mois.",
   },
   generator: "v0.app",
 }
