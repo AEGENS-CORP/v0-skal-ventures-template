@@ -659,22 +659,11 @@ a:active {
   animation-delay: 1000ms;
 }
 
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.scroll-reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .scroll-reveal-premium {
   opacity: 0;
-  transform: translateY(60px) scale(0.95);
-  filter: blur(3px);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(30px) scale(0.98); /* Reduced Y translation from 40px to 30px for subtler effect */
+  filter: blur(0px); /* Removed blur to prevent rendering artifacts/flashing */
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); /* Reduced duration from 1.2s to 1s for better responsiveness */
 }
 
 .scroll-reveal-premium.visible {
@@ -685,47 +674,37 @@ a:active {
 
 .scroll-reveal-premium-fast {
   opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.scroll-reveal-premium-fast.visible {
-  opacity: 1;
-  transform: translateY(0);
+  transform: translateY(20px); /* Reduced from 30px */
+  transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1); /* Faster transition (0.8s -> 0.6s) */
 }
 
 /* Adding varied scroll reveal animations */
 .scroll-reveal-left {
   opacity: 0;
-  transform: translateX(-50px);
-  filter: blur(2px);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-20px); /* Reduced from -30px */
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); /* Standardized duration to 1s */
 }
 
 .scroll-reveal-left.visible {
   opacity: 1;
   transform: translateX(0);
-  filter: blur(0);
 }
 
 .scroll-reveal-right {
   opacity: 0;
-  transform: translateX(50px);
-  filter: blur(2px);
-  transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(20px); /* Reduced from 30px */
+  transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1); /* Standardized duration to 1s */
 }
 
 .scroll-reveal-right.visible {
   opacity: 1;
   transform: translateX(0);
-  filter: blur(0);
 }
 
 .scroll-reveal-scale {
   opacity: 0;
-  transform: scale(0.9);
-  filter: blur(2px);
-  transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: scale(0.96); /* Increased from 0.95 for subtler scale */
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); /* Reduced duration from 1s to 0.8s */
 }
 
 .scroll-reveal-scale.visible {

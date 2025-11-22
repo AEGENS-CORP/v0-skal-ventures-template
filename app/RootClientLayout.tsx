@@ -9,6 +9,7 @@ import { AeNavPortalMount } from "@/components/ae-nav-portal-mount"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
+import { ScrollRevealController } from "@/components/scroll-reveal-controller"
 import dynamic from "next/dynamic"
 import { Suspense } from "react"
 
@@ -53,6 +54,7 @@ export function RootClientLayout({ geistSans, geistMono, sourceSerif, children }
         <ParticleProvider>
           <HeadingIdProvider />
           <ScrollToTop />
+          <ScrollRevealController />
           <GlobalBackground />
           <div className="relative" style={{ zIndex: 50 }}>
             <Header />

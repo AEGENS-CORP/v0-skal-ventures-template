@@ -26,26 +26,6 @@ export default function AngoulemePage() {
   }, [])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible")
-          }
-        })
-      },
-      { threshold: 0.1 },
-    )
-
-    const elements = document.querySelectorAll(
-      ".scroll-reveal, .scroll-reveal-premium, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale",
-    )
-    elements.forEach((el) => observer.observe(el))
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentQuestion((prev) => (prev + 1) % aiQuestions.length)
     }, 4000)
@@ -743,7 +723,6 @@ export default function AngoulemePage() {
         </section>
 
         {/* Maillage interne */}
-        
 
         {/* CTA Final */}
         <section className="py-16 md:py-20 lg:py-24 px-4 sm:px-6 scroll-reveal-scale">

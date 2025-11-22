@@ -1,6 +1,4 @@
 "use client"
-
-import { useEffect } from "react"
 import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ArrowRight } from "lucide-react"
@@ -9,26 +7,9 @@ import { ParticleProvider } from "@/components/particle-context"
 import { BackgroundClickHandler } from "@/components/background-click-handler"
 
 export function AProposClient() {
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible")
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: "50px" },
-    )
-
-    const elements = document.querySelectorAll(
-      ".scroll-reveal, .scroll-reveal-premium, .scroll-reveal-premium-fast, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate",
-    )
-    elements.forEach((el) => observer.observe(el))
-
-    return () => observer.disconnect()
-  }, [])
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(...)
+  // }, [])
 
   return (
     <ParticleProvider>
@@ -46,7 +27,7 @@ export function AProposClient() {
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 md:mb-8 leading-[1.1] bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
               À propos
             </h1>
-            <div className="max-w-4xl mx-auto space-y-6 scroll-reveal-premium">
+            <div className="max-w-4xl mx-auto space-y-6">
               <p className="text-xl sm:text-2xl md:text-3xl text-white/90 leading-relaxed font-semibold">
                 Faire de l'IA et de l'automatisation un levier opérationnel majeur pour les TPE/PME : des systèmes
                 simples à exploiter, fiables, rentables, qui apportent des gains concrets et mesurables au quotidien,
@@ -64,14 +45,14 @@ export function AProposClient() {
         {/* Ce que nous faisons */}
         <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12 space-y-6 scroll-reveal-premium">
+            <div className="text-center mb-12 space-y-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
                 Ce que nous faisons
               </h2>
               <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
             </div>
 
-            <div className="max-w-4xl mx-auto space-y-6 mb-12 scroll-reveal-left">
+            <div className="max-w-4xl mx-auto space-y-6 mb-12">
               <p className="text-lg sm:text-xl text-white/80 leading-relaxed">
                 Solutions d'ingénierie IA et d'automatisation sur mesure pour TPE/PME.
                 <br />
@@ -126,7 +107,7 @@ export function AProposClient() {
         {/* L'équipe fondatrice */}
         <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-black/20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12 space-y-6 scroll-reveal-premium">
+            <div className="text-center mb-12 space-y-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
                 L'équipe fondatrice
               </h2>
@@ -134,7 +115,7 @@ export function AProposClient() {
             </div>
 
             {/* Adrien Retourne */}
-            <div className="max-w-6xl mx-auto mb-16 scroll-reveal-left">
+            <div className="max-w-6xl mx-auto mb-16">
               <div className="bg-black/33 rounded-2xl p-6 sm:p-8 md:p-10 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   <div className="flex-shrink-0 mx-auto md:mx-0">
@@ -215,7 +196,7 @@ export function AProposClient() {
             </div>
 
             {/* Simon Leclair */}
-            <div className="max-w-6xl mx-auto scroll-reveal-right">
+            <div className="max-w-6xl mx-auto">
               <div className="bg-black/33 rounded-2xl p-6 sm:p-8 md:p-10 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
                 <div className="flex flex-col md:flex-row gap-8 items-start">
                   <div className="flex-shrink-0 mx-auto md:mx-0">
@@ -301,7 +282,7 @@ export function AProposClient() {
         {/* Notre façon de travailler */}
         <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12 space-y-6 scroll-reveal-premium">
+            <div className="text-center mb-12 space-y-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
                 Notre façon de travailler
               </h2>
@@ -333,9 +314,7 @@ export function AProposClient() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className={`bg-black/33 rounded-xl p-6 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] ${
-                    i % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"
-                  }`}
+                  className={`bg-black/33 rounded-xl p-6 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]`}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
                   <h3 className="text-lg sm:text-xl font-bold text-white mb-3">{item.title}</h3>
@@ -349,7 +328,7 @@ export function AProposClient() {
         {/* Ce qui nous différencie */}
         <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-black/20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12 space-y-6 scroll-reveal-premium">
+            <div className="text-center mb-12 space-y-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
                 Ce qui nous différencie
               </h2>
@@ -377,9 +356,7 @@ export function AProposClient() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className={`bg-black/33 rounded-xl p-6 sm:p-8 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] ${
-                    i % 2 === 0 ? "scroll-reveal-left" : "scroll-reveal-right"
-                  }`}
+                  className={`bg-black/33 rounded-xl p-6 sm:p-8 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]`}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
                   <h3 className="text-xl sm:text-2xl font-bold text-white mb-4">{item.title}</h3>
@@ -393,14 +370,14 @@ export function AProposClient() {
         {/* Où nous intervenons */}
         <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12 space-y-6 scroll-reveal-premium">
+            <div className="text-center mb-12 space-y-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
                 Où nous intervenons
               </h2>
               <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
             </div>
 
-            <div className="max-w-4xl mx-auto scroll-reveal-scale">
+            <div className="max-w-4xl mx-auto">
               <div className="bg-black/33 rounded-2xl p-6 sm:p-8 md:p-10 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]">
                 <p className="text-lg sm:text-xl text-white/80 leading-relaxed text-center">
                   Nous accompagnons principalement des TPE/PME industrielles, de services et de commerce B2B/B2C en{" "}
@@ -416,7 +393,7 @@ export function AProposClient() {
         {/* Notre engagement */}
         <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-black/20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12 space-y-6 scroll-reveal-premium">
+            <div className="text-center mb-12 space-y-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)]">
                 Notre engagement
               </h2>
@@ -431,7 +408,7 @@ export function AProposClient() {
               ].map((item, i) => (
                 <div
                   key={i}
-                  className={`bg-black/33 rounded-xl p-6 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] scroll-reveal-left`}
+                  className={`bg-black/33 rounded-xl p-6 border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]`}
                   style={{ transitionDelay: `${i * 100}ms` }}
                 >
                   <p className="text-lg sm:text-xl text-white leading-relaxed flex items-start gap-4">
@@ -442,7 +419,7 @@ export function AProposClient() {
               ))}
             </div>
 
-            <div className="max-w-4xl mx-auto mt-10 scroll-reveal-scale">
+            <div className="max-w-4xl mx-auto mt-10">
               <p className="text-lg sm:text-xl text-white/90 leading-relaxed text-center font-semibold">
                 Nous construisons des systèmes IA et des automatisations qui travaillent vraiment pour vous, au
                 quotidien, et qui restent sous contrôle de vos équipes.
@@ -452,7 +429,7 @@ export function AProposClient() {
         </section>
 
         {/* CTA Final */}
-        <section className="scroll-reveal-scale py-12 md:py-16 lg:py-20 px-4 sm:px-6">
+        <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6">
           <Link href="/contact" className="block max-w-5xl mx-auto group no-underline">
             <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 lg:p-20 text-center border-4 border-white/30 border-t-white/60 border-l-white/50 hover:border-white/50 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] group-hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4),0_0_50px_rgba(255,255,255,0.2)] cursor-pointer">
               <div className="mb-8 sm:mb-0 sm:space-y-1 py-0.5">

@@ -70,27 +70,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible")
-            observer.unobserve(entry.target)
-          }
-        })
-      },
-      { threshold: 0.1, rootMargin: "50px" }, // Add rootMargin for earlier triggering
-    )
-
-    const elements = document.querySelectorAll(
-      ".scroll-reveal, .scroll-reveal-premium, .scroll-reveal-premium-fast, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate",
-    )
-    elements.forEach((el) => observer.observe(el))
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
+    // The interval for questions remains
     const interval = setInterval(() => {
       setCurrentQuestion((prev) => (prev + 1) % aiQuestions.length)
     }, 4000)

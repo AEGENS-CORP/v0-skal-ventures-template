@@ -38,26 +38,6 @@ export default function ServicesClientPage() {
   }, [])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible")
-          }
-        })
-      },
-      { threshold: 0.1 },
-    )
-
-    const elements = document.querySelectorAll(
-      ".scroll-reveal, .scroll-reveal-premium, .scroll-reveal-premium-fast, .scroll-reveal-left, .scroll-reveal-right, .scroll-reveal-scale, .scroll-reveal-rotate",
-    )
-    elements.forEach((el) => observer.observe(el))
-
-    return () => observer.disconnect()
-  }, [])
-
-  useEffect(() => {
     const interval = setInterval(() => {
       setCurrentQuestion((prev) => (prev + 1) % aiQuestions.length)
     }, 4000)
@@ -80,7 +60,7 @@ export default function ServicesClientPage() {
       </div>
 
       <section className="pt-12 md:pt-16 pb-12 md:pb-16 px-4 sm:px-6 relative z-10">
-        <div className="max-w-7xl mx-auto text-center scroll-reveal-premium">
+        <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500">
             Nos Services
           </h1>
@@ -99,7 +79,7 @@ export default function ServicesClientPage() {
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Service 1: Automatisation */}
           <Link href="/services/automatisation" className="block group no-underline">
-            <div className="relative p-4 bg-black/33 rounded-2xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer min-h-[300px] flex flex-col scroll-reveal-left">
+            <div className="relative p-4 bg-black/33 rounded-2xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer min-h-[300px] flex flex-col">
               <div className="flex items-start gap-4 relative z-10 mb-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white/15 transition-all duration-500 border-2 border-white/30">
                   <Zap className="w-6 h-6" />
@@ -277,7 +257,7 @@ export default function ServicesClientPage() {
 
           {/* Service 2: Assistants métier IA */}
           <Link href="/services/assistant-ia-metier" className="block group no-underline">
-            <div className="relative p-4 bg-black/33 rounded-2xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer min-h-[300px] flex flex-col scroll-reveal-right">
+            <div className="relative p-4 bg-black/33 rounded-2xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer min-h-[300px] flex flex-col">
               <div className="flex items-start gap-4 relative z-10 mb-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white/15 transition-all duration-500 border-2 border-white/30">
                   <Bot className="w-6 h-6" />
@@ -374,7 +354,7 @@ export default function ServicesClientPage() {
 
           {/* Service 3: Tableaux de bord */}
           <Link href="/services/analyse-reporting" className="block group no-underline">
-            <div className="relative p-4 bg-black/33 rounded-2xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer min-h-[300px] flex flex-col scroll-reveal-left">
+            <div className="relative p-4 bg-black/33 rounded-2xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer min-h-[300px] flex flex-col">
               <div className="flex items-start gap-4 relative z-10 mb-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white/15 transition-all duration-500 border-2 border-white/30">
                   <BarChart3 className="w-6 h-6" />
@@ -526,7 +506,7 @@ export default function ServicesClientPage() {
 
           {/* Service 4: Audit */}
           <Link href="/services/audit" className="block group no-underline">
-            <div className="relative p-4 bg-black/33 rounded-2xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer min-h-[300px] flex flex-col scroll-reveal-right">
+            <div className="relative p-4 bg-black/33 rounded-2xl border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 hover:translate-x-2 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] cursor-pointer min-h-[300px] flex flex-col">
               <div className="flex items-start gap-4 relative z-10 mb-4">
                 <div className="flex-shrink-0 w-12 h-12 bg-white/10 rounded-2xl flex items-center justify-center text-white group-hover:scale-110 group-hover:bg-white/15 transition-all duration-500 border-2 border-white/30">
                   <Search className="w-6 h-6" />
@@ -651,7 +631,7 @@ export default function ServicesClientPage() {
       </section>
 
       <section className="py-16 md:py-24 px-4 sm:px-6 relative z-10">
-        <div className="max-w-5xl mx-auto scroll-reveal-scale">
+        <div className="max-w-5xl mx-auto">
           <Link href="/contact" className="block group no-underline">
             <div className="bg-black/33 backdrop-blur-xl rounded-3xl p-6 sm:p-10 md:p-16 text-center border-4 border-white/20 border-t-white/60 border-l-white/50 hover:border-white/40 hover:border-t-white/80 hover:border-l-white/70 transition-all duration-500 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.1)] hover:scale-[1.02] cursor-pointer">
               <div className="mb-8">
