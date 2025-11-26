@@ -1,13 +1,16 @@
 "use client"
 import { Breadcrumbs } from "@/components/breadcrumbs"
-import { Button } from "@/components/ui/button"
-import { Zap, Phone, Mail, MapPin } from "lucide-react"
+import type React from "react"
+import { Zap, Phone, Mail, MapPin, Loader2 } from "lucide-react"
 import { PhoneLink } from "@/components/phone-link"
 import { EmailLink } from "@/components/email-link"
 import { useEffect, useState } from "react"
 
+type FormStatus = "idle" | "loading" | "success" | "error"
+
 export default function ContactPage() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [status, setStatus] = useState<FormStatus>("idle")
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -17,6 +20,38 @@ export default function ContactPage() {
     window.addEventListener("mousemove", handleMouseMove)
     return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setStatus("loading")
+
+    const formData = new FormData(e.currentTarget)
+    const payload = {
+      fullName: formData.get("fullName"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      company: formData.get("company"),
+      message: formData.get("message"),
+    }
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+
+      if (res.ok) {
+        setStatus("success")
+        // Reset form on success
+        e.currentTarget.reset()
+      } else {
+        setStatus("error")
+      }
+    } catch {
+      setStatus("error")
+    }
+  }
 
   return (
     <div className="relative min-h-screen">
@@ -53,15 +88,15 @@ export default function ContactPage() {
                 <h2 className="text-2xl md:text-3xl font-bold mb-6 md:mb-8 bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
                   Demande de contact
                 </h2>
-                <form className="space-y-5 md:space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5 md:space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm md:text-base font-medium mb-2 text-white/90">
+                    <label htmlFor="fullName" className="block text-sm md:text-base font-medium mb-2 text-white/90">
                       Nom complet *
                     </label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
+                      id="fullName"
+                      name="fullName"
                       required
                       className="w-full px-4 py-3 md:px-5 md:py-4 bg-white/10 border-2 border-white/20 rounded-lg focus:outline-none focus:border-white/60 focus:ring-2 focus:ring-white/20 transition-all text-base text-white placeholder:text-white/50"
                       placeholder="Jean Dupont"
@@ -110,25 +145,48 @@ export default function ContactPage() {
 
                   <div>
                     <label htmlFor="message" className="block text-sm md:text-base font-medium mb-2 text-white/90">
-                      Votre besoin
+                      Votre besoin *
                     </label>
                     <textarea
                       id="message"
                       name="message"
                       rows={4}
+                      required
                       className="w-full px-4 py-3 md:px-5 md:py-4 bg-white/10 border-2 border-white/20 rounded-lg focus:outline-none focus:border-white/60 focus:ring-2 focus:ring-white/20 transition-all resize-none text-base text-white placeholder:text-white/50"
                       placeholder="Décrivez brièvement votre projet ou problématique..."
                     />
                   </div>
 
-                  <Button
-                    type="submit"
-                    size="lg"
-                    className="w-full bg-white text-black hover:bg-white/90 text-base md:text-lg px-8 py-6 md:py-7 h-auto font-semibold transition-all duration-500 hover:scale-105 shadow-xl flex items-center justify-center gap-3 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)]"
-                  >
-                    <Zap className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-                    Envoyer ma demande
-                  </Button>
+                  <div className="pt-4">
+                    <button
+                      type="submit"
+                      disabled={status === "loading"}
+                      className="w-full bg-white text-black hover:bg-white/90 text-base md:text-lg px-8 py-4 md:py-5 font-semibold rounded-lg transition-all duration-500 hover:scale-105 shadow-xl flex items-center justify-center gap-3 hover:shadow-[0_0_40px_rgba(255,255,255,0.4)] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    >
+                      {status === "loading" ? (
+                        <>
+                          <Loader2 className="w-5 h-5 md:w-6 md:h-6 animate-spin" />
+                          <span>Envoi en cours...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Zap className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
+                          <span>Envoyer</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {status === "success" && (
+                    <p className="text-sm md:text-base text-green-400 text-center font-medium">
+                      Message envoyé avec succès !
+                    </p>
+                  )}
+                  {status === "error" && (
+                    <p className="text-sm md:text-base text-red-400 text-center font-medium">
+                      Une erreur est survenue, merci de réessayer.
+                    </p>
+                  )}
 
                   <p className="text-xs md:text-sm text-white/50 text-center leading-relaxed">
                     Réponse sous 24h jours ouvrés. Vos données sont protégées.
