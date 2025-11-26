@@ -1,48 +1,61 @@
 import { NextResponse } from "next/server"
 
+const requiredFields = ["fullName", "email", "message"] as const
+
 export async function POST(req: Request) {
   try {
-    const { fullName, email, phone, company, message } = await req.json()
+    const body = (await req.json()) as Record<string, unknown>
 
     // Validation des champs obligatoires
-    if (!fullName || typeof fullName !== "string" || fullName.trim() === "") {
-      return NextResponse.json({ error: "Missing field" }, { status: 400 })
-    }
-    if (!email || typeof email !== "string" || email.trim() === "") {
-      return NextResponse.json({ error: "Missing field" }, { status: 400 })
-    }
-    if (!message || typeof message !== "string" || message.trim() === "") {
-      return NextResponse.json({ error: "Missing field" }, { status: 400 })
+    for (const field of requiredFields) {
+      const value = body[field]
+      if (!value || typeof value !== "string" || !value.trim()) {
+        return NextResponse.json(
+          { error: `Missing field: ${field}` },
+          { status: 400 },
+        )
+      }
     }
 
-    // Récupération de l'URL du webhook n8n
     const n8nUrl = process.env.N8N_WEBHOOK_URL
     if (!n8nUrl) {
-      console.error("[v0] N8N_WEBHOOK_URL is not configured")
-      return NextResponse.json({ error: "Server configuration error" }, { status: 500 })
+      console.error("N8N_WEBHOOK_URL not set")
+      return NextResponse.json(
+        { error: "Server misconfigured" },
+        { status: 500 },
+      )
     }
 
-    // Envoi vers n8n
+    const payload = {
+      fullName: String(body.fullName),
+      email: String(body.email),
+      phone: body.phone ? String(body.phone) : "",
+      company: body.company ? String(body.company) : "",
+      message: String(body.message),
+    }
+
     const res = await fetch(n8nUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        fullName,
-        email,
-        phone: phone ?? "",
-        company: company ?? "",
-        message,
-      }),
+      body: JSON.stringify(payload),
     })
 
     if (!res.ok) {
-      console.error("[v0] n8n webhook failed:", res.status, res.statusText)
-      return NextResponse.json({ error: "Failed to send" }, { status: 502 })
+      const text = await res.text().catch(() => "")
+      console.error("n8n error", res.status, text)
+      return NextResponse.json(
+        { error: "Failed to send to n8n" },
+        { status: 502 },
+      )
     }
 
+    // Réponse OK pour le front
     return NextResponse.json({ ok: true }, { status: 200 })
   } catch (error) {
-    console.error("[v0] Contact API error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    console.error("API /api/contact error:", error)
+    return NextResponse.json(
+      { error: "Invalid request" },
+      { status: 400 },
+    )
   }
 }

@@ -21,11 +21,13 @@ export default function ContactPage() {
     return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
     setStatus("loading")
 
-    const formData = new FormData(e.currentTarget)
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
     const payload = {
       fullName: formData.get("fullName"),
       email: formData.get("email"),
@@ -41,14 +43,27 @@ export default function ContactPage() {
         body: JSON.stringify(payload),
       })
 
-      if (res.ok) {
-        setStatus("success")
-        // Reset form on success
-        e.currentTarget.reset()
-      } else {
-        setStatus("error")
+      // On essaie de lire la réponse JSON
+      let data: any = null
+      try {
+        data = await res.json()
+      } catch {
+        // pas grave si le body est vide
       }
-    } catch {
+
+      console.log("contact /api/contact response", res.status, data)
+
+      // Si le status HTTP n’est pas 2xx ou si le JSON ne contient pas ok: true → erreur
+      if (!res.ok || !data?.ok) {
+        setStatus("error")
+        return
+      }
+
+      // Succès
+      setStatus("success")
+      form.reset()
+    } catch (error) {
+      console.error("contact fetch error", error)
       setStatus("error")
     }
   }
