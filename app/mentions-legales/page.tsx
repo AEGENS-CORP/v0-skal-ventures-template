@@ -24,6 +24,7 @@ export default function MentionsLegalesPage() {
               <strong>Aegens</strong>
             </p>
             <p>Forme juridique : SAS</p>
+             <p>Siret : 99356729600013</p>
             <p>Siège social : 18 Rue Ampère – ZI La Folie Sud, 85310 La Chaize-le-Vicomte, France</p>
             <p>Téléphone : 07 45 10 30 15</p>
             <p>E-mail : contact@aegens.com</p>
