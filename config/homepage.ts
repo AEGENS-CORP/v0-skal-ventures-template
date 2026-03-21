@@ -6,7 +6,7 @@ export const homepageConfig = {
       line2: "de l'IA et des nouvelles technologies",
     },
     subtitle: {
-      line1: "avec méthode",
+      line1: "",
       line2: "et accompagnement terrain",
     },
     description: {
