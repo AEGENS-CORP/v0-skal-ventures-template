@@ -20,31 +20,31 @@ export const homepageConfig = {
     },
   },
   positioning: {
-    title: "Le sujet n'est pas d'ajouter des outils.",
-    text: "Le vrai sujet est de comprendre ce qui change, de faire les bons choix, de mieux piloter l'activité et de déployer des solutions réellement utiles.",
+    title: "Les plus gros leviers de performance sont souvent déjà là.",
+    text: "Ils se trouvent dans les flux, les processus, le pilotage, les arbitrages et l'exécution. Encore faut-il savoir les voir, les structurer et les transformer en résultats.",
   },
   pillars: {
     title: "Ce que nous aidons à faire évoluer",
     subtitle: "AEGENS intervient là où se jouent les vraies transformations : les arbitrages, le pilotage, les flux et l'exécution.",
     items: [
       {
-        title: "Clarifier les priorités",
-        desc: "Éviter les effets de mode, arbitrer les bons sujets et définir une trajectoire cohérente.",
+        title: "Clarifier les vraies priorités",
+        desc: "Nous aidons la direction à identifier les sujets qui créent réellement de la valeur et à éviter les initiatives qui consomment du temps, du budget et de l'énergie sans impact durable.",
         icon: "Eye",
       },
       {
-        title: "Mieux piloter",
-        desc: "Construire un cockpit de direction plus clair, avec des indicateurs fiables et une lecture utile de l'activité.",
+        title: "Reprendre la main sur le pilotage",
+        desc: "Nous construisons un cockpit de direction clair, fiable et exploitable pour suivre l'activité, consolider les données utiles et accélérer les bonnes décisions.",
         icon: "LineChart",
       },
       {
-        title: "Fluidifier l'exécution",
-        desc: "Réduire les tâches inutiles, simplifier les flux et mieux faire circuler l'information.",
+        title: "Éliminer les frictions opérationnelles",
+        desc: "Nous auditons les flux, les processus et les points de rupture pour simplifier l'exécution, réduire les pertes invisibles et mieux faire circuler l'information.",
         icon: "Zap",
       },
       {
-        title: "Accompagner le terrain",
-        desc: "Avancer sur les audits, le sourcing, la formation, la coordination, la mise en place et l'accompagnement opérationnel.",
+        title: "Transformer avec méthode, jusqu'au terrain",
+        desc: "Nous accompagnons les projets de transformation dans leur réalité concrète : audits approfondis, sourcing, coordination, formation, mise en place clé en main et pilotage opérationnel.",
         icon: "Users",
       },
     ],
@@ -67,7 +67,7 @@ export const homepageConfig = {
       },
       {
         title: "Fluidifier les flux",
-        subtitle: "Nous mettons en place des automatisations ciblées pour réduire les tâches répétitives et fiabiliser l'exécution.",
+        subtitle: "Nous mettons en place des automatisations ciblées sur les tâches qui ralentissent vraiment l'activité : ressaisies, relances, validations, circulation d'information, suivi opérationnel et reporting. L'objectif est simple : moins de temps perdu, moins d'erreurs, une exécution plus fluide au quotidien.",
         link: "/services/automatisation",
         icon: "Zap",
       },

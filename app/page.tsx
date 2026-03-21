@@ -955,27 +955,27 @@ export default function Home() {
 
           {/* BLOC KPI / CONSTATS */}
           <section>
-            <div className="text-center mb-12 sm:mb-16 space-y-6 scroll-reveal-premium-fast">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500">
+            <div className="text-center mb-10 sm:mb-12 space-y-4 scroll-reveal-premium-fast">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(255,255,255,0.4)] hover:drop-shadow-[0_0_25px_rgba(255,255,255,0.6)] transition-all duration-500">
                 {kpis.title}
               </h2>
-              <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
+              <div className="w-20 sm:w-24 h-0.5 bg-gradient-to-r from-white/20 via-white/50 to-white/20 mx-auto" />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-12 md:gap-16">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 md:gap-10 max-w-5xl mx-auto">
               {kpis.items.map((kpi, index) => (
                 <div
                   key={index}
-                  className="group flex flex-col text-center scroll-reveal-scale p-6 sm:p-8"
+                  className="group flex flex-col text-center scroll-reveal-scale p-4 sm:p-5"
                   style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  <div className="mb-6 sm:mb-8">
-                    <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-none tracking-tight block drop-shadow-[0_0_25px_rgba(255,255,255,0.6)] group-hover:drop-shadow-[0_0_35px_rgba(255,255,255,0.8)] transition-all duration-500">
+                  <div className="mb-3 sm:mb-4">
+                    <span className="text-3xl sm:text-4xl md:text-5xl font-semibold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-none tracking-tight block drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] group-hover:drop-shadow-[0_0_20px_rgba(255,255,255,0.7)] transition-all duration-500">
                       {kpi.stat}
                     </span>
                   </div>
 
-                  <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed font-normal">{kpi.desc}</p>
+                  <p className="text-sm sm:text-base text-white/75 leading-relaxed font-normal">{kpi.desc}</p>
                 </div>
               ))}
             </div>
