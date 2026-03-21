@@ -1,205 +1,133 @@
 export const homepageConfig = {
   hero: {
-    badges: [{ text: "ROI en 4 mois", icon: "Sparkles" }],
+    badges: [{ text: "Accompagnement stratégique et opérationnel", icon: "Sparkles" }],
     title: {
-      line1: "Ingénierie IA pour TPE/PME",
-      line2: "& Automatisation",
+      line1: "Prenez le virage",
+      line2: "de l'IA et des nouvelles technologies",
     },
     subtitle: {
-      line1: "priorité ROI",
-      line2: "avec résultats rapides",
+      line1: "",
+      line2: "et accompagnement terrain",
     },
     description: {
-      title: "Solutions sur mesure",
-      subtitle: "pour TPE/PME",
-      text: "Éliminez les tâches répétitives, augmentez la productivité et générez un ROI en moins de 4 mois",
+      title: "Vision, pilotage, automatisation",
+      subtitle: "accompagnement terrain",
+      text: "AEGENS aide les entreprises à clarifier leurs priorités, mieux piloter leur activité et mettre en place des solutions concrètes, directement dans leur réalité terrain.",
     },
     cta: {
-      main: "Planifier une visite",
-      secondary: "Recevez un diagnostic opérationnel + plan d'action sous 48h",
+      main: "Organiser un premier échange sur site",
+      secondary: "Découvrir notre méthode",
     },
   },
-  problems: {
-    title: "Problèmes que nous résolvons",
-    intro: [
-      "La majorité des TPE/PME perdent chaque semaine, des heures sur des tâches manuelles, des erreurs évitables et des processus inefficaces.",
-      "Ces pertes de temps se transforment en coûts, en lenteur et en surcharge pour les équipes.",
-      "Voici les problèmes les plus courants que nous éliminons :",
-    ],
+  pillars: {
+    title: "Ce que nous aidons à faire évoluer",
+    subtitle: "AEGENS intervient là où se jouent les vraies transformations : les arbitrages, le pilotage, les flux et l'exécution.",
     items: [
       {
-        title: "Tâches répétitives",
-        subtitle: "20 à 35 % du temps salarié",
-        desc: "Saisie manuelle, copier-coller, réécriture des mêmes informations, collecte d'éléments dispersés.",
-        icon: "Clock",
-      },
-      {
-        title: "Données et documents éparpillés",
-        desc: "Informations réparties entre mails, Excel, ERP, CRM, dossiers partagés.",
-        icon: "Target",
-      },
-      {
-        title: "Processus non standardisés",
-        desc: "Méthodes différentes selon les personnes, erreurs fréquentes, dépendance aux habitudes internes.",
-        icon: "Users",
-      },
-      {
-        title: "Manque de visibilité immédiate",
-        desc: "Absence de KPIs fiables, difficultés à suivre l'activité, aucune vue consolidée en temps réel.",
+        title: "Clarifier les vraies priorités",
+        desc: "Nous aidons la direction à identifier les sujets qui créent réellement de la valeur et à éviter les initiatives qui consomment du temps, du budget et de l'énergie sans impact durable.",
         icon: "Eye",
       },
       {
-        title: "Difficulté à absorber la croissance",
-        desc: "Chaque hausse d'activité crée de la surcharge humaine et augmente les erreurs.",
-        icon: "TrendingUp",
+        title: "Reprendre la main sur le pilotage",
+        desc: "Nous construisons un cockpit de direction clair, fiable et exploitable pour suivre l'activité, consolider les données utiles et accélérer les bonnes décisions.",
+        icon: "LineChart",
       },
       {
-        title: "Outils mal exploités",
-        desc: "Technologie utilisée à 30 %, absence d'automatisation entre les outils.",
-        icon: "Sparkles",
-      },
-    ],
-    conclusion:
-      "Nous concevons des solutions IA et des automatisations capables de supprimer ces frictions dans n'importe quel service et pour tout type de besoin.",
-  },
-  services: {
-    title: "Ce que nous faisons",
-    subtitle:
-      "Nous développons des solutions IA et des automatisations opérationnelles adaptées à votre structure, vos outils et vos équipes",
-    items: [
-      {
-        title: "Automatisation",
-        subtitle:
-          "Nous automatisons vos processus répétitifs afin de permettre à vos collaborateurs de se concentrer sur les taches à haute valeurs ajoutées.",
-        link: "/services/automatisation",
+        title: "Éliminer les frictions opérationnelles",
+        desc: "Nous auditons les flux, les processus et les points de rupture pour simplifier l'exécution, réduire les pertes invisibles et mieux faire circuler l'information.",
         icon: "Zap",
       },
       {
-        title: "Assistants métier IA & RAG",
-        subtitle:
-          "Donner à chaque collaborateur l'accès à l'information, de façon plus rapide et intelligente, selon vos règles internes.",
-        link: "/services/assistant-ia-metier",
-        icon: "Brain",
+        title: "Transformer avec méthode, jusqu'au terrain",
+        desc: "Nous accompagnons les projets de transformation dans leur réalité concrète : audits approfondis, sourcing, coordination, formation, mise en place clé en main et pilotage opérationnel.",
+        icon: "Users",
+      },
+    ],
+  },
+  method: {
+    title: "Notre méthode, du terrain à la mise en place",
+    subtitle: "Nous partons du réel : les flux, les équipes, les outils, les points de friction. Puis nous structurons, pilotons et mettons en place ce qui compte.",
+    items: [
+      {
+        title: "Observer et cartographier",
+        subtitle: "Nous analysons les flux, les processus, les points de friction et les priorités réelles avant tout choix d'outil ou de déploiement.",
+        link: "/services/audit",
+        icon: "Eye",
       },
       {
-        title: "Tableaux de bord & KPIs",
-        subtitle: "Pilotage stratégique en temps réel, sur KPI fiable.",
+        title: "Structurer le pilotage",
+        subtitle: "Nous construisons un cockpit clair pour suivre l'activité, consolider les données et aider la direction à décider plus vite.",
         link: "/services/analyse-reporting",
         icon: "LineChart",
       },
       {
-        title: "Audit, cartographie & diagnostic",
-        subtitle:
-          "Nous analysons vos points critiques et processus, pour identifier les leviers qui renforceraient votre performance globale.",
-        link: "/services/audit",
-        icon: "Eye",
+        title: "Fluidifier les flux",
+        subtitle: "Nous mettons en place des automatisations ciblées sur les tâches qui ralentissent vraiment l'activité : ressaisies, relances, validations, circulation d'information, suivi opérationnel et reporting. L'objectif est simple : moins de temps perdu, moins d'erreurs, une exécution plus fluide au quotidien.",
+        link: "/services/automatisation",
+        icon: "Zap",
+      },
+      {
+        title: "Rendre l'information exploitable",
+        subtitle: "Nous donnons aux équipes un accès plus rapide et plus utile à l'information, à partir de vos documents, de vos règles et de vos usages réels.",
+        link: "/services/assistant-ia-metier",
+        icon: "Brain",
       },
     ],
-    cta: "Découvrir tous nos services",
-    footnote: "Chaque solution est construite sur mesure, orientée ROI",
   },
-  method: {
-    title: "Notre méthode",
-    steps: [
-      {
-        title: "Visite terrain",
-        desc: "Observation précise des flux, volumes, contraintes et interactions réelles.",
-      },
-      {
-        title: "Cadrage 48h",
-        desc: "Définition des objectifs, KPIs, jalons, plan d'action, responsabilités.",
-      },
-      {
-        title: "Audit approfondi",
-        desc: "Cartographie complète, analyse des goulots d'étranglement, estimation du ROI par processus.",
-      },
-      {
-        title: "Pilote 30 jours",
-        desc: "Prototype fonctionnel, livraisons rapides, démonstrations régulières, ajustements continus.",
-      },
-      {
-        title: "Mise en production",
-        desc: "Sécurisation, déploiement progressif, formation des équipes, documentation.",
-      },
-      {
-        title: "Opérations managées",
-        desc: "Supervision, support, maintenance, évolutions continues.",
-      },
+  onsite: {
+    title: "Les vrais sujets se voient rarement depuis un formulaire.",
+    text: "Les problèmes de pilotage, de coordination, de flux ou d'organisation apparaissent souvent dans la réalité du terrain, pas dans un brief théorique. C'est pour cela que nous privilégions les échanges sur site, au plus près des équipes, des outils et des usages réels.",
+    points: [
+      "Voir les flux réels",
+      "Comprendre les frictions",
+      "Identifier les gains utiles plus vite",
+      "Éviter les projets mal cadrés",
     ],
+    cta: "Prévoir une visite courte",
   },
   kpis: {
-    title: "Résultats et KPIs",
+    title: "Quelques constats clés",
     items: [
       {
-        stat: "4 mois",
-        label: "ROI moyen",
-        desc: "Nos solutions s'amortissent en moins de 4 mois. Chaque projet est conçu pour générer un retour sur investissement mesurable et rapide.",
+        stat: "1 sur 2",
+        label: "",
+        desc: "dirigeants estime que son entreprise devra se transformer en profondeur pour rester compétitive dans les années à venir.",
       },
       {
-        stat: "+25%",
-        label: "Productivité par collaborateur",
-        desc: "L'équivalent d'un collaborateur virtuel pour chaque équipe de quatre. L'automatisation réduit la charge répétitive.",
-      },
-      {
-        stat: "7-12k €",
-        label: "Coût de tâche répétitive par employés",
-        desc: "Un salarié coûte en moyenne 35 000 € en superbrut. 20 à 35 % de ce temps est absorbé par des tâches répétitives.",
+        stat: "20 à 35%",
+        label: "",
+        desc: "du temps d'un collaborateur peut être absorbé par des tâches répétitives ou de coordination à faible valeur.",
       },
       {
         stat: "+30%",
-        label: "Vitesse d'exécution pour les tâches à forte valeur ajoutée",
-        desc: "Les équipes se concentrent sur la production, la qualité, la relation client et la croissance.",
+        label: "",
+        desc: "de gain de vitesse peut être obtenu sur certaines tâches à forte valeur lorsque les outils, les données et les usages sont mieux structurés.",
       },
     ],
-    cta: "Voir nos études de cas",
   },
-  about: {
-    title: "Qui nous sommes",
-    subtitle: "et pourquoi travailler avec nous",
-    intro: [
-      "Nous sommes une équipe dédiée à l'efficacité opérationnelle des TPE/PME.",
-      "Notre approche est simple : analyser, automatiser, mesurer.",
-      "Nous développons des solutions IA et des automatisations capables d'améliorer durablement la performance de votre entreprise.",
-    ],
-    reasons: [
+  faq: {
+    title: "Questions fréquentes",
+    items: [
       {
-        title: "Priorité ROI",
-        subtitle: "et résultats rapides",
-        icon: "TrendingUp",
+        question: "Quand faire appel à AEGENS ?",
+        answer: "Quand une entreprise veut clarifier sa trajectoire IA et numérique, mieux piloter son activité, structurer ses données ou mettre en place des solutions utiles sans ajouter de complexité.",
       },
       {
-        title: "Expertise terrain",
-        subtitle: "et compréhension concrète des métiers",
-        icon: "Users",
+        question: "AEGENS intervient-il uniquement sur l'IA ?",
+        answer: "Non. AEGENS intervient aussi sur le pilotage, les flux, les processus, les audits, le sourcing, la gestion de projet et l'accompagnement opérationnel.",
       },
       {
-        title: "Méthodologie structurée",
-        subtitle: "et rapide",
-        icon: "Clock",
-      },
-      {
-        title: "Solutions sur mesure",
-        subtitle: "adaptées à votre réalité",
-        icon: "Target",
-      },
-      {
-        title: "Sécurité, robustesse",
-        subtitle: "et conformité",
-        icon: "ShieldCheck",
-      },
-      {
-        title: "Capacité à traiter",
-        subtitle: "tout type de besoin d'automatisation ou d'assistant IA",
-        icon: "Sparkles",
+        question: "Pourquoi commencer par un échange sur site ?",
+        answer: "Parce que les vrais points de friction se comprennent beaucoup mieux dans le contexte réel de l'entreprise, au contact des équipes, des outils et des usages.",
       },
     ],
-    cta: "En savoir plus sur nous",
   },
   finalCta: {
-    title: "Recevez votre diagnostic",
-    subtitle: "Nous analysons vos processus et identifions les gains mesurables possibles",
-    timeframe: "en moins de 48h",
-    primaryCta: "Planifier une visite",
+    title: "Parlons de votre contexte directement sur place.",
+    subtitle: "Un premier échange court suffit souvent à faire ressortir les vrais sujets : pilotage, circulation de l'information, automatisation, data, organisation ou priorités de transformation.",
+    primaryCta: "Organiser un rendez-vous physique",
+    secondaryCta: "Nous contacter",
     phone: {
       number: "+33745103015",
       display: "07 45 10 30 15",

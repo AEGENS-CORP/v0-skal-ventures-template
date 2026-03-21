@@ -13,7 +13,7 @@ import { EmailLink } from "./email-link"
 export function Footer() {
   const { setHovering } = useParticles()
 
-  const serviceLinks = primaryNav.find((item) => item.label === "Services")?.children || []
+  const serviceLinks = primaryNav.find((item) => item.label === "Offres")?.children || []
 
   return (
     <footer className="bg-black backdrop-blur-xl border-t border-white/10 relative z-10 text-white overflow-hidden">
@@ -25,9 +25,7 @@ export function Footer() {
             </div>
             <h3 className="text-2xl font-semibold transition-all duration-500">{NAP.name}</h3>
             <p className="text-white/70 text-sm leading-relaxed transition-colors duration-500 group-hover:text-white/90">
-              {
-                "Solutions d’ingénierie IA et d’automatisation sur mesure pour TPE/PME.\nNous aidons les entreprises à éliminer leurs tâches répétitives, gagner en productivité et obtenir un ROI rapide grâce à des systèmes IA adaptés à leur activité."
-              }
+              {"AEGENS est une société d'accompagnement stratégique et opérationnel pour les entreprises qui veulent prendre le virage de l'IA et des nouvelles technologies."}
             </p>
           </div>
 
@@ -54,7 +52,7 @@ export function Footer() {
           </div>
 
           <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-250">
-            <h4 className="text-lg font-semibold">Services</h4>
+            <h4 className="text-lg font-semibold">Offres</h4>
             <div className="flex flex-col gap-3 text-sm">
               {serviceLinks.map((item) => (
                 <Link

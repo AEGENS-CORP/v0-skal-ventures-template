@@ -5,18 +5,18 @@ export type NavItem = {
 }
 
 export const primaryNav: NavItem[] = [
+  { label: "Approche", href: "/services" },
   {
-    label: "Services",
+    label: "Offres",
     href: "/services",
     children: [
-      { label: "Automatisation", href: "/services/automatisation" },
-      { label: "Assistants métier IA & RAG", href: "/services/assistant-ia-metier" },
-      { label: "Tableaux de bord & KPIs", href: "/services/analyse-reporting" },
-      { label: "Audit, cartographie & diagnostic", href: "/services/audit" },
-      { label: "Croissance commerciale", href: "/services/vente-gestion" },
+      { label: "Vision & décisions", href: "/services/audit" },
+      { label: "Cockpit & architecture de pilotage", href: "/services/analyse-reporting" },
+      { label: "IA, automatisation & déploiement", href: "/services/automatisation" },
+      { label: "Transformation, sourcing & accompagnement terrain", href: "/services/assistant-ia-metier" },
     ],
   },
-  { label: "Sécurité & conformité", href: "/etudes-de-cas" },
+  { label: "Cas concrets", href: "/etudes-de-cas" },
   { label: "À propos", href: "/a-propos" },
   { label: "Contact", href: "/contact" },
 ]
