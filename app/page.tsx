@@ -219,9 +219,6 @@ export default function Home() {
                 </span>
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
-              avec méthode.
-            </h1>
           </div>
 
           <div className="max-w-4xl mx-auto opacity-0 animate-fade-in-up animation-delay-400 py-6">
@@ -260,7 +257,7 @@ export default function Home() {
 
       <main className="relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-20 sm:space-y-24 md:space-y-32 md:py-1.5">
-          
+
           {/* BLOC POSITIONNEMENT COURT */}
           <section className="scroll-reveal-premium">
             <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl rounded-3xl p-8 sm:p-12 md:p-14 border border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.08)]">
@@ -930,7 +927,7 @@ export default function Home() {
                   {onsite.title}
                 </h2>
               </div>
-              
+
               <p className="text-lg sm:text-xl text-white/80 leading-relaxed mb-8 max-w-4xl">
                 {onsite.text}
               </p>
