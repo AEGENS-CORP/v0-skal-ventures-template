@@ -77,7 +77,7 @@ export default function Home() {
     return () => clearInterval(interval)
   }, [])
 
-  const { hero, positioning, pillars, services, onsite, kpis, faq, finalCta } = homepageConfig
+  const { hero, positioning, pillars, method, onsite, kpis, faq, finalCta } = homepageConfig
 
   const gradientStyle = useMemo(
     () => ({
@@ -86,8 +86,71 @@ export default function Home() {
     [mousePos.x, mousePos.y],
   )
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AEGENS",
+    "url": "https://aegens.com",
+    "logo": "https://aegens.com/ae-logo.png",
+    "description": "AEGENS est une société d'accompagnement stratégique et opérationnel pour les entreprises qui veulent prendre le virage de l'IA et des nouvelles technologies.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "18 Rue Ampère – ZI La Folie Sud",
+      "addressLocality": "La Chaize-le-Vicomte",
+      "postalCode": "85310",
+      "addressCountry": "FR"
+    },
+    "telephone": "+33745103015",
+    "email": "contact@aegens.com",
+    "areaServed": ["Vendée", "La Roche-sur-Yon", "La Rochelle", "Niort", "Nantes", "Poitiers", "Angoulême"]
+  }
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AEGENS",
+    "image": "https://aegens.com/ae-logo.png",
+    "url": "https://aegens.com",
+    "telephone": "+33745103015",
+    "email": "contact@aegens.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "18 Rue Ampère – ZI La Folie Sud",
+      "addressLocality": "La Chaize-le-Vicomte",
+      "postalCode": "85310",
+      "addressCountry": "FR"
+    },
+    "priceRange": "$$",
+    "description": "Accompagnement stratégique et opérationnel pour les entreprises : pilotage, automatisation, IA, audit et accompagnement terrain."
+  }
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faq.items.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  }
+
   return (
     <div className="relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-300" style={gradientStyle} />
 
       {/* HERO SECTION */}
@@ -122,11 +185,13 @@ export default function Home() {
             <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 py-0 my-5">
               <span className="inline-flex px-3 py-1.5 sm:px-5 sm:py-2.5 bg-gradient-to-br from-white/20 to-white/5 border-2 border-white/40 rounded-2xl backdrop-blur-sm shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]">
                 <span
-                  className={`${styleConfig.fonts.hero.titleLine2} font-bold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent`}
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
                 >
                   {hero.title.line2}
                 </span>
               </span>
+            </div>
+            <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 py-0">
               <h1
                 className={`${styleConfig.fonts.hero.titleLine1} font-semibold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]`}
               >
@@ -220,23 +285,23 @@ export default function Home() {
             </div>
           </section>
 
-          {/* BLOC SERVICES VISUELS ANIMÉS */}
+          {/* BLOC METHODE VISUELS ANIMÉS */}
           <section>
             <div className="text-center mb-16 space-y-8 scroll-reveal-premium">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500">
-                {services.title}
+                {method.title}
               </h2>
               <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
             </div>
 
             <div className="max-w-4xl mx-auto mb-10 sm:mb-12 px-4 scroll-reveal-premium transition-delay-200">
               <p className="text-lg sm:text-xl md:text-2xl font-semibold text-white leading-relaxed text-center">
-                {services.subtitle}
+                {method.subtitle}
               </p>
             </div>
 
             <div className="max-w-6xl mx-auto space-y-8 mb-10 sm:mb-12">
-              {services.items.map((service, index) => {
+              {method.items.map((service, index) => {
                 const Icon = iconMap[service.icon as keyof typeof iconMap]
                 return (
                   <Link key={index} href={service.link} className="block group no-underline">
@@ -265,7 +330,7 @@ export default function Home() {
 
                       {/* ANIMATIONS VISUELLES CONSERVÉES */}
                       <div className="flex-1 flex items-center justify-center px-2 py-3">
-                        {index === 0 && (
+                        {index === 2 && (
                           <div className="relative w-full max-w-sm h-48">
                             <div className="relative w-full h-full bg-white/15 backdrop-blur-xl rounded-2xl border-2 border-white/50 p-4 shadow-xl animate-float-gentle-premium overflow-hidden">
                               <div className="absolute inset-0 opacity-20">
@@ -420,7 +485,7 @@ export default function Home() {
                           </div>
                         )}
 
-                        {index === 1 && (
+                        {index === 3 && (
                           <div className="relative w-full max-w-sm h-48">
                             <div className="relative bg-white/15 backdrop-blur-xl rounded-2xl border-2 border-white/50 p-4 shadow-xl animate-float-gentle-premium h-full overflow-hidden">
                               <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/10 animate-shimmer-premium opacity-50" />
@@ -492,7 +557,7 @@ export default function Home() {
                           </div>
                         )}
 
-                        {index === 2 && (
+                        {index === 1 && (
                           <div className="relative w-full max-w-sm h-48">
                             <div className="relative w-full h-full bg-gradient-to-br from-white/30 via-white/20 to-white/10 backdrop-blur-2xl rounded-3xl p-4 border-3 border-white/60 shadow-[0_20px_60px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.3)] animate-float-gentle-premium overflow-hidden">
                               <div className="absolute inset-0 opacity-30">
@@ -649,7 +714,7 @@ export default function Home() {
                           </div>
                         )}
 
-                        {index === 3 && (
+                        {index === 0 && (
                           <div className="relative w-full max-w-sm h-48">
                             <div className="relative w-full h-full bg-gradient-to-br from-white/20 via-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-4 border-2 border-white/50 shadow-2xl animate-float-gentle-premium overflow-hidden">
                               {[...Array(12)].map((_, i) => (
@@ -823,18 +888,6 @@ export default function Home() {
               })}
             </div>
 
-            <div className="text-center space-y-6 scroll-reveal-premium transition-delay-500">
-              <Link href="/services" className="inline-block group no-underline">
-                <div className="group px-6 py-3 bg-black/33 backdrop-blur-sm rounded-xl border border-white/30 hover:border-white/60 transition-all duration-500 hover:scale-105">
-                  <p className={`${styleConfig.fonts.card.body} font-semibold flex items-center gap-2 text-white`}>
-                    {services.cta}
-                    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-300" />
-                  </p>
-                </div>
-              </Link>
-
-              <p className={`${styleConfig.fonts.card.body} text-white font-semibold`}>{services.footnote}</p>
-            </div>
           </section>
 
           {/* BLOC POURQUOI NOUS VENONS SUR SITE */}
@@ -877,28 +930,27 @@ export default function Home() {
 
           {/* BLOC KPI / CONSTATS */}
           <section>
-            <div className="text-center mb-16 space-y-8 scroll-reveal-premium-fast">
+            <div className="text-center mb-12 sm:mb-16 space-y-6 scroll-reveal-premium-fast">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500">
                 {kpis.title}
               </h2>
+              <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20 mx-auto shadow-[0_0_8px_rgba(255,255,255,0.4)]" />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-12 md:gap-16">
               {kpis.items.map((kpi, index) => (
                 <div
                   key={index}
-                  className="group flex flex-col text-center scroll-reveal-scale"
-                  style={{ transitionDelay: `${index * 100}ms` }}
+                  className="group flex flex-col text-center scroll-reveal-scale p-6 sm:p-8"
+                  style={{ transitionDelay: `${index * 150}ms` }}
                 >
-                  <div className="mb-6">
-                    <span className="text-5xl sm:text-6xl md:text-7xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-none tracking-tight block drop-shadow-[0_0_20px_rgba(255,255,255,0.5)] hover:drop-shadow-[0_0_30px_rgba(255,255,255,0.7)] transition-all duration-500">
+                  <div className="mb-6 sm:mb-8">
+                    <span className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-br from-white via-gray-200 to-gray-400 bg-clip-text text-transparent leading-none tracking-tight block drop-shadow-[0_0_25px_rgba(255,255,255,0.6)] group-hover:drop-shadow-[0_0_35px_rgba(255,255,255,0.8)] transition-all duration-500">
                       {kpi.stat}
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4 leading-tight">{kpi.label}</h3>
-
-                  <p className="text-base sm:text-lg text-white/70 leading-relaxed font-normal">{kpi.desc}</p>
+                  <p className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed font-normal">{kpi.desc}</p>
                 </div>
               ))}
             </div>

@@ -1,9 +1,9 @@
 export const homepageConfig = {
   hero: {
-    badges: [{ text: "Accompagnement stratégique", icon: "Sparkles" }],
+    badges: [{ text: "Accompagnement stratégique et opérationnel", icon: "Sparkles" }],
     title: {
       line1: "Prenez le virage",
-      line2: "de l'IA",
+      line2: "de l'IA et des nouvelles technologies",
     },
     subtitle: {
       line1: "avec méthode",
@@ -12,85 +12,79 @@ export const homepageConfig = {
     description: {
       title: "Vision, pilotage, automatisation",
       subtitle: "accompagnement terrain",
-      text: "AEGENS aide les entreprises à clarifier leurs priorités, construire leur cockpit de pilotage et déployer des solutions concrètes, sur le terrain.",
+      text: "AEGENS aide les entreprises à clarifier leurs priorités, mieux piloter leur activité et mettre en place des solutions concrètes, directement dans leur réalité terrain.",
     },
     cta: {
       main: "Organiser un premier échange sur site",
-      secondary: "Découvrir notre approche",
+      secondary: "Découvrir notre méthode",
     },
   },
   positioning: {
-    title: "Une approche plus utile que le simple déploiement d'outils.",
-    text: "Nous aidons les entreprises à comprendre ce qui change, à faire les bons choix, à structurer leur pilotage et à mettre en place des solutions réellement utiles.",
+    title: "Le sujet n'est pas d'ajouter des outils.",
+    text: "Le vrai sujet est de comprendre ce qui change, de faire les bons choix, de mieux piloter l'activité et de déployer des solutions réellement utiles.",
   },
   pillars: {
-    title: "Notre approche",
-    subtitle: "AEGENS accompagne les entreprises sur quatre niveaux complémentaires.",
+    title: "Ce que nous aidons à faire évoluer",
+    subtitle: "AEGENS intervient là où se jouent les vraies transformations : les arbitrages, le pilotage, les flux et l'exécution.",
     items: [
       {
-        title: "Vision & décisions",
-        desc: "Clarifier les enjeux, prioriser les bons sujets, éviter les effets de mode et définir une trajectoire cohérente.",
+        title: "Clarifier les priorités",
+        desc: "Éviter les effets de mode, arbitrer les bons sujets et définir une trajectoire cohérente.",
         icon: "Eye",
       },
       {
-        title: "Cockpit & architecture de pilotage",
-        desc: "Construire un système de pilotage plus clair, avec des KPI fiables, des données mieux structurées et des vues utiles pour la direction.",
+        title: "Mieux piloter",
+        desc: "Construire un cockpit de direction plus clair, avec des indicateurs fiables et une lecture utile de l'activité.",
         icon: "LineChart",
       },
       {
-        title: "IA, automatisation & déploiement",
-        desc: "Mettre en place des assistants IA, des automatisations ciblées et des flux plus fluides, sans complexité inutile.",
+        title: "Fluidifier l'exécution",
+        desc: "Réduire les tâches inutiles, simplifier les flux et mieux faire circuler l'information.",
         icon: "Zap",
       },
       {
-        title: "Transformation, sourcing & accompagnement terrain",
-        desc: "Accompagner les projets plus larges : sourcing, formation, gestion de projet, audits, mise en place clé en main et accompagnement opérationnel.",
+        title: "Accompagner le terrain",
+        desc: "Avancer sur les audits, le sourcing, la formation, la coordination, la mise en place et l'accompagnement opérationnel.",
         icon: "Users",
       },
     ],
   },
-  services: {
-    title: "Ce que nous déployons",
-    subtitle:
-      "Des solutions concrètes, adaptées à votre structure, vos outils et vos équipes",
+  method: {
+    title: "Notre méthode, du terrain à la mise en place",
+    subtitle: "Nous partons du réel : les flux, les équipes, les outils, les points de friction. Puis nous structurons, pilotons et mettons en place ce qui compte.",
     items: [
       {
-        title: "Automatisation & fluidité opérationnelle",
-        subtitle:
-          "Nous simplifions les flux répétitifs et les tâches à faible valeur pour rendre l'exécution plus fluide, plus fiable et moins dépendante des habitudes internes.",
-        link: "/services/automatisation",
-        icon: "Zap",
+        title: "Observer et cartographier",
+        subtitle: "Nous analysons les flux, les processus, les points de friction et les priorités réelles avant tout choix d'outil ou de déploiement.",
+        link: "/services/audit",
+        icon: "Eye",
       },
       {
-        title: "Assistants IA & accès intelligent à l'information",
-        subtitle:
-          "Nous donnons aux équipes un accès plus rapide, plus structuré et plus utile à l'information, dans le respect de vos règles, de vos documents et de votre fonctionnement.",
-        link: "/services/assistant-ia-metier",
-        icon: "Brain",
-      },
-      {
-        title: "Cockpit & pilotage de direction",
-        subtitle: "Nous concevons des outils de pilotage clairs, fiables et réellement utiles pour suivre l'activité, consolider les données et accélérer les décisions.",
+        title: "Structurer le pilotage",
+        subtitle: "Nous construisons un cockpit clair pour suivre l'activité, consolider les données et aider la direction à décider plus vite.",
         link: "/services/analyse-reporting",
         icon: "LineChart",
       },
       {
-        title: "Diagnostic, cartographie & audit",
-        subtitle:
-          "Nous analysons vos flux, vos processus, vos points de friction et votre organisation pour identifier les priorités utiles avant tout déploiement.",
-        link: "/services/audit",
-        icon: "Eye",
+        title: "Fluidifier les flux",
+        subtitle: "Nous mettons en place des automatisations ciblées pour réduire les tâches répétitives et fiabiliser l'exécution.",
+        link: "/services/automatisation",
+        icon: "Zap",
+      },
+      {
+        title: "Rendre l'information exploitable",
+        subtitle: "Nous donnons aux équipes un accès plus rapide et plus utile à l'information, à partir de vos documents, de vos règles et de vos usages réels.",
+        link: "/services/assistant-ia-metier",
+        icon: "Brain",
       },
     ],
-    cta: "Découvrir notre approche complète",
-    footnote: "Chaque solution est construite sur mesure, orientée résultats",
   },
   onsite: {
     title: "Les vrais sujets se voient rarement depuis un formulaire.",
     text: "Les problèmes de pilotage, de coordination, de flux ou d'organisation apparaissent souvent dans la réalité du terrain, pas dans un brief théorique. C'est pour cela que nous privilégions les échanges sur site, au plus près des équipes, des outils et des usages réels.",
     points: [
-      "Voir les flux tels qu'ils existent vraiment",
-      "Comprendre les frictions opérationnelles",
+      "Voir les flux réels",
+      "Comprendre les frictions",
       "Identifier les gains utiles plus vite",
       "Éviter les projets mal cadrés",
     ],
@@ -100,19 +94,19 @@ export const homepageConfig = {
     title: "Quelques constats clés",
     items: [
       {
-        stat: "20-35%",
-        label: "Temps absorbé",
+        stat: "1 sur 2",
+        label: "",
+        desc: "dirigeants estime que son entreprise devra se transformer en profondeur pour rester compétitive dans les années à venir.",
+      },
+      {
+        stat: "20 à 35%",
+        label: "",
         desc: "du temps d'un collaborateur peut être absorbé par des tâches répétitives ou de coordination à faible valeur.",
       },
       {
         stat: "+30%",
-        label: "Gain de vitesse",
-        desc: "de gain de vitesse est souvent possible sur certaines tâches à forte valeur quand les outils, les données et les usages sont mieux structurés.",
-      },
-      {
-        stat: "1 sur 2",
-        label: "Dirigeants",
-        desc: "dirigeants considèrent que leur entreprise devra se transformer en profondeur pour rester compétitive dans les années à venir.",
+        label: "",
+        desc: "de gain de vitesse peut être obtenu sur certaines tâches à forte valeur lorsque les outils, les données et les usages sont mieux structurés.",
       },
     ],
   },
@@ -121,7 +115,7 @@ export const homepageConfig = {
     items: [
       {
         question: "Quand faire appel à AEGENS ?",
-        answer: "Quand une entreprise veut clarifier sa trajectoire IA et numérique, mieux piloter son activité, structurer ses données ou déployer des solutions concrètes sans ajouter de complexité inutile.",
+        answer: "Quand une entreprise veut clarifier sa trajectoire IA et numérique, mieux piloter son activité, structurer ses données ou mettre en place des solutions utiles sans ajouter de complexité.",
       },
       {
         question: "AEGENS intervient-il uniquement sur l'IA ?",
@@ -135,7 +129,7 @@ export const homepageConfig = {
   },
   finalCta: {
     title: "Parlons de votre contexte directement sur place.",
-    subtitle: "Un premier échange court permet souvent d'identifier très vite les vrais sujets : pilotage, circulation de l'information, automatisation, data, organisation ou priorités de transformation.",
+    subtitle: "Un premier échange court suffit souvent à faire ressortir les vrais sujets : pilotage, circulation de l'information, automatisation, data, organisation ou priorités de transformation.",
     primaryCta: "Organiser un rendez-vous physique",
     secondaryCta: "Nous contacter",
     phone: {
