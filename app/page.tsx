@@ -197,30 +197,31 @@ export default function Home() {
             })}
           </div>
 
-          <div className="space-y-3 sm:space-y-4 opacity-0 animate-fade-in-up animation-delay-200">
-            <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 py-0">
-              <h1
-                className={`${styleConfig.fonts.hero.titleLine1} font-semibold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]`}
-              >
-                {hero.title.line1}
-              </h1>
-            </div>
-            <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 py-0 my-5">
-              <span className="inline-flex px-3 py-1.5 sm:px-5 sm:py-2.5 bg-gradient-to-br from-white/20 to-white/5 border-2 border-white/40 rounded-2xl backdrop-blur-sm shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]">
-                <span
-                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
-                >
-                  {hero.title.line2}
+          <div className="space-y-2 sm:space-y-3 opacity-0 animate-fade-in-up animation-delay-200">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+              Prenez le virage
+            </h1>
+            <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-4 py-1">
+              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent tracking-tight">
+                de
+              </span>
+              <span className="inline-flex px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-br from-white/20 to-white/5 border-2 border-white/40 rounded-2xl backdrop-blur-sm shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]">
+                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+                  l'IA
+                </span>
+              </span>
+              <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent tracking-tight">
+                et des
+              </span>
+              <span className="inline-flex px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-br from-white/20 to-white/5 border-2 border-white/40 rounded-2xl backdrop-blur-sm shadow-[inset_0_1px_0_0_rgba(255,255,255,0.3)]">
+                <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent">
+                  nouvelles technologies
                 </span>
               </span>
             </div>
-            <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-4 py-0">
-              <h1
-                className={`${styleConfig.fonts.hero.titleLine1} font-semibold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]`}
-              >
-                avec méthode.
-              </h1>
-            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent tracking-tight drop-shadow-[0_0_10px_rgba(255,255,255,0.5)] leading-tight">
+              avec méthode.
+            </h1>
           </div>
 
           <div className="max-w-4xl mx-auto opacity-0 animate-fade-in-up animation-delay-400 py-6">
@@ -262,12 +263,14 @@ export default function Home() {
           
           {/* BLOC POSITIONNEMENT COURT */}
           <section className="scroll-reveal-premium">
-            <div className="max-w-4xl mx-auto text-center bg-black/33 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border-2 border-white/30">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
+            <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl rounded-3xl p-8 sm:p-12 md:p-14 border border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.08)]">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent mb-6 sm:mb-8 leading-snug">
                 {positioning.title}
               </h2>
-              <p className="text-lg sm:text-xl text-white/80 leading-relaxed">
-                {positioning.text}
+              <p className="text-base sm:text-lg md:text-xl text-white/75 leading-relaxed max-w-3xl mx-auto">
+                <span className="text-white/90 font-medium">Ils se trouvent dans les flux, les processus, le pilotage, les arbitrages et l'exécution.</span>
+                <br className="hidden sm:block" />
+                <span className="mt-2 inline-block">Encore faut-il savoir les voir, les structurer et les transformer en résultats.</span>
               </p>
             </div>
           </section>
