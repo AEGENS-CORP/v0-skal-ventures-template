@@ -137,6 +137,25 @@ export default function Home() {
     }))
   }
 
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Accompagnement stratégique et opérationnel",
+    "provider": {
+      "@type": "Organization",
+      "name": "AEGENS"
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "France"
+    },
+    "description": "Accompagnement des entreprises dans leur virage IA et nouvelles technologies : audit des flux et processus, cockpit de direction, pilotage d'activité, automatisation des processus, assistants IA, structuration des données, accompagnement terrain et intervention sur site.",
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+
   return (
     <div className="relative">
       <script
@@ -150,6 +169,10 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <div className="fixed inset-0 pointer-events-none z-0 transition-opacity duration-300" style={gradientStyle} />
 
@@ -330,6 +353,7 @@ export default function Home() {
 
                       {/* ANIMATIONS VISUELLES CONSERVÉES */}
                       <div className="flex-1 flex items-center justify-center px-2 py-3">
+                        {/* Étape 3: Fluidifier les flux - Visuel Workflow */}
                         {index === 2 && (
                           <div className="relative w-full max-w-sm h-48">
                             <div className="relative w-full h-full bg-white/15 backdrop-blur-xl rounded-2xl border-2 border-white/50 p-4 shadow-xl animate-float-gentle-premium overflow-hidden">
@@ -714,6 +738,7 @@ export default function Home() {
                           </div>
                         )}
 
+                        {/* Étape 1: Observer et cartographier - Visuel Audit */}
                         {index === 0 && (
                           <div className="relative w-full max-w-sm h-48">
                             <div className="relative w-full h-full bg-gradient-to-br from-white/20 via-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-4 border-2 border-white/50 shadow-2xl animate-float-gentle-premium overflow-hidden">
