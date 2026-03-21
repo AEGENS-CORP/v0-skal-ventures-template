@@ -19,10 +19,6 @@ export const homepageConfig = {
       secondary: "Découvrir notre méthode",
     },
   },
-  positioning: {
-    title: "Les plus gros leviers de performance sont souvent déjà là.",
-    text: "Ils se trouvent dans les flux, les processus, le pilotage, les arbitrages et l'exécution. Encore faut-il savoir les voir, les structurer et les transformer en résultats.",
-  },
   pillars: {
     title: "Ce que nous aidons à faire évoluer",
     subtitle: "AEGENS intervient là où se jouent les vraies transformations : les arbitrages, le pilotage, les flux et l'exécution.",

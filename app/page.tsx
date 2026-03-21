@@ -259,19 +259,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-20 sm:space-y-24 md:space-y-32 md:py-1.5">
 
           {/* BLOC POSITIONNEMENT COURT */}
-          <section className="scroll-reveal-premium">
-            <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl rounded-3xl p-8 sm:p-12 md:p-14 border border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.08)]">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-br from-white via-gray-100 to-gray-300 bg-clip-text text-transparent mb-6 sm:mb-8 leading-snug">
-                {positioning.title}
-              </h2>
-              <p className="text-base sm:text-lg md:text-xl text-white/75 leading-relaxed max-w-3xl mx-auto">
-                <span className="text-white/90 font-medium">Ils se trouvent dans les flux, les processus, le pilotage, les arbitrages et l'exécution.</span>
-                <br className="hidden sm:block" />
-                <span className="mt-2 inline-block">Encore faut-il savoir les voir, les structurer et les transformer en résultats.</span>
-              </p>
-            </div>
-          </section>
-
           {/* BLOC 4 PILIERS */}
           <section>
             <div className="text-center mb-10 sm:mb-12 md:mb-16 space-y-4 sm:space-y-6 scroll-reveal-premium">
