@@ -38,11 +38,11 @@ export function PhoneLink({ phoneNumber, displayNumber, className = "", showIcon
     <a
       href={`tel:${cleanPhoneNumber}`}
       onClick={handleClick}
-      className={`relative inline-flex items-center gap-2 hover:text-yellow-400 transition-colors text-white ${className}`}
+      className={`relative inline-flex items-center gap-2 whitespace-nowrap hover:text-slate-200 transition-colors text-white ${className}`}
       title={copied ? "Numéro copié !" : "Appeler"}
     >
-      {showIcon && <Phone className="w-4 h-4" />}
-      <span className="text-sm">{copied ? "✓ Copié !" : display}</span>
+      {showIcon && <Phone className="w-5 h-5 shrink-0" />}
+      <span className="leading-tight whitespace-nowrap">{copied ? "✓ Copié !" : display}</span>
     </a>
   )
 }

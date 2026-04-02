@@ -2,10 +2,10 @@
 
 import type React from "react"
 
-import { useCallback, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react"
 
 interface BackgroundClickHandlerProps {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export function BackgroundClickHandler({ children }: BackgroundClickHandlerProps) {
@@ -38,7 +38,17 @@ export function BackgroundClickHandler({ children }: BackgroundClickHandlerProps
     }, 1500)
   }, [])
 
-  return (
-    null
-  )
+  useEffect(() => {
+    return () => {
+      if (animationTimeoutRef.current) {
+        clearTimeout(animationTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  if (!children) {
+    return null
+  }
+
+  return <div onClick={handleBackgroundClick}>{children}</div>
 }

@@ -1,0 +1,8 @@
+export { offresPages } from "@/content/site/details/offres"
+export { problematiquesPages } from "@/content/site/details/problematiques"
+export { expertisesPages } from "@/content/site/details/expertises"
+export { secteursPages } from "@/content/site/details/secteurs"
+export { ressourcesPages } from "@/content/site/details/ressources"
+export { casClientsPages } from "@/content/site/details/cas-clients"
+export { aProposPages } from "@/content/site/details/a-propos"
+export { faqPages } from "@/content/site/details/faq"

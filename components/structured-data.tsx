@@ -3,55 +3,21 @@
 import { useMemo } from "react"
 import { usePathname } from "next/navigation"
 import { BASE_URL } from "@/lib/site-structure"
-import { optionAPages, NAP } from "@/lib/ae-content"
+import { NAP, optionAPages, faqPages, ressourcesPages, hubPages } from "@/lib/ae-content"
 
-const serialize = (data: unknown) => JSON.stringify(data, null, 2)
+const serialize = (data: unknown) => JSON.stringify(data)
+const pageLabelMap = new Map(optionAPages.map((page) => [page.path, page.label]))
 
-const pathLabelMap = new Map(optionAPages.map((page) => [page.path, page.label]))
-
-const localBusinessJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  name: NAP.name,
-  url: BASE_URL,
-  logo: `${BASE_URL}/logo-nouveau.png`,
-  image: `${BASE_URL}/logo-nouveau.png`,
-  telephone: NAP.phone,
-  email: NAP.email,
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: NAP.address,
-    addressLocality: NAP.city,
-    postalCode: NAP.postalCode,
-    addressCountry: "FR",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: "46.6667",
-    longitude: "-1.2833",
-  },
-  areaServed: NAP.areaServed.map((area) => ({
-    "@type": "City",
-    name: area,
-  })),
-  priceRange: "$$",
-  openingHoursSpecification: [
-    {
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      opens: "09:00",
-      closes: "18:00",
-    },
-  ],
-}
+const resolveLabel = (path: string) => pageLabelMap.get(path) ?? path.split("/").filter(Boolean).at(-1) ?? "Page"
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: NAP.name,
   url: BASE_URL,
-  logo: `${BASE_URL}/logo-nouveau.png`,
-  sameAs: ["https://www.linkedin.com/company/aegens"],
+  logo: `${BASE_URL}/logo-global.png`,
+  email: NAP.email,
+  telephone: NAP.phone,
 }
 
 const webSiteJsonLd = {
@@ -62,84 +28,166 @@ const webSiteJsonLd = {
   inLanguage: "fr-FR",
 }
 
+const localBusinessJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: NAP.name,
+  url: BASE_URL,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: NAP.address,
+    addressLocality: NAP.city,
+    postalCode: NAP.postalCode,
+    addressCountry: "FR",
+  },
+  telephone: NAP.phone,
+  email: NAP.email,
+}
+
 const buildBreadcrumbList = (path: string) => {
-  const list = [
+  const cleanPath = path === "/" ? "/" : path.replace(/\/$/, "")
+  const items: Array<{ "@type": "ListItem"; position: number; name: string; item: string }> = [
     {
-      "@type": "ListItem" as const,
+      "@type": "ListItem",
       position: 1,
       name: "Accueil",
       item: BASE_URL,
     },
   ]
 
-  if (path !== "/") {
-    const canonical = new URL(path, BASE_URL).toString()
-    list.push({
+  if (cleanPath === "/") {
+    return items
+  }
+
+  let current = ""
+  const segments = cleanPath.split("/").filter(Boolean)
+  for (const segment of segments) {
+    current += `/${segment}`
+    items.push({
       "@type": "ListItem",
-      position: 2,
-      name: pathLabelMap.get(path) ?? "Page",
-      item: canonical,
+      position: items.length + 1,
+      name: resolveLabel(current),
+      item: new URL(current, BASE_URL).toString(),
     })
   }
 
-  return list
+  return items
 }
 
-const buildFaqSchemas = () => [
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "Quels services proposez-vous ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Nous proposons trois services principaux : l'automatisation IA pour optimiser vos processus métier, les assistants IA métier personnalisés disponibles 24/7, et l'analyse & reporting IA pour transformer vos données en décisions.",
-        },
+const buildHomeFaqSchema = () => ({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Quelle est votre intervention type ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nous intervenons en trois étapes : diagnostic du fonctionnement opérationnel, cadrage de projet puis pilotage de mise en œuvre.",
       },
-      {
-        "@type": "Question",
-        name: "Dans quelles régions intervenez-vous ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Basés en Vendée à La Chaize-le-Vicomte, nous intervenons principalement dans les régions Pays de la Loire et Nouvelle-Aquitaine : La Roche-sur-Yon, La Rochelle, Niort, Nantes, Poitiers et leurs environs.",
-        },
+    },
+    {
+      "@type": "Question",
+      name: "À qui s'adresse votre offre ?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nous travaillons avec des PME industrielles qui veulent clarifier un besoin, structurer un projet et sécuriser l'exécution.",
       },
-      {
-        "@type": "Question",
-        name: "Combien de temps prend un projet IA ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "La durée varie selon la complexité du projet. Un projet d'automatisation simple peut être déployé en 2-4 semaines, tandis qu'un assistant IA métier complet nécessite généralement 1-3 mois incluant la formation et l'intégration.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Quel est le coût d'un projet IA ?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Nos tarifs sont adaptés à chaque projet. Nous proposons des solutions sur mesure qui s'ajustent à votre budget et à vos objectifs. Contactez-nous pour un devis personnalisé.",
-        },
-      },
-    ],
-  },
-]
+    },
+  ],
+})
 
-const pageSchemas: Record<string, () => Array<Record<string, unknown>>> = {
-  "/": () => [localBusinessJsonLd, organizationJsonLd, webSiteJsonLd, ...buildFaqSchemas()],
-  "/services": () => [localBusinessJsonLd],
-  "/services/automatisation": () => [localBusinessJsonLd],
-  "/services/assistant-ia-metier": () => [localBusinessJsonLd],
-  "/services/analyse-reporting": () => [localBusinessJsonLd],
-  "/etudes-de-cas": () => [localBusinessJsonLd],
-  "/a-propos": () => [localBusinessJsonLd],
-  "/contact": () => [localBusinessJsonLd],
-  "/ville/la-roche-sur-yon": () => [localBusinessJsonLd],
-  "/ville/la-rochelle": () => [localBusinessJsonLd],
-  "/ville/niort": () => [localBusinessJsonLd],
-  "/ville/nantes": () => [localBusinessJsonLd],
-  "/ville/poitiers": () => [localBusinessJsonLd],
+const buildFaqSchemaForPath = (path: string) => {
+  if (path === hubPages.faq.path) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqPages.map((page) => ({
+        "@type": "Question",
+        name: page.title,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: page.intro,
+        },
+      })),
+    }
+  }
+
+  if (path.startsWith(`${hubPages.faq.path}/`)) {
+    const slug = path.replace(`${hubPages.faq.path}/`, "")
+    const page = faqPages.find((item) => item.slug === slug)
+    if (!page) {
+      return null
+    }
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: page.title,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: page.intro,
+          },
+        },
+      ],
+    }
+  }
+
+  return null
+}
+
+const buildArticleSchemaForPath = (path: string) => {
+  if (!path.startsWith(`${hubPages.ressources.path}/`)) {
+    return null
+  }
+
+  const slug = path.replace(`${hubPages.ressources.path}/`, "")
+  const resource = ressourcesPages.find((page) => page.slug === slug)
+  if (!resource) {
+    return null
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: resource.title,
+    description: resource.metaDescription,
+    author: {
+      "@type": "Organization",
+      name: NAP.name,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: NAP.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/logo-global.png`,
+      },
+    },
+    mainEntityOfPage: new URL(path, BASE_URL).toString(),
+    inLanguage: "fr-FR",
+  }
+}
+
+const buildProfileSchemaForPath = (path: string) => {
+  if (path !== "/a-propos/qui-nous-sommes") {
+    return null
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Organization",
+      name: NAP.name,
+      url: BASE_URL,
+      description:
+        "Diagnostic, cadrage et pilotage de projets pour PME industrielles avec une approche orientée terrain et exécution.",
+    },
+  }
 }
 
 export function StructuredData() {
@@ -147,16 +195,36 @@ export function StructuredData() {
   const normalizedPath = pathname === "/" ? "/" : pathname.replace(/\/$/, "")
 
   const jsonLdPayloads = useMemo(() => {
-    const builder = pageSchemas[normalizedPath]
-    const entries: Array<Record<string, unknown>> = builder ? builder() : []
+    const entries: Array<Record<string, unknown>> = []
 
-    if (normalizedPath !== "/") {
-      entries.push({
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: buildBreadcrumbList(normalizedPath),
-      })
+    if (normalizedPath === "/") {
+      entries.push(organizationJsonLd, webSiteJsonLd, buildHomeFaqSchema())
     }
+
+    if (normalizedPath === "/contact") {
+      entries.push(localBusinessJsonLd)
+    }
+
+    const faqSchema = buildFaqSchemaForPath(normalizedPath)
+    if (faqSchema) {
+      entries.push(faqSchema)
+    }
+
+    const articleSchema = buildArticleSchemaForPath(normalizedPath)
+    if (articleSchema) {
+      entries.push(articleSchema)
+    }
+
+    const profileSchema = buildProfileSchemaForPath(normalizedPath)
+    if (profileSchema) {
+      entries.push(profileSchema)
+    }
+
+    entries.push({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: buildBreadcrumbList(normalizedPath),
+    })
 
     return entries
   }, [normalizedPath])
@@ -165,7 +233,7 @@ export function StructuredData() {
     <>
       {jsonLdPayloads.map((entry, index) => (
         <script
-          key={index}
+          key={`${normalizedPath}-${index}`}
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: serialize(entry) }}

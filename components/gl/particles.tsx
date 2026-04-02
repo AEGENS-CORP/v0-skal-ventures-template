@@ -100,7 +100,8 @@ export function Particles({
         revealStartTime.current = currentTime
       }
 
-      const revealElapsed = currentTime - revealStartTime.current
+      const revealStart = revealStartTime.current ?? currentTime
+      const revealElapsed = currentTime - revealStart
       const revealProgress = Math.min(revealElapsed / revealDuration, 1.0)
       const easedProgress = 1 - Math.pow(1 - revealProgress, 3)
       const revealFactor = easedProgress * 5.0

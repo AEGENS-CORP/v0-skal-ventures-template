@@ -7,6 +7,9 @@ export function ScrollRevealController() {
   const pathname = usePathname()
 
   useEffect(() => {
+    let observer: IntersectionObserver | null = null
+    const revealTimeoutIds: Array<ReturnType<typeof setTimeout>> = []
+
     // Small delay to ensure DOM is ready after route change
     const timeoutId = setTimeout(() => {
       const observerOptions = {
@@ -14,7 +17,7 @@ export function ScrollRevealController() {
         rootMargin: "0px 0px -50px 0px",
       }
 
-      const observer = new IntersectionObserver((entries) => {
+      observer = new IntersectionObserver((entries) => {
         // Sort entries by vertical position to ensure ordered reveal
         const intersectingEntries = entries
           .filter((e) => e.isIntersecting)
@@ -22,11 +25,12 @@ export function ScrollRevealController() {
 
         intersectingEntries.forEach((entry, index) => {
           // Staggered delay: 100ms between items
-          setTimeout(() => {
+          const revealTimeoutId = setTimeout(() => {
             entry.target.classList.add("visible")
           }, index * 100) // Reduced stagger from 120ms to 100ms for snappier sequence
+          revealTimeoutIds.push(revealTimeoutId)
 
-          observer.unobserve(entry.target)
+          observer?.unobserve(entry.target)
         })
       }, observerOptions)
 
@@ -41,12 +45,14 @@ export function ScrollRevealController() {
       ]
 
       const elements = document.querySelectorAll(selectors.join(", "))
-      elements.forEach((el) => observer.observe(el))
-
-      return () => observer.disconnect()
+      elements.forEach((el) => observer?.observe(el))
     }, 100)
 
-    return () => clearTimeout(timeoutId)
+    return () => {
+      clearTimeout(timeoutId)
+      revealTimeoutIds.forEach((id) => clearTimeout(id))
+      observer?.disconnect()
+    }
   }, [pathname])
 
   return null

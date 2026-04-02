@@ -138,7 +138,7 @@ export const NavigationDropdown = ({ label, items }: NavigationDropdownProps) =>
             updatePosition()
           })
         }}
-        className="flex items-center gap-2 text-lg font-semibold text-white/90 hover:text-white transition-colors duration-200"
+        className="flex items-center gap-1.5 text-[15px] font-semibold tracking-[-0.015em] text-white/90 hover:text-white transition-colors duration-200 font-[var(--font-sans)]"
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-controls={`ae-nav-dropdown-${label}`}

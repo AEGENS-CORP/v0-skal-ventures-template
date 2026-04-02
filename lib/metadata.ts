@@ -14,33 +14,48 @@ export const createPageMetadata = ({ title, description, path }: MetadataParams)
 
   const metaDescription = description ?? "Page en construction."
   const canonical = new URL(path, BASE_URL).toString()
+  const ogImage = new URL("/logo-global.png", BASE_URL).toString()
   const isHome = path === "/"
-  const fullTitle = `${title} | Aegens`
+  const cleanTitle = title.replace(/\s*\|\s*AEGENS?$/i, "").trim()
+  const brandedTitle = `${cleanTitle} | AEGENS`
 
   return {
-    title: fullTitle,
+    title: cleanTitle,
     description: metaDescription,
     alternates: {
       canonical,
       languages: {
         "fr-FR": canonical,
+        "x-default": canonical,
       },
     },
     openGraph: {
-      title: fullTitle,
+      title: brandedTitle,
       description: metaDescription,
       url: canonical,
       locale: "fr_FR",
-      siteName: "Aegens",
+      siteName: "AEGENS",
       type: isHome ? "website" : "article",
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: brandedTitle,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
-      title: fullTitle,
+      title: brandedTitle,
       description: metaDescription,
+      images: [ogImage],
     },
     robots: allowIndex
-      ? undefined
+      ? {
+          index: true,
+          follow: true,
+        }
       : {
           index: false,
           follow: false,

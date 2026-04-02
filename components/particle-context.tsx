@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
+import { createContext, useContext, useState, useEffect, useRef, type ReactNode } from "react"
 
 interface ParticleContextType {
   hovering: boolean
@@ -14,11 +14,12 @@ interface ParticleContextType {
 const ParticleContext = createContext<ParticleContextType | undefined>(undefined)
 
 export function ParticleProvider({ children }: { children: ReactNode }) {
-  const [hovering] = useState(false)
+  const [hovering, setHovering] = useState(false)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [clickRipples, setClickRipples] = useState<Array<{ x: number; y: number; time: number }>>([])
-  const [backgroundClickCenter] = useState<{ x: number; y: number } | null>(null)
-  const [backgroundClickProgress] = useState(0)
+  const [backgroundClickCenter, setBackgroundClickCenter] = useState<{ x: number; y: number } | null>(null)
+  const [backgroundClickProgress, setBackgroundClickProgress] = useState(0)
+  const backgroundAnimationRef = useRef<number | null>(null)
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -81,11 +82,60 @@ export function ParticleProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
+  useEffect(() => {
+    const handleBackgroundClick = (event: Event) => {
+      const customEvent = event as CustomEvent<{ x: number; y: number }>
+      const center = customEvent.detail
+
+      setBackgroundClickCenter(center)
+      setBackgroundClickProgress(0)
+
+      if (backgroundAnimationRef.current !== null) {
+        cancelAnimationFrame(backgroundAnimationRef.current)
+      }
+
+      const startedAt = performance.now()
+      const duration = 1500
+
+      const tick = (now: number) => {
+        const progress = Math.min((now - startedAt) / duration, 1)
+        setBackgroundClickProgress(progress)
+        if (progress < 1) {
+          backgroundAnimationRef.current = requestAnimationFrame(tick)
+        } else {
+          backgroundAnimationRef.current = null
+        }
+      }
+
+      backgroundAnimationRef.current = requestAnimationFrame(tick)
+    }
+
+    const handleBackgroundClickStop = () => {
+      if (backgroundAnimationRef.current !== null) {
+        cancelAnimationFrame(backgroundAnimationRef.current)
+        backgroundAnimationRef.current = null
+      }
+      setBackgroundClickCenter(null)
+      setBackgroundClickProgress(0)
+    }
+
+    window.addEventListener("backgroundClick", handleBackgroundClick as EventListener)
+    window.addEventListener("backgroundClickStop", handleBackgroundClickStop)
+
+    return () => {
+      window.removeEventListener("backgroundClick", handleBackgroundClick as EventListener)
+      window.removeEventListener("backgroundClickStop", handleBackgroundClickStop)
+      if (backgroundAnimationRef.current !== null) {
+        cancelAnimationFrame(backgroundAnimationRef.current)
+      }
+    }
+  }, [])
+
   return (
     <ParticleContext.Provider
       value={{
         hovering,
-        setHovering: () => {},
+        setHovering,
         mousePosition,
         clickRipples,
         backgroundClickCenter,

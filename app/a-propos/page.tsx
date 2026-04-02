@@ -1,13 +1,12 @@
+import { AProposHubMeta, AProposHubPage } from "@/components/site/a-propos-hub-page"
 import { createPageMetadata } from "@/lib/metadata"
-import { AProposClient } from "./a-propos-client"
 
 export const metadata = createPageMetadata({
-  title: "À propos d'Aegens | Ingénierie IA & Automatisation pour TPE/PME",
+  title: AProposHubMeta.title,
   path: "/a-propos",
-  description:
-    "Aegens : Solutions d'ingénierie IA et automatisation sur mesure pour TPE/PME. ROI rapide, systèmes fiables, gains mesurables au quotidien.",
+  description: AProposHubMeta.description,
 })
 
-export default function AProposPage() {
-  return <AProposClient />
+export default function a_proposHubPage() {
+  return <AProposHubPage />
 }

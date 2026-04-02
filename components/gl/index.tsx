@@ -62,9 +62,6 @@ export const GL = ({
           near: 0.01,
           far: 300,
         }}
-        onCreated={({ gl }) => {
-          gl.powerPreference = "default" // Better battery life on mobile
-        }}
         onError={(error) => {
           console.error("WebGL error:", error)
           setHasWebGLError(true)
@@ -99,7 +96,7 @@ export const GL = ({
           backgroundClickCenter={backgroundClickCenter}
           backgroundClickProgress={backgroundClickProgress}
         />
-        <Effects multisampling={0} disableGamma>
+        <Effects disableGamma>
           <shaderPass
             args={[VignetteShader]}
             uniforms-darkness-value={config.vignetteDarkness}

@@ -12,25 +12,30 @@ import { EmailLink } from "./email-link"
 
 export function Footer() {
   const { setHovering } = useParticles()
-
   const serviceLinks = primaryNav.find((item) => item.label === "Offres")?.children || []
 
   return (
-    <footer className="bg-black backdrop-blur-xl border-t border-white/10 relative z-10 text-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 py-16 space-y-12 relative z-10">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-5">
-          <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-100 group">
-            <div className="mb-6">
-              <Image src="/ae-logo.png" alt="AE Logo" width={80} height={80} />
+    <footer className="ae-metal-footer border-t border-white/12 relative z-10 text-white overflow-hidden">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 py-14 sm:py-16 space-y-12 relative z-10">
+        <div className="grid gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-5">
+          <div className="space-y-4">
+            <div className="mb-4 flex items-center gap-3">
+              <Image
+                src="/logo-global.png"
+                alt="Logo Aegens"
+                width={80}
+                height={80}
+                className="h-20 w-20 object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.46)]"
+              />
+              <span className="text-[2.2rem] font-bold tracking-[-0.04em] text-white">{NAP.name}</span>
             </div>
-            <h3 className="text-2xl font-semibold transition-all duration-500">{NAP.name}</h3>
-            <p className="text-white/70 text-sm leading-relaxed transition-colors duration-500 group-hover:text-white/90">
-              {"AEGENS est une société d'accompagnement stratégique et opérationnel pour les entreprises qui veulent prendre le virage de l'IA et des nouvelles technologies."}
+            <p className="text-white/78 text-sm leading-relaxed">
+              Diagnostic, cadrage et pilotage de projets pour PME industrielles. Regard extérieur, méthode claire et exécution maîtrisée.
             </p>
           </div>
 
-          <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
-            <h4 className="text-lg font-semibold">Navigation</h4>
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold tracking-[-0.02em]">Navigation</h4>
             <div className="flex flex-col gap-3 text-sm">
               {primaryNav
                 .filter((item) => item.label !== "Plus")
@@ -40,19 +45,16 @@ export function Footer() {
                     href={item.href}
                     onMouseEnter={() => setHovering(true)}
                     onMouseLeave={() => setHovering(false)}
-                    className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
+                    className="text-white/74 hover:text-white transition-colors duration-200 inline-block"
                   >
-                    <span className="relative">
-                      {item.label}
-                      <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-                    </span>
+                    {item.label}
                   </Link>
                 ))}
             </div>
           </div>
 
-          <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-250">
-            <h4 className="text-lg font-semibold">Offres</h4>
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold tracking-[-0.02em]">Offres</h4>
             <div className="flex flex-col gap-3 text-sm">
               {serviceLinks.map((item) => (
                 <Link
@@ -60,19 +62,16 @@ export function Footer() {
                   href={item.href}
                   onMouseEnter={() => setHovering(true)}
                   onMouseLeave={() => setHovering(false)}
-                  className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
+                  className="text-white/74 hover:text-white transition-colors duration-200 inline-block"
                 >
-                  <span className="relative">
-                    {item.label}
-                    <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-                  </span>
+                  {item.label}
                 </Link>
               ))}
             </div>
           </div>
 
-          <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
-            <h4 className="text-lg font-semibold">Plus</h4>
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold tracking-[-0.02em]">Plus</h4>
             <div className="flex flex-col gap-3 text-sm">
               {plusNavItems
                 .filter((item) => !["Mentions légales", "Politique de confidentialité"].includes(item.label))
@@ -82,63 +81,43 @@ export function Footer() {
                     href={item.href}
                     onMouseEnter={() => setHovering(true)}
                     onMouseLeave={() => setHovering(false)}
-                    className="text-white/70 hover:text-white transition-all duration-500 hover:translate-x-1 inline-block relative group"
+                    className="text-white/74 hover:text-white transition-colors duration-200 inline-block"
                   >
-                    <span className="relative">
-                      {item.label}
-                      <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-                    </span>
+                    {item.label}
                   </Link>
                 ))}
             </div>
           </div>
 
-          <div className="space-y-4 animate-in fade-in slide-in-from-bottom duration-1000 delay-500">
-            <h4 className="text-lg font-semibold">Contact</h4>
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold tracking-[-0.02em]">Contact</h4>
             <div className="flex flex-col gap-4 text-sm">
-              <EmailLink
-                email={NAP.email}
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-all duration-500 group"
-                showIcon
-              />
+              <EmailLink email={NAP.email} className="flex items-center gap-3 text-white/82 hover:text-white transition-colors duration-200 text-base" showIcon />
               <PhoneLink
                 phoneNumber={NAP.phoneLink.replace("tel:", "")}
                 displayNumber={NAP.phone}
-                className="flex items-center gap-3 text-white/70 hover:text-white transition-all duration-500 group"
+                className="flex items-center gap-3 text-white/82 hover:text-white transition-colors duration-200 text-base"
                 showIcon
               />
-              <div className="flex items-start gap-3 text-white/70 group hover:text-white transition-colors duration-500">
-                <MapPin className="mt-0.5 group-hover:scale-110 transition-all duration-500 h-7 w-12" />
-                <span className="group-hover:translate-x-1 transition-transform duration-500">{NAP.fullAddress}</span>
+              <div className="flex items-start gap-3 text-white/74 hover:text-white transition-colors duration-200">
+                <MapPin className="mt-0.5 h-7 w-12" />
+                <span>{NAP.fullAddress}</span>
               </div>
-              <Button
-                asChild
-                className="bg-white text-black hover:bg-white/95 font-semibold mt-4 transition-all duration-500 hover:scale-105 shadow-lg hover:shadow-xl relative overflow-hidden group"
-              >
-                <Link href="/contact">
-                  <span className="relative z-10">Nous contacter</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000"></span>
-                </Link>
+              <Button asChild className="mt-3 !text-zinc-950 hover:!text-zinc-950">
+                <Link href="/contact">Nous contacter</Link>
               </Button>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60 animate-in fade-in duration-1000 delay-700">
-          <p className="transition-colors duration-500 hover:text-white/80">
+        <div className="border-t border-white/12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/62">
+          <p>
             © {new Date().getFullYear()} {NAP.name}. Tous droits réservés.
           </p>
           <div className="flex gap-6 flex-wrap justify-center md:justify-end">
             {footerLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="hover:text-white transition-all duration-500 relative group"
-              >
-                <span className="relative">
-                  {item.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-[1px] bg-white/50 transition-all duration-500 group-hover:w-full"></span>
-                </span>
+              <Link key={item.href} href={item.href} className="hover:text-white transition-colors duration-200">
+                {item.label}
               </Link>
             ))}
           </div>

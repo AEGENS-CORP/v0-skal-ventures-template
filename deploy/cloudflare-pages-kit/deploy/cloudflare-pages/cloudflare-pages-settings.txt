@@ -1,0 +1,12 @@
+Cloudflare Pages - paramètres recommandés
+
+Project name: aegens
+Production branch: production (ou main selon ton repo)
+Framework preset: None
+Build command: pnpm cf:pages:build
+Build output directory: .vercel/output/static
+Root directory: /
+
+Environment variables:
+NEXT_PUBLIC_BASE_URL=https://aegens.com
+

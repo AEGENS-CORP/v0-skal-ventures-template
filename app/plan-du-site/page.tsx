@@ -1,149 +1,83 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { SimplePageLayout } from "@/components/simple-page-layout"
+import { hubPages, detailPagesByHub, modelesChecklistsPages } from "@/lib/ae-content"
+import { createPageMetadata } from "@/lib/metadata"
 
-export const metadata: Metadata = {
-  title: "Plan du site - Skal Ventures",
-  description: "Plan du site de Skal Ventures. Accédez rapidement à toutes les pages de notre site.",
-}
+export const metadata = createPageMetadata({
+  title: "Plan du site",
+  path: "/plan-du-site",
+  description: "Plan du site AEGENS : accès rapide aux offres, problématiques, expertises, ressources et pages de référence.",
+})
 
 export default function SitemapPage() {
+  const hubs = Object.values(hubPages)
+
   return (
-    <SimplePageLayout title="Plan du site" description="Accédez rapidement à toutes les pages de notre site">
-      <div className="space-y-12">
-        {/* Pages principales */}
-        <section className="space-y-4">
+    <SimplePageLayout
+      title="Plan du site"
+      description="Accédez rapidement à l'ensemble des pages Diagnostic, Cadrage et Pilotage."
+      breadcrumbs={[{ label: "Accueil", href: "/" }, { label: "Plan du site" }]}
+    >
+      <div className="space-y-10">
+        <section className="space-y-3">
           <h2 className="text-2xl font-bold text-white">Pages principales</h2>
           <div className="space-y-2">
-            <Link
-              href="/"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
+            <Link href="/" className="block text-white/70 hover:text-white">
               Accueil
             </Link>
-            <Link
-              href="/a-propos"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
-              À propos
-            </Link>
-            <Link
-              href="/etudes-de-cas"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
-              Sécurité & conformité
-            </Link>
-            <Link
-              href="/contact"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
+            <Link href="/contact" className="block text-white/70 hover:text-white">
               Contact
+            </Link>
+            <Link href="/faq" className="block text-white/70 hover:text-white">
+              FAQ
             </Link>
           </div>
         </section>
 
-        {/* Services */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-white">Nos Services</h2>
+        {hubs.map((hub) => {
+          const pages = detailPagesByHub[hub.key]
+          return (
+            <section key={hub.path} className="space-y-3">
+              <h2 className="text-2xl font-bold text-white">{hub.label}</h2>
+              <div className="space-y-2">
+                <Link href={hub.path} className="block text-white/70 hover:text-white">
+                  {hub.title}
+                </Link>
+                <div className="pl-4 space-y-2">
+                  {pages.map((page) => (
+                    <Link key={page.slug} href={`${hub.path}/${page.slug}`} className="block text-white/70 hover:text-white">
+                      {page.title}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )
+        })}
+
+        <section className="space-y-3">
+          <h2 className="text-2xl font-bold text-white">Modèles et checklists</h2>
           <div className="space-y-2">
-            <Link
-              href="/services"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
-              Tous les services
+            <Link href="/modeles-checklists" className="block text-white/70 hover:text-white">
+              Modèles et checklists
             </Link>
             <div className="pl-4 space-y-2">
-              <Link
-                href="/services/automatisation"
-                className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-              >
-                Automatisation
-              </Link>
-              <Link
-                href="/services/assistant-ia-metier"
-                className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-              >
-                Assistants métier IA & RAG
-              </Link>
-              <Link
-                href="/services/analyse-reporting"
-                className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-              >
-                Tableaux de bord & KPIs
-              </Link>
-              <Link
-                href="/services/audit"
-                className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-              >
-                Audit, cartographie & diagnostic
-              </Link>
-              <Link
-                href="/services/vente-gestion"
-                className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-              >
-                Croissance commerciale & présence digitale
-              </Link>
+              {modelesChecklistsPages.map((page) => (
+                <Link key={page.path} href={page.path} className="block text-white/70 hover:text-white">
+                  {page.label}
+                </Link>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Pages par ville */}
-        <section className="space-y-4">
-          <h2 className="text-2xl font-bold text-white">Nos Services par Ville</h2>
-          <div className="space-y-2">
-            <Link
-              href="/ville/angouleme"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
-              Angoulême
-            </Link>
-            <Link
-              href="/ville/nantes"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
-              Nantes
-            </Link>
-            <Link
-              href="/ville/la-rochelle"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
-              La Rochelle
-            </Link>
-            <Link
-              href="/ville/la-roche-sur-yon"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
-              La Roche-sur-Yon
-            </Link>
-            <Link
-              href="/ville/niort"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
-              Niort
-            </Link>
-            <Link
-              href="/ville/poitiers"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
-              Poitiers
-            </Link>
-          </div>
-        </section>
-
-        {/* Pages légales */}
-        <section className="space-y-4">
+        <section className="space-y-3">
           <h2 className="text-2xl font-bold text-white">Informations légales</h2>
           <div className="space-y-2">
-            <Link
-              href="/mentions-legales"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
+            <Link href="/mentions-legales" className="block text-white/70 hover:text-white">
               Mentions légales
             </Link>
-            <Link
-              href="/politique-de-confidentialite"
-              className="block text-white/70 hover:text-white transition-colors duration-300 hover:translate-x-1 transform"
-            >
+            <Link href="/politique-de-confidentialite" className="block text-white/70 hover:text-white">
               Politique de confidentialité
             </Link>
           </div>

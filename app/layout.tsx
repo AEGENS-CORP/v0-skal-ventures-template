@@ -6,63 +6,42 @@ import "../styles/ae-overrides.css"
 import { RootClientLayout } from "./RootClientLayout"
 import { BASE_URL } from "@/lib/site-structure"
 
-import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google"
+import { Poppins } from "next/font/google"
 
-const geistSans = Geist({
+const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
-  weight: ["400", "500", "600", "700"], // Only load weights we actually use
-  display: "swap", // Improve FCP
-  preload: true,
-})
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-  weight: ["400", "600"], // Only load weights we actually use
-  display: "swap",
-  preload: true,
-})
-
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin"],
-  variable: "--font-source-serif",
-  weight: ["400", "600", "700"], // Only load weights we actually use
+  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
   preload: true,
 })
 
 const CANONICAL_URL = new URL("/", BASE_URL).toString()
+const OG_IMAGE_URL = new URL("/logo-global.png", BASE_URL).toString()
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "AEGENS | Accompagnement stratégique, pilotage, IA et automatisation",
+    default: "Diagnostic, cadrage et pilotage de projets pour PME industrielles",
     template: "%s | AEGENS",
   },
+  applicationName: "AEGENS",
+  creator: "AEGENS",
+  publisher: "AEGENS",
+  category: "Conseil en organisation et pilotage de projets",
   description:
-    "AEGENS accompagne les entreprises qui veulent prendre le virage de l'IA et des nouvelles technologies : vision, cockpit de pilotage, automatisation, audit et accompagnement terrain.",
+    "AEGENS intervient auprès des PME industrielles pour poser un constat clair, cadrer les projets et sécuriser leur mise en œuvre.",
   keywords: [
     "AEGENS",
-    "accompagnement stratégique et opérationnel",
-    "virage de l'IA",
-    "nouvelles technologies",
-    "cockpit de direction",
-    "architecture de pilotage",
-    "automatisation des processus",
-    "assistants IA",
-    "structuration des données",
-    "audit des flux et processus",
-    "pilotage d'activité",
-    "transformation utile",
-    "intervention sur site",
-    "Vendée",
-    "La Roche-sur-Yon",
-    "La Rochelle",
-    "Niort",
-    "Nantes",
-    "Poitiers",
-    "Angoulême",
+    "diagnostic fonctionnement opérationnel",
+    "cadrage projet industriel",
+    "cahier des charges fonctionnel",
+    "pilotage projet industriel",
+    "mise en œuvre projet industriel",
+    "organisation opérationnelle",
+    "PME industrielles",
+    "coordination prestataires",
+    "assistance maîtrise d'ouvrage industrie",
   ],
   authors: [{ name: "AEGENS" }],
   robots: {
@@ -80,24 +59,44 @@ export const metadata: Metadata = {
     canonical: CANONICAL_URL,
     languages: {
       "fr-FR": CANONICAL_URL,
+      "x-default": CANONICAL_URL,
     },
+  },
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/logo-global.png",
+    shortcut: "/logo-global.png",
+    apple: "/logo-global.png",
   },
   openGraph: {
     type: "website",
     locale: "fr_FR",
     siteName: "AEGENS",
     url: CANONICAL_URL,
-    title: "AEGENS | Accompagnement stratégique, pilotage, IA et automatisation",
+    title: "Diagnostic, cadrage et pilotage de projets pour PME industrielles | AEGENS",
     description:
-      "AEGENS accompagne les entreprises qui veulent prendre le virage de l'IA et des nouvelles technologies : vision, cockpit de pilotage, automatisation, audit et accompagnement terrain.",
+      "AEGENS intervient auprès des PME industrielles pour poser un constat clair, cadrer les projets et sécuriser leur mise en œuvre.",
+    images: [
+      {
+        url: OG_IMAGE_URL,
+        width: 1200,
+        height: 630,
+        alt: "AEGENS",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AEGENS | Accompagnement stratégique, pilotage, IA et automatisation",
+    title: "Diagnostic, cadrage et pilotage de projets pour PME industrielles | AEGENS",
     description:
-      "AEGENS accompagne les entreprises qui veulent prendre le virage de l'IA et des nouvelles technologies : vision, cockpit de pilotage, automatisation, audit et accompagnement terrain.",
+      "AEGENS intervient auprès des PME industrielles pour poser un constat clair, cadrer les projets et sécuriser leur mise en œuvre.",
+    images: [OG_IMAGE_URL],
   },
-  generator: "v0.app",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
 }
 
 export default function RootLayout({
@@ -106,8 +105,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <RootClientLayout geistSans={geistSans} geistMono={geistMono} sourceSerif={sourceSerif}>
-      {children}
-    </RootClientLayout>
+    <html lang="fr-FR" className={`dark ${poppins.variable}`}>
+      <body className="antialiased ae-readable ae-dark min-h-screen flex flex-col" suppressHydrationWarning>
+        <RootClientLayout>{children}</RootClientLayout>
+      </body>
+    </html>
   )
 }

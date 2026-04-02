@@ -72,7 +72,7 @@ export function AssistantIAMetierClient() {
               name: "Assistants métier IA & RAG",
               description:
                 "Un point d'accès unique à vos documents, procédures et chiffres clés. Vos équipes posent une question en langage simple, l'assistant répond en quelques secondes avec les bonnes informations.",
-              provider: { "@type": "LocalBusiness", name: "Skal Ventures" },
+              provider: { "@type": "LocalBusiness", name: "AEGENS" },
               areaServed: ["La Roche-sur-Yon", "La Rochelle", "Niort", "Nantes", "Poitiers", "Angoulême"],
             }),
           }}

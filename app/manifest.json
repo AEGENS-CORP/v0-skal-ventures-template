@@ -1,11 +1,11 @@
 {
-  "name": "Aegens - Intégrateur IA pour TPE PME",
-  "short_name": "Aegens",
-  "description": "Intégration et exploitation de solutions IA. Automatisation, assistants, reporting temps réel.",
+  "name": "AEGENS - Diagnostic, cadrage et pilotage de projets",
+  "short_name": "AEGENS",
+  "description": "AEGENS accompagne l'industrie, la logistique et le retail en diagnostic, cadrage et pilotage de projets.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
-  "theme_color": "#ffffff",
+  "theme_color": "#0f1518",
   "icons": [
     {
       "src": "/icon.svg",

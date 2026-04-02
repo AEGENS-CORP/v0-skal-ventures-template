@@ -3,7 +3,6 @@ import Link from "next/link"
 import { Breadcrumbs } from "@/components/breadcrumbs"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
-import { ParticleProvider } from "@/components/particle-context"
 import { BackgroundClickHandler } from "@/components/background-click-handler"
 
 export function AProposClient() {
@@ -12,8 +11,7 @@ export function AProposClient() {
   // }, [])
 
   return (
-    <ParticleProvider>
-      <BackgroundClickHandler />
+    <BackgroundClickHandler>
       <div className="pt-20 pb-4 px-4 sm:px-6 border-b border-white/10 relative z-20">
         <div className="max-w-7xl mx-auto">
           <Breadcrumbs items={[{ label: "Accueil", href: "/" }, { label: "À propos" }]} />
@@ -451,6 +449,6 @@ export function AProposClient() {
           </Link>
         </section>
       </div>
-    </ParticleProvider>
+    </BackgroundClickHandler>
   )
 }
