@@ -30,7 +30,7 @@ type PageProps = {
 }
 
 export function generateStaticParams() {
-  return aProposPages.map((page) => ({ slug: page.slug }))
+  return aProposPages.filter((page) => page.slug !== "notre-methode").map((page) => ({ slug: page.slug }))
 }
 
 export async function generateMetadata({ params }: PageProps) {

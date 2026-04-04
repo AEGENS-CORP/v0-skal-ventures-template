@@ -5,7 +5,7 @@ export const metadata = createPageMetadata({
   title: "Contact",
   path: "/contact",
   description:
-    "Échangez sur votre situation : diagnostic du fonctionnement opérationnel, cadrage et pilotage de mise en œuvre pour PME industrielles.",
+    "Échangez sur votre situation : diagnostic du fonctionnement opérationnel, cadrage et pilotage de mise en œuvre pour entreprises industrielles.",
 })
 
 export default function ContactPage() {

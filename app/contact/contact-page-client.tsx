@@ -65,8 +65,8 @@ export default function ContactPageClient() {
         <div className="max-w-7xl mx-auto">
           <div className="ae-surface-strong ae-industrial-block ae-tone-silver scroll-reveal-premium rounded-[22px] p-6 sm:p-8 md:p-10 text-center space-y-5">
             <h1 className="ae-hero-title text-[clamp(2rem,5.2vw,4rem)] font-bold leading-[1.06]">Parlons de votre projet</h1>
-            <p className="ae-hero-intro text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
-              Diagnostic, cadrage et pilotage de mise en œuvre pour PME industrielles.
+              <p className="ae-hero-intro text-base sm:text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
+              Diagnostic, cadrage et pilotage de mise en œuvre pour entreprises industrielles.
             </p>
             <p className="ae-text text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
               Partagez votre situation. Nous revenons vers vous avec un premier cadre de discussion clair.
@@ -130,7 +130,7 @@ export default function ContactPageClient() {
                   id="company"
                   name="company"
                   className="w-full px-4 py-3 bg-slate-950/72 border border-slate-300/30 rounded-lg focus:outline-none focus:border-slate-200/70 focus:ring-2 focus:ring-slate-200/25 transition-all text-base text-white placeholder:text-slate-300/60"
-                  placeholder="Nom de votre PME"
+                  placeholder="Nom de votre entreprise"
                 />
               </div>
 

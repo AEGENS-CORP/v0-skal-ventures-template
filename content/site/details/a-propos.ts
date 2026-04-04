@@ -52,22 +52,22 @@ export const aProposPages: DetailPage[] = [
   {
     slug: "notre-methode",
     title: "Notre méthode",
-    intro: "Une méthode en trois temps : diagnostic, cadrage, pilotage.",
-    metaTitle: "Notre méthode | Diagnostic, cadrage, pilotage",
+    intro: "Une méthode claire pour faire avancer les sujets complexes, du diagnostic à l’exécution.",
+    metaTitle: "Notre méthode | AEGENS",
     metaDescription:
-      "Méthode AEGENS pour PME industrielles : diagnostic du fonctionnement, cadrage structuré et pilotage de mise en œuvre.",
+      "Découvrez la méthode AEGENS : audit, cadrage, cahier des charges, gestion de projet, pilotage de prestataires et mise en œuvre pour faire avancer les sujets complexes.",
     sections: [
       {
-        title: "Étape 1 : Diagnostic",
-        text: "Comprendre le fonctionnement réel et objectiver les priorités.",
+        title: "Comprendre le réel",
+        text: "Observer la situation terrain, qualifier les blocages et objectiver les priorités de traitement.",
       },
       {
-        title: "Étape 2 : Cadrage",
-        text: "Formaliser le besoin et structurer la feuille de route.",
+        title: "Clarifier et cadrer",
+        text: "Transformer un besoin diffus en cadre exploitable : objectifs, périmètre, contraintes et attendus.",
       },
       {
-        title: "Étape 3 : Pilotage",
-        text: "Coordonner la mise en œuvre et sécuriser l'exécution.",
+        title: "Piloter l’exécution",
+        text: "Coordonner les acteurs, traiter les dépendances et sécuriser la mise en œuvre jusqu’au résultat.",
       },
     ],
     relatedPaths: [
