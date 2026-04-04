@@ -164,7 +164,7 @@ export default function Home() {
                 className="ae-hero-title mx-auto max-w-5xl text-[clamp(1.35rem,5.2vw,4.1rem)] leading-[1.08] font-extrabold"
               >
                 <span className="block">Ingénierie opérationnelle</span>
-                <span className="mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                <span className="mt-1 flex items-center justify-center gap-x-2 whitespace-nowrap text-[clamp(0.95rem,3.7vw,3.45rem)]">
                   <span>Production</span>
                   <span
                     className="inline-block -translate-y-[0.08em]"
@@ -507,6 +507,47 @@ export default function Home() {
                     </Link>
                   </article>
                 ))}
+              </div>
+
+              <div
+                className="rounded-2xl border border-[#34e0a0]/30 bg-[linear-gradient(160deg,rgba(7,188,125,0.10)_0%,rgba(0,0,0,0.28)_62%,rgba(0,0,0,0.34)_100%)] p-5 sm:p-6"
+                aria-labelledby="zones-home-title"
+              >
+                <div className="grid grid-cols-[136px_minmax(0,1fr)] items-center gap-4 sm:grid-cols-[210px_minmax(0,1fr)] sm:gap-6">
+                  <Link
+                    href="/zones-dintervention/"
+                    className="group block shrink-0 rounded-2xl border border-[#34e0a0]/35 bg-black/25 p-2 transition-colors hover:border-[#34e0a0]/60"
+                    aria-label="Voir nos zones d'intervention"
+                  >
+                    <div className="relative h-[132px] w-[132px] overflow-hidden rounded-xl border border-white/15 sm:h-[210px] sm:w-[210px]">
+                      <Image
+                        src="/images-site/carte-france-zones.png"
+                        alt="Carte des zones d’intervention AEGENS"
+                        fill
+                        className="object-contain p-2"
+                        sizes="(min-width: 640px) 210px, 180px"
+                      />
+                    </div>
+                  </Link>
+
+                  <div className="min-w-0 space-y-2 sm:space-y-3">
+                    <p className="text-[11px] sm:text-xs uppercase tracking-[0.11em] text-[#8beec8] font-semibold">
+                      Intervention locale
+                    </p>
+                    <h2 id="zones-home-title" className="ae-heading text-2xl sm:text-3xl font-bold">
+                      Où nous intervenons
+                    </h2>
+                    <p className="ae-text text-sm sm:text-base leading-relaxed text-white/92">
+                      Vendée, Charente, Charente-Maritime, Deux-Sèvres, Vienne, Loire-Atlantique, Maine-et-Loire.
+                    </p>
+                    <p className="ae-text text-sm sm:text-base leading-relaxed text-white/78">
+                      Présence locale sur site, avec accompagnement hybride ou à distance selon le sujet.
+                    </p>
+                    <Link href="/zones-dintervention/" className={inlineSeoLinkClass}>
+                      Voir le détail des zones d’intervention
+                    </Link>
+                  </div>
+                </div>
               </div>
 
               <div className="rounded-2xl border border-[#34e0a0]/35 bg-[linear-gradient(120deg,rgba(7,188,125,0.2)_0%,rgba(0,0,0,0.22)_40%,rgba(0,0,0,0.3)_100%)] p-6 sm:p-7 md:p-8">

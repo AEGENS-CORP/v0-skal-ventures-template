@@ -85,6 +85,10 @@ export const primaryNav: NavItem[] = [
         href: "/a-propos/notre-approche",
       },
       {
+        label: "Zones d’intervention",
+        href: "/zones-dintervention",
+      },
+      {
         label: "Notre méthode",
         href: "/a-propos/notre-methode",
       },
