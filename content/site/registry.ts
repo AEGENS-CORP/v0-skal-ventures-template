@@ -30,6 +30,7 @@ export const findDetailPage = (hub: DetailHubKey, slug: string) =>
 const staticTopPages: AePage[] = [
   { path: "/", label: "Accueil", indexable: true },
   { path: "/contact", label: "Contact", indexable: true },
+  { path: "/methode", label: "Méthode", indexable: true },
   { path: "/modeles-checklists", label: "Modèles et checklists", indexable: true },
   { path: "/mentions-legales", label: "Mentions légales", indexable: true },
   { path: "/politique-de-confidentialite", label: "Politique de confidentialité", indexable: true },
@@ -101,6 +102,7 @@ export const getPageLabel = (path: string) => optionAPages.find((page) => page.p
 
 export const prioritizedLaunchPaths = [
   "/",
+  "/methode",
   "/offres/diagnostic-fonctionnement-operationnel-pme-industrielle",
   "/offres/cadrage-projet-industriel-cahier-des-charges",
   "/offres/pilotage-mise-en-oeuvre-projet-industriel",

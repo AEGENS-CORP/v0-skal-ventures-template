@@ -185,7 +185,7 @@ const buildProfileSchemaForPath = (path: string) => {
       name: NAP.name,
       url: BASE_URL,
       description:
-        "Diagnostic, cadrage et pilotage de projets pour PME industrielles avec une approche orientée terrain et exécution.",
+        "AEGENS réunit deux profils complémentaires en audit, cadrage, pilotage, automatisation, IA et data pour faire avancer les sujets complexes.",
     },
   }
 }

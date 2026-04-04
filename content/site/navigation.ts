@@ -3,7 +3,7 @@ import { offresPages } from "@/content/site/details/offres"
 
 export const plusNavItems: AeNavLink[] = [
   { label: "FAQ", href: "/faq" },
-  { label: "Méthode", href: "/a-propos/notre-methode" },
+  { label: "Méthode", href: "/methode" },
   { label: "Cas clients", href: "/cas-clients" },
   { label: "Ressources", href: "/ressources" },
   { label: "Mentions légales", href: "/mentions-legales" },

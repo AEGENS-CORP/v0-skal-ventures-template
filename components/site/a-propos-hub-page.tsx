@@ -25,6 +25,9 @@ const aProposQuickItems = [
     title: "Notre expérience",
     summary: "Les contextes opérationnels qui ont façonné notre méthode d’intervention.",
   },
+]
+
+const aProposSeeAlsoItems = [
   {
     href: "/zones-dintervention/",
     title: "Zones d’intervention",
@@ -123,6 +126,7 @@ export function AProposHubPage() {
             title="Sommaire de la section"
             subtitle="Les pages essentielles pour comprendre le positionnement AEGENS en un coup d’œil."
             items={aProposQuickItems}
+            seeAlsoItems={aProposSeeAlsoItems}
           />
 
           <section className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10">

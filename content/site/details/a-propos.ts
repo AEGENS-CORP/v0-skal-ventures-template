@@ -3,17 +3,17 @@ import type { DetailPage } from "@/content/site/types"
 export const aProposPages: DetailPage[] = [
   {
     slug: "qui-nous-sommes",
-    title: "Qui nous sommes",
+    title: "Qui sommes-nous ?",
     intro:
-      "AEGENS accompagne les entreprises industrielles, logistiques et retail dans l’analyse du fonctionnement opérationnel, le cadrage des projets et le pilotage de la mise en œuvre.",
-    metaTitle: "Qui nous sommes | AEGENS",
+      "AEGENS réunit deux profils complémentaires en audit, cadrage, gestion de projet, pilotage de prestataires, automatisation, IA et data pour faire avancer des sujets complexes.",
+    metaTitle: "Qui sommes-nous ? | AEGENS",
     metaDescription:
-      "AEGENS accompagne l’industrie, la logistique et le retail dans le diagnostic, le cadrage et le pilotage de projets, avec une approche claire, structurée et orientée mise en œuvre.",
+      "AEGENS réunit deux profils complémentaires en audit, cadrage, gestion de projet, pilotage de prestataires, automatisation, IA et data pour faire avancer des sujets complexes.",
     sections: [
       { title: "Position", text: "Une posture d'appui décisionnel et opérationnel, ancrée dans la réalité terrain." },
       { title: "Engagement", text: "Clarté, méthode, exécution et résultats concrets." },
     ],
-    relatedPaths: ["/a-propos/notre-approche", "/a-propos/notre-methode"],
+    relatedPaths: ["/a-propos/notre-approche", "/a-propos/notre-experience", "/offres", "/methode", "/cas-clients"],
   },
   {
     slug: "notre-approche",

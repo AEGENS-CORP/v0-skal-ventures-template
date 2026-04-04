@@ -25,6 +25,9 @@ const offresQuickItems = [
     title: "Pilotage de mise en œuvre",
     summary: "Tenir la coordination, les arbitrages et le rythme jusqu’à l’exécution réelle.",
   },
+]
+
+const offresSeeAlsoItems = [
   {
     href: "/methode/",
     title: "Méthode",
@@ -115,6 +118,7 @@ export function OffresHubPage() {
             title="Sommaire des offres"
             subtitle="Un accès direct aux pages clés pour choisir le bon niveau d’intervention."
             items={offresQuickItems}
+            seeAlsoItems={offresSeeAlsoItems}
           />
 
           <section className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10">

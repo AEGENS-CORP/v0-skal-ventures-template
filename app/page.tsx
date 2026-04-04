@@ -161,28 +161,27 @@ export default function Home() {
             <div className="mx-auto max-w-5xl text-center space-y-5 sm:space-y-6">
               <h1
                 id="home-hero-title"
-                className="ae-hero-title mx-auto max-w-4xl text-[clamp(1.4rem,6vw,4.45rem)] leading-[1.1] font-extrabold"
+                className="ae-hero-title mx-auto max-w-5xl text-[clamp(1.35rem,5.2vw,4.1rem)] leading-[1.08] font-extrabold"
               >
-                <span className="block">Diagnostic, cadrage</span>
-                <span className="block">et pilotage de projets</span>
-                <span className="block md:whitespace-nowrap">
-                  Industrie{" "}
+                <span className="block">Ingénierie opérationnelle</span>
+                <span className="mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+                  <span>Production</span>
                   <span
-                    className="inline-block -translate-y-[0.12em]"
+                    className="inline-block -translate-y-[0.08em]"
                     style={{ color: "#07bc7d", WebkitTextFillColor: "#07bc7d" }}
                     aria-hidden="true"
                   >
                     .
-                  </span>{" "}
-                  Logistique{" "}
+                  </span>
+                  <span>Logistique</span>
                   <span
-                    className="inline-block -translate-y-[0.12em]"
+                    className="inline-block -translate-y-[0.08em]"
                     style={{ color: "#07bc7d", WebkitTextFillColor: "#07bc7d" }}
                     aria-hidden="true"
                   >
                     .
-                  </span>{" "}
-                  Retail
+                  </span>
+                  <span>Distribution</span>
                 </span>
               </h1>
 
