@@ -1,152 +1,174 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Gauge, Layers3, Radar } from "lucide-react"
+import type { ReactNode } from "react"
 import { Button } from "@/components/ui/button"
 import { createPageMetadata } from "@/lib/metadata"
 
 export const metadata = createPageMetadata({
-  title: "Diagnostic, cadrage et pilotage de projets pour l’industrie, la logistique et le retail",
+  title: "Pilotage de la performance industrielle | AEGENS",
   path: "/",
   description:
-    "AEGENS aide les entreprises à clarifier leurs besoins, structurer les bons projets et sécuriser leur mise en œuvre.",
+    "AEGENS aide les PME et ETI industrielles à analyser leur fonctionnement réel pour réduire les coûts opérationnels, structurer les bons projets et piloter leur mise en œuvre.",
 })
 
 const inlineSeoLinkClass =
   "font-semibold text-[#07bc7d] underline decoration-[#07bc7d]/70 underline-offset-4 transition-colors hover:text-[#34e0a0] hover:decoration-[#34e0a0]"
 
-const decisionCards = [
+const interventionSteps = [
   {
-    title: "Clarifier",
-    text: "Un besoin mieux défini avant de décider.",
+    title: "Diagnostic d’opportunités opérationnelles",
+    lead: "Nous analysons le fonctionnement réel pour faire apparaître les pertes d’efficacité, les surcoûts, les incohérences d’organisation et les dépenses à faible valeur.",
+    detail:
+      "Cette étape cartographie les processus, lit les flux organisationnels et d’information, puis met en évidence les actions rapides et les projets à fort retour sur investissement.",
+    outcome: "Faire ressortir les vrais sujets, hiérarchiser les priorités et éviter les faux problèmes.",
   },
   {
-    title: "Structurer",
-    text: "Un cadre de travail solide avant de lancer.",
+    title: "Cadrage d’un enjeu opérationnel prioritaire",
+    lead: "Une fois le sujet identifié, nous le transformons en projet clair, utile et exploitable à partir du besoin réel et des usages terrain.",
+    detail:
+      "Nous intégrons les contraintes opérationnelles, les utilisateurs finaux et les arbitrages nécessaires pour éviter les projets mal définis et les décisions fragiles.",
+    outcome: "Obtenir une formalisation précise du besoin et un cahier des charges directement exploitable.",
   },
   {
-    title: "Mettre en œuvre",
-    text: "Un pilotage clair jusqu'à l'exécution.",
-  },
-]
-
-const marketRepereCards = [
-  {
-    value: "1 PME sur 2",
-    text: "n'a pas de stratégie numérique formalisée.",
-  },
-  {
-    value: "37 %",
-    text: "des TPE-PME ont des difficultés à trouver un prestataire adapté.",
-  },
-  {
-    value: "1 projet sur 4",
-    text: "n'atteint pas ses objectifs business.",
+    title: "Mise en œuvre de projets à fort retour sur investissement",
+    lead: "Nous intervenons comme chef de projet côté client pour coordonner les parties prenantes, piloter les prestataires et sécuriser les décisions.",
+    detail:
+      "Cette phase garantit la tenue du rythme, le traitement des dépendances et l’alignement entre besoin initial, terrain et exécution en production.",
+    outcome: "Transformer l’intention en résultat concret, mesurable et durable.",
   },
 ]
 
-const offers = [
+const gainsExamples = [
   {
-    title: "Diagnostic du fonctionnement opérationnel",
-    text: "Comprendre la situation, objectiver les points de blocage, identifier les priorités.",
-    cta: "Découvrir le diagnostic",
-    href: "/offres/diagnostic-fonctionnement-operationnel-pme-industrielle/",
-    icon: Gauge,
+    title: "Réduction des coûts outils / prestataires",
+    focusLabel: "1 · Réduction des coûts",
+    exemple:
+      "Des outils, abonnements et prestataires accumulés, avec doublons, usages partiels et coûts jamais remis à plat.",
+    solution:
+      "Remise à plat de l’existant, analyse de l’usage réel, comparaison coût/valeur, puis rationalisation.",
+    gain:
+      "10 à 25 % d’économies sur le périmètre revu ; 20 000 à 80 000 € par an selon le volume d’outils, contrats et prestataires.",
+    kpi: "Coût annuel total, coût par outil, taux d’usage réel, doublons fonctionnels, temps perdu, incidents.",
   },
   {
-    title: "Roadmap et cahier des charges",
-    text: "Structurer le besoin, formaliser le cadre du projet et préparer une mise en œuvre solide.",
-    cta: "Découvrir le cadrage",
-    href: "/offres/cadrage-projet-industriel-cahier-des-charges/",
-    icon: Layers3,
+    title: "Performance process et solutions",
+    focusLabel: "2 · Performance",
+    exemple: "Ressaisies, validations inutiles, étapes manuelles et ralentissements au quotidien.",
+    solution:
+      "Revoir le processus réel, supprimer les étapes sans valeur et réaligner organisation et solution sur le besoin terrain.",
+    gain:
+      "15 à 30 % de réduction de certains temps de traitement ; 30 à 80 heures récupérées par mois ; 5 à 15 % de capacité supplémentaire.",
+    kpi: "Temps de traitement, ressaisies, taux d’erreurs, reprises, délais, charge équipe.",
   },
   {
-    title: "Pilotage de mise en œuvre",
-    text: "Déployer le projet avec méthode, coordination et suivi.",
-    cta: "Découvrir le pilotage",
-    href: "/offres/pilotage-mise-en-oeuvre-projet-industriel/",
-    icon: Radar,
-  },
-]
-
-const valueCards = [
-  {
-    title: "Expérience",
-    text: "Lecture rapide des situations et des leviers d'action.",
-  },
-  {
-    title: "Méthode",
-    text: "Approche structurée de diagnostic, cadrage et mise en œuvre.",
-  },
-  {
-    title: "Maîtrise opérationnelle",
-    text: "Compréhension concrète du terrain et des contraintes réelles.",
-  },
-  {
-    title: "Résultat",
-    text: "Un besoin transformé en actions structurées et résultats concrets.",
+    title: "Pilotage par la donnée de production",
+    focusLabel: "3 · Pilotage",
+    exemple:
+      "Indicateurs reconstruits à la main, fichiers contradictoires et décisions prises avec une vision partielle ou tardive.",
+    solution:
+      "Structurer les données utiles, fiabiliser les sources et déployer un pilotage exploitable.",
+    gain:
+      "5 à 10 heures récupérées par semaine ; détection des écarts 2 à 5 fois plus rapide ; réduction nette du temps perdu à vérifier l’information.",
+    kpi: "Temps de consolidation, fiabilité des données, fréquence de mise à jour, délai d’accès, réactivité sur les écarts.",
   },
 ]
 
-const perimeterItems = [
-  "les méthodes de travail",
-  "l'organisation opérationnelle",
-  "les points de blocage",
-  "les pertes de temps",
-  "les besoins à formaliser",
-  "les projets à structurer et à déployer",
-]
-
-const caseCards = [
+const values = [
   {
-    id: "Cas 01",
-    title: "Diagnostic et cadrage d'un projet opérationnel",
-    text: "Clarifier le besoin, poser les priorités, structurer la suite.",
-    href: "/cas-clients/diagnostic-et-cadrage-dun-projet-industriel/",
+    title: "L’intérêt du client avant tout",
+    text: "Recommandations, arbitrages et pilotage servent d’abord ce qui est utile au client, pas ce qui arrange un prestataire ou un vendeur de solution.",
   },
   {
-    id: "Cas 02",
-    title: "Pilotage de mise en œuvre",
-    text: "Faire avancer le projet avec méthode, coordination et suivi.",
-    href: "/cas-clients/pilotage-de-mise-en-oeuvre-dun-projet-operationnel/",
+    title: "Le réel avant le discours",
+    text: "Nous confrontons les décisions au terrain, aux usages et aux contraintes pour éviter les projets théoriques et les diagnostics hors-sol.",
+  },
+  {
+    title: "L’indépendance dans les choix et l’exécution",
+    text: "Aucune rémunération des prestataires impliqués : l’objectivité est préservée du cadrage jusqu’à la mise en œuvre.",
   },
 ]
 
-const sectorCards = [
+const founders = [
   {
-    title: "Industrie",
-    text: "Organisation opérationnelle, structuration de projet et mise en œuvre.",
-    image: "/images-site/sector-industrie.webp",
-    alt: "Environnement industriel",
-    href: "/secteurs/",
-    objectPosition: "center 42%",
+    name: "Adrien Retourne, cofondateur",
+    image: "/images/adrien-retourne-2026.png",
+    alt: "Adrien Retourne",
+    intro:
+      "Ancien DSI en milieu industriel et ingénieur IT, Adrien apporte une vision structurée des systèmes, des flux et de l’exécution dans des environnements liés à la production, à la supply chain, à la qualité, à la finance et au commerce.",
+    expertises:
+      "Cadrage de projets transverses, pilotage de prestataires, cahiers des charges, architecture SI, automatisation et gouvernance des données.",
+    apport: "Lecture rapide des points de blocage, arbitrages clairs et tenue dans l’exécution.",
   },
   {
-    title: "Logistique",
-    text: "Coordination des flux, méthodes de travail et exécution terrain.",
-    image: "/images-site/cas-pilotage.webp",
-    alt: "Environnement logistique",
-    href: "/secteurs/",
-    objectPosition: "center 52%",
-  },
-  {
-    title: "Retail",
-    text: "Organisation opérationnelle des points de vente et déploiement.",
-    image: "/images-site/sector-logistique.webp",
-    alt: "Environnement retail",
-    href: "/secteurs/",
-    objectPosition: "center 50%",
+    name: "Simon Leclair, cofondateur",
+    image: "/images/simon-leclair-2026.png",
+    alt: "Simon Leclair",
+    intro:
+      "Ingénieur IT, avec une expérience en analyse et fiabilisation de données à la MAIF ainsi qu’un parcours en e-commerce et acquisition digitale, Simon apporte une vision orientée performance, donnée et résultat.",
+    expertises:
+      "Pilotage par les indicateurs, structuration des besoins, fiabilisation de la donnée, coordination de prestataires, cadrage de solutions et automatisations.",
+    apport: "Lisibilité sur les sujets complexes, logique de pilotage claire et forte orientation résultat.",
   },
 ]
 
-function BlockTitle({ id, title, intro }: { id?: string; title: string; intro?: string }) {
+const interventionZones = [
+  "Vendée",
+  "Charente",
+  "Charente-Maritime",
+  "Deux-Sèvres",
+  "Vienne",
+  "Loire-Atlantique",
+  "Maine-et-Loire",
+]
+
+function SectionTitle({
+  id,
+  title,
+  intro,
+  kicker,
+}: {
+  id: string
+  title: string
+  intro?: string
+  kicker?: string
+}) {
   return (
     <header className="space-y-3">
-      <h2 id={id} className="ae-heading text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
+      {kicker ? (
+        <p className="text-[0.7rem] sm:text-xs uppercase tracking-[0.12em] font-semibold text-[#8ef0ca]/90">{kicker}</p>
+      ) : null}
+      <h2 id={id} className="ae-heading scroll-mt-28 text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
         {title}
       </h2>
-      {intro ? <p className="ae-text text-base sm:text-lg leading-relaxed max-w-4xl">{intro}</p> : null}
+      {intro ? <p className="ae-text text-base sm:text-lg leading-relaxed max-w-5xl">{intro}</p> : null}
     </header>
   )
+}
+
+function highlightImportantNumbers(text: string) {
+  const regex = /(\d[\d\s]*(?:\s?à\s?\d[\d\s]*)?\s?(?:%|€|h|heures?)?)/giu
+  const parts: ReactNode[] = []
+  let lastIndex = 0
+
+  for (const match of text.matchAll(regex)) {
+    const matched = match[0]
+    const index = match.index ?? 0
+    if (index > lastIndex) {
+      parts.push(text.slice(lastIndex, index))
+    }
+    parts.push(
+      <span key={`${matched}-${index}`} className="font-semibold text-[#8ef0ca]">
+        {matched}
+      </span>,
+    )
+    lastIndex = index + matched.length
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex))
+  }
+
+  return parts
 }
 
 export default function Home() {
@@ -161,433 +183,273 @@ export default function Home() {
             <div className="mx-auto max-w-5xl text-center space-y-5 sm:space-y-6">
               <h1
                 id="home-hero-title"
-                className="ae-hero-title mx-auto max-w-5xl text-[clamp(1.35rem,5.2vw,4.1rem)] leading-[1.08] font-extrabold"
+                className="ae-hero-title mx-auto max-w-5xl text-[clamp(2.35rem,5.15vw,4.45rem)] leading-[1.03] font-extrabold tracking-[-0.03em]"
               >
-                <span className="block">Ingénierie opérationnelle</span>
-                <span className="mt-1 flex items-center justify-center gap-x-2 whitespace-nowrap text-[clamp(0.95rem,3.7vw,3.45rem)]">
-                  <span>Production</span>
-                  <span
-                    className="inline-block -translate-y-[0.08em]"
-                    style={{ color: "#07bc7d", WebkitTextFillColor: "#07bc7d" }}
-                    aria-hidden="true"
-                  >
-                    .
-                  </span>
-                  <span>Logistique</span>
-                  <span
-                    className="inline-block -translate-y-[0.08em]"
-                    style={{ color: "#07bc7d", WebkitTextFillColor: "#07bc7d" }}
-                    aria-hidden="true"
-                  >
-                    .
-                  </span>
-                  <span>Distribution</span>
-                </span>
+                Pilotage de la performance industrielle
               </h1>
 
-              <p className="ae-hero-intro mx-auto max-w-3xl text-[clamp(1rem,1.25vw,1.2rem)] leading-[1.6] text-white/90">
-                <span className="text-[#34e0a0]">Clarifier les priorités.</span> Structurer les projets.
-                <span className="text-[#34e0a0]"> Sécuriser l'exécution.</span>
+              <p className="ae-heading text-[clamp(1.4rem,2.55vw,2.24rem)] leading-[1.14] font-bold text-[#50f0b4]">
+                Réduisez vos coûts opérationnels.
               </p>
 
-              <Button
-                asChild
-                size="lg"
-                className="h-14 rounded-[14px] px-8 text-base sm:text-lg font-semibold tracking-[-0.02em]"
-              >
-                <Link href="/contact/">Parler de votre projet</Link>
-              </Button>
+              <p className="ae-hero-intro mx-auto max-w-4xl text-[clamp(1.04rem,1.22vw,1.2rem)] leading-[1.6] text-white/90">
+                AEGENS aide les PME et ETI industrielles à analyser leur fonctionnement réel pour repérer les surcoûts,
+                les pertes d’efficacité, les solutions ou prestataires inadaptés, puis structurer et piloter les
+                projets qui améliorent concrètement la performance.
+              </p>
+
+              <div className="flex flex-wrap justify-center gap-3">
+                <Button asChild size="lg" className="h-14 rounded-[14px] px-8 text-base sm:text-lg font-semibold tracking-[-0.02em]">
+                  <Link href="/contact/">Parler de votre situation</Link>
+                </Button>
+                <Link
+                  href="/offres/"
+                  className="inline-flex h-14 items-center rounded-[14px] border border-white/20 bg-black/25 px-7 text-base sm:text-lg font-semibold text-white/88 hover:text-white"
+                >
+                  Découvrir nos offres
+                </Link>
+              </div>
 
               <div className="relative mx-auto w-full max-w-[920px] overflow-hidden rounded-2xl border border-white/14">
                 <Image
                   src="/images-site/usine-grand.webp"
-                  alt="Environnement opérationnel industriel et logistique"
+                  alt="Environnement industriel"
                   width={1888}
                   height={1072}
                   className="h-[190px] w-full object-cover sm:h-[240px] lg:h-[285px]"
                   style={{ objectPosition: "center 42%" }}
                   priority
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,4,5,0.28)_0%,rgba(2,4,5,0.62)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,4,5,0.2)_0%,rgba(2,4,5,0.62)_100%)]" />
               </div>
             </div>
           </section>
 
-          <section className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10" aria-labelledby="regard-title">
-            <div className="space-y-6">
-              <BlockTitle
-                id="regard-title"
-                title="Un regard extérieur pour structurer les décisions importantes"
-                intro="Lorsqu'un besoin doit être clarifié, qu'un projet doit être cadré ou qu'une mise en œuvre doit être sécurisée, nous apportons méthode, recul et capacité d'exécution."
-              />
-              <p className="ae-text text-base sm:text-lg leading-relaxed max-w-4xl">
-                Notre rôle : poser un constat clair, structurer les priorités et faire avancer les projets dans de bonnes conditions.
-              </p>
+          <section className="ae-surface ae-industrial-block rounded-3xl p-5 sm:p-6 md:p-7" aria-labelledby="intervention-title">
+            <div className="space-y-4">
+              <SectionTitle id="intervention-title" kicker="Intervention en 3 temps" title="Une suite logique, du constat à la mise en place" />
 
-              <p className="ae-text text-base sm:text-lg leading-relaxed max-w-4xl">
-                Pour entrer directement dans le concret :{" "}
-                <Link href="/offres/diagnostic-fonctionnement-operationnel-pme-industrielle/" className={inlineSeoLinkClass}>
-                  diagnostic du fonctionnement opérationnel
-                </Link>
-                ,{" "}
-                <Link href="/offres/cadrage-projet-industriel-cahier-des-charges/" className={inlineSeoLinkClass}>
-                  cadrage de projet industriel
-                </Link>{" "}
-                et{" "}
-                <Link href="/offres/pilotage-mise-en-oeuvre-projet-industriel/" className={inlineSeoLinkClass}>
-                  pilotage de mise en œuvre
-                </Link>
-                .
-              </p>
-
-              <div className="grid gap-4 md:grid-cols-3">
-                {decisionCards.map((card) => (
-                  <article
-                    key={card.title}
-                    className="rounded-2xl border border-white/12 bg-black/32 p-5 sm:p-6"
-                  >
-                    <h3 className="ae-heading mb-2 text-xl sm:text-2xl font-bold">{card.title}</h3>
-                    <p className="ae-text text-sm sm:text-base leading-relaxed">
-                      <span className="text-[#34e0a0]">Point clé :</span> {card.text}
-                    </p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section
-            className="ae-surface ae-industrial-block rounded-3xl border border-white/16 bg-[linear-gradient(180deg,rgba(7,9,11,0.94)_0%,rgba(4,6,7,0.98)_100%)] p-6 sm:p-8 md:p-10"
-            aria-labelledby="chiffres-title"
-          >
-            <div className="space-y-7">
-              <div className="space-y-4">
-                <h2 id="chiffres-title" className="ae-heading text-2xl sm:text-3xl md:text-4xl font-bold leading-tight">
-                  Pourquoi cadrer avant de lancer
-                </h2>
-                <p className="ae-text max-w-4xl text-base sm:text-lg leading-relaxed">
-                  Certaines difficultés reviennent souvent : besoin encore flou, choix du bon prestataire, cadrage
-                  insuffisant ou projet mal tenu dans la durée.
-                </p>
-              </div>
-
-              <div className="mx-auto grid max-w-6xl gap-2.5 md:grid-cols-3">
-                {marketRepereCards.map((item) => (
-                  <article
-                    key={item.value}
-                    className="rounded-[18px] border border-white/12 bg-[linear-gradient(180deg,rgba(6,8,10,0.98)_0%,rgba(3,5,6,0.98)_100%)] px-4 py-3 sm:px-4 sm:py-3.5"
-                  >
-                    <div className="text-[clamp(1.05rem,1.9vw,1.45rem)] leading-[1.04] font-black tracking-[-0.01em] !text-[#07bc7d]">
-                      {item.value}
+              <div className="space-y-3">
+                {interventionSteps.map((step, index) => (
+                  <article key={step.title} className="rounded-2xl border border-white/12 bg-black/30 p-4 sm:p-5">
+                    <div className="flex items-start gap-3">
+                      <span className="mt-0.5 inline-flex h-11 min-w-11 items-center justify-center rounded-full border border-[#34e0a0]/45 bg-[#0a1814] text-base font-extrabold text-[#50f0b4]">
+                        {index + 1}
+                      </span>
+                      <div className="space-y-2.5 min-w-0">
+                        <h3 className="ae-heading text-xl sm:text-2xl font-bold leading-tight">{step.title}</h3>
+                        <p className="ae-text text-base leading-relaxed">{step.lead}</p>
+                        <p className="ae-text text-base leading-relaxed">{step.detail}</p>
+                        <p className="rounded-lg border border-[#34e0a0]/26 bg-[#06120f]/80 px-3 py-2 text-base text-[#c2f3df]">
+                          <span className="font-semibold text-[#34e0a0]">Résultat visé :</span> {step.outcome}
+                        </p>
+                      </div>
                     </div>
-                    <p className="mt-2.5 max-w-[36ch] text-[0.89rem] sm:text-[0.96rem] font-medium leading-[1.4] text-white">
-                      {item.text}
-                    </p>
                   </article>
                 ))}
               </div>
+            </div>
+          </section>
 
-              <p className="ae-text max-w-4xl text-base sm:text-lg leading-relaxed">
-                Ces repères confirment l&apos;intérêt d&apos;un{" "}
-                <Link href="/offres/diagnostic-fonctionnement-operationnel-pme-industrielle/" className={inlineSeoLinkClass}>
-                  diagnostic structuré
-                </Link>{" "}
-                puis d&apos;un{" "}
-                <Link href="/offres/cadrage-projet-industriel-cahier-des-charges/" className={inlineSeoLinkClass}>
-                  cadrage solide
-                </Link>{" "}
-                avant de lancer.
+          <section className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10" aria-labelledby="gains-title">
+            <div className="space-y-6">
+              <SectionTitle id="gains-title" kicker="Résultats opérationnels" title="Exemples concrets de sujets traités" />
+
+              <p className="ae-text text-sm sm:text-base leading-relaxed max-w-4xl">
+                Trois cas typiques où AEGENS structure le besoin, sécurise les arbitrages et transforme l’amélioration
+                visée en gains réellement suivis.
               </p>
-            </div>
-          </section>
 
-          <section className="overflow-hidden rounded-3xl border border-white/12">
-            <div className="relative">
-              <Image
-                src="/images-site/hero-realiste.webp"
-                alt="Image de séparation"
-                width={1888}
-                height={1072}
-                className="h-[170px] w-full object-cover sm:h-[205px] md:h-[230px]"
-                style={{ objectPosition: "center 22%" }}
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,4,5,0.12)_0%,rgba(2,4,5,0.5)_100%)]" />
-            </div>
-          </section>
-
-          <section className="space-y-5" aria-labelledby="offres-title">
-            <div className="space-y-3">
-              <BlockTitle id="offres-title" title="Une intervention en 3 étapes" />
-            </div>
-
-            <div className="grid gap-4 lg:grid-cols-3">
-              {offers.map((offer, index) => {
-                const Icon = offer.icon
-                return (
+              <div className="grid gap-5 xl:grid-cols-3">
+                {gainsExamples.map((item, index) => (
                   <article
-                    key={offer.title}
-                    className={`ae-offer-card relative flex min-h-[268px] flex-col rounded-2xl border p-6 ${
-                      index === 1 ? "border-[#34e0a0]/52 bg-[#07bc7d]/14" : "border-white/14 bg-black/32"
-                    }`}
+                    key={item.title}
+                    className="group relative overflow-hidden rounded-2xl border border-white/12 bg-[linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.35))] p-5 sm:p-6"
                   >
-                    <div className="mb-4 flex items-center justify-between">
-                      <span className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-[#34e0a0]/35 bg-[#07bc7d]/12">
-                        <Icon className="h-5 w-5 text-[#8beec8]" />
+                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#34e0a0] to-transparent opacity-95" />
+
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="inline-flex items-center rounded-full border border-[#34e0a0]/65 bg-[#092017] px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-[#78efbd]">
+                        Cas 0{index + 1}
+                      </span>
+                      <span className="inline-flex items-center rounded-full border border-[#34e0a0]/65 bg-[#0b2a20] px-3 py-1.5 text-xs sm:text-sm font-bold uppercase tracking-[0.08em] text-[#b5ffe2] shadow-[0_0_0_1px_rgba(52,224,160,0.14)_inset]">
+                        {item.focusLabel}
                       </span>
                     </div>
-                    <h3 className="ae-heading mb-2 text-2xl font-bold">{offer.title}</h3>
-                    <p className="ae-text text-sm sm:text-base leading-relaxed">{offer.text}</p>
-                    <Link href={offer.href} className="mt-auto inline-flex items-center gap-2 pt-6 font-semibold text-[#8beec8] hover:text-white">
-                      {offer.cta}
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </article>
-                )
-              })}
-            </div>
 
-            <p className="ae-text text-base sm:text-lg leading-relaxed max-w-4xl">
-              Chaque offre est reliée à une logique d&apos;exécution. Vous pouvez aussi consulter{" "}
-              <Link href="/methode/" className={inlineSeoLinkClass}>
-                notre méthode
-              </Link>{" "}
-              et{" "}
-              <Link href="/cas-clients/" className={inlineSeoLinkClass}>
-                nos cas clients
-              </Link>{" "}
-              pour voir les suites possibles.
-            </p>
-          </section>
+                    <h3 className="ae-heading mt-4 min-h-[3.2rem] text-lg sm:text-xl font-bold leading-tight text-[#9ef7d5]">
+                      {item.title}
+                    </h3>
 
-          <section className="grid gap-4 xl:grid-cols-2" aria-labelledby="valeur-title">
-            <article className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10 space-y-5">
-              <div className="relative overflow-hidden rounded-2xl border border-white/12">
-                <Image
-                  src="/images-site/industrie-realiste.webp"
-                  alt="Site industriel structuré"
-                  width={1888}
-                  height={1072}
-                  className="h-40 w-full object-cover sm:h-44"
-                  style={{ objectPosition: "center 44%" }}
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,4,5,0.25)_0%,rgba(2,4,5,0.58)_100%)]" />
-              </div>
-              <BlockTitle
-                id="valeur-title"
-                title="Ce qui fait notre valeur"
-                intro="Compréhension du terrain, structuration du besoin et capacité à faire avancer l'exécution."
-              />
+                    <div className="mt-4 space-y-3.5">
+                      <div className="rounded-xl border border-[#34e0a0]/22 bg-black/22 p-3.5">
+                        <p className="text-xs uppercase tracking-[0.08em] text-[#5eeeb0] font-semibold">Exemple</p>
+                        <p className="mt-1.5 ae-text text-sm leading-relaxed">{highlightImportantNumbers(item.exemple)}</p>
+                      </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                {valueCards.map((card) => (
-                  <article key={card.title} className="rounded-2xl border border-white/12 bg-black/34 p-4 sm:p-5">
-                    <h3 className="ae-heading mb-2 text-lg sm:text-xl font-bold">{card.title}</h3>
-                    <p className="ae-text text-sm sm:text-base leading-relaxed">{card.text}</p>
+                      <div className="rounded-xl border border-[#34e0a0]/22 bg-black/22 p-3.5">
+                        <p className="text-xs uppercase tracking-[0.08em] text-[#5eeeb0] font-semibold">Intervention</p>
+                        <p className="mt-1.5 ae-text text-sm leading-relaxed">{highlightImportantNumbers(item.solution)}</p>
+                      </div>
+
+                      <div className="rounded-xl border border-[#34e0a0]/35 bg-[#07130f]/86 p-3.5">
+                        <p className="text-xs uppercase tracking-[0.08em] text-[#7ef2c4] font-semibold">Gain visé</p>
+                        <p className="mt-1.5 ae-text text-sm leading-relaxed text-[#dcfff0]">{highlightImportantNumbers(item.gain)}</p>
+                      </div>
+
+                      <div className="border-t border-[#34e0a0]/18 pt-3.5 space-y-2">
+                        <p className="text-xs uppercase tracking-[0.08em] text-[#7ef2c4] font-semibold">KPI suivis</p>
+                        <ul className="flex flex-wrap gap-2">
+                          {item.kpi.split(",").map((kpi) => (
+                            <li
+                              key={`${item.title}-${kpi}`}
+                              className="rounded-full border border-[#34e0a0]/28 bg-[#0a1713]/82 px-2.5 py-1 text-xs sm:text-[0.8rem] text-[#d7ffef]"
+                            >
+                              {kpi.trim()}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </article>
                 ))}
               </div>
-            </article>
-
-            <aside className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10 space-y-5" aria-labelledby="perimetre-title">
-              <div className="relative overflow-hidden rounded-2xl border border-white/12">
-                <Image
-                  src="/images-site/usine-realiste.webp"
-                  alt="Organisation opérationnelle industrielle"
-                  width={1888}
-                  height={1072}
-                  className="h-40 w-full object-cover sm:h-44"
-                  style={{ objectPosition: "center 48%" }}
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,4,5,0.2)_0%,rgba(2,4,5,0.55)_100%)]" />
-              </div>
-              <h2 id="perimetre-title" className="ae-heading text-2xl sm:text-3xl font-bold leading-tight">
-                Le fonctionnement concret de l'entreprise
-              </h2>
-
-              <ul className="grid gap-3">
-                {perimeterItems.map((item) => (
-                  <li key={item} className="flex items-start gap-3 rounded-xl border border-white/12 bg-black/34 px-4 py-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#07bc7d]" />
-                    <span className="ae-text text-base leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-3 pt-1">
-                <Link href="/methode/" className="inline-flex items-center gap-2 text-sm font-semibold text-[#8beec8] hover:text-white">
-                  Voir notre méthode
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link href="/secteurs/" className="inline-flex items-center gap-2 text-sm font-semibold text-white/82 hover:text-white">
-                  Voir les secteurs
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </aside>
-          </section>
-
-          <section className="overflow-hidden rounded-3xl border border-white/12">
-            <div className="relative mx-auto w-[84%]">
-              <Image
-                src="/images-site/replaite.webp"
-                alt="Image de séparation métal"
-                width={1888}
-                height={1072}
-                className="h-[118px] w-full object-cover sm:h-[138px] md:h-[156px]"
-                style={{ objectPosition: "center 60%" }}
-              />
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,4,5,0.18)_0%,rgba(2,4,5,0.52)_100%)]" />
-              <div className="absolute inset-y-0 left-0 w-[28%] bg-[linear-gradient(90deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0)_100%)]" />
-              <div className="absolute inset-y-0 right-0 w-[28%] bg-[linear-gradient(270deg,rgba(0,0,0,0.9)_0%,rgba(0,0,0,0)_100%)]" />
             </div>
           </section>
 
-          <section className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10" aria-labelledby="secteurs-title">
-            <div className="space-y-5">
-              <div className="space-y-3">
-                <BlockTitle
-                  id="secteurs-title"
-                  title="Industrie, logistique et retail"
-                  intro="Nous intervenons dans des environnements où la clarté d'organisation et l'exécution font la différence."
-                />
-              </div>
+          <section className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10" aria-labelledby="valeurs-title">
+            <div className="space-y-6">
+              <SectionTitle id="valeurs-title" kicker="Positionnement" title="Nos valeurs" />
 
-              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {sectorCards.map((sector) => (
-                  <article key={sector.title} className="overflow-hidden rounded-2xl border border-white/12 bg-black/28">
-                    <Link href={sector.href} className="block">
-                      <div className="relative aspect-square">
-                        <Image
-                          src={sector.image}
-                          alt={sector.alt}
-                          fill
-                          className="object-cover"
-                          style={{ objectPosition: sector.objectPosition }}
-                        />
-                        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,4,5,0.08)_0%,rgba(2,4,5,0.6)_100%)]" />
+              <div className="grid gap-4 md:grid-cols-3">
+                {values.map((value, index) => (
+                  <article key={value.title} className="rounded-2xl border border-white/12 bg-black/30 p-5 sm:p-6">
+                    <div className="space-y-3">
+                      <h3 className="ae-heading text-lg sm:text-xl font-bold leading-tight">{value.title}</h3>
+                      <p className="ae-text text-sm sm:text-base leading-relaxed">{value.text}</p>
+                    </div>
+                    <span className="mt-4 block text-5xl sm:text-6xl font-extrabold leading-none text-[#34e0a0]/26">
+                      0{index + 1}
+                    </span>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10" aria-labelledby="fondateurs-title">
+            <div className="space-y-6">
+              <SectionTitle
+                id="fondateurs-title"
+                kicker="Équipe"
+                title="Les cofondateurs"
+                intro="Deux profils complémentaires pour analyser les sujets, structurer les décisions et piloter la mise en œuvre."
+              />
+
+              <div className="grid gap-4 xl:grid-cols-2">
+                {founders.map((founder) => (
+                  <article key={founder.name} className="rounded-2xl border border-white/12 bg-black/30 p-5 sm:p-6">
+                    <div className="grid gap-4 grid-cols-1 sm:grid-cols-[150px_minmax(0,1fr)] sm:items-start">
+                      <div className="relative h-36 w-36 sm:h-40 sm:w-40 overflow-hidden rounded-2xl border border-white/15 bg-[#0a1110]">
+                        <Image src={founder.image} alt={founder.alt} fill className="object-cover" sizes="160px" />
                       </div>
-                      <div className="space-y-2 p-4 sm:p-5">
-                        <h3 className="ae-heading text-xl font-bold">{sector.title}</h3>
-                        <p className="ae-text text-sm sm:text-base leading-relaxed">{sector.text}</p>
+                      <div className="space-y-3">
+                        <h3 className="ae-heading text-xl sm:text-2xl font-bold leading-tight">{founder.name}</h3>
+                        <p className="ae-text text-sm sm:text-base leading-relaxed">{founder.intro}</p>
+                        <p className="ae-text text-sm sm:text-base leading-relaxed">
+                          <span className="text-[#34e0a0] font-semibold">Expertises clés :</span> {founder.expertises}
+                        </p>
+                        <p className="ae-text text-sm sm:text-base leading-relaxed">
+                          <span className="text-[#34e0a0] font-semibold">Ce qu’il apporte :</span> {founder.apport}
+                        </p>
                       </div>
-                    </Link>
+                    </div>
                   </article>
                 ))}
               </div>
 
-              <p className="ae-text text-base sm:text-lg leading-relaxed max-w-4xl">
-                Voir le détail des environnements :{" "}
-                <Link href="/secteurs/" className={inlineSeoLinkClass}>
-                  secteurs d&apos;intervention
+              <p className="ae-text text-base sm:text-lg leading-relaxed max-w-5xl">
+                Pour en savoir plus sur notre positionnement :{" "}
+                <Link href="/a-propos/qui-nous-sommes/" className={inlineSeoLinkClass}>
+                  qui nous sommes
                 </Link>
                 .
               </p>
             </div>
           </section>
 
-          <section className="ae-surface ae-industrial-block rounded-3xl p-6 sm:p-8 md:p-10" aria-labelledby="cas-title">
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <BlockTitle
-                  id="cas-title"
-                  title="Des interventions concrètes"
-                  intro="Des cas clients orientés décisions claires et exécution maîtrisée."
-                />
-              </div>
+          <section className="ae-surface ae-industrial-block rounded-3xl p-4 sm:p-5 md:p-6 max-w-[1120px] mx-auto" aria-labelledby="zones-title">
+            <div className="space-y-4">
+              <SectionTitle
+                id="zones-title"
+                kicker="Proximité terrain"
+                title="Zone d’intervention"
+                intro="AEGENS intervient sur site et à distance selon les sujets, avec une logique de proximité lorsque la compréhension du terrain est nécessaire."
+              />
 
-              <div className="grid gap-4 md:grid-cols-2">
-                {caseCards.map((card) => (
-                  <article key={card.title} className="rounded-2xl border border-white/12 bg-black/28 p-5 sm:p-6">
-                    <p className="text-[11px] uppercase tracking-[0.1em] text-[#8beec8] font-semibold mb-2">{card.id}</p>
-                    <h3 className="ae-heading mb-3 text-xl sm:text-2xl font-bold">{card.title}</h3>
-                    <p className="ae-text mb-5 text-sm sm:text-base leading-relaxed">{card.text}</p>
-                    <Link href={card.href} className="inline-flex items-center gap-2 font-semibold text-[#8beec8] hover:text-white">
-                      Voir le cas
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </article>
-                ))}
-              </div>
+              <div className="grid gap-4 lg:grid-cols-[300px_minmax(0,1fr)] lg:items-center">
+                <div className="mx-auto w-full max-w-[300px] rounded-2xl border border-[#34e0a0]/35 bg-black/25 p-2.5">
+                  <div className="relative aspect-square overflow-hidden rounded-xl border border-white/15 bg-black/45">
+                    <Image
+                      src="/images-site/carte-france-zones.png"
+                      alt="Carte des zones d’intervention AEGENS"
+                      fill
+                      className="object-contain p-1"
+                      sizes="330px"
+                    />
+                  </div>
+                </div>
 
-              <div
-                className="rounded-2xl border border-[#34e0a0]/30 bg-[linear-gradient(160deg,rgba(7,188,125,0.10)_0%,rgba(0,0,0,0.28)_62%,rgba(0,0,0,0.34)_100%)] p-5 sm:p-6"
-                aria-labelledby="zones-home-title"
-              >
-                <div className="grid grid-cols-[136px_minmax(0,1fr)] items-center gap-4 sm:grid-cols-[210px_minmax(0,1fr)] sm:gap-6">
-                  <Link
-                    href="/zones-dintervention/"
-                    className="group block shrink-0 rounded-2xl border border-[#34e0a0]/35 bg-black/25 p-2 transition-colors hover:border-[#34e0a0]/60"
-                    aria-label="Voir nos zones d'intervention"
-                  >
-                    <div className="relative h-[132px] w-[132px] overflow-hidden rounded-xl border border-white/15 sm:h-[210px] sm:w-[210px]">
-                      <Image
-                        src="/images-site/carte-france-zones.png"
-                        alt="Carte des zones d’intervention AEGENS"
-                        fill
-                        className="object-contain p-2"
-                        sizes="(min-width: 640px) 210px, 180px"
-                      />
-                    </div>
-                  </Link>
-
-                  <div className="min-w-0 space-y-2 sm:space-y-3">
-                    <p className="text-[11px] sm:text-xs uppercase tracking-[0.11em] text-[#8beec8] font-semibold">
-                      Intervention locale
-                    </p>
-                    <h2 id="zones-home-title" className="ae-heading text-2xl sm:text-3xl font-bold">
-                      Où nous intervenons
-                    </h2>
-                    <p className="ae-text text-sm sm:text-base leading-relaxed text-white/92">
-                      Vendée, Charente, Charente-Maritime, Deux-Sèvres, Vienne, Loire-Atlantique, Maine-et-Loire.
-                    </p>
-                    <p className="ae-text text-sm sm:text-base leading-relaxed text-white/78">
-                      Présence locale sur site, avec accompagnement hybride ou à distance selon le sujet.
-                    </p>
+                <div className="space-y-4">
+                  <div className="rounded-xl border border-white/12 bg-black/25 p-3 sm:p-4">
+                    <p className="text-xs uppercase tracking-[0.12em] font-semibold text-[#8ef0ca]/90">Intervention locale</p>
+                    <h3 className="ae-heading mt-2 text-xl sm:text-2xl font-bold">Zones principales</h3>
+                  </div>
+                  <ul className="grid gap-1.5 sm:grid-cols-2">
+                    {interventionZones.map((zone) => (
+                      <li key={zone} className="flex items-center gap-2 rounded-lg border border-white/12 bg-black/28 px-3 py-1.5">
+                        <span className="h-2 w-2 rounded-full bg-[#07bc7d]" />
+                        <span className="ae-text text-sm sm:text-base">{zone}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="ae-text text-sm sm:text-base">
+                    Présence locale sur site, avec accompagnement hybride ou à distance selon le sujet.
+                  </p>
+                  <div>
                     <Link href="/zones-dintervention/" className={inlineSeoLinkClass}>
                       Voir le détail des zones d’intervention
                     </Link>
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
 
-              <div className="rounded-2xl border border-[#34e0a0]/35 bg-[linear-gradient(120deg,rgba(7,188,125,0.2)_0%,rgba(0,0,0,0.22)_40%,rgba(0,0,0,0.3)_100%)] p-6 sm:p-7 md:p-8">
-                <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
-                  <div className="space-y-2">
-                    <h2 id="cta-final-title" className="ae-heading text-2xl sm:text-3xl font-bold">
-                      Un besoin à clarifier ou un projet à structurer ?
-                    </h2>
-                    <p className="ae-text text-sm sm:text-base leading-relaxed max-w-2xl">
-                      Nous accompagnons les entreprises qui doivent poser un constat clair, cadrer les décisions et
-                      sécuriser la mise en œuvre.
-                    </p>
-                    <p className="ae-text text-sm sm:text-base leading-relaxed max-w-2xl">
-                      Pour avancer dès maintenant :{" "}
-                      <Link href="/contact/" className={inlineSeoLinkClass}>
-                        parler de votre situation
-                      </Link>{" "}
-                      ou{" "}
-                      <Link href="/methode/" className={inlineSeoLinkClass}>
-                        découvrir notre approche
-                      </Link>
-                      .
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-3">
-                    <Button
-                      asChild
-                      size="lg"
-                      className="h-12 rounded-[12px] px-6 text-sm sm:text-base font-semibold tracking-[-0.02em]"
-                    >
-                      <Link href="/contact/">Échanger sur votre situation</Link>
-                    </Button>
-                    <Link
-                      href="/cas-clients/"
-                      className="inline-flex h-12 items-center rounded-[12px] border border-white/18 px-5 text-sm sm:text-base font-semibold text-white/88 hover:text-white"
-                    >
-                      Voir nos cas clients
-                    </Link>
-                  </div>
-                </div>
+          <section
+            className="rounded-2xl border border-[#34e0a0]/35 bg-[linear-gradient(120deg,rgba(7,188,125,0.2)_0%,rgba(0,0,0,0.22)_40%,rgba(0,0,0,0.3)_100%)] p-6 sm:p-7 md:p-8"
+            aria-labelledby="cta-final-title"
+          >
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <h2 id="cta-final-title" className="ae-heading text-[clamp(1.5rem,2.4vw,2.45rem)] font-bold leading-tight lg:whitespace-nowrap">
+                  Obtenez une lecture claire de vos surcoûts et de vos priorités
+                </h2>
+                <p className="ae-text text-sm sm:text-base leading-relaxed max-w-3xl">
+                  AEGENS analyse votre fonctionnement réel pour faire ressortir les coûts mal maîtrisés, les pertes
+                  d’efficacité et les sujets à traiter en priorité.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3 pt-1">
+                <Button asChild size="lg" className="h-12 rounded-[12px] px-6 text-sm sm:text-base font-semibold tracking-[-0.02em]">
+                  <Link href="/contact/">Parler de votre situation</Link>
+                </Button>
+                <Link
+                  href="/offres/diagnostic-fonctionnement-operationnel-pme-industrielle/"
+                  className="inline-flex h-12 items-center rounded-[12px] border border-white/18 px-5 text-sm sm:text-base font-semibold text-white/88 hover:text-white"
+                >
+                  Demander un premier diagnostic
+                </Link>
               </div>
             </div>
           </section>
